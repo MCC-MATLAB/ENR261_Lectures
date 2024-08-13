@@ -1,0 +1,78 @@
+/*
+MATLAB style
+*/
+
+:root {
+  --matlab-bg-color: #12111f; /* MATLAB code background */
+  --matlab-code-color: #979797; /* MATLAB text */
+  --matlab-comment: #008113FF;
+  --matlab-string: #B538F7FF;
+  --matlab-function: #082BFFFF;
+  --matlab-keyword: #082BFFFF;
+  --matlab-constant: #d08c60ff;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: var(--matlab-bg-color);
+  color: var(--matlab-code-color) ;
+}
+
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: var(--matlab-keyword);
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  font-weight: bold;
+}
+
+.hljs-code {
+  color: #66d9ef;
+}
+
+.hljs-class .hljs-title {
+  color: white;
+}
+
+.hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: #bf79db;
+}
+
+.hljs-string {
+  color: var(--matlab-string);
+}
+
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #a6e22e;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: var(--matlab-comment);
+}

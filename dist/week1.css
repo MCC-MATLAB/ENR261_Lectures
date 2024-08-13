@@ -1,0 +1,231 @@
+:root {
+    /* Define the primary color palette */
+    --color1: #323242; /* Background */
+    --color2: #406D73ff; /* caribbean-current */
+    --color3: #323242ff; /* raisin-black */
+    --color4: #5168ADff; /* savoy-blue */
+    --color5: #ADA9B8ff; /* rose-quartz */
+    --color6: #FFFFFF;
+
+    --H1: #1E5570ff;
+    --H2: #598296ff;
+    --H3: #6D9DB5ff;
+    --H4: #2E8AB8ff;
+    --H5: #5E676Bff;
+
+    /* Derived colors for different headers */
+    --primary-color: var(--color4);
+    --secondary-color: var(--color2);
+    --tertiary-color: var(--color1);
+    --quaternary-color: var(--color5);
+
+    --background-color: #323242; /* Main background color */
+    --text-color: #b8baba;
+
+    --code-bg-color: #0a091f; /* Code block background */
+    --code-block-text-color: #c2095a; /* Code block text */
+    --matlab-bg-color: #12111f; /* MATLAB code background */
+    --matlab-code-color: #979797; /* MATLAB text */
+}
+
+code {
+    background-color: var(--code-bg-color);
+    color: var(--code-block-text-color);
+    padding: 4px;
+    margin: 0;
+    border-radius: 0.3em;
+}
+
+.code-wrapper {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    background-color: var(--matlab-bg-color);
+    border-radius: 4px;
+}
+
+
+/* General Text Styling */
+.reveal .slide-background-content {
+    background-color: var(--background-color);
+}
+
+.rise-enabled .reveal pre {
+    width: 70% !important;
+}
+
+.reveal .slides,
+.reveal .slides section,
+.reveal .slides section .fragment,
+div.text_cell_render {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Heading Styles */
+.reveal .slides h1,
+.reveal .slides section .fragment h1 {
+    /*font-size: 2.5em;*/
+    /*font-weight: bold;*/
+    color: var(--H1) !important;
+    /*text-align: center;*/
+}
+
+.reveal .slides h2,
+.reveal .slides section .fragment h2 {
+    /*font-size: 2em;*/
+    /*font-weight: bold;*/
+    color: var(--H2) !important;
+    /*text-align: center;*/
+}
+
+.reveal .slides h3,
+.reveal .slides section .fragment h3 {
+    /*font-size: 1.75em;*/
+    /*font-weight: bold;*/
+    color: var(--H3) !important;
+    /*text-align: center;*/
+    /*padding-bottom: 0.3em;*/
+}
+
+.reveal .slides h4,
+.reveal .slides section .fragment h4 {
+    /*font-size: 1.5em;*/
+    /*font-weight: 400;*/
+    color: var(--H4) !important;
+    /*text-align: center;*/
+}
+
+.reveal .slides h5,
+.reveal .slides h6 {
+    /*font-size: 1.5em;*/
+    /*font-weight: 400;*/
+    color: var(--H5) !important;
+    /*text-align: center;*/
+}
+
+/* Paragraph text styling */
+.reveal .slides p,
+.reveal .slides section .fragment p {
+    /*font-size: 1.2em;*/
+    /*line-height: 1.6;*/
+    color: #abb2bf !important;
+}
+
+/* Bullet points styling */
+.reveal .slides ul,
+.reveal .slides section .fragment ul {
+    /*font-size: 1.2em;*/
+    /*color: var(--text-color) !important;*/
+}
+
+.reveal .slides ul li,
+.reveal .slides section .fragment ul li {
+    /*margin-bottom: 10px;*/
+}
+
+/*.slides pre[class*="language-matlab"] {*/
+
+/*}*/
+
+/*!* Styling for Inline Code *!*/
+/*.rendered_html code {*/
+/*    color: var(--code-block-text-color);*/
+/*    background-color: var(--code-bg-color);*/
+/*    border-radius: 0.3em;*/
+/*    padding: 0 10px;*/
+/*}*/
+
+/*!* Link styling *!*/
+/*.reveal a,*/
+/*.reveal .slides section .fragment a {*/
+/*    color: var(--primary-color);*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*!* Image Styling *!*/
+/*.reveal img,*/
+/*.reveal .slides section .fragment img {*/
+/*    border-radius: 10px;*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*}*/
+
+/*!* Transition effects *!*/
+/*.reveal {*/
+/*    transition: background-color 0.5s ease, color 0.5s ease;*/
+/*}*/
+
+/*!* Style the progress bar *!*/
+/*.reveal .progress {*/
+/*    background-color: #3e4451;*/
+/*}*/
+
+/*.reveal .progress .progress-bar {*/
+/*    background-color: var(--primary-color);*/
+/*}*/
+
+/*!* Optional: Drop shadow on slides *!*/
+/*.reveal .slides section,*/
+/*.reveal .slides section .fragment {*/
+/*    padding: 20px !important;*/
+/*    border-radius: 10px;*/
+/*    !* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); *!*/
+/*}*/
+
+/*!* Style for fragments (elements that appear incrementally) *!*/
+/*.reveal .fragment {*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.5s ease-in-out;*/
+/*}*/
+
+/*.reveal .fragment.visible {*/
+/*    opacity: 1;*/
+/*}*/
+
+/*.MathJax {*/
+/*    color: var(--code-block-text-color);*/
+/*    background-color: var(--code-bg-color);*/
+/*    padding: 40px 10px !important;*/
+/*}*/
+
+/* Bootstrap overrides */
+.alert-primary {
+
+}
+
+.alert-secondary {
+
+}
+
+.alert-success {
+
+}
+
+.alert-danger {
+
+}
+
+.alert-warning {
+    color: #5c3e11;
+    background-color: #d4983f;
+    border-color: #70480c;
+    border-radius: 10px;
+}
+
+.alert-info {
+    color: #c2fCff;
+    background-color: #4f6f70;
+    border-color: #539fa3;
+    border-radius: 10px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.quarter-width {
+    width: 25%;
+}
+
+.fit-width {
+    width: fit-content;
+}
