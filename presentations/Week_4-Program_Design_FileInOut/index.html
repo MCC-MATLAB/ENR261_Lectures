@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 2: MATLAB Variables & Data Types</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 4: Program Design 🛠 and File Import/Export️ 💾
+
+			## Objectives:
+			* Understand the program design process 🛣️.
+			* Learn to create and use functions effectively 🔧.
+			* Import and export data in various formats 📂.
+
+			--
+
+			## Topics Covered:
+			* Program Design and Algorithm Development 🧩
+			* MATLAB Functions 📜
+			* File Import and Export Utilities 📥📤
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+
+			## Program Design and Algorithm Development 🛣️
+			### Program Design Process:
+			1. Identify the Problem: Clearly define the problem you need to solve.
+			2. Develop an Algorithm: Create a step-by-step procedure to solve the problem.
+			3. Implement the Algorithm: Translate the algorithm into MATLAB code.
+			4. Test and Debug: Verify the solution works as expected and fix any issues.
+			💡 Tip: Break down complex problems into smaller, manageable parts. This makes it easier to tackle each part one by one.
+
+			--
+
+			### Example: Projectile Problem 🎯
+			**Problem**:
+			Calculate the trajectory of a projectile.
+
+			**Algorithm**:
+			Define initial velocity, angle, and acceleration due to gravity.
+			Compute the horizontal and vertical components of velocity.
+			Calculate the position of the projectile at different time intervals.
+
+			--
+
+			**Implementation**:
+			```matlab
+			v0 = 50; % Initial velocity (m/s)
+			angle = 45; % Angle of projection (degrees)
+			g = 9.81; % Acceleration due to gravity (m/s^2)
+
+			vx = v0 * cosd(angle); % Horizontal component of velocity
+			vy = v0 * sind(angle); % Vertical component of velocity
+
+			t = linspace(0, 2*vy/g, 100); % Time intervals
+			x = vx * t; % Horizontal position
+			y = vy * t - 0.5 * g * t.^2; % Vertical position
+
+			plot(x, y);
+			xlabel('Distance (m)');
+			ylabel('Height (m)');
+			title('Projectile Trajectory');
+			```
+			🔄 Analogy: Think of program design as planning a road trip: decide the destination (goal), plan the route (algorithm), travel (implement), and adjust as needed (test and debug).
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+
+			## Custom MATLAB Functions 📜
+			### Creating Functions:
+			**Definition**:
+				A function is a block of code designed to perform a specific task.
+			**Components**:
+				* Name
+				* Input arguments
+				* Output arguments.
+
+			#### Syntax:
+			```matlab
+			function output = functionName(input)
+			% Function body
+			output = ...;
+			end
+			```
+
+			--
+
+			#### Example Function: Calculate Trajectory 🎯
+			1. Create a file named `calculate_trajectory.m`:
+
+			```matlab
+			function [x, y] = calculate_trajectory(v0, angle, g)
+			vx = v0 * cosd(angle); % Horizontal component of velocity
+			vy = v0 * sind(angle); % Vertical component of velocity
+
+			t = linspace(0, 2*vy/g, 100);  % Time intervals
+			x = vx * t;  % Horizontal position
+			y = vy * t - 0.5 * g * t.^2;  % Vertical position
+			end
+			```
+
+			--
+
+			#### Execution:
+
+			```matlab
+			[x, y] = calculate_trajectory(50, 45, 9.81);
+			plot(x, y);
+			xlabel('Distance (m)');
+			ylabel('Height (m)');
+			title('Projectile Trajectory');
+			```
+			⚠️ Gotcha: Ensure the function name matches the filename. MATLAB requires that the function name and file name be the same to avoid errors.
+
+			--
+
+			### Rounding Functions
+			MATLAB provides several functions for rounding numbers:
+
+			* `round(x)`: Rounds to the nearest integer.
+			* `floor(x)`: Rounds towards negative infinity.
+			* `ceil(x)`: Rounds towards positive infinity.
+			* `fix(x)`: Rounds towards zero.
+
+
+			#### Example:
+
+			```matlab
+			x = 16.3;
+			y = 3.9;
+			disp(round(x)); % Outputs 16
+			disp(floor(x)); % Outputs 16
+			disp(ceil(x)); % Outputs 17
+			disp(fix(x)); % Outputs 16
+			```
+
+			--
+
+			### Trigonometric Functions
+			MATLAB can compute trigonometric functions in degrees or radians.
+
+			* To convert degrees to radians, use the relationship
+			180 degrees -->	𝜋 radians or use `deg2rad`.
+
+			#### Example:
+
+			```matlab
+			theta = 45; % Degrees
+			theta_rad = deg2rad(theta);
+			sin_theta = sin(theta_rad); % Sine of 45 degrees
+			```
+
+			💡 Tip: Always check whether a function expects angles in degrees or radians to avoid calculation errors.
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+			## Data Import and Export Utilities 📥📤
+
+			### Importing Data:
+			* **Import Wizard**: Use MATLAB’s Import Wizard to load data from various file types.
+			**Commands**:
+			* `uiimport('filename.ext')`
+			* `xlsread('filename')`
+			* `csvread('filename')`
+			* `readmatrix('filename')`
+
+			--
+
+			#### Example:
+
+			```matlab
+			data = readmatrix('data.csv'); % Reads data from a CSV file
+			```
+
+			💡 Tip: Use readmatrix for a more versatile and modern way to import data compared to older functions like csvread.
+
+			--
+
+			### Exporting Data:
+			**Commands**:
+			* `xlswrite(' filename.xlsx', data)`
+			* `writematrix(data, 'filename.xlsx')`
+
+			--
+
+			#### Example:
+
+			```matlab
+			data = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+			writematrix(data, 'data.xlsx'); % Writes data to an Excel file
+			```
+
+			⚠️ Gotcha: Ensure that the data format matches the expected format when importing/exporting. Inconsistent formats can lead to errors or incorrect data handling.
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			* Program design involves identifying problems, developing algorithms, implementing solutions, and testing/debugging.
+			* Functions modularize code, making it reusable and easier to maintain.
+			* MATLAB provides powerful tools for importing and exporting data in various formats.
+
+			--
+
+			## Additional Tips 💡
+			* Break down complex problems into smaller, manageable parts.
+			* Use comments to document the purpose and functionality of functions.
+			* Regularly test functions with different inputs to ensure they work as expected.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			* Function Naming: Ensure the function name matches the filename.
+			* Input/Output Arguments: Verify the correct number and type of input/output arguments.
+			* Data Formats: Ensure the data format matches the expected format when importing/exporting.
+
+			--
+
+			## Analogies 🔄
+			* Program Design: Think of program design as planning a road trip: decide the destination (goal), plan the route (algorithm), travel (implement), and adjust as needed (test and debug).
+			* Functions: Functions are like kitchen gadgets designed for specific tasks, making the cooking process (coding) more efficient.
+			* Data Import/Export: Importing data is like shopping for ingredients, and exporting data is like packing leftovers; both are essential for managing information.
+
+		</textarea>
+		</section>
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>

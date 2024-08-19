@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 12: Signal Processing and Image Processing</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 12: Signal Processing and Image Processing 🎛️📸
+
+			## Objectives:
+			* Understand basic signal processing techniques 🔊.
+			* Learn the fundamentals of image processing 🖼️.
+			* Use MATLAB functions for signal and image analysis 🛠️.
+
+			--
+
+			## Topics Covered:
+			* Introduction to Signal Processing 🔊
+			* Signal Processing Techniques 🛠️
+			* Introduction to Image Processing 🖼️
+			* Image Analysis Using MATLAB 📊
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			Introduction to Signal Processing 🔊
+			What is Signal Processing?
+			Definition: Signal processing involves analyzing, modifying, and synthesizing signals such as sound, images, and scientific measurements.
+			Applications: Used in communications, audio engineering, biomedical engineering, and more.
+			Key Concepts:
+			Signal: A function that conveys information about a phenomenon.
+			Types of Signals:
+			Analog (continuous signals).
+			Digital (discrete signals).
+			Signal Processing Techniques 🛠️
+			Sampling and Quantization:
+			Sampling: Convert a continuous signal into a discrete signal by taking samples at regular intervals.
+			Quantization: Map a large set of input values to a smaller set, rounding values to a certain precision.
+			Example Code:
+
+			matlab
+			Copy code
+			t = 0:0.01:1;          % Time vector
+			f = 5;                 % Frequency
+			x = sin(2*pi*f*t);     % Sine wave signal
+
+			subplot(2,1,1);
+			plot(t, x);
+			title('Continuous Signal');
+
+			% Sampling
+			fs = 10;               % Sampling frequency
+			ts = 0:1/fs:1;         % Sample times
+			xs = sin(2*pi*f*ts);   % Sampled signal
+
+			subplot(2,1,2);
+			stem(ts, xs);
+			title('Sampled Signal');
+			Fourier Transform:
+			Concept: Converts a time-domain signal into its frequency-domain representation.
+			MATLAB Function: fft
+			Example Code:
+
+			matlab
+			Copy code
+			x = sin(2*pi*5*t) + 0.5*sin(2*pi*10*t);  % Composite signal
+			X = fft(x);                              % Fourier Transform
+			f = (0:length(X)-1)*fs/length(X);        % Frequency vector
+
+			plot(f, abs(X));
+			title('Magnitude Spectrum');
+			xlabel('Frequency (Hz)');
+			ylabel('Magnitude');
+			Filtering:
+			Concept: Removes or enhances specific parts of a signal.
+			Types:
+			Low-pass
+			High-pass
+			Band-pass
+			Band-stop filters
+			Example Code:
+
+			matlab
+			Copy code
+			[b, a] = butter(4, 0.4);  % Low-pass filter design
+			y = filter(b, a, x);      % Apply the filter
+
+			subplot(2,1,1);
+			plot(t, x);
+			title('Original Signal');
+
+			subplot(2,1,2);
+			plot(t, y);
+			title('Filtered Signal');
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Introduction to Image Processing 🖼️
+			### What is Image Processing?
+			Image processing involves performing operations on images to enhance them or extract useful information.
+			Applications: Medical imaging, computer vision, remote sensing, etc.
+
+			--
+
+			## Key Concepts:
+			Image: A 2D signal represented by a matrix of pixel values.
+			Grayscale vs. Color:
+			* Grayscale: One channel (intensity).
+			* Color: Three channels (RGB - Red, Green, Blue).
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Image Analysis Using MATLAB 📊
+			### Reading and Displaying Images:
+			* Reading an Image: imread()
+			* Displaying an Image: imshow()
+
+			#### Example Code:
+
+			```matlab
+			img = imread('example.jpg');  % Read the image
+			imshow(img);                  % Display the image
+			title('Original Image');
+			```
+
+			--
+
+			### Converting to Grayscale:
+			Concept: Simplifies processing by reducing color complexity.
+			MATLAB Function: rgb2gray
+
+			#### Example Code:
+
+			```matlab
+			gray_img = rgb2gray(img);  % Convert to grayscale
+			imshow(gray_img);
+			title('Grayscale Image');
+			```
+
+			--
+
+			### Image Filtering:
+			Concept: Enhances or detects features in an image.
+			Types:
+			* Smoothing (Gaussian filter)
+			* Sharpening
+			* Edge Detection (Sobel filter)
+
+			#### Example Code:
+
+			```matlab
+			% Smoothing
+			smoothed_img = imgaussfilt(gray_img, 2);  % Gaussian filter
+			imshow(smoothed_img);
+			title('Smoothed Image');
+			```
+
+			### Edge Detection
+			```matlab
+			edges = edge(gray_img, 'sobel');
+			imshow(edges);
+			title('Edge Detection');
+			```
+
+			### Image Segmentation:
+			Partition an image into multiple segments for simplified analysis.
+			MATLAB Function: imbinarize (thresholding)
+
+			#### Example Code:
+			```matlab
+			binary_img = imbinarize(gray_img, 0.5);  % Convert to binary image
+			imshow(binary_img);
+			title('Binary Image');
+			```
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			* Signal processing extracts useful information or enhances the quality of signals.
+			* Image processing enhances images or extracts valuable information.
+			* MATLAB’s powerful signal and image processing functions simplify complex tasks.
+
+			--
+
+			## Additional Tips 💡
+			* Explore MATLAB’s documentation and examples for advanced signal and image processing techniques.
+			* Experiment with different filter parameters to observe their effects on signals and images.
+			* Use visualization tools to better understand the impact of your processing steps.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			* Sampling Rate: Ensure the sampling rate is high enough to avoid aliasing in signals.
+			* Filter Design: Choose appropriate filter parameters to avoid signal/image distortion.
+			* Image Resolution: High-res images require more resources; resize if necessary.
+
+			--
+
+			## Analogies 🧠
+			* Signal Processing: Similar to tuning a radio to filter out noise and focus on a specific station.
+			* Image Processing: Like cleaning a dirty window (enhancement) or marking important areas with a highlighter (segmentation).
+
+		</textarea>
+		</section>
+
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    import * as RevealMath from "../../plugin/math/katex";
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>

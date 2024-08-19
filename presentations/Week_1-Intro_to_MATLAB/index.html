@@ -1,72 +1,77 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Intro to MATLAB</title>
+	<meta charset="utf-8">
+	<title>Intro to MATLAB</title>
 
-    <link rel="stylesheet" href="../../dist/reveal.css">
-    <link rel="stylesheet" href="../../dist/theme/black.css" id="theme">
-    <link rel="stylesheet" href="../../plugin/highlight/matlab.css">
-    <link rel="stylesheet" href="../../dist/week1.css">
-    <link rel="stylesheet" href="../../dist/theme/site.css ">
-    <link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
-
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
 <div class="reveal">
-    <div class="slides">
-        <section data-markdown>
+	<div class="slides">
+
+		<!-- Slide Header 1 -->
+		<section data-markdown>
             <textarea data-template>
-                # Week 1: Introduction to MATLAB
+                # Week 1: Introduction to MATLAB 🎉
 
                 ## Objectives:
+                - Get cozy with MATLAB’s interface and basic commands.
+                - Learn how to think like a programmer (algorithmic thinking 🧠).
+                - Start creating your own mini-programs to solve cool problems!
+            </textarea>
+		</section>
 
-                * Familiarize yourself with MATLAB's interface and basic commands.
-                * Understand how to group actions to perform a task "algorithmic thinking".
-                * Learn to design simple programs to solve technical problems using structured planning.
+		<!-- Slide Header 2 -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Introduction to the MATLAB Interface 🎮
 
-                --
+            ### What is MATLAB?
+            - MATLAB is like your super-powered calculator and notebook all in one! 🚀
+            - It helps engineers and scientists solve complex problems.
+        </textarea>
+		</section>
 
-                ## Topics Covered
+		<section data-markdown>
+        <textarea data-template>
+            ### The MATLAB Desktop Interface
 
-                1. **Introduction to the MATLAB Interface**
-                2. **Learning and Executing Simple Commands**
-                3. **Basics of Computer Programming Terms**
+            - **Command Window**: Where you type commands and see immediate results.
+            - **Workspace**: Displays variables you've created during your session.
+            - **Command History**: Keeps a record of the commands you've entered.
+            - **Editor**: Used for writing scripts (M-files) and functions.
+            - **Current Folder**: The current working directory.
+            <img src="/images/Matlab Interface.png" style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;">
+        </textarea>
+		</section>
 
-                ---
+		<section data-markdown>
+        <textarea data-template>
+            ### Interactive Demonstration:
 
-                ## Introduction to the MATLAB Interface
+            - Open MATLAB and take a tour of the interface.
+            - Feel free to open MATLAB and follow along.
+        </textarea>
+		</section>
 
-                ### What is MATLAB?
+		<section data-markdown>
+        <textarea data-template>
+            ## The Command Window 💻
 
-                - MATLAB stands for *MATrix LABoratory*. It's a high-level programming language and interactive environment used primarily by engineers and scientists for numerical computation, visualization, and programming.
+    ### Used for Real-Time Interaction:
 
-                --
+    - MATLAB allows you to interact directly with your data. For example, typing `2 + 3` and pressing <kbd class="kbc-button">enter</kbd> will immediately return `ans = 5`.
 
-                ### The MATLAB Desktop Interface
+</textarea>
 
-                - **Command Window**: Where you type commands and see results.
-                - **Workspace**: Displays variables you've created during your session.
-                - **Command History**: Keeps a record of the commands you've entered.
-                - **Editor**: Used for writing scripts (M-files) and functions.
-                - **Current Folder**: The current working directory.
-                <img src="./imgs/Matlab Interface.png" style="display: block; margin-left: auto; margin-right: auto; width: 1000px; height: auto;">
-
-                ---
-
-                ### Interactive Demonstration:
-
-                - Open MATLAB and take a tour of the interface.
-                - Feel free to open MATLAB and follow along.
-
-                ---
-
-                ## The Command Window
-
-                ### Used for Real-Time Interaction:
-
-                - MATLAB allows you to interact directly with your data. For example, typing `2 + 3` and pressing <kbd class="kbc-button kbc-button-dark">enter</kbd> will immediately return `ans = 5`.
-
+            <!-- Fragment Slide for Common Commands -->
+            <section>
                 <div class="fragment fade-up">
                     <h3>Common Commands:</h3>
                     <ul>
@@ -75,350 +80,434 @@
                         <li><code>whos</code> (<code>who</code>): Displays detailed information about variables in the workspace.</li>
                     </ul>
                 </div>
+            </section>
 
-                --
+            <textarea data-template>
+    ---
 
-                ### Interactive Exercise:
+    ### Interactive Exercise:
 
-                1. Open MATLAB.
-                2. Try the following commands and observe:
+    1. Open MATLAB.
+    2. Try the following commands and observe:
 
-                ```matlab
-                2 + 3 <enter>
-                clc <enter>
-                whos <enter>
-                ```
-                <div class="fragment fade-up>3. What happened after each command?</div>
+    ```matlab
+    2 + 3
+    clc
+    whos
+    ```
 
-                --
+</textarea>
 
-                ### More on the Command Window
-                * `clc`: Clears the command window.
-                * `clear`: Clears variables from the "Workspace/Environment".
-                * `whos`: Displays a list of current variables (also seen in the Workspace window).
-
+            <!-- Fragment Slide for Exercise Results -->
+            <section>
                 <div class="fragment fade-up">
-                #### Re-executing Commands:
-
-- Use the `<up arrow>` to cycle through previously executed commands.
-- Double-click or drag and drop from the command history window (may need to be enabled)
-
-#### Important Keyboard Shortcuts:
-
-- **Ctrl+C**: Stops the execution of a command or script if it runs too long or seems to be stuck.
+                    3. What happened after each command?
                 </div>
+            </section>
 
-                --
+            <textarea data-template>
+    ---
 
-                ### Learning And Executing Simple Commands
+    ### More on the Command Window
 
-#### Computation Notation:
+    - `clc`: Clears the command window.
+    - `clear`: Clears variables from the "Workspace/Environment".
+    - `whos`: Displays a list of current variables (also seen in the Workspace window).
 
-- MATLAB uses standard mathematical operators: `+`, `-`, `*`, `/`, `^`.
-- Try to guess the output for the following:
+</textarea>
 
-```matlab
-3 - 2  <enter>
-3 * 2  <enter>
-3 / 2  <enter>
-3 ^ 2  <enter>
-```
-
+            <!-- Fragment Slide for Re-executing Commands -->
+            <section>
                 <div class="fragment fade-up">
-                ```matlab
-                1 + inf <enter>
-                ```
+                    <h4>Re-executing Commands:</h4>
+                    <ul>
+                        <li>Use <kbd class="kbc-button">&uarr;</kbd> to cycle through previously executed commands.</li>
+                        <li>Double-click or drag and drop from the command history window (may need to be enabled).</li>
+                    </ul>
                 </div>
+            </section>
 
-                ---
-
-                ## Variables
-
-### What are Variables?
-
-- Variables store data that can be used and manipulated in your MATLAB session. MATLAB allows dynamic typing, meaning you don't need to declare the type of a variable before using it.
-
-                <div class="fragment fade-up>
-                **Example**:
-
-```matlab
-a = 5
-b = 10
-c = a * b
-```
-                </div>
-
-                --
-
-                ### Standard Naming Conventions
-* `camelCase`
-* `snake_case`
-* `ALL_CAPS`, `SCREAMING_SNAKE_CASE`
-
-                ---
-
-                ### Important Concepts:
-
-- **Case Sensitivity**: `Variable` and `variable` are different.
-- **Naming Conventions**: Stick to clear, descriptive names to make your code easier to understand.
-
-### Reserved Words/Variables:
-
-- MATLAB has predefined variables, known as constants, like `pi` and functions like `inf`.
-- MATLAB also has predefined functions, such as `sin`, `cos`, `clear`, `clc`, `sqrt`, etc.
-
-<div class="alert alert-warning">
-  <strong>Warning!</strong> Avoid using these names for your variables when possible.
-</div>
-
-                --
-
-                ### Interactive Exercise**:
-
-- Try the following:
-
-```matlab
-radius = 7 <enter>
-height = 10 <enter>
-volume = (pi * radius^2 * height) / 3 <enter>
-```
-
-                ---
-
-                ## Algorithm Development Process:
-1. Analyze the problem
-1. Define inputs
-1. Perform Manipulation
-1. Produce Output/Result
-
+            <!-- Fragment Slide for Important Keyboard Shortcuts -->
+            <section>
                 <div class="fragment fade-up">
-### Best Practices:
-
-- **Commenting**: Use comments (`%`) to explain your code. This helps others (and future you) understand what your code does.
-- **Incremental Development**: Write and test small pieces of code before integrating them into a larger program.
+                    <h4>Important Keyboard Shortcuts:</h4>
+                    <ul>
+                        <li><kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">c</kbd>: Stops the execution of a command or script if it runs too long or seems to be stuck.</li>
+                    </ul>
                 </div>
+            </section>
 
-                --
-
-                ### Problem Solving Example: Volume of a Cone
-
-#### Applying What We’ve Learned:
-
-1. **Analyze the problem**: Explain the formula  $\Large v = \frac{\pi r^2 h}{3}$
-2. **Define inputs** (in this case variables):
-
-```matlab
-radius = 6
-height = 12
-```
-Note: _We don't need `pi` as that's provided for us_
-
-                                <div class="fragment fade-up">
-3. **Perform the manipulation**:
-
-```matlab
-volume = (pi * radius^2 * height) / 3
-```
-                </div>
-                                                <div class="fragment fade-up">
-4. **Produce Output/Result:**
-
-    In this case we are simply outputting to `volume` and the console (done by MATLAB)
-                </div>
-
-                ---
-
-                ## Introduction to M-Files
-
-### What are M-Files?
-
-- M-files are scripts or functions you can save and reuse. They help organize code and are essential for more complex projects.
-
-#### Usage:
-* Save your programs.
-* Execute a list of commands from the command window.
-* Save your work while you work through a problem.
-* Re-open and modify your program at any time.
-
-                --
-
-                ### Creating a Simple M-File:
-
-1. Open the MATLAB Editor.
-2. Type the following:
-
-```matlab
-% Compute and display the volume of a cone
-radius = 6
-height = 12
-volume = (pi * radius^2 * height) / 3
-```
-
-3. Save as `volume_of_cone.m`.
-4. Run the script by typing `volume_of_cone` in the Command Window.
-
-                <div class="fragment fade-up">
-#### Notes:
- * To run a MATLAB script call the filename without `.m`
- * The script must be in the current working directory `cwd`
-     * Alternatively, you can provide a path (`C:\my\script\location.m`)
-                </div>
-                                <div class="fragment fade-up">
-#### Output Suppression:
-
-* When someone asks for the volume of a cone, they probably don't want to see the radius, and height displayed.
-* We can use the semicolon `;` operator to suppress output. MATLAB, by default, prints command results to the command window.
-                </div>
-
-                --
-
-                ### Updating our script
-
-* We'll add some semicolons to suppress the output of redundant values.
-
-```matlab
-% Compute and display the volume of a cone
-radius = 6;
-height = 12;
-volume = (pi * radius^2 * height) / 3
-```
-
-                ---
-
-              ## Creating Quality Work:
-
-* Write clear and understandable code.
-* Add comments to document your code.
-* Include a set of header comments with the program's objective, your name, anyone who assisted you.
-
-                <div class="fragment fade-up">
-                <div class="alert alert-info">
-  <strong>TIP!</strong> Write your comments first, then write code to honor your comments.
-</div>
-                </div>
-
-                --
-
-                ### Example Program with Expected format
-
-```matlab
-% Compute and display the volume of a cone
-%
-% Filename: Volume_of_cone
-% Developer: Your Name
-% Assisted By:
-% Date: 08/04/2024
-
-% Declare variables
-radius = 6;  % Radius of the cone (inches)
-height = 12; % Height of the cone (inches)
-
-% Compute the volume of a cone
-volume = (pi * radius^2 * height) / 3;
-```
-
-                --
-
-             ### Error Handling and Debugging
-
-#### Understanding Errors:
-
-- **Syntax Errors**: Typos or incorrect MATLAB syntax.
-- **Runtime Errors**: Occur during execution, often due to incorrect logic or unexpected input.
-
-                --
-
-                ### Interactive Exercise:
-
-- Introduce an error by changing `radius` to `radiuss` in the M-file and let's observe the error message.
-
-                <div class="fragment fade-up">
-                <div class="alert alert-info fit-width">
-  <strong>TIP!</strong> Start fresh to avoid confusion
-</div>
-
-* Whenever you run into a problem like this it is a good idea to `clear` your workspace of any possible bad values.
-* You should include `clear;`, and sometimes `clc;` in your script to ensure you are starting fresh.
-                </div>
-
-                ---
-
-                ## Using the Help System
-
-### Accessing MATLAB Help:
-
-- **In Command Window**: Type `help <enter>` to get information on a specific command.
-- Right-click on a function and select "Help on `functionName`".
-- **Help Browser**: Access via the <img src="./imgs/help-icon.png" style="display:inline; width:40px; height:40px; vertical-align:middle;"> icon.
-
-                <div class="fragment fade-up>
-**Example**:
-
-- Type `help sin` to explore how MATLAB handles trigonometric functions.
-                </div>
-
-                ---
-
-                ## General Shortcut Tips
-
-
-#### Keyboard Navigation:
-* `Home` and `End` keys jump to the beginning and end of the line (`Cmd`+`left`/`right` on Mac).
-* Arrow keys move a single character (L/R) or row (U/D).
-* `Ctrl`+`arrow` jumps by word (`Option`+`arrow` on Mac).
-* Holding Shift while moving the cursor (using any of the aforementioned shortcuts), selects text.
-* `Ctrl`+`c` to copy, or `Ctrl`+`x` to cut, `Ctrl`+`v` to paste. (`Cmd`+`c`, `Cmd`+`x`, `Cmd`+`v` on Mac)
-* Double-click highlights a word, triple-click highlights a row.
-
-                ---
-
-                ## Lecture Recap
-
-* Variables are used for storing data for re-use.'
-    * Use clear, and informative names.
-* M-files allow you to save and organize your work.
-* The command window is immediate and can allow you to debug, or incrementally develop your code.
-* Use Help whenever you're unsure of a command's syntax or usage.
-* Always
-    * Write clear, well-documented code
-    * Include **comments**.
-    * **suppress** what doesn't need to be displayed
-    * Start with a `clear` workspace.
-* Learn keyboard shortcuts for efficient coding.
-* Save often, commit often
-
-                ---
-
-                <div style="display: flex; align-items: center; justify-content: center; background-image: url('./imgs/goteem.png'); background-size: contain; background-position: center; background-repeat: no-repeat; padding: 60px; min-height: 100vh; text-align: center; background-size: cover;">
-    <div>
-        <h2 style="color: white;">Gotchas</h2>
-        <ul style="color: white;">
-            <li>Variables <strong>are</strong> case sensitive, do not try to use this to your advantage.</li>
-            <li>Don't forget <code>;</code> to suppress undesirable output.</li>
-            <li>Be careful not to overwrite (mask) reserved variables/names.</li>
-            <li>Copy and paste is your frienemy.</li>
-        </ul>
-    </div>
-</div>
-
-                ---
-
-                ## Analogies:
-
-- **MATLAB Interface**: Think of MATLAB as a sophisticated calculator with a built-in notebook where you can save your calculations and notes.
-- **Command Window**: Imagine MATLAB M-files (scripts) as a solution to a math problem. The Command Window is like your calculator where you check your values and help you develop your scripts.
-- **Variables**: Think of variables as labeled containers. You store information in them, which you can use later.
-- **M-Files**: M-files are like recipes; they list the steps needed to perform a task. You can save them, modify them, and share them with others.
-            </textarea>
         </section>
-    </div>
+
+		<!-- Slide: Learning And Executing Simple Commands -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Learning And Executing Simple Commands
+
+            ### Computation Notation:
+
+            - MATLAB uses standard mathematical operators: `+`, `-`, `*`, `/`, `^`.
+            - Try to guess the output for the following:
+
+            ```matlab
+            3 - 2
+            3 * 2
+            3 / 2
+            3 ^ 2
+            ```
+
+            <div class="fragment fade-up">
+                ```matlab
+                1 + inf
+                ```
+            </div>
+        </textarea>
+		</section>
+
+		<!-- Slide: Variables -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Variables 🍪
+
+            ### What are Variables?
+            - Think of variables as boxes that hold things and can be labeled. Just like how a box of cereal is labeled and has a specific cereal within it.
+            - Dynamic typing means you can change what’s inside the jar anytime you want!
+
+            <div class="fragment fade-up">
+                <strong>Example</strong>:
+
+                <pre>
+                    <code class="matlab language-matlab">
+                    a = 5
+                    b = 10
+                    c = a * b
+                    </code>
+                </pre>
+            </div>
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Standard Naming Conventions
+
+            * `camelCase`
+            * `snake_case`
+            * `ALL_CAPS`, `SCREAMING_SNAKE_CASE`
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Important Concepts:
+
+            - **Case Sensitivity**: `Variable` and `variable` are different.
+            - **Naming Conventions**: Stick to clear, descriptive names to make your code easier to understand.
+
+            ### Reserved Words/Variables:
+
+            - MATLAB has predefined variables, known as constants, like `pi` and functions like `inf`.
+            - MATLAB also has predefined functions, such as `sin`, `cos`, `clear`, `clc`, `sqrt`, etc.
+
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> Avoid using reserved names for your variables when possible.
+            </div>
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Interactive Exercise:
+
+            - Try the following:
+
+            ```matlab
+            radius = 7
+            height = 10
+            volume = (pi * radius^2 * height) / 3
+            ```
+        </textarea>
+		</section>
+
+		<!-- Slide: Algorithm Development Process -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Algorithm Development Process 🗺️
+
+            1. **Analyze the problem** – Just like planning a trip, figure out where you want to go.
+            2. **Define inputs** – Pack your bags! What do you need to go on your trip?
+            3. **Perform Manipulation** – Map out your route, how are you going to get there?
+            4. **Produce Output** – Arrive at your destination!
+
+            <div class="fragment fade-up">
+                ### Best Practices:
+                - **Commenting**: Use comments (`%`) to explain your code. This helps others (and future you) understand
+                what your code does.
+                - **Incremental Development**: Write and test small pieces of code before integrating them into a larger
+                program.
+            </div>
+        </textarea>
+		</section>
+
+		<!-- Slide: Problem Solving Example -->
+		<section data-markdown>
+        <textarea data-template>
+            ### Problem Solving Example: Volume of a Cone
+
+            #### Applying What We’ve Learned:
+
+            1. **Analyze the problem**: Explain the formula $\Large v = \frac{\pi r^2 h}{3}$
+            2. **Define inputs** (in this case variables):
+
+            ```matlab
+            radius = 6
+            height = 12
+            ```
+            Note: _We don't need `pi` as that's provided for us_
+
+            <div class="fragment fade-up">
+                3. **Perform the manipulation**:
+
+                ```matlab
+                volume = (pi * radius^2 * height) / 3
+                ```
+            </div>
+            <div class="fragment fade-up">
+                4. **Produce Output/Result:**
+
+                In this case we are simply outputting to `volume` and the console (done by MATLAB)
+            </div>
+        </textarea>
+		</section>
+
+		<!-- Slide: Introduction to M-Files -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Introduction to M-Files
+
+            ### What are M-Files?
+
+            - M-files are scripts or functions you can save and reuse. They help organize code and are essential for more complex projects.
+
+            #### Usage:
+            * Save your programs.
+            * Execute a list of commands from the command window.
+            * Save your work while you work through a problem.
+            * Re-open and modify your program at any time.
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Creating a Simple M-File:
+
+            1. Open the MATLAB Editor.
+            2. Type the following:
+
+            ```matlab
+            % Compute and display the volume of a cone
+            radius = 6
+            height = 12
+            volume = (pi * radius^2 * height) / 3
+            ```
+
+            3. Save as `volume_of_cone.m`.
+            4. Run the script by typing `volume_of_cone` in the Command Window.
+
+            <div class="fragment fade-up">
+                #### Notes:
+                * To run a MATLAB script call the filename without `.m`
+                * The script must be in the current working directory `cwd`
+                * Alternatively, you can provide a path (`C:\my\script\location.m`)
+            </div>
+
+            <div class="fragment fade-up">
+                #### Output Suppression:
+
+                * When someone asks for the volume of a cone, they probably don't want to see the radius, and height displayed.
+                * We can use the semicolon `;` operator to suppress output. MATLAB, by default, prints command results to
+                the command window.
+            </div>
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Updating our script
+
+            * We'll add some semicolons to suppress the output of redundant values.
+
+            ```matlab
+            % Compute and display the volume of a cone
+            radius = 6;
+            height = 12;
+            volume = (pi * radius^2 * height) / 3;
+            ```
+        </textarea>
+		</section>
+
+		<!-- Slide: Creating Quality Work -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Creating Quality Work:
+
+            * Write clear and understandable code.
+            * Add comments to document your code.
+            * Include a set of header comments with the program's objective, your name, anyone who assisted you.
+
+            <div class="fragment fade-up">
+                <div class="alert alert-info"><strong>TIP!</strong> Write your comments first, then write code to honor your
+                comments.
+                </div>
+            </div>
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Example Program with Expected format
+
+            ```matlab
+            % Compute and display the volume of a cone
+            %
+            % Filename: Volume_of_cone
+            % Developer: Your Name
+            % Assisted By:
+            % Date: 08/04/2024
+
+            % Declare variables
+            radius = 6; % Radius of the cone (inches)
+            height = 12; % Height of the cone (inches)
+
+            % Compute the volume of a cone
+            volume = (pi * radius^2 * height) / 3;
+            ```
+        </textarea>
+		</section>
+
+		<!-- Slide: Error Handling and Debugging -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Error Handling and Debugging 🕵️‍♂️
+
+            ### Be the Detective!
+            - **Syntax Errors**: Oops, you mistyped something! Let’s fix it.
+            - **Runtime Errors**: Something went wrong during the run – let’s figure out why!
+            - Find the bug in your code, just like Sherlock Holmes would!
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            ### Interactive Exercise:
+
+            - Introduce an error by changing `radius` to `radiuss` in the M-file and let's observe the error message.
+
+            <div class="fragment fade-up">
+                <div class="alert alert-info fit-width">
+                    <strong>TIP!</strong> Start fresh to avoid confusion.
+                </div>
+
+                * Whenever you run into a problem like this it is a good idea to `clear` your workspace of any possible bad values.
+                * You should include `clear;`, and sometimes `clc;` in your script to ensure you are starting fresh.
+            </div>
+        </textarea>
+		</section>
+
+		<!-- Slide: Using the Help System -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Using the Help System
+
+            ### Accessing MATLAB Help:
+
+            - **In Command Window**: Type `help` <kbd class="kbc-button">enter</kbd> to get information on a specific command.
+            - Right-click on a function and select "Help on `functionName`".
+            - **Help Browser**: Access via the <img src="/images/help-icon.png" style="display:inline; width:40px; height:40px; vertical-align:middle;"> icon.
+        </textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+            **Example**:
+
+            - Type `help sin` to explore how MATLAB handles trigonometric functions.
+        </textarea>
+		</section>
+
+		<!-- Slide: General Shortcut Tips -->
+		<section data-markdown>
+        <textarea data-template>
+            ## General Shortcut Tips
+
+            #### Keyboard Navigation:
+            * <kbd class="kbc-button">home</kbd> and <kbd class="kbc-button">end</kbd> keys jump to the beginning and end of the line (<kbd class="kbc-button">cmd</kbd>+<kbd class="kbc-button">&larr;</kbd>/<kbd class="kbc-button">&rarr;</kbd> on Mac).
+            * Arrow keys move a single character (<kbd class="kbc-button">&larr;</kbd>/<kbd class="kbc-button">&rarr;</kbd>) or row (<kbd class="kbc-button">&uarr;</kbd>/<kbd class="kbc-button">&darr;</kbd>).
+            * <kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">&larr;</kbd>/<kbd class="kbc-button">&rarr;</kbd> jumps by word (<kbd class="kbc-button">option</kbd>+<kbd class="kbc-button">&larr;</kbd>/<kbd class="kbc-button">&rarr;</kbd> on Mac).
+            * Holding <kbd class="kbc-button">shift</kbd> while moving the cursor (using any of the aforementioned shortcuts), selects text.
+            * <kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">c</kbd> to copy, or <kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">x</kbd> to cut, <kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">v</kbd> to paste. (<kbd class="kbc-button">cmd</kbd>+<kbd class="kbc-button">c</kbd>, <kbd class="kbc-button">cmd</kbd>+<kbd class="kbc-button">x</kbd>, <kbd class="kbc-button">cmd</kbd>+<kbd class="kbc-button">v</kbd> on Mac)
+            * Double-click highlights a word, triple-click highlights a row.
+        </textarea>
+		</section>
+
+		<!-- Slide: Lecture Recap -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Lecture Recap
+
+            * Variables are used for storing data for re-use.
+            * Use clear, and informative names.
+                * Others and future-you will thank you
+            * M-files allow you to save and organize your work.
+            * The command window is immediate and can allow you to troubleshoot, or incrementally develop your code.
+            * Use Help whenever you're unsure of a command's syntax or usage.
+            * **Always**:
+                * Write clear, well-documented code.
+                * Include **comments**. (This is your documentation)
+                * **Suppress** what doesn't need to be displayed.
+                * Start with a <code class="matlab language-matlab">clear</code> workspace.
+                * Learn keyboard shortcuts for efficient coding.
+                * Save often, commit often.
+        </textarea>
+		</section>
+
+		<!-- Slide: Gotchas -->
+		<section data-markdown>
+        <textarea data-template>
+            <div style="display: flex; align-items: center; justify-content: center; background-image: url('/images/goteem.png'); background-size: contain; background-position: center; background-repeat: no-repeat; padding: 60px; min-height: 100vh; text-align: center; background-size: cover;">
+                <div>
+                    <h2 style="color: white;">Gotchas</h2>
+                    <ul style="color: white;">
+                        <li>Variables <strong>are</strong> case sensitive, do not try to use this to your advantage.</li>
+                        <li>Don't forget <code>;</code> to suppress undesirable output.</li>
+                        <li>Be careful not to overwrite (mask) reserved variables/names.</li>
+                        <li>Copy and paste is your frienemy.</li>
+                    </ul>
+                </div>
+            </div>
+        </textarea>
+		</section>
+
+		<!-- Slide: Analogies -->
+		<section data-markdown>
+        <textarea data-template>
+            ## Analogies:
+
+            - **MATLAB Interface**: Think of MATLAB as a sophisticated calculator with a built-in notebook where you can save your calculations and notes.
+            - **Command Window**: Imagine MATLAB M-files (scripts) as a solution to a math problem. The Command Window is like your calculator where you check your values and help you develop your scripts.
+            - **Variables**: Think of variables as labeled containers. You store information in them, which you can use later.
+            - **M-Files**: M-files are like recipes; they list the steps needed to perform a task. You can save them, modify them, and share them with others.
+        </textarea>
+		</section>
+	</div>
+
 </div>
-<script src="../../dist/reveal.js"></script>
-<script src="../../plugin/markdown/markdown.js"></script>
-<script src="../../plugin/highlight/highlight.js"></script>
-<script src="../../plugin/notes/notes.js"></script>
-<script src="../../plugin/math/math.js"></script>
-<script src="../../dist/site.js"></script>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script src="/dist/site.js"></script>
 <script>
 
     Reveal.initialize({

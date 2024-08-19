@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 2: MATLAB Variables & Data Types</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 6: Advanced Function Files and Plotting 📊
+
+			## Objectives:
+			* Learn advanced function file techniques 🔧.
+			* Understand and implement debugging practices 🐛.
+			* Create and customize 2D and 3D plots in MATLAB 🎨.
+
+			--
+
+			## Topics Covered:
+			* Advanced Function Files 📂
+			* Debugging and Error Handling 🐞
+			* 2D Plotting Techniques 📉
+			* 3D Plotting Techniques 📊
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Advanced Function Files 📂
+			### User Defined Functions and Scripts:
+			* Functions vs. Commands: Functions are separate from the command workspace, making them modular and reusable.
+			* Function Syntax:
+			```matlab
+			function output = functionName(input)
+			% Function body
+			output = ...;
+			end
+			```
+
+			💡 Tip: Functions are the building blocks of modular code. Keep them focused on specific tasks for better reusability.
+
+			--
+
+			### Function Examples:
+			#### Simple Function:
+			```matlab
+			function volume = volumeSphere(radius)
+			volume = (4/3) * pi * (radius^3);
+			end
+			```
+			#### Function with Multiple Inputs:
+			```matlab
+			function x = displacement(xo, vo, a, t)
+			x = xo + vo.*t + (1/2).*a.*t.^2;
+			end
+			```
+			#### Function with Multiple Outputs:
+			```matlab
+			function [a, f] = particleAcceleration(v2, v1, t2, t1, m)
+			a = (v2 - v1) / (t2 - t1);
+			f = m .* a;
+			end
+			```
+			🔄 Analogy: Think of functions as specialized tools in a toolbox, each designed to perform a specific task efficiently.
+
+			#### Notes on Functions:
+			* Naming Convention: Use camelCase or underscores for readability.
+			* Element-wise Operations: Ensure correct use of element-wise operations (.*, ./, .^) when working with arrays.
+			* Comments and Documentation: Essential for understanding and maintaining code. Always document what your function does and how to use it.
+
+			--
+
+			### Persistent and Global Variables:
+			#### Persistent Variables:
+			Retain their value between function calls.
+			```matlab
+			function findSum(inputvalue)
+			persistent SUM_X
+			if isempty(SUM_X)
+			SUM_X = 0;
+			end
+			SUM_X = SUM_X + inputvalue;
+			end
+			```
+			#### Global Variables:
+			Are accessible from the command window and other functions.
+			```matlab
+			function h = falling(t)
+			global GRAVITY
+			h = 1/2 * GRAVITY * t.^2;
+			end
+			```
+			⚠️ Gotcha: Use global variables sparingly. They can make code harder to debug and maintain because they introduce dependencies across different functions.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			Debugging and Error Handling 🐞
+			Types of Errors:
+			Syntax Errors: Detected during script execution, often highlighted in the editor.
+			Runtime Errors: Occur during program execution, often due to unexpected input or operations.
+			Logic Errors: Incorrect program logic that results in incorrect outputs, even though the code runs without errors.
+			Debugging Techniques:
+			Breakpoints: Set breakpoints to pause execution and inspect variables.
+			matlab
+			dbstop if error
+
+			Try/Catch Blocks: Handle errors gracefully.
+			matlab
+			try
+			% Statements that may cause an error
+			catch exception
+			% Statements to execute in case of an error
+			disp('An error occurred.');
+			disp(exception.message);
+			end
+
+			Example:
+
+			matlab
+			try
+			result = 10 / 0;
+			catch exception
+			disp('Error: Division by zero');
+			end
+
+			🔄 Analogy: Debugging is like detective work, where you trace through the code to find the source of the problem.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			2D Plotting Techniques 📉
+			Basic 2D Plot:
+			Plot Command:
+			matlab
+			x = 0:0.1:10;
+			y = sin(x);
+			plot(x, y);
+			title('Sine Wave');
+			xlabel('x');
+			ylabel('sin(x)');
+			grid on;
+
+			💡 Tip: Always label your axes and add a title to your plots for clarity.
+
+			Multiple Curves:
+			Using Hold:
+			matlab
+			plot(x, y1);
+			hold on;
+			plot(x, y2);
+			hold off;
+
+			Multiple Plot Command:
+			matlab
+			plot(x, y1, x, y2);
+
+			Customizing Plots:
+			Line Style, Color, and Marker:
+			matlab
+			plot(x, y, 'r-.*');
+
+			Axis Limits:
+			matlab
+			axis([xmin, xmax, ymin, ymax]);
+
+			Annotations:
+			matlab
+			text(2, 90, 'Annotated Text');
+
+			Legends:
+			matlab
+			legend('Curve 1', 'Curve 2');
+
+			💡 Tip: Use legends to distinguish between multiple data sets on the same plot. This makes your plot more informative.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## 3D Plotting Techniques 📊
+			### Basic 3D Plot:
+			Plot Command:
+			```matlab
+			t = 0
+			/50:10pi;
+			plot3(exp(-0.02t).sin(t), exp(-0.02t).*cos(t), t);
+			xlabel('x-axis');
+			ylabel('y-axis');
+			zlabel('z-axis');
+			```
+
+			--
+
+			### Mesh and Surface Plots:
+			Meshgrid and Mesh Plot:
+			```matlab
+			[X, Y] = meshgrid(-5:0.5:5, -5:0.5:5);
+			Z = X.^2 - Y.^2;
+			mesh(X, Y, Z);
+			```
+			#### Example:
+
+			```matlab
+			[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+			Z = sin(X).*cos(Y);
+			mesh(X, Y, Z);
+			xlabel('X-axis');
+			ylabel('Y-axis');
+			zlabel('Z-axis');
+			title('3D Mesh Plot');
+			```
+			💡 Tip: Use mesh and surface plots to explore the relationships between three variables visually.
+
+			--
+
+			### Curve Fitting:
+			`Polyfit` and `Polyval` Functions:
+			```matlab
+			x = [0, 1, 2, 3, 4, 5];
+			y = [15, 10, 9, 6, 2, 0];
+			p = polyfit(x, y, 2); % Polynomial fitting
+			y_fit = polyval(p, x);
+			plot(x, y, 'o', x, y_fit, '-');
+			```
+			#### Example:
+
+			```matlab
+			x = [0, 1, 2, 3, 4, 5];
+			y = [15, 10, 9, 6, 2, 0];
+			p = polyfit(x, y, 1);
+			y_fit = polyval(p, x);
+			plot(x, y, 'o', x, y_fit, '-');
+			title('Linear Fit');
+			xlabel('x');
+			ylabel('y');
+			legend('Data', 'Linear Fit');
+			```
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			Functions enhance code modularity and reusability.
+			Debugging is essential for identifying and fixing errors in your code.
+			MATLAB provides powerful tools for 2D and 3D plotting, which are crucial for data visualization.
+
+			--
+
+			## Additional Tips 💡
+			* Always comment your code to improve readability and maintainability.
+			* Regularly test your functions with different inputs to ensure correctness.
+			* Use the MATLAB documentation and help functions to explore more plotting options and techniques.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			* Variable Scope: Be aware of variable scope, especially within functions. Avoid using global variables unless absolutely necessary.
+			* Overwriting Functions: Avoid naming variables the same as existing MATLAB functions to prevent unexpected behavior.
+			* Debugging: Use breakpoints and step through code to understand the flow and catch errors early.
+
+			--
+
+			## Analogies 🔄
+			* Functions: Functions are like tools in a toolbox, each designed for a specific task.
+			* Plotting: Plotting data is like creating a map, where each plot type represents different ways to visualize data.
+			* Debugging: Debugging is like detective work, where you trace through the code to find the source of the problem.
+
+		</textarea>
+		</section>
+
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>

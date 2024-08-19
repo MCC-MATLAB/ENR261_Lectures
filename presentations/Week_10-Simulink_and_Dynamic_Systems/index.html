@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 10: Simulink and Dynamic Systems</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 10: Simulink and Dynamic Systems
+
+			## Objectives:
+			* Understand the Simulink environment 🛠️.
+			* Create simple Simulink models 🏗️.
+			* Simulate dynamic systems 🎛️.
+
+			--
+
+			## Topics Covered:
+			* Introduction to Simulink 🚀
+			* Creating and Simulating Simple Models 🛠️
+			* Dynamic System Simulation 📈
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Introduction to Simulink 🚀
+			### What is Simulink?
+			Simulink is a MATLAB-based graphical programming environment for modeling, simulating, and analyzing multidomain dynamical systems.
+			### Key Features:
+			Block diagram environment 🧩.
+			Predefined blocks for system components.
+			Interactive simulation with real-time updates.
+
+			--
+
+			### Opening Simulink:
+			Command:
+			```matlab
+			simulink
+			```
+			The Simulink interface includes a Library Browser and a Model window.
+			💡 Tip: Use the Library Browser to explore and select different blocks available in Simulink for building your models.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Creating and Simulating Simple Models 🛠️
+			### Example: Sine Wave Function
+			**Objective**:
+			Create a model to simulate the function 5⋅sin(t) and display the output using a scope.
+			#### Steps:
+			1. Open Simulink:
+			```matlab
+			simulink
+			```
+
+			1. **Create a New Model**:
+				- Click on the `Blank Model` option in Simulink.
+			1. **Add Blocks**:
+				- **Sine Wave Block**: Drag the `Sine Wave` block from the `Sources` library.
+				- **Gain Block**: Drag the `Gain` block from the `Math Operations` library.
+				- **Scope Block**: Drag the `Scope` block from the `Sinks` library.
+			1. **Connect Blocks**:
+				- Connect the output of the `Sine Wave` block to the input of the `Gain` block.
+				- Connect the output of the `Gain` block to the input of the `Scope` block.
+			1. **Configure Blocks**:
+				- **Gain Block**: Double-click and set the gain value to `5`.
+			1. **Run the Simulation**:
+				- Click the `Run` button to start the simulation and observe the output on the scope.
+
+			💡 Tip: Use descriptive labels for all components and connecting lines to make your model easier to understand and debug.
+
+			--
+
+			#### Things to Consider:
+			* Labels: Use descriptive labels for all components and connecting lines.
+			* Documentation: Add a block description to your Simulink model.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Dynamic System Simulation 📈
+
+			### Example: Mass-Spring-Damper System Using Laplace Transform
+			**Objective**:
+			1. Model a mass-spring-damper system using a Laplace transform.
+			System Parameters:
+			\[
+			m = 1, \quad b = 0.6, \quad k = 5
+			\]
+
+			Where:
+			- \( m \) is the mass,
+			- \( b \) is the damping coefficient,
+			- \( k \) is the spring constant.
+
+			The input force \( F(t) \) is a step function with a final value of 10.
+
+			The transfer function for the mass-spring-damper system in the Laplace domain is:
+
+			\[
+			\frac{X(s)}{F(s)} = \frac{1}{ms^2 + bs + k}
+			\]
+
+			Where \( s \) is the Laplace variable.
+
+			In MATLAB, you would set the denominator coefficients in the `Transfer Fcn` block as:
+
+			\[
+			\text{{Denominator}} = [m \quad b \quad k]
+			\]
+
+			With:
+
+			\[
+			\text{{Denominator}} = [1 \quad 0.6 \quad 5]
+			\]
+
+			--
+
+			2. **Create a New Simulink Model**.
+			3. **Add Blocks**:
+				- **Step Block**: Drag the `Step` block from the `Sources` library.
+				- **Transfer Function Block**: Drag the `Transfer Fcn` block from the `Continuous` library.
+				- **Scope Block**: Drag the `Scope` block from the `Sinks` library.
+			4. **Connect Blocks**:
+				- Connect the `Step` block to the `Transfer Fcn` block.
+				- Connect the output of the `Transfer Fcn` block to the `Scope` block.
+			5. **Configure Blocks**:
+				- **Transfer Function Block**: Set the denominator coefficients to `[m b k]`.
+			6. **Run the Simulation**:
+				- Set the simulation time from 0 to 15 seconds.
+				- Observe the results on the scope.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			* Simulink provides a powerful environment for modeling and simulating dynamic systems.
+			* Building models in Simulink involves connecting predefined blocks and configuring their parameters.
+			* Simulation results can be visualized using scopes and other plotting tools.
+
+			--
+
+			## Additional Tips 💡
+			* Use MATLAB’s documentation and Simulink tutorials for more advanced features.
+			* Experiment with different blocks and configurations to understand their behavior.
+			* Regularly save and document your Simulink models to track your progress.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			* Simulation Time: Ensure the simulation time is set appropriately for your model.
+			* Block Parameters: Double-check the parameters for each block to ensure they are set correctly.
+			* Connections: Verify that all blocks are correctly connected to avoid simulation errors.
+
+		</textarea>
+		</section>
+
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>

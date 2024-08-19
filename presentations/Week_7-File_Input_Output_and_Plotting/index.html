@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 2: MATLAB Variables & Data Types</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 7: File Input/Output 📂 and MATLAB Graphics 📊
+
+			## Objectives:
+			* Learn how to read and write data from/to external files 💾.
+			* Explore comprehensive MATLAB graphics and visualization techniques 🎨.
+
+			--
+
+			## Topics Covered:
+			* File Input/Output Operations 📂
+			* Advanced Graphics and Visualization Techniques 📂
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## File Input/Output Operations 💻
+			### Reading Data from Files:
+			#### Importing Data:
+			**Text Files**:
+			```matlab
+			data = load('datafile.txt');
+			```
+
+			**CSV Files**:
+			```matlab
+			data = readmatrix('datafile.csv');
+			```
+
+			**Excel Files**:
+			```matlab
+			data = readtable('datafile.xlsx');
+			```
+			**Data using Format Specification**:
+			```matlab
+			fileID = fopen('datafile.txt','r');
+			data = textscan(fileID, '%f %f %f', 'Delimiter', ',');
+			fclose(fileID);
+			```
+
+			--
+
+			#### Example:
+
+			```matlab
+			fileID = fopen('datafile.txt','r');
+			data = textscan(fileID, '%f %f %f', 'Delimiter', ',');
+			fclose(fileID);
+			x = data{1};
+			y = data{2};
+			z = data{3};
+			```
+
+			--
+
+			### Writing Data to Files:
+			#### Saving Data:
+			**Text Files**:
+			```matlab
+			save('datafile.txt', 'data', '-ascii');
+			```
+
+			**CSV Files**:
+			```matlab
+			writematrix(data, 'datafile.csv');
+			```
+			**Excel Files**:
+			```matlab
+			writetable(data, 'datafile.xlsx');
+			```
+			💡 Tip: writematrix and writetable are versatile functions for exporting data to files in commonly used formats like CSV and Excel.
+
+			--
+
+			#### Example:
+
+			```matlab
+			data = rand(5,3);
+			writematrix(data, 'datafile.csv');
+			```
+
+			--
+
+			### Advanced File Handling:
+			#### Reading and Writing Binary Files:
+			```matlab
+			fileID = fopen('datafile.bin', 'w');
+			fwrite(fileID, data, 'double');
+			fclose(fileID);
+
+			fileID = fopen('datafile.bin', 'r');
+			data = fread(fileID, 'double');
+			fclose(fileID);
+			```
+			#### Reading and Writing with Formatting:
+			```matlab
+			fileID = fopen('datafile.txt', 'w');
+			fprintf(fileID, '%6.2f %12.8f\n', data);
+			fclose(fileID);
+			```
+			⚠️ Gotcha: When using formatted writing with fprintf, ensure that the format specifiers match the data type to avoid errors.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Advanced Graphics and Visualization Techniques 🖼️
+			### 2D Plotting:
+			**Basic Plotting**:
+			```matlab
+			x = 0:0.1:10;
+			y = sin(x);
+			plot(x, y);
+			title('Sine Wave');
+			xlabel('x');
+			ylabel('sin(x)');
+			grid on;
+			```
+
+			--
+
+			### Multiple Plots:
+			```matlab
+			y1 = sin(x);
+			y2 = cos(x);
+			plot(x, y1, x, y2);
+			legend('sin(x)', 'cos(x)');
+			```
+
+			--
+
+			### Customizing Plots:
+			```matlab
+			plot(x, y, 'r-.*');
+			axis([-1, 11, -1.5, 1.5]);
+			text(2, 0.8, 'Annotated Text');
+			legend('Sine Wave');
+			```
+			💡 Tip: Customize your plots to highlight important data points or trends. Annotations and legends can make your plots more informative.
+
+			### Specialized 2D Plots:
+			**Logarithmic Plots**:
+			```matlab
+			semilogx(x, y);
+			semilogy(x, y);
+			loglog(x, y);
+			```
+
+			--
+
+			**Bar Charts**:
+			```matlab
+			data = [1, 2, 5, 7, 10];
+			bar(data);
+			```
+
+			**Histograms**:
+			```matlab
+			data = randn(1000,1);
+			histogram(data);
+			```
+
+			**Pie Charts**:
+			```matlab
+			data = [10, 20, 30, 40];
+			pie(data);
+			```
+
+			--
+
+			### 3D Plotting:
+			**Basic 3D Plot**:
+			```matlab
+			[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+			Z = sin(X).*cos(Y);
+			mesh(X, Y, Z);
+			xlabel('X-axis');
+			ylabel('Y-axis');
+			zlabel('Z-axis');
+			title('3D Mesh Plot');
+			```
+
+			--
+
+			**Surface Plots**:
+			```matlab
+			surf(X, Y, Z);
+			shading interp;
+			colorbar;
+			```
+
+			**Contour Plots**:
+			```matlab
+			contour(X, Y, Z);
+			colorbar;
+			```
+			💡 Tip: Use 3D plots and surface plots to explore relationships between three variables, adding depth and detail to your data analysis.
+
+			#### Example:
+
+			```matlab
+			[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+			Z = X.^2 - Y.^2;
+			surf(X, Y, Z);
+			shading interp;
+			colorbar;
+			title('3D Surface Plot');
+			```
+
+			--
+
+			### Animation and Advanced Visualization:
+			**Creating Animations**:
+			```matlab
+			x = linspace(0, 2*pi, 100);
+			y = sin(x);
+			h = plot(x, y);
+			for k = 1:100
+			y = sin(x + k/10);
+			set(h, 'YData', y);
+			drawnow;
+			end
+			```
+
+			**Using the comet Function**:
+			```matlab
+			comet(x, y);
+
+			--
+
+			#### Example:
+
+			```matlab
+			t = 0
+			/50:10pi;
+			comet3(exp(-0.02t).sin(t), exp(-0.02t).*cos(t), t);
+			xlabel('x-axis');
+			ylabel('y-axis');
+			zlabel('z-axis');
+			title('3D Comet Plot');
+			```
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			Mastering file input/output operations is essential for data handling in MATLAB.
+			MATLAB offers powerful tools for 2D and 3D plotting, enabling comprehensive data visualization.
+			Customizing and animating plots can provide deeper insights into data trends and patterns.
+
+			--
+
+			## Additional Tips 💡
+			Use the MATLAB documentation and help functions to explore more options for file input/output operations.
+			Regularly test your plots with different datasets to ensure they effectively visualize the data.
+			Practice using different plot types to find the best visualization method for your data.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			File Paths: Ensure file paths are correct when reading from or writing to external files.
+			Plot Customization: Be careful with plot customizations to avoid cluttering the graph with too much information.
+			Data Handling: Verify data integrity when importing and exporting to prevent data loss or corruption.
+
+			--
+
+			## Analogies 🔄
+			File Input/Output: Think of file input/output operations as opening and saving documents in a word processor.
+			Plotting: Creating plots is like drawing charts on paper, where you can highlight important information and trends.
+			Animation: Animating plots is like creating a flipbook, where each frame shows a different part of the data story.
+
+		</textarea>
+		</section>
+
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>

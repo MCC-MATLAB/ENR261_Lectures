@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 8: Data Structures and Analysis</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+
+		<section data-markdown>
+        <textarea data-template>
+			# Week 8: Data Structures and Analysis
+
+			## Objectives:
+			* Learn about advanced data structures (structures and cell arrays) 🗄️.
+			* Perform basic statistical analysis 📈.
+			* Understand and apply data fitting and regression techniques 🔍.
+
+			--
+
+			## Topics Covered:
+			* Advanced Data Structures 🗃️
+			* Basic Statistical Analysis 📊
+			* Data Fitting and Regression Techniques 📉
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Advanced Data Structures 🗃️
+			### Structures:
+
+			Structures (structs) allow you to store multiple data types in various fields.
+			Analogy: Think of a structure like an object where each property (field) can hold different types of data.
+
+			#### Example:
+
+			```matlab
+			% Creating a structure
+			student.name = 'John Doe';
+			student.id = 'jd001';
+			student.grades = [95, 87, 91];
+
+			% Viewing the structure
+			disp(student);
+			```
+			#### Output:
+			```
+			student =
+
+			  struct with fields:
+
+				  name: 'John Doe'
+					id: 'jd001'
+				grades: [95 87 91]
+			```
+
+			--
+
+			#### Array of Structures:
+			Structures can be organized into arrays.
+			```matlab
+			student(2).name = 'Jane Doe';
+			student(2).id = 'jd002';
+			student(2).grades = [84, 81, 77];
+			```
+
+			#### Output:
+			```
+			student =
+
+			  1×2 struct array with fields:
+
+				name
+				id
+				grades
+			```
+
+			--
+
+			### Cell Arrays:
+			A cell array is a data container that can hold different types of data.
+
+			```matlab
+			% Creating a cell array
+			c = {rand(3), char('Bologna', 'Salami'); 13, student};
+
+			% Accessing cell data
+			data = c{1, 1}; % Access the data
+			disp(data);
+
+			cell_info = c(1, 1); % Access the cell itself
+			disp(cell_info);
+			```
+			#### Output:
+			```
+			data =
+
+				0.7922    0.0357    0.6787
+				0.9595    0.8491    0.7577
+				0.6557    0.9340    0.7431
+
+			cell_info =
+
+			  1×1 cell array
+
+				{3×3 double}
+			```
+
+			--
+
+			#### Visualization:
+			```matlab
+			celldisp(c); % Displays cell array contents
+			cellplot(c); % Graphical representation
+			```
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Basic Statistical Analysis 📊
+			### Statistical Functions:
+			**Mean**:
+			```matlab
+			data = [1, 2, 3, 4, 5];
+			mean_val = mean(data);
+			disp(mean_val);
+			```
+
+			**Median**:
+			```matlab
+			median_val = median(data);
+			disp(median_val);
+			```
+			**Standard Deviation**:
+			```matlab
+			std_val = std(data);
+			disp(std_val);
+			```
+
+			**Variance**:
+			```matlab
+			var_val = var(data);
+			disp(var_val);
+			```
+
+			#### Example:
+
+			```matlab
+			data = [1, 2, 3, 4, 5];
+			mean_val = mean(data);
+			median_val = median(data);
+			std_val = std(data);
+			var_val = var(data);
+
+			fprintf('Mean: %f, Median: %f, Standard Deviation: %f, Variance: %f\n', mean_val, median_val, std_val, var_val);
+			```
+
+			#### Output:
+			```
+			Mean: 3.000000, Median: 3.000000, Standard Deviation: 1.581139, Variance: 2.500000
+			Data Fitting and Regression Techniques 📉
+			Linear Regression:
+			Linear Regression: Fits a linear model to data.
+			```
+
+			--
+
+			#### Example:
+
+			```matlab
+			x = [1, 2, 3, 4, 5];
+			y = [2, 4, 5, 4, 5];
+			p = polyfit(x, y, 1); % Linear fit
+			y_fit = polyval(p, x);
+			plot(x, y, 'o', x, y_fit, '-');
+			title('Linear Fit');
+			xlabel('x');
+			ylabel('y');
+			legend('Data', 'Linear Fit');
+			```
+
+			#### Output:
+			```
+			Linear fit plot with data points and fitted line
+			```
+
+			--
+
+			### Polynomial Regression:
+			Fits a polynomial model to data.
+
+			#### Polyfit and Polyval:
+			```matlab
+			x = [1, 2, 3, 4, 5];
+			y = [2, 4, 5, 4, 5];
+			p = polyfit(x, y, 2); % Polynomial fit (2nd degree)
+			y_fit = polyval(p, x);
+			plot(x, y, 'o', x, y_fit, '-');
+			title('Polynomial Fit');
+			xlabel('x');
+			ylabel('y');
+			legend('Data', 'Polynomial Fit');
+			```
+
+			#### Output:
+			```
+			Polynomial fit plot with data points and fitted curve
+			```
+
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Key Takeaways 🎓
+			* Structures and cell arrays provide flexible ways to store and manipulate data.
+			* Basic statistical analysis functions are essential for summarizing and understanding data.
+			* Data fitting and regression techniques help model and predict data trends.
+
+			--
+
+			## Additional Tips 💡
+			* Use MATLAB's help and documentation to explore additional functions and features for data structures and statistical analysis.
+			* Regularly visualize data to gain insights and identify trends.
+			* Experiment with different degrees of polynomial fits to understand overfitting and underfitting.
+
+			--
+
+			## Gotchas to Watch Out For ⚠️
+			* Indexing: Ensure correct indexing when accessing data in cell arrays and structures.
+			* Data Types: Be aware of data types when performing operations within cell arrays.
+			* Overfitting: Be cautious of overfitting when using higher-degree polynomials for regression.
+
+			--
+
+			## Analogies 🔄
+			* Structures: Think of structures as a filing cabinet where each drawer (field) holds different types of documents (data).
+			* Cell Arrays: Cell arrays are like a mixed bag where you can store various items (data types) in each compartment.
+			* Regression: Data fitting is like finding the best-fit line or curve that represents the overall trend of scattered data points.
+
+		</textarea>
+		</section>
+
+
+	</div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>
