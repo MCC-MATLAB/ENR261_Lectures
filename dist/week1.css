@@ -8,8 +8,8 @@
     --color6: #FFFFFF;
 
     --H1: #005583;
-    --H2: #598296ff;
-    --H3: #6D9DB5ff;
+    --H2: #6D9DB5ff;
+    --H3: #598296ff;
     --H4: #2E8AB8ff;
     --H5: #5E676Bff;
 
@@ -56,7 +56,7 @@ code {
 .reveal .slides section,
 .reveal .slides section .fragment,
 div.text_cell_render {
-    background-color: var(--background-color) !important;
+    /*background-color: var(--background-color) !important;*/
     color: var(--text-color) !important;
 }
 

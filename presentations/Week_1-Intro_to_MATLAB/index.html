@@ -21,20 +21,20 @@
                 # Week 1: Introduction to MATLAB 🎉
 
                 ## Objectives:
-                - Get cozy with MATLAB’s interface and basic commands.
+                - Get familiar with MATLAB’s interface and basic commands.
                 - Learn how to think like a programmer (algorithmic thinking 🧠).
                 - Start creating your own mini-programs to solve cool problems!
-            </textarea>
+			</textarea>
 		</section>
 
 		<!-- Slide Header 2 -->
 		<section data-markdown>
         <textarea data-template>
-            ## Introduction to the MATLAB Interface 🎮
+            ## Introduction to the MATLAB Interface
 
             ### What is MATLAB?
-            - MATLAB is like your super-powered calculator and notebook all in one! 🚀
-            - It helps engineers and scientists solve complex problems.
+            - MATLAB was originally developed for matrix calculations.
+            - It is useful to engineers and scientists for data analysis and solving complex problems.
         </textarea>
 		</section>
 
@@ -46,7 +46,7 @@
             - **Workspace**: Displays variables you've created during your session.
             - **Command History**: Keeps a record of the commands you've entered.
             - **Editor**: Used for writing scripts (M-files) and functions.
-            - **Current Folder**: The current working directory.
+            - **Current Folder**: The current working directory (`cwd`).
             <img src="/images/Matlab Interface.png" style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;">
         </textarea>
 		</section>
@@ -60,141 +60,174 @@
         </textarea>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ## The Command Window 💻
+		<section>
+			<h2>The Command Window 💻</h2>
 
-    ### Used for Real-Time Interaction:
+			<h3>Used for Real-Time Interaction:</h3>
 
-    - MATLAB allows you to interact directly with your data. For example, typing `2 + 3` and pressing <kbd class="kbc-button">enter</kbd> will immediately return `ans = 5`.
+			<ul>
+				<li>MATLAB allows you to interact directly with your data. For example, typing <code>2 + 3</code> and
+					pressing <kbd
+							class="kbc-button">enter</kbd> will immediately return <code>ans = 5</code>.
+				</li>
+			</ul>
 
-</textarea>
+			<section>
+				<p class="fragment fade-left"><code>clc</code>: Clears the command window, but doesn't clear the
+					workspace.</p>
+				<p class="fragment fade-left"><code>clear</code>: Clears all variables from the workspace.</p>
+				<p class="fragment fade-left"><code>whos</code> (<code>who</code>): Displays detailed information
+					about variables in the
+					workspace.
+				</p>
+				<br>
+				<div class="fragment fade-up" style="text-align: left">💡Tip:
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>clc</code>&RightArrow; <code>Cl</code>ear <code>C</code>ommand
+						Window</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>clear</code> &RightArrow; <code>Cl</code>ear <code>E</code>nvironment
+					</p>
+				</div>
+			</section>
+		</section>
 
-            <!-- Fragment Slide for Common Commands -->
-            <section>
-                <div class="fragment fade-up">
-                    <h3>Common Commands:</h3>
-                    <ul>
-                        <li><code>clc</code>: Clears the command window, but doesn't clear the workspace.</li>
-                        <li><code>clear</code>: Clears all variables from the workspace.</li>
-                        <li><code>whos</code> (<code>who</code>): Displays detailed information about variables in the workspace.</li>
-                    </ul>
-                </div>
-            </section>
+		<section>
+			<h3>Interactive Exercise:</h3>
 
-            <textarea data-template>
-    ---
+			<ol>
+				<li>Open MATLAB.</li>
+				<li>Try the following commands and observe:</li>
+			</ol>
 
-    ### Interactive Exercise:
+			<pre class="code-wrapper" style="width: 40%">
+                <code class="matlab hljs language-matlab">
+	2 + 3
+	clc
+	whos
+				</code>
+            </pre>
 
-    1. Open MATLAB.
-    2. Try the following commands and observe:
+			<div class="fragment fade-up">
+				3. What happened after each command?
+			</div>
+		</section>
 
-    ```matlab
-    2 + 3
-    clc
-    whos
-    ```
-
-</textarea>
-
-            <!-- Fragment Slide for Exercise Results -->
-            <section>
-                <div class="fragment fade-up">
-                    3. What happened after each command?
-                </div>
-            </section>
-
-            <textarea data-template>
-    ---
-
-    ### More on the Command Window
-
-    - `clc`: Clears the command window.
-    - `clear`: Clears variables from the "Workspace/Environment".
-    - `whos`: Displays a list of current variables (also seen in the Workspace window).
-
-</textarea>
-
-            <!-- Fragment Slide for Re-executing Commands -->
-            <section>
-                <div class="fragment fade-up">
-                    <h4>Re-executing Commands:</h4>
-                    <ul>
-                        <li>Use <kbd class="kbc-button">&uarr;</kbd> to cycle through previously executed commands.</li>
-                        <li>Double-click or drag and drop from the command history window (may need to be enabled).</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Fragment Slide for Important Keyboard Shortcuts -->
-            <section>
-                <div class="fragment fade-up">
-                    <h4>Important Keyboard Shortcuts:</h4>
-                    <ul>
-                        <li><kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">c</kbd>: Stops the execution of a command or script if it runs too long or seems to be stuck.</li>
-                    </ul>
-                </div>
-            </section>
-
-        </section>
+		<!-- Fragment Slide for Re-executing Commands -->
+		<section>
+			<div class="alert alert-warning">💡 Tip: More on Commands</div>
+			&nbsp;
+			<ul>
+				<li>Use <kbd class="kbc-button">&uarr;</kbd> to cycle through previously executed commands. (works
+					better without the history window)
+				</li>
+				<li>Double-click or drag and drop from the command history window (may need to be enabled).</li>
+				<li>Start typing a previously used command and use <kbd class="kbc-button">&uarr;</kbd> to filter</li>
+				<li>Start typing a known command and use <kbd class="kbc-button">tab</kbd> to see possible solutions
+				</li>
+				<li><kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">c</kbd>: Stops the execution of a
+					command or script if it runs too long or seems to be stuck.
+				</li>
+			</ul>
+		</section>
 
 		<!-- Slide: Learning And Executing Simple Commands -->
-		<section data-markdown>
-        <textarea data-template>
-            ## Learning And Executing Simple Commands
+		<section>
+			<h2>Learning And Executing Simple Commands</h2>
 
-            ### Computation Notation:
+			<h3>Computation Notation:</h3>
 
-            - MATLAB uses standard mathematical operators: `+`, `-`, `*`, `/`, `^`.
-            - Try to guess the output for the following:
+			<ul>
+				<li>MATLAB uses standard mathematical operators: `+`, `-`, `*`, `/`, `^`.</li>
+				<li>Try to guess the output for the following:</li>
+			</ul>
 
-            ```matlab
-            3 - 2
-            3 * 2
-            3 / 2
-            3 ^ 2
-            ```
 
-            <div class="fragment fade-up">
-                ```matlab
-                1 + inf
-                ```
-            </div>
-        </textarea>
+			<div class="fragment fade-up">
+				<pre class="code-wrapper" style="width: 40%">
+					<code class="matlab hljs language-matlab">
+	3 - 2
+					</code>
+				</pre>
+			</div>
+			<div class="fragment fade-up">
+				<pre class="code-wrapper" style="width: 40%">
+					<code class="matlab hljs language-matlab">
+	3 * 2
+					</code>
+				</pre>
+			</div>
+			<div class="fragment fade-up">
+				<pre class="code-wrapper" style="width: 40%">
+					<code class="matlab hljs language-matlab">
+	3 / 2
+					</code>
+				</pre>
+			</div>
+			<div class="fragment fade-up">
+				<pre class="code-wrapper" style="width: 40%">
+					<code class="matlab hljs language-matlab">
+	3 ^ 2
+					</code>
+				</pre>
+			</div>
+			<div class="fragment fade-up">
+				<pre class="code-wrapper" style="width: 40%">
+					<code class="matlab hljs language-matlab">
+	1 + inf
+					</code>
+				</pre>
+			</div>
 		</section>
 
 		<!-- Slide: Variables -->
-		<section data-markdown>
-        <textarea data-template>
-            ## Variables 🍪
+		<section>
+			<h2>Variables 🥣</h2>
 
-            ### What are Variables?
-            - Think of variables as boxes that hold things and can be labeled. Just like how a box of cereal is labeled and has a specific cereal within it.
-            - Dynamic typing means you can change what’s inside the jar anytime you want!
+			<h3>What are Variables?</h3>
+			<ul>
+				<li>Think of variables as boxes that hold things and can be labeled. Just like how a box of cereal is
+					labeled and has a specific cereal within it.
+				</li>
+			</ul>
 
-            <div class="fragment fade-up">
-                <strong>Example</strong>:
+			<div class="fragment fade-up">
+				<h4 style="text-align: left"> Type:</h4>
+				<li>A box of cereal has a type, what's the type of stuff in this box? (cereal)</li>
+				<li>Dynamic typing means you don't need to specify the type</li>
+			</div>
 
-                <pre>
-                    <code class="matlab language-matlab">
-                    a = 5
-                    b = 10
-                    c = a * b
-                    </code>
-                </pre>
-            </div>
-        </textarea>
+			<div class="fragment fade-up">
+				<h4 style="text-align: left"> Value:</h4>
+				<li>A box of cereal has a value, it's written on the box? (Cheerios)</li>
+				<li>You can change what’s inside the box anytime you want!</li>
+			</div>
+			&nbsp;
+			<div class="fragment fade-up">"This box is a box of <strong>cereal</strong>, and it contains <strong>Cheerios</strong>"
+			</div>
+
+
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ### Standard Naming Conventions
+		<section>
+			<h2>Standard Naming Conventions</h2>
 
-            * `camelCase`
-            * `snake_case`
-            * `ALL_CAPS`, `SCREAMING_SNAKE_CASE`
-        </textarea>
+			<ul>
+				<li><code>camelCase</code></li>
+				<li><code>snake_case</code></li>
+				<li><code>ALL_CAPS`, `SCREAMING_SNAKE_CASE</code></li>
+			</ul>
+
+			<div class="fragment fade-up" style="padding-top: 20px">
+				<strong>Example</strong>:
+
+				<pre class="code-wrapper" style="width: 40%">
+                    <code class="matlab language-matlab">
+	MAX_FRUIT_ALLOWED = 15
+	numApples = 5
+	numOranges = 10
+	fruitCount = a * b
+                    </code>
+                </pre>
+			</div>
 		</section>
 
 		<section data-markdown>
@@ -230,55 +263,63 @@
 		</section>
 
 		<!-- Slide: Algorithm Development Process -->
-		<section data-markdown>
-        <textarea data-template>
-            ## Algorithm Development Process 🗺️
+		<section>
+			<h2>Algorithm Development Process 🗺️</h2>
 
-            1. **Analyze the problem** – Just like planning a trip, figure out where you want to go.
-            2. **Define inputs** – Pack your bags! What do you need to go on your trip?
-            3. **Perform Manipulation** – Map out your route, how are you going to get there?
-            4. **Produce Output** – Arrive at your destination!
+			<ol>
+				<li><strong>Analyze the problem</strong> – Just like planning a trip, figure out where you want to go.
+				</li>
+				<li><strong>Define inputs</strong> – Pack your bags! What do you need to go on your trip?</li>
+				<li><strong>Perform Manipulations</strong> – Map out your route, how are you going to get there?</li>
+				<li><strong>Produce Output(s)</strong> – Arrive at your destination!</li>
+			</ol>
 
-            <div class="fragment fade-up">
-                ### Best Practices:
-                - **Commenting**: Use comments (`%`) to explain your code. This helps others (and future you) understand
-                what your code does.
-                - **Incremental Development**: Write and test small pieces of code before integrating them into a larger
-                program.
-            </div>
-        </textarea>
+			<div class="fragment fade-up">
+				<h3 style="padding-top: 20px">Best Practices:</h3>
+				<ul>
+					<li><strong>Commenting</strong>: Use comments (<code>%</code>) to explain your code. This helps
+						others (and future you) understand
+						what your code does.
+					</li>
+					<li><strong>Incremental Development</strong>: Write and test small pieces of code before integrating
+						them into a larger
+						program.
+					</li>
+				</ul>
+			</div>
 		</section>
 
 		<!-- Slide: Problem Solving Example -->
-		<section data-markdown>
-        <textarea data-template>
-            ### Problem Solving Example: Volume of a Cone
+		<section>
+			<h3>Problem Solving Example: Volume of a Cone</h3>
 
-            #### Applying What We’ve Learned:
+			<h4>Applying What We’ve Learned:</h4>
 
-            1. **Analyze the problem**: Explain the formula $\Large v = \frac{\pi r^2 h}{3}$
-            2. **Define inputs** (in this case variables):
-
-            ```matlab
-            radius = 6
-            height = 12
-            ```
-            Note: _We don't need `pi` as that's provided for us_
-
-            <div class="fragment fade-up">
-                3. **Perform the manipulation**:
-
-                ```matlab
-                volume = (pi * radius^2 * height) / 3
-                ```
-            </div>
-            <div class="fragment fade-up">
-                4. **Produce Output/Result:**
-
-                In this case we are simply outputting to `volume` and the console (done by MATLAB)
-            </div>
-        </textarea>
+			<ol>
+				<li><strong>Analyze the problem</strong>: Explain the formula $\Large v = \frac{\pi r^2 h}{3}$</li>
+				<li><strong>Define inputs</strong> (in this case variables):
+					<div class="fragment fade-up" style="padding-top: 20px">
+                <pre class="code-wrapper" style="width: 50%">
+                    <code class="matlab language-matlab">
+    radius = 6
+    height = 12
+                    </code>
+                </pre>
+						<strong>Note</strong>: <em>We don't need <code>pi</code> as that's provided for us</em>
+					</div>
+				</li>
+				<li class="fragment fade-up"><strong>Perform the manipulation</strong>:
+					<pre class="code-wrapper" style="width: 50%">
+					<code class="matlab language-matlab">volume = (pi * radius^2 * height) / 3</code>
+				</pre>
+				</li>
+				<li class="fragment fade-up"><strong>Produce Output/Result</strong>:
+					<p>In this case, we are simply outputting to <code>volume</code> and the console (done by MATLAB)
+					</p>
+				</li>
+			</ol>
 		</section>
+
 
 		<!-- Slide: Introduction to M-Files -->
 		<section data-markdown>
@@ -289,46 +330,54 @@
 
             - M-files are scripts or functions you can save and reuse. They help organize code and are essential for more complex projects.
 
-            #### Usage:
-            * Save your programs.
-            * Execute a list of commands from the command window.
-            * Save your work while you work through a problem.
-            * Re-open and modify your program at any time.
+            #### Used for:
+            * Saving your programs (scripts).
+            * Executing a list of commands.
+            * Saving your work while you work through a problem.
+            * Re-opening and modifying your program at any time.
         </textarea>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ### Creating a Simple M-File:
+		<section>
+			<h3>Creating a Basic M-File:</h3>
 
-            1. Open the MATLAB Editor.
-            2. Type the following:
+			<ol>
+				<li>Open the MATLAB Editor.</li>
+				<li>Type the following:</li>
 
-            ```matlab
-            % Compute and display the volume of a cone
-            radius = 6
-            height = 12
-            volume = (pi * radius^2 * height) / 3
-            ```
+				<pre class="code-wrapper" style="width: 50%">
+                    <code class="matlab language-matlab">
+	% Compute and display the volume of a cone
+	radius = 6
+	height = 12
+	volume = (pi * radius^2 * height) / 3
+                    </code>
+                </pre>
 
-            3. Save as `volume_of_cone.m`.
-            4. Run the script by typing `volume_of_cone` in the Command Window.
+				<li class="fragment fade-up">Save as <code>volume_of_cone.m</code>.</li>
+				<li class="fragment fade-up">Run the script by typing <code>volume_of_cone</code> in the Command Window.
+				</li>
+			</ol>
+		</section>
 
-            <div class="fragment fade-up">
-                #### Notes:
-                * To run a MATLAB script call the filename without `.m`
-                * The script must be in the current working directory `cwd`
-                * Alternatively, you can provide a path (`C:\my\script\location.m`)
-            </div>
+		<section>
+			<h3>More on Scripts:</h3>
+			<ul>
+				<li>To run a MATLAB script call the filename without <code>.m</code></li>
+				<li>The script must be in the current working directory <code>cwd</code></li>
+				<li>Alternatively, you can provide a path (<code>C:\my\script\location.m</code>)</li>
 
-            <div class="fragment fade-up">
-                #### Output Suppression:
-
-                * When someone asks for the volume of a cone, they probably don't want to see the radius, and height displayed.
-                * We can use the semicolon `;` operator to suppress output. MATLAB, by default, prints command results to
-                the command window.
-            </div>
-        </textarea>
+				<div class="fragment fade-up">
+					<h4 style="margin-bottom: 0; padding-top: 20px">Output
+						Suppression:</h4>
+					<li>MATLAB, by default, prints command results to the command window.</li>
+					<li>When someone asks for the volume of a cone, they probably don't want to see the radius, and
+						height displayed.
+					</li>
+					<li>We can use the semicolon <code>;</code> operator to <em>suppress</em> output.
+					</li>
+				</div>
+			</ul>
 		</section>
 
 		<section data-markdown>
@@ -375,6 +424,10 @@
             % Assisted By:
             % Date: 08/04/2024
 
+            % Always start with a clean output and workspace
+            clc
+            clear
+
             % Declare variables
             radius = 6; % Radius of the cone (inches)
             height = 12; % Height of the cone (inches)
@@ -393,25 +446,29 @@
             ### Be the Detective!
             - **Syntax Errors**: Oops, you mistyped something! Let’s fix it.
             - **Runtime Errors**: Something went wrong during the run – let’s figure out why!
-            - Find the bug in your code, just like Sherlock Holmes would!
         </textarea>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ### Interactive Exercise:
+		<section>
+			<h3>Interactive Exercise:</h3>
 
-            - Introduce an error by changing `radius` to `radiuss` in the M-file and let's observe the error message.
+			<p>Run <code>clear</code> and introduce an error by changing <code>radius</code> to <code>radiuss</code> in
+				the M-file and let's observe the error message.</p>
 
-            <div class="fragment fade-up">
-                <div class="alert alert-info fit-width">
-                    <strong>TIP!</strong> Start fresh to avoid confusion.
-                </div>
+			<div class="fragment fade-up">
+				<div class="alert alert-info fit-width">
+					<strong>TIP!</strong> Start fresh to avoid confusion.
+				</div>
 
-                * Whenever you run into a problem like this it is a good idea to `clear` your workspace of any possible bad values.
-                * You should include `clear;`, and sometimes `clc;` in your script to ensure you are starting fresh.
-            </div>
-        </textarea>
+				<ul>
+					<li>Whenever you run into a problem like this it is a good idea to <code>clear</code> your workspace
+						of any possible bad values.
+					</li>
+					<li>You should include <code>clear</code>, and sometimes <code>clc</code> in your script to ensure
+						you are starting fresh.
+					</li>
+				</ul>
+			</div>
 		</section>
 
 		<!-- Slide: Using the Help System -->
@@ -465,16 +522,16 @@
                 * Write clear, well-documented code.
                 * Include **comments**. (This is your documentation)
                 * **Suppress** what doesn't need to be displayed.
-                * Start with a <code class="matlab language-matlab">clear</code> workspace.
+                * Start with a <code>clear</code> workspace and <code>clc</code>d command window.
                 * Learn keyboard shortcuts for efficient coding.
                 * Save often, commit often.
         </textarea>
 		</section>
 
 		<!-- Slide: Gotchas -->
-		<section data-markdown>
+		<section data-background-image="/images/goteem.png" data-markdown>
         <textarea data-template>
-            <div style="display: flex; align-items: center; justify-content: center; background-image: url('/images/goteem.png'); background-size: contain; background-position: center; background-repeat: no-repeat; padding: 60px; min-height: 100vh; text-align: center; background-size: cover;">
+
                 <div>
                     <h2 style="color: white;">Gotchas</h2>
                     <ul style="color: white;">
@@ -484,7 +541,7 @@
                         <li>Copy and paste is your frienemy.</li>
                     </ul>
                 </div>
-            </div>
+
         </textarea>
 		</section>
 
@@ -509,6 +566,26 @@
 <script src="/plugin/math/math.js"></script>
 <script src="/dist/site.js"></script>
 <script>
+    // Function to toggle full-screen mode
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
+                document.documentElement.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+    }
 
     Reveal.initialize({
         controls: true,
@@ -518,9 +595,9 @@
 
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
 
-        // Custom delimiters for slides, subslides, and notes
+// Custom delimiters for slides, subslides, and notes
         markdown: {
-            slideSeparator: '---',   // Horizontal slide separator
+            slideSeparator: '---', // Horizontal slide separator
             verticalSeparator: '--', // Vertical slide (subslide) separator
         }
     });
