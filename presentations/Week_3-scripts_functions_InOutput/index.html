@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 2: MATLAB Variables & Data Types</title>
+	<title>Week 3: Scripts - Functions - Input/Output</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
@@ -16,505 +16,487 @@
 	<div class="slides">
 
 		<!-- Slide:  -->
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h1>Week 3: Scripts, Functions, Basic Input/Output</h1>
 
-			# Week 3: Scripts, Functions, Basic Input/Output
+			<h2>Objectives:</h2>
+			<ul>
+				<li>Write and run scripts 📝.</li>
+				<li>Understand the difference between scripts and functions 🤔.</li>
+				<li>Create and call functions with parameters 🛠️.</li>
+				<li>Understand control flow and conditional statements 🔄.</li>
+				<li>Use <code>fprintf</code> and <code>sprintf</code> for formatted output 🎯.</li>
+			</ul>
 
-			## Objectives:
-			* Write and run scripts 📝.
-			* Understand the difference between scripts and functions 🤔.
-			* Create and call functions with parameters 🛠️.
-			* Understand control flow and conditional statements 🔄.
-			* Use fprintf and sprintf for formatted output 🎯.
+			<hr>
 
-			---
-
-			## Topics Covered:
-			* Scripts and Functions 📜
-			* Control Flow and Conditional Statements ⚙️
-			* Input and Output 📤📥
-
-        </textarea>
+			<h2>Topics Covered:</h2>
+			<ul>
+				<li>Scripts and Functions 📜</li>
+				<li>Control Flow and Conditional Statements ⚙️</li>
+				<li>Input and Output 📤📥</li>
+			</ul>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-			## Scripts and Functions
+		<section>
+			<h2>Scripts and Functions</h2>
 
-			### Scripts:
+			<h3>Scripts:</h3>
+			<p><strong>Definition</strong>: A script is a file containing a series of MATLAB commands. Scripts run in
+				the current workspace and can use and modify existing variables.</p>
+			<p><strong>Creating and Running Scripts</strong>: To create a script, write the commands in a new file with
+				a `.m` extension. Run the script by typing its name (without the `.m` extension) in the Command Window.
+			</p>
 
-			- **Definition**: A script is a file containing a series of MATLAB commands. Scripts run in the current workspace and can use and modify existing variables.
-			- **Creating and Running Scripts**: To create a script, write the commands in a new file with a `.m` extension. Run the script by typing its name (without the `.m` extension) in the Command Window.
+			<hr>
 
-			---
-
-			### Example Script:
-
-			Create a file named `area_of_circle.m`:
-
-			```matlab
-			radius = input("Please enter the radius: ");
-			area = pi * radius^2;
-			disp(['The area of the circle is ', num2str(area)]);
-			```
-			💡 **Tip**: Use descriptive names for your scripts to easily remember what they do!
-        </textarea>
+			<h3>Example Script:</h3>
+			<p>Create a file named <code>area_of_circle.m</code>:</p>
+			<pre><code>radius = input("Please enter the radius: ");
+area = pi * radius^2;
+disp(['The area of the circle is ', num2str(area)]);
+</code></pre>
+			<p>💡 <strong>Tip</strong>: Use descriptive names for your scripts to easily remember what they do!</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-			### Functions:
-			**Definition**: Functions are reusable pieces of code that operate on inputs and produce outputs. Functions have their own workspace, separate from the base workspace.
-			**Components**: Name, input arguments, and output arguments.
-			**Creating Functions**: Define a function in a new file with the same name as the function and a `.m` extension. Use the `function` keyword to define a function.
+		<section>
+			<h3>Functions:</h3>
+			<p><strong>Definition</strong>: Functions are reusable pieces of code that operate on inputs and produce
+				outputs. Functions have their own workspace, separate from the base workspace.</p>
+			<p><strong>Components</strong>: Name, input arguments, and output arguments.</p>
+			<p><strong>Creating Functions</strong>: Define a function in a new file with the same name as the function
+				and a `.m` extension. Use the <code>function</code> keyword to define a function.</p>
 
-			#### Syntax:
+			<h4>Syntax:</h4>
+			<pre><code>function output = functionName(input)
+    % Function body
+    output = ...;
+end
+</code></pre>
 
-			```matlab
-			function output = functionName(input)
-			% Function body
-			output = ...;
-			end
-			```
+			<hr>
 
-			--
+			<h4>Example Function:</h4>
+			<p>Create a file named <code>calculate_area.m</code>:</p>
+			<pre><code>function area = calculate_area(radius)
+    area = pi * radius^2;
+end
+</code></pre>
+			<p>Execution:</p>
+			<pre><code>result = calculate_area(5);
+</code></pre>
 
-			Example Function:
-			Create a file named `calculate_area.m`:
-
-			matlab
-			function area = calculate_area(radius)
-			area = pi * radius^2;
-			end
-
-			Execution:
-
-			matlab
-			result = calculate_area(5)
-
-			⚠️ Gotcha: Remember, functions have their own workspace! Variables created within a function do not affect the base workspace unless explicitly returned.
-
-
-        </textarea>
+			<p>⚠️ Gotcha: Remember, functions have their own workspace! Variables created within a function do not
+				affect the base workspace unless explicitly returned.</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h2>Control Flow and Conditional Statements ⚙️</h2>
 
-			## Control Flow and Conditional Statements ⚙️
+			<h3>Control flow:</h3>
+			<p>Statements allow you to execute certain sections of code based on conditions or repeat them a specified
+				number of times. This includes conditional statements and loops.</p>
 
-			### Control flow
-			Statements allow you to execute certain sections of code based on conditions or repeat them a specified number of times. This includes conditional statements and loops.
+			<h3>Conditional Statements:</h3>
+			<p>Conditional statements execute different code blocks based on whether a condition is true or false.</p>
 
-			### Conditional
-			statements execute different code blocks based on whether a condition is true or false.
+			<h4>Syntax:</h4>
+			<pre><code>if condition
+    % Code to execute if condition is true
+elseif another_condition
+    % Code to execute if another_condition is true
+else
+    % Code to execute if none of the above are true
+end
+</code></pre>
 
-			#### Syntax
-			```matlab
-			if condition
-				% Code to execute if condition is true
-			elseif another_condition
-				% Code to execute if another_condition is true
-			else
-				% Code to execute if none of the above are true
-			end
-			```
+			<hr>
 
-			--
+			<h4>Example:</h4>
+			<pre><code>num = input('Enter a number: ');
+if num > 0
+    disp('The number is positive.');
+elseif num < 0
+    disp('The number is negative.');
+else
+    disp('The number is zero.');
+end
+</code></pre>
 
-			#### Example:
+			<p>💡 Tip: Use <code>elseif</code> to handle multiple conditions without having to nest multiple
+				<code>if</code> statements.</p>
 
-			```matlab
-			num = input('Enter a number: ');
-			if num > 0
-				disp('The number is positive.');
-			elseif num < 0
-				disp('The number is negative.');
-			else
-				disp('The number is zero.');
-			end
-			```
-			💡 Tip: Use `elseif` to handle multiple conditions without having to nest multiple `if` statements.
+			<hr>
 
-			--
-
-			#### 🔄 Analogy
-			Think of an `if-elseif-else` statement as deciding what to wear based on the weather. If it’s raining (if), wear a raincoat. If it’s cold (elseif), wear a jacket. Otherwise (else), wear a T-shirt.
-
-			--
-
-			### Switch Statement:
-			**Definition**: A `switch` statement allows you to select one of many code blocks to execute.
-			#### Syntax:
-			```matlab
-			switch expression
-				case value1
-				% Code to execute if expression == value1
-				case value2
-				% Code to execute if expression == value2
-				otherwise
-				% Code to execute if expression does not match any case
-				end
-			```
-
-			--
-
-			#### Example:
-
-			```matlab
-			day = input('Enter a day number (1-7): ');
-			switch day
-				case 1
-				disp('Sunday');
-				case 2
-				disp('Monday');
-				case 3
-				disp('Tuesday');
-				case 4
-				disp('Wednesday');
-				case 5
-				disp('Thursday');
-				case 6
-				disp('Friday');
-				case 7
-				disp('Saturday');
-				otherwise
-				disp('Invalid day number');
-			end
-			```
-			💡 Tip: Use `switch` statements for clean, easy-to-read code when dealing with multiple specific cases.
-
-			--
-
-			#### 🔄 Real-World Analogy:
-
-			A switch statement is like a vending machine. You press a button (expression) and it dispenses the corresponding item (case). If you press a button that doesn’t exist, it shows an error message (otherwise).
-
-			--
-
-			### Comparative/Relational Operators:
-			#### How to define a _condition_
-			**Operators**: Used to compare values.
-			* `==` : Equal to
-			* `~=` : Not equal to
-			* `<` : Less than
-			* `>` : Greater than
-			* `<=` : Less than or equal to
-			* `>=` : Greater than or equal to
-
-			--
-
-			#### Example:
-
-			```matlab
-			a = 5;
-			b = 3;
-			if a > b
-				disp('a is greater than b');
-			end
-			```
-			⚠️ Gotcha: Don’t confuse = (assignment) with == (equality). Using = in a condition can lead to unexpected results!
-
-			--
-
-			### Logical Operators:
-			**Operators**: Used to combine multiple conditions.
-			`|` : OR
-			`&` : AND
-			`~` : NOT
-			`||` : Short-circuit OR (stops evaluating if the first condition is true)
-			`&&` : Short-circuit AND (stops evaluating if the first condition is false)
-
-			--
-
-			#### Example:
-
-			``matlab
-			x = true;
-			y = false;
-			if x & ~y
-				disp('x is true and y is false');
-			end
-			```
-
-			--
-
-			#### 🔄 Real-World Analogy:
-
-			Logical operators are like combining multiple conditions in a checklist. For example, to decide to go outside, you might check if it’s sunny AND warm, or if it’s not raining.
-        </textarea>
+			<h4>🔄 Analogy:</h4>
+			<p>Think of an <code>if-elseif-else</code> statement as deciding what to wear based on the weather. If it’s
+				raining (if), wear a raincoat. If it’s cold (elseif), wear a jacket. Otherwise (else), wear a T-shirt.
+			</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-			## Loops:
-			**Loops** allow you to repeat a block of code multiple times.
+		<section>
+			<h3>Switch Statement:</h3>
+			<p><strong>Definition</strong>: A <code>switch</code> statement allows you to select one of many code blocks
+				to execute.</p>
 
-			### `for` Loop:
-			**Definition**: Repeats a block of code a fixed number of times.
+			<h4>Syntax:</h4>
+			<pre><code>switch expression
+    case value1
+        % Code to execute if expression == value1
+    case value2
+        % Code to execute if expression == value2
+    otherwise
+        % Code to execute if expression does not match any case
+end
+</code></pre>
 
-			#### Syntax:
-			``matlab
-			for index = start_value
-			% Code to execute in each iteration
-			end
-			```
+			<hr>
 
-			--
+			<h4>Example:</h4>
+			<pre><code>day = input('Enter a day number (1-7): ');
+switch day
+    case 1
+        disp('Sunday');
+    case 2
+        disp('Monday');
+    case 3
+        disp('Tuesday');
+    case 4
+        disp('Wednesday');
+    case 5
+        disp('Thursday');
+    case 6
+        disp('Friday');
+    case 7
+        disp('Saturday');
+    otherwise
+        disp('Invalid day number');
+end
+</code></pre>
 
-			#### Example
-			```matlab
-			for i = 1:5
-				disp(['Iteration: ', num2str(i)]);
-			end
-			```
-			💡 Tip: Use for loops when you know in advance how many times you need to repeat a task.
+			<p>💡 Tip: Use <code>switch</code> statements for clean, easy-to-read code when dealing with multiple
+				specific cases.</p>
 
-			--
+			<hr>
 
-			#### 🔄 Real-World Analogy:
-
-			A `for` loop is like counting the number of laps you run around a track. You know you need to run 5 laps, so you repeat the same action 5 times.
-
-			__
-
-			### `while` Loop:
-			**Definition**: Repeats a block of code while a condition is true.
-
-			#### Syntax:
-			```matlab
-			while condition
-			% Code to execute while condition is true
-			end
-			```
-
-			--
-
-			#### Example:
-			```matlab
-			i = 1;
-			while i <= 5
-				disp(['Iteration: ', num2str(i)]);
-			i = i + 1;
-			end
-			```
-			⚠️ Gotcha: Be careful with while loops! Ensure the condition will eventually be false to avoid infinite loops.
-
-			--
-
-			#### 🔄 Real-World Analogy:
-
-			A `while` loop is like filling a glass of water. You keep pouring until the glass is full. You don’t know exactly how much water it will take, but you stop when the condition (full glass) is met.
-
-			--
-
-			### Break and Continue:
-			`break`: Exits the loop immediately.
-			`continue`: Skips the rest of the code in the current iteration and proceeds to the next iteration.
-
-			--
-
-			#### Example (Break):
-
-			```matlab
-			for i = 1:10
-			if i == 5
-			break;
-			end
-			disp(i);
-			end
-			```
-
-			--
-
-			#### Example (Continue):
-
-			```matlab
-			for i = 1:10
-				if mod(i, 2) == 0 💡
-					continue;
-				end
-				disp(i);
-			end
-			```
-			⚠️ Gotcha: Use break and continue carefully to avoid creating logic that's difficult to follow!
-
-			--
-
-			#### 🔄 Real-World Analogy:
-
-			`break`: Imagine you are searching for a specific book in a library. Once you find it, you stop searching and leave (exit the loop).
-			`continue`: Imagine you are checking a list of items for defects. If you find a defective item, you skip further inspection of that item and move to the next (skip iteration).
-        </textarea>
+			<h4>🔄 Real-World Analogy:</h4>
+			<p>A switch statement is like a vending machine. You press a button (expression) and it dispenses the
+				corresponding item (case). If you press a button that doesn’t exist, it shows an error message
+				(otherwise).</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h3>Comparative/Relational Operators:</h3>
+			<p><strong>How to define a condition</strong></p>
+			<p><strong>Operators</strong>: Used to compare values.</p>
+			<ul>
+				<li><code>==</code> : Equal to</li>
+				<li><code>~=</code> : Not equal to</li>
+				<li><code>&lt;</code> : Less than</li>
+				<li><code>&gt;</code> : Greater than</li>
+				<li><code>&lt;=</code> : Less than or equal to</li>
+				<li><code>&gt;=</code> : Greater than or equal to</li>
+			</ul>
 
-			## Input and Output 📤📥
-			### Input:
-			#### Static/Hard-coded Input:
-			Assign values directly using the equal sign.
-			####Dynamic Input:
-			Use the input() function to get user input.
+			<hr>
 
-			```matlab
-			radius = input('Please enter the radius: ');
-			```
+			<h4>Example:</h4>
+			<pre><code>a = 5;
+b = 3;
+if a > b
+    disp('a is greater than b');
+end
+</code></pre>
 
-			--
-
-			#### Example:
-
-			```matlab
-			height0 = input('Please enter the initial height (in meters): ');
-			time = input('Please enter the time the object was in the air (in seconds): ');
-			velocity0 = input('Please enter the initial velocity (in m/s): ');
-			ACC = 9.81;
-
-			heightFinal = height0 + velocity0time + 0.5ACC*time^2;
-			disp(['The final height is ', num2str(heightFinal), ' meters.']);
-			```
-			💡 Tip: Always prompt users clearly so they know what type of input is expected.
-
-			--
-
-			### Output:
-			#### Capturing Output:
-			Use the diary function to capture Command Window output.
-			```matlab
-			diary 'output.txt'
-			disp('Hello, World!');
-			diary off
-			```
-
-			--
-
-			### Formatting Output:
-			#### disp():
-			```matlab
-			someVariable = 25;
-			disp('The value is: ');
-			disp(someVariable);
-			```
-
-			#### fprintf():
-			```matlab
-			fprintf('The value is %d\n', someVariable);
-			```
-			#### sprintf():
-			```matlab
-			str = sprintf('The value is %d', someVariable);
-			disp(str);
-			```
-
-			--
-
-			#### Example:
-
-			```matlab
-			weight = 57638.3333;
-			fprintf('The weight is %8.2f pounds\n', weight);
-			fprintf('The weight is %50.2f pounds\n', weight);
-			```
-
-			--
-
-			#### String Input:
-			**Inputting Strings**:
-			Use the `input()` function with the 's' argument for strings.
-			```matlab
-			name = input('Please enter your name: ', 's');
-			disp(['Hello, ', name, '!']);
-			```
-
-			--
-
-			#### Example:
-
-			```matlab
-			username = input('Please enter your name: ', 's');
-			fprintf('You said your name was %s, hello %s!\n', username, username);
-			```
-
-			--
-
-			#### Format Specifiers: used with `fprintf` and `sprintf`
-			**Format Specifiers**:
-			`%d` or `%i`: Integer
-			`%f`: Floating-point number
-			`%s`: String
-			`%g`: Compact floating-point format
-			`%5.2f`: Floating-point number with 5 characters wide and 2 digits after the decimal point
-			`\n`: Newline character
-
-			--
-
-			#### Example:
-
-			```matlab
-			fprintf('Integer: %d\n', 42);
-			fprintf('Floating-point: %8.2f\n', 3.14159);
-			fprintf('String: %s\n', 'Hello, world!');
-			```
-
-			--
-
-			#### Using sprintf:
-			```matlab
-			str = sprintf('The value is %8.2f', 3.14159);
-			disp(str);
-			```
-
-			--
-
-			#### Example:
-
-			```matlab
-			fileIncrement = 1;
-			fileName = sprintf("My file (%i)", fileIncrement);
-			disp(fileName); % Outputs: My file (1)
-			```
-
-		</textarea>
+			<p>⚠️ Gotcha: Don’t confuse <code>=</code> (assignment) with <code>==</code> (equality). Using
+				<code>=</code> in a condition can lead to unexpected results!</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h3>Logical Operators:</h3>
+			<p><strong>Operators</strong>: Used to combine multiple conditions.</p>
+			<ul>
+				<li><code>|</code> : OR</li>
+				<li><code>&</code> : AND</li>
+				<li><code>~</code> : NOT</li>
+				<li><code>||</code> : Short-circuit OR (stops evaluating if the first condition is true)</li>
+				<li><code>&&</code> : Short-circuit AND (stops evaluating if the first condition is false)</li>
+			</ul>
 
-			## Exercises
-			### Basic Input and Output:
-			Write a script `free_falling_object.m` to calculate the final height of a free-falling object using user input for initial height, time, and initial velocity.
-			### Formatted Output:
-			Write a script that prompts the user for their name and birth month, and then displays a formatted message using `fprintf`.
-			### Control Structures:
-			Write a script that uses an `if-elseif-else` structure to classify a number as positive, negative, or zero.
-			Write a script that uses a `for` loop to iterate over a vector and display each element.
+			<hr>
 
-		</textarea>
+			<h4>Example:</h4>
+			<pre><code>x = true;
+y = false;
+if x & ~y
+    disp('x is true and y is false');
+end
+</code></pre>
+
+			<hr>
+
+			<h4>🔄 Real-World Analogy:</h4>
+			<p>Logical operators are like combining multiple conditions in a checklist. For example, to decide to go
+				outside, you might check if it’s sunny AND warm, or if it’s not raining.</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h2>Loops:</h2>
+			<p><strong>Loops</strong> allow you to repeat a block of code multiple times.</p>
 
-			## Key Takeaways 🎓
-			* Scripts and functions are fundamental for organizing and reusing code.
-			* Control flow statements allow for decision-making and repetitive tasks.
-			* Input and output functions enable interaction with the user and formatted display of information.
-			* `fprintf` and `sprintf` are powerful tools for creating formatted output.
+			<h3><code>for</code> Loop:</h3>
+			<p><strong>Definition</strong>: Repeats a block of code a fixed number of times.</p>
 
-        </textarea>
+			<h4>Syntax:</h4>
+			<pre><code>for index = start_value
+    % Code to execute in each iteration
+end
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>for i = 1:5
+    disp(['Iteration: ', num2str(i)]);
+end
+</code></pre>
+
+			<p>💡 Tip: Use for loops when you know in advance how many times you need to repeat a task.</p>
+
+			<hr>
+
+			<h4>🔄 Real-World Analogy:</h4>
+			<p>A <code>for</code> loop is like counting the number of laps you run around a track. You know you need to
+				run 5 laps, so you repeat the same action 5 times.</p>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
+		<section>
+			<h3><code>while</code> Loop:</h3>
+			<p><strong>Definition</strong>: Repeats a block of code while a condition is true.</p>
 
-			## Gotchas to Watch Out For ⚠️
-			* **Overwriting Variables**: Be careful not to overwrite important variables inadvertently.
-			* **Infinite Loops**: Ensure loop conditions will eventually be false to avoid infinite loops.
-			* **String Concatenation**: Use `[]` for string concatenation instead of `+`.
-		</textarea>
+			<h4>Syntax:</h4>
+			<pre><code>while condition
+    % Code to execute while condition is true
+end
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>i = 1;
+while i <= 5
+    disp(['Iteration: ', num2str(i)]);
+    i = i + 1;
+end
+</code></pre>
+
+			<p>⚠️ Gotcha: Be careful with while loops! Ensure the condition will eventually be false to avoid infinite
+				loops.</p>
+
+			<hr>
+
+			<h4>🔄 Real-World Analogy:</h4>
+			<p>A <code>while</code> loop is like filling a glass of water. You keep pouring until the glass is full. You
+				don’t know exactly how much water it will take, but you stop when the condition (full glass) is met.</p>
+		</section>
+
+		<section>
+			<h3>Break and Continue:</h3>
+			<p><code>break</code>: Exits the loop immediately.</p>
+			<p><code>continue</code>: Skips the rest of the code in the current iteration and proceeds to the next
+				iteration.</p>
+
+			<hr>
+
+			<h4>Example (Break):</h4>
+			<pre><code>for i = 1:10
+    if i == 5
+        break;
+    end
+    disp(i);
+end
+</code></pre>
+
+			<hr>
+
+			<h4>Example (Continue):</h4>
+			<pre><code>for i = 1:10
+    if mod(i, 2) == 0
+        continue;
+    end
+    disp(i);
+end
+</code></pre>
+
+			<p>⚠️ Gotcha: Use break and continue carefully to avoid creating logic that's difficult to follow!</p>
+
+			<hr>
+
+			<h4>🔄 Real-World Analogy:</h4>
+			<p><code>break</code>: Imagine you are searching for a specific book in a library. Once you find it, you
+				stop searching and leave (exit the loop).</p>
+			<p><code>continue</code>: Imagine you are checking a list of items for defects. If you find a defective
+				item, you skip further inspection of that item and move to the next (skip iteration).</p>
+		</section>
+
+		<section>
+			<h2>Input and Output 📤📥</h2>
+
+			<h3>Input:</h3>
+			<h4>Static/Hard-coded Input:</h4>
+			<p>Assign values directly using the equal sign.</p>
+
+			<h4>Dynamic Input:</h4>
+			<p>Use the <code>input()</code> function to get user input.</p>
+
+			<pre><code>radius = input('Please enter the radius: ');
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>height0 = input('Please enter the initial height (in meters): ');
+time = input('Please enter the time the object was in the air (in seconds): ');
+velocity0 = input('Please enter the initial velocity (in m/s): ');
+ACC = 9.81;
+
+heightFinal = height0 + velocity0 * time + 0.5 * ACC * time^2;
+disp(['The final height is ', num2str(heightFinal), ' meters.']);
+</code></pre>
+
+			<p>💡 Tip: Always prompt users clearly so they know what type of input is expected.</p>
+		</section>
+
+		<section>
+			<h3>Output:</h3>
+			<h4>Capturing Output:</h4>
+			<p>Use the diary function to capture Command Window output.</p>
+			<pre><code>diary 'output.txt'
+disp('Hello, World!');
+diary off
+</code></pre>
+
+			<hr>
+
+			<h4>Formatting Output:</h4>
+			<p><code>disp()</code>:</p>
+			<pre><code>someVariable = 25;
+disp('The value is: ');
+disp(someVariable);
+</code></pre>
+
+			<p><code>fprintf()</code>:</p>
+			<pre><code>fprintf('The value is %d\n', someVariable);
+</code></pre>
+
+			<p><code>sprintf()</code>:</p>
+			<pre><code>str = sprintf('The value is %d', someVariable);
+disp(str);
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>weight = 57638.3333;
+fprintf('The weight is %8.2f pounds\n', weight);
+fprintf('The weight is %50.2f pounds\n', weight);
+</code></pre>
+		</section>
+
+		<section>
+			<h3>String Input:</h3>
+			<p><strong>Inputting Strings</strong>: Use the <code>input()</code> function with the 's' argument for
+				strings.</p>
+			<pre><code>name = input('Please enter your name: ', 's');
+disp(['Hello, ', name, '!']);
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>username = input('Please enter your name: ', 's');
+fprintf('You said your name was %s, hello %s!\n', username, username);
+</code></pre>
+
+			<hr>
+
+			<h4>Format Specifiers: used with <code>fprintf</code> and <code>sprintf</code></h4>
+			<ul>
+				<li><code>%d</code> or <code>%i</code>: Integer</li>
+				<li><code>%f</code>: Floating-point number</li>
+				<li><code>%s</code>: String</li>
+				<li><code>%g</code>: Compact floating-point format</li>
+				<li><code>%5.2f</code>: Floating-point number with 5 characters wide and 2 digits after the decimal
+					point
+				</li>
+				<li><code>\n</code>: Newline character</li>
+			</ul>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>fprintf('Integer: %d\n', 42);
+fprintf('Floating-point: %8.2f\n', 3.14159);
+fprintf('String: %s\n', 'Hello, world!');
+</code></pre>
+		</section>
+
+		<section>
+			<h4>Using sprintf:</h4>
+			<pre><code>str = sprintf('The value is %8.2f', 3.14159);
+disp(str);
+</code></pre>
+
+			<hr>
+
+			<h4>Example:</h4>
+			<pre><code>fileIncrement = 1;
+fileName = sprintf("My file (%i)", fileIncrement);
+disp(fileName); % Outputs: My file (1)
+</code></pre>
+		</section>
+
+		<section>
+			<h2>Exercises</h2>
+
+			<h3>Basic Input and Output:</h3>
+			<p>Write a script <code>free_falling_object.m</code> to calculate the final height of a free-falling object
+				using user input for initial height, time, and initial velocity.</p>
+
+			<h3>Formatted Output:</h3>
+			<p>Write a script that prompts the user for their name and birth month, and then displays a formatted
+				message using <code>fprintf</code>.</p>
+
+			<h3>Control Structures:</h3>
+			<p>Write a script that uses an <code>if-elseif-else</code> structure to classify a number as positive,
+				negative, or zero.</p>
+			<p>Write a script that uses a <code>for</code> loop to iterate over a vector and display each element.</p>
+		</section>
+
+		<section>
+			<h2>Key Takeaways 🎓</h2>
+			<ul>
+				<li>Scripts and functions are fundamental for organizing and reusing code.</li>
+				<li>Control flow statements allow for decision-making and repetitive tasks.</li>
+				<li>Input and output functions enable interaction with the user and formatted display of information.
+				</li>
+				<li><code>fprintf</code> and <code>sprintf</code> are powerful tools for creating formatted output.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Gotchas to Watch Out For ⚠️</h2>
+			<ul>
+				<li><strong>Overwriting Variables</strong>: Be careful not to overwrite important variables
+					inadvertently.
+				</li>
+				<li><strong>Infinite Loops</strong>: Ensure loop conditions will eventually be false to avoid infinite
+					loops.
+				</li>
+				<li><strong>String Concatenation</strong>: Use <code>[]</code> for string concatenation instead of
+					<code>+</code>.
+				</li>
+			</ul>
 		</section>
 
 	</div>

@@ -58,7 +58,6 @@ h1 {
 a {
     color: #C2C1A5;
     text-decoration: none;
-    font-size: 18px;
 }
 
 ul {
@@ -240,7 +239,7 @@ li {
 .reveal pre {
     display: block;
     position: relative;
-    width: 90%;
+    width: fit-content;
     margin: var(--r-block-margin) auto;
     text-align: left;
     font-size: 0.55em;
@@ -248,6 +247,7 @@ li {
     line-height: 1.2em;
     word-wrap: break-word;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    padding: 5px 20px 5px 20px;
 }
 
 .reveal code {
@@ -423,6 +423,28 @@ li {
     text-align: left;
 }
 
-section section {
-    margin-top: 80px;
+.matrix-container {
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    gap: 10px;
+    margin: 20px auto;
+    width: 150px;
+}
+.matrix-cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    position: relative;
+    transition: transform 0.5s;
+}
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
 }

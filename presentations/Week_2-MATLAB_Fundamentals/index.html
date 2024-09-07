@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 2: MATLAB Variables & Data Types</title>
+	<title>Week 2: MATLAB Fundamentals</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
-	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/week2.css">
 	<link rel="stylesheet" href="/dist/site.css">
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
@@ -18,14 +18,14 @@
 		<!-- Slide Header 1 -->
 		<section data-markdown>
         <textarea data-template>
-            # Week 2: MATLAB Fundamentals 🎛️
+            # Week 2: MATLAB Fundamentals
 
             ## Objectives:
 
-            * Get comfy with variables and how they’re stored in the workspace 🧳.
-            * Learn to work with arrays, vectors, and matrices – the building blocks of MATLAB 🧩.
-            * Learn operators, expressions, and statements to perform calculations 🎯.
-            * Get a sneak peek into basic plotting for data visualization 📊.
+            * Get familiar with variables and how they’re stored in the workspace 🧳
+            * Learn to work with arrays, vectors, and matrices – the building blocks of MATLAB🧱
+            * Learn operators, expressions, and statements to perform calculations 🧮
+            * Get a sneak peek into basic plotting for data visualization 📊
         </textarea>
 		</section>
 
@@ -43,313 +43,760 @@
 		</section>
 
 		<!-- Slide: Variables -->
-		<section data-markdown>
-            <textarea data-template>
-                ## Variables and the Workspace 🗃️
+		<section>
+			<section>
+				<h2 id="variables-and-the-workspace">Variables and the Workspace</h2>
+				<h3 id="what-are-variables-">What are Variables?</h3>
+				<ul>
+					<li><strong>Definition</strong>: Variables are like labeled storage containers where you store
+						information (like numbers or text) that you can use and modify later. They hold data that can be
+						used in your MATLAB session.
+					</li>
+					<li><strong>Case Sensitivity</strong>: MATLAB treats <code>var</code>, <code>Var</code>, and
+						<code>VAR</code> as three different variables. Be careful with how you capitalize variable
+						names!
+					</li>
+				</ul>
+			</section>
 
-                ### What are Variables?
-                - **Definition**: Variables are like labeled storage containers where you store information (like numbers or text) that you can use and modify later. They hold data that can be used in your MATLAB session.
-                - **Case Sensitivity**: MATLAB treats `var`, `Var`, and `VAR` as three different variables. Be careful with how you capitalize variable names!
+			<section>
+				<h3 id="rules-for-naming-variables-">Rules for Naming Variables:</h3>
+				<ul>
+					<li><strong>Must Start with a Letter</strong>: The first character of a variable name must be a
+						letter (<code>a-z</code>,
+						<code>A-Z</code>).
+					</li>
+					<li><strong>Can Contain Letters, Numbers, and Underscores</strong>: After the first letter, you can
+						use
+						numbers (<code>0-9</code>) and underscores (<code>_</code>), but no spaces or special
+						characters.
+					</li>
+					<li><strong>Case Sensitivity</strong>: MATLAB is case-sensitive, meaning <code>MyVar</code> and
+						<code>myvar</code>
+						are different variables.
+					</li>
+					<li><strong>Reserved Words</strong>: Avoid using MATLAB keywords (like <code>pi</code>,
+						<code>clear</code>, <code>end</code>) as variable names. MATLAB will allow this in some cases,
+						but
+						it&#39;s good practice to be aware.
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3 id="naming-conventions-">Naming Conventions:</h3>
+				<ul>
+					<li><p><strong>camelCase</strong>: Start with a lowercase letter, and capitalize the first letter of
+						each subsequent word.</p>
+						<ul>
+							<li>Example: <code>speedOfLight</code></li>
+						</ul>
+					</li>
+					<li><p><strong>snake_case</strong>: Use all lowercase letters, with words separated by underscores.
+					</p>
+						<ul>
+							<li>Example: <code>speed_of_light</code></li>
+						</ul>
+					</li>
+					<li><p><strong>ALL_CAPS</strong>: Use all uppercase letters, often used for constants.</p>
+						<ul>
+							<li>Example: <code>SPEED_OF_LIGHT</code></li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Example Code:</h2>
+				<pre class="code-wrapper" style="width: 60%">
+                    <code class="matlab language-matlab">
+    x = 5; % Assigns 5 to variable x
+    y = 10; % Assigns 10 to variable y
+    z = x * y; % Multiplies x and y, stores result in z
+    GRAVITY = 9.8; % Descriptive variable name
+                    </code>
+                </pre>
 
-                --
 
-                ### Rules for Naming Variables:
-                - **Must Start with a Letter**: The first character of a variable name must be a letter (`a-z`, `A-Z`).
-                - **Can Contain Letters, Numbers, and Underscores**: After the first letter, you can use numbers (`0-9`) and underscores (`_`), but no spaces or special characters.
-                - **Case Sensitivity**: MATLAB is case-sensitive, meaning `MyVar` and `myvar` are different variables.
-                - **Reserved Words**: Avoid using MATLAB keywords (like `pi`, `clear`, `end`) as variable names. MATLAB will allow this in some cases, but it's good practice to be aware.
+			</section>
 
-                --
-
-                ### Naming Conventions:
-                - **camelCase**: Start with a lowercase letter, and capitalize the first letter of each subsequent word.
-                  - Example: `speedOfLight`
-
-                - **snake_case**: Use all lowercase letters, with words separated by underscores.
-                  - Example: `speed_of_light`
-
-                - **ALL_CAPS**: Use all uppercase letters, often used for constants.
-                  - Example: `SPEED_OF_LIGHT`
-
-                --
-
-                **Example Code:**
-
-                ```matlab
-                x = 5;         % Assigns 5 to variable x
-                y = 10;        % Assigns 10 to variable y
-                z = x * y;     % Multiplies x and y, stores result in z
-                gravity = 9.8; % Descriptive variable name
-            </textarea>
 		</section>
 
+		<!-- Slide -->
+		<section>
+			<h2>Interactive Exercise: Validating Variable Names 🧠</h2>
+			<p>For each variable name, decide if it is a valid and good variable name in MATLAB.</p>
+
+			<section data-auto-animate>
+				<p style="text-align: center; color: black">1mile</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: black">clear</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: black">MyVariable</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: lightgreen">MyVariable</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: lightgreen">MyVariable</p>
+				<p style="text-align: center; color: black">x</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: lightgreen">MyVariable</p>
+				<p style="text-align: center; color: yellow">x</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: lightgreen">MyVariable</p>
+				<p style="text-align: center; color: yellow">x</p>
+				<p style="text-align: center; color: black">DEBUG_ENABLED</p>
+			</section>
+			<section data-auto-animate>
+				<p style="text-align: center; color: darkred">1mile</p>
+				<p style="text-align: center; color: yellow">clear</p>
+				<p style="text-align: center; color: lightgreen">MyVariable</p>
+				<p style="text-align: center; color: yellow">x</p>
+				<p style="text-align: center; color: lightgreen">DEBUG_ENABLED</p>
+			</section>
+		</section>
+
+		<!-- Slide -->
+		<section>
+			<h2>Numbers and Data Types in MATLAB 🧮</h2>
+			<p>MATLAB supports a variety of data types for different kinds of data. Let's explore the most common
+				ones:</p>
+			<!-- Double -->
+			<section>
+				<h3>1. Double (Default Numerical Data Type)</h3>
+				<ul>
+					<li><strong>Double-precision:</strong> floating-point numbers, which store numbers with about 15
+						digits of precision.
+					</li>
+					<li><strong>Usage</strong>: Suitable for most numerical computations due to their precision and
+						range.
+					</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+a = 3.14;  % Example of a double
+					</code>
+				</pre>
+			</section>
+
+			<!-- Integers -->
+			<section>
+				<h3>2. Integer Types (signed and unsigned)</h3>
+				<ul>
+					<li><strong>Definition</strong>: MATLAB supports signed and unsigned integer types of various sizes
+						(8, 16, 32, 64 bits).
+					</li>
+					<li><strong>Usage</strong>: Useful for precise control over memory usage and when working with
+						hardware or file I/O operations.
+					</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+c = int32(10);  % Example of a 32-bit signed integer
+d = uint8(255); % Example of an 8-bit unsigned integer
+					</code>
+                </pre>
+			</section>
+
+			<!-- Char -->
+			<section>
+				<h3>4. Character Arrays (char)</h3>
+				<ul>
+					<li><strong>Definition</strong>: Character arrays represent text in MATLAB.</li>
+					<li><strong>Usage</strong>: Useful for storing and manipulating text data.</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+e = 'Hello, MATLAB!';  % Example of a char array
+					</code>
+                </pre>
+			</section>
+
+			<!-- String -->
+			<section>
+				<h3>5. String Arrays</h3>
+				<ul>
+					<li><strong>Definition</strong>: A newer, more flexible way to handle text than char arrays,
+						allowing for easier text manipulation.
+					</li>
+					<li><strong>Usage</strong>: Preferred over char arrays for modern text handling.</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+f = "Hello, MATLAB!";  % Example of a string array
+					</code>
+                </pre>
+			</section>
+
+			<!-- Logical -->
+			<section>
+				<h3>6. Logical (Boolean Values)</h3>
+				<ul>
+					<li><strong>Definition</strong>: Represents true <code>1</code> or false <code>0</code> values.</li>
+					<li><strong>Usage</strong>: Used in logical operations and conditional statements.</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+g = true;  % Example of a logical value
+					</code>
+                </pre>
+				<br>
+				<div class="fragment fade-up alert alert-warning" style="text-align: center">
+					⚠️ In reality, <code>0</code> is <code>false</code>, and EVERYTHING
+					else is <code>true</code>
+				</div>
+			</section>
+
+			<!-- Complex Numbers -->
+			<section>
+				<h3>7. Complex Numbers</h3>
+				<ul>
+					<li><strong>Definition</strong>: Numbers with both real and imaginary parts.</li>
+					<li><strong>Usage</strong>: Essential for many engineering and scientific calculations.</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+h = 3 + 4i;  % Example of a complex number
+					</code>
+                </pre>
+			</section>
+
+			<!-- Structures -->
+			<section>
+				<h3>8. Structures (struct)</h3>
+				<ul>
+					<li><strong>Definition</strong>: Data type for storing collections of variables that can be
+						different types.
+					</li>
+					<li><strong>Usage</strong>: Useful for organizing data with different types, similar to records or
+						structs in other languages.
+					</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+student.name = 'Alice';
+student.age = 20;
+					</code>
+		        </pre>
+			</section>
+
+			<!-- Cell Arrays -->
+			<section>
+				<h3>9. Cell Arrays</h3>
+				<ul>
+					<li><strong>Definition</strong>: Arrays that can hold different types of data in each cell.</li>
+					<li><strong>Usage</strong>: Useful for storing mixed types of data or variable-sized arrays.</li>
+				</ul>
+				<pre>
+					<code class="language-matlab>">
+cellArray = {1, 'text', [1, 2, 3]};
+					</code>
+                </pre>
+			</section>
+
+			<!-- Summary -->
+			<section>
+				<h3>Summary</h3>
+				<ul>
+					<li><strong>Double</strong> is the default for numbers.</li>
+					<li><strong>Integer types</strong> are for memory-efficient storage of integers.</li>
+					<li><strong>Char</strong> and <strong>String</strong> are for text handling.</li>
+					<li><strong>Logical</strong> is for boolean values.</li>
+					<li><strong>Complex numbers</strong> are for calculations involving imaginary components.</li>
+					<li><strong>Structures</strong> and <strong>Cell Arrays</strong> allow you to store multiple data
+						types.
+					</li>
+				</ul>
+			</section>
+		</section>
+
+
 		<!-- Slide: Workspace -->
-		<section data-markdown>
-        <textarea data-template>
-            ## The Workspace
+		<section>
+			<h2 id="the-workspace">The Workspace</h2>
+			<ul>
+				<li><strong>Workspace</strong>: Contains current variables in the &quot;environment&quot;.</li>
+				<li>Use <code>who</code> to display a list of current variables.</li>
+				<li>Use <code>whos</code> for a detailed list including data types and sizes.</li>
+				<li>Use <code>clear</code> to remove variables from the workspace. You can specify certain variables or
+					clear them all.
+				</li>
+			</ul>
+			<h3 id="example">Example:</h3>
+			<pre class="code-wrapper">
+				<code class="lang-matlab">
+who       % Lists all active variables in the workspace
+whos      % Detailed view of all variables
+clear x   % Clears variable x from the workspace
+clear     % Clears all variables from the workspace
+				</code>
+			</pre>
 
-            - **Workspace**: Contains current variables in the "environment".
-            - Use `who` to display a list of current variables.
-            - Use `whos` for a detailed list including data types and sizes.
-            - Use `clear` to remove variables from the workspace. You can specify certain variables or clear them all.
-
-            ### Example:
-            ```matlab
-                who       % Lists all active variables in the workspace
-                whos      % Detailed view of all variables
-                clear x   % Clears variable x from the workspace
-                clear     % Clears all variables from the workspace
-            ```
-        </textarea>
 		</section>
 
 		<!-- Slide: -->
-		<section data-markdown>
-        <textarea data-template>
-            ## Arrays, Vectors, and Matrices 📐
-            ### Understanding Arrays, Vectors, and Matrices
-            **Arrays**: A collection of numbers or data arranged in rows and columns. Arrays can be one-dimensional (vectors) or multi-dimensional (matrices).
-            **Vectors**: A special case of arrays with only one row or one column.
-            **Matrices**: Two-dimensional arrays with multiple rows and columns.
+		<section>
+			<section>
+				<h2 id="arrays-vectors-and-matrices-">Arrays, Vectors, and Matrices 📐</h2>
+				<h3 id="understanding-arrays-vectors-and-matrices">Understanding Arrays, Vectors, and Matrices</h3>
+				<p><strong>Arrays</strong>: A collection of numbers or data arranged in rows and columns. Arrays can be
+					one-dimensional (vectors) or multi-dimensional (matrices).</p>
+				<p><strong>Vectors</strong>: A special case of arrays with only one row or one column.</p>
+				<p><strong>Matrices</strong>: Two-dimensional arrays with multiple rows and columns.</p>
+			</section>
+			<section>
+				<h3 id="creating-arrays-vectors-and-matrices-">Creating Arrays, Vectors, and Matrices:</h3>
+				<p><strong>Explicit Lists</strong>: You can create arrays, vectors, or matrices by explicitly listing
+					their
+					elements inside square brackets.</p>
+				<pre>
+					<code class="lang-matlab">
+v = [1, 2, 3, 4, 5];   % Creates a row vector
+m = [1, 2; 3, 4];      % Creates a 2x2 matrix
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p><strong>Colon Operator</strong>: The colon operator (:) allows you to create vectors with evenly
+					spaced
+					elements.</p>
+				<pre>
+					<code class="lang-matlab">
+v = 1:5;              % Creates vector [1, 2, 3, 4, 5]
+v = 1:2:10;           % Creates vector [1, 3, 5, 7, 9] (start:step:end)
+					</code>
+				</pre>
+				<h3 id="-linspace-and-logspace-functions-">linspace and logspace Functions:
+				</h3>
+				<ul>
+					<li><code>linspace(start, end, n)</code>: Generates <em>n</em> linearly spaced points between start
+						and
+						end.
+					</li>
+					<li><code>logspace(start_exp, end_exp, n)</code>: Generates <em>n</em> logarithmically spaced points
+						between 10^start_exp and 10^end_exp.
+						<pre>
+							<code class="lang-matlab">
+v = linspace(1, 10, 5);   % Creates vector [1, 3.25, 5.5, 7.75, 10]
+v = logspace(1, 3, 3);    % Creates vector [10, 100, 1000]
+							</code>
+						</pre>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2 id="creating-arrays-of-zeros-ones">Creating Arrays of Zeros &amp; Ones</h2>
+				<ul>
+					<li><strong>Zeros</strong>: Use <code>zeros(numRows, numCols)</code> to create an array of zeros.
+					</li>
+					<li><strong>Ones</strong>: Use <code>ones(numRows, numCols)</code> to create an array of ones.</li>
+				</ul>
+				<h3 id="examples-">Examples:</h3>
+				<pre>
+					<code class="lang-matlab">
+E = zeros(3, 5);  % 3x5 array of zeros
+F = ones(2, 3);   % 2x3 array of ones
+					</code>
+				</pre>
+			</section>
+			<section>
+				<h4 id="what-do-you-think-this-does-">What do you think this does?</h4>
+				<pre>
+						<code class="lang-matlab">
+A = zeros(5);
+						</code>
+					</pre>
+				<section class="fragment fade-up">
+					<span>Without explicit row, col values, MATLAB assumes this value for both dimensions</span>
+				</section>
+			</section>
+			<section>
+				<h3 id="transposing-vectors">Transposing Vectors</h3>
+				<p><strong>Transpose Operator</strong> (<code>'</code>): Converts a row vector to a column vector (or
+					vice versa) by
+					flipping
+					it along its diagonal.</p>
+				<pre>
+					<code class="lang-matlab">
+v = [1, 2, 3];  % Row vector
+vt = v';        % Column vector (transposed)
+					</code>
+				</pre>
+			</section>
+			<!--			<section>-->
+			<!--				<video data-autoplay muted>-->
+			<!--					<source src="/images/transpose-operation.mp4" type="video/mp4">-->
+			<!--					Your browser does not support the video tag.-->
+			<!--				</video>-->
+			<!--			</section>-->
+			<section>
+				<h3 id="accessing-elements-in-arrays-vectors-and-matrices">Accessing Elements in Arrays, Vectors, and
+					Matrices</h3>
+				<p><strong>Subscripts</strong>: Allows you to access specific elements in an array, vector, or matrix
+					using subscripts (indices).</p>
+				<pre class="code-wrapper">
+					<code class="lang-matlab">
+v = [10, 20, 30];
+v(2)            % Accesses the second element (20)
+m = [1, 2; 3, 4];
+m(2, 1)         % Accesses element in the second row, first column (3)
+					</code>
+				</pre>
+			</section>
+			<section>
+				<h4>🔄 Real-World Analogy:</h4>
+				<p>Imagine a seating chart, you have rows and columns of seats.</p>
+				<img src="/images/seating-chart.png" alt="Seating Chart" style="width: 40%;">
+			</section>
+			<section>
+				<h4>🪑 Seat Finder</h4>
+				<p>Each seat in the classroom has a unique position, just like a subscript in programming!</p>
+				<p>To find your seat, you need two pieces of information:</p>
+				<ul>
+					<li><strong>Row Number</strong>: Tells you the row.</li>
+					<li><strong>Seat Number</strong>: Tells you the exact seat in that row.</li>
+				</ul>
+				<p>In programming, subscripts work the same way. They help you find specific data items in a list or
+					an array!</p>
+			</section>
+			<section>
+				<h4>💻 In Code: Lists and Arrays</h4>
+				<p>Think of a list in programming like a single row of values.</p>
+				<pre>
+					<code class="language-matlab">
+% A list of favorite snacks
+favoriteSnacks = ['Chips', 'Chocolate', 'Popcorn', 'Soda'];
 
-            --
+% Accessing the second snack
+secondSnack = favorite_snacks(2);  % This is 'Chocolate'
+            </code>
+				</pre>
+				<p>The number <code>2</code> is the subscript here, just like the seat number example!</p>
+			</section>
+			<section>
+				<h4>A 2D Example: Seat Map</h4>
+				<p>What if the seating chart had both rows and columns? We could use two subscripts!</p>
+				<pre><code class="language-matlab">
+% A 2D seating chart (rows x columns)
+seats = [
+    'A1', 'A2', 'A3';
+    'B1', 'B2', 'B3';
+    'C1', 'C2', 'C3'
+];
 
-            ### Creating Arrays, Vectors, and Matrices:
-            **Explicit Lists**: You can create arrays, vectors, or matrices by explicitly listing their elements inside square brackets.
-            ```matlab
-            v = [1, 2, 3, 4, 5];   % Creates a row vector
-            m = [1, 2; 3, 4];      % Creates a 2x2 matrix
-            ```
+% Accessing seat in 2nd row, 3rd column
+selected_seat = seats(2, 3);  % This is 'B3'
+            </code></pre>
+				<p>Here, <code>(2, 3)</code> are the subscripts indicating the row and column.</p>
+			</section>
+			<section>
+				<h4>⚠️ Common Pitfall: Off-by-One Error</h4>
+				<ul>
+					<li>Some programming languages start counting at 0, not 1.</li>
+					<li>If you're not careful, you might end up in the wrong seat!</li>
+				</ul>
 
-            --
+			</section>
+			<section>
+				<h4>❓ Quick Quiz: Can You Find the Seat?</h4>
+				<p style="text-align: center">Look at this seat chart. Which seat is at position (2, 1)?</p>
+				<pre>
+                    <code class="language-matlab">
+seat_chart = [
+    'VIP1', 'VIP2', 'VIP3';
+    'G1', 'G2', 'G3';
+    'R1', 'R2', 'R3'
+];
 
-            **Colon Operator**: The colon operator (:) allows you to create vectors with evenly spaced elements.
-            ```matlab
-            v = 1:5;              % Creates vector [1, 2, 3, 4, 5]
-            v = 1:2:10;           % Creates vector [1, 3, 5, 7, 9] (start:step:end)
-            ```
-            ### `linspace` and `logspace` Functions:
-            * `linspace(start, end, n)`: Generates _n_ linearly spaced points between start and end.
-            * `logspace(start_exp, end_exp, n)`: Generates _n_ logarithmically spaced points between 10^start_exp and 10^end_exp.
-            ```matlab
-            v = linspace(1, 10, 5);   % Creates vector [1, 3.25, 5.5, 7.75, 10]
-            v = logspace(1, 3, 3);    % Creates vector [10, 100, 1000]
-            ```
+% What seat is this?
+quiz_seat = seat_chart(2, 1);
+					</code>
+				</pre>
+				<p class="fragment fade-up" style="text-align: center; margin-top: 20px;">
+					<strong>Answer:</strong> G2
+				</p>
+			</section>
+		</section>
+		<section>
+			<h3 id="array-inception">Array Inception</h3>
+			<ul>
+				<li>Arrays can be combined to create more complex structures.</li>
+				<li>Use semicolons to stack arrays vertically and commas to combine horizontally.</li>
+			</ul>
+			<h4 id="example-">Example:</h4>
+			<pre>
+					<code class="lang-matlab">
+A = [12, 18, -3];
 
-            --
+B = [2, 5, 2;
+     1, 1, 2;
+     0, -2, 6];
 
-            ## Creating Arrays of Zeros & Ones
+C = [A; B];
 
-            - **Zeros**: Use `zeros(numRows, numCols)` to create an array of zeros.
-            - **Ones**: Use `ones(numRows, numCols)` to create an array of ones.
+D = [C, C];
+					</code>
+				</pre>
+		</section>
+		<section>
+			<h3 id="vectorization-in-matlab">Vectorization in MATLAB</h3>
+			<p><strong>Element-wise Operations</strong>:
+				Use the dot (.) operator before arithmetic operators to perform operations element-by-element on arrays,
+				vectors, or matrices</p>
+			<pre><code class="lang-matlab">
+A = [1, 2, 3];
+B = [4, 5, 6];
+C = A .* B;  % Element-wise multiplication
+D = A .^ 2;  % Element-wise squaring
+			</code></pre>
+		</section>
+		<section>
+			<h4 id="interactive-exercise-">Interactive Exercise:</h4>
+			<ol>
+				<li>Create vectors A and B.</li>
+				<li>Perform element-wise multiplication and exponentiation.</li>
+				<li>Observe how vectorized operations differ from regular operations.</li>
+			</ol>
 
-            ### Examples:
-            ```matlab
-            E = zeros(3, 5);  % 3x5 array of zeros
-            F = ones(2, 3);   % 2x3 array of ones
-            ```
+		</section>
+		<section>
+			<h2 id="arithmetic-operators-">Arithmetic Operators ➕➖✖️➗</h2>
+			<strong style="text-align: left">Basic Arithmetic</strong>:
+			<pre><code class="lang-matlab">
+a = 5;
+b = 2;
+c = a + b;    % Addition
+d = a - b;    % Subtraction
+e = a * b;    % Multiplication
+f = a / b;    % Division
+h = a ^ b;    % Exponentiation (a raised to the power b)
+			</code></pre>
+		</section>
+		<section>
+			<p>Operator Precedence (PEMDAS)
+				<strong>Order of Operations</strong>:</p>
+			<ul>
+				<li>MATLAB follows the standard mathematical order of operations, known as PEMDAS</li>
+				<ol>
+					<li>Parentheses</li>
+					<li>Exponents</li>
+					<li>Multiplication and Division (left to right)</li>
+					<li>Addition and Subtraction (left to right)</li>
+				</ol>
+			</ul>
+			<div class="alert alert-warning"><strong>Tip💡</strong>: Always use parentheses to clarify the order in
+				complex expressions.
+			</div>
+			<pre>
+				<code class="lang-matlab">
+result = (a + b) * (c - d);  % Parentheses ensure correct order of operations
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h3 id="hierarchy-of-operations">Hierarchy of Operations</h3>
+			<ul>
+				<li>MATLAB follows PEMDAS for operations.</li>
+				<li><strong>Left-to-right execution</strong> after applying PEMDAS.</li>
+			</ul>
+			<h3 id="example-breakdown-">Example Breakdown:</h3>
+			<pre>
+				<code class="lang-matlab">
+c = 2 * 3^2 + 1/(1 + 2);  % Step-by-step breakdown
+c = 2 * 9 + 1/3;
+c = 18 + 0.33333;
+c = 18.33333;
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h2>Operator Precedence: PEMDAS Challenge 🧠</h2>
+			<p>Predict the result of the following expression:</p>
+			<pre>
+		        <code>result = (3 + 5) * 2^2 / (1 + 1) - 1</code>
+			</pre>
+		</section>
+		<section>
+			<pre>
+		        <code>result = (3 + 5) * 2^2 / (1 + 1) - 1</code>
+			</pre>
+			<section style="margin-top: 15px">
+				<!-- Fragment for Step 1 -->
+				<div class="fragment fade-up">
+					<p>Step 1: Calculate inside the parentheses.</p>
+					<pre><code class="language-matlab">(3 + 5) = 8</code></pre>
+					<pre><code class="language-matlab">(1 + 1) = 2</code></pre>
+				</div>
 
-            --
+				<!-- Fragment for Step 2 -->
+				<div class="fragment fade-up">
+					<p>Step 2: Apply exponentiation.</p>
+					<pre><code class="language-matlab">2^2 = 4</code></pre>
+				</div>
 
-            #### What do you think this does?
-            ```matlab
-            A = zeros(5);
-            ```
+				<!-- Fragment for Step 3 -->
+				<div class="fragment fade-up">
+					<p>Step 3: Perform multiplication and division (left to right).</p>
+					<pre><code class="language-matlab">8 * 4 = 32</code></pre>
+					<pre><code class="language-matlab">32 / 2 = 16</code></pre>
+				</div>
 
-            --
-
-            ### Transposing Vectors
-            **Transpose Operator**: Converts a row vector to a column vector (or vice versa) by flipping it along its diagonal.
-
-            ```matlab
-            v = [1, 2, 3];  % Row vector
-            vt = v';        % Column vector (transposed)
-            ```
-
-            --
-
-            ### Accessing Elements in Arrays, Vectors, and Matrices
-            **Subscripts**: Converts a row vector to a column vector (or vice versa) by flipping it along its diagonal.
-
-            ```matlab
-            v = [10, 20, 30];
-            v(2)            % Accesses the second element (20)
-            m = [1, 2; 3, 4];
-            m(2, 1)         % Accesses element in the second row, first column (3)
-            ```
-
-            --
-
-            ### Array Inception
-
-            - Arrays can be combined to create more complex structures.
-            - Use semicolons to stack arrays vertically and commas to combine horizontally.
-
-            ### Example:
-            ```matlab
-            A = [12, 18, -3];
-            B = [2, 5, 2; 1, 1, 2; 0, -2, 6];
-            C = [A; B];
-            D = [C, C];
-            ```
-
-            --
-
-            Interactive Exercise:
-
-            1. Create a vector and a matrix.
-            1. Access specific elements using indices.
-            1. Transpose a vector and observe the changes.
-
-        </textarea>
+				<!-- Fragment for Step 4 -->
+				<div class="fragment fade-up">
+					<p>Step 4: Perform subtraction.</p>
+					<pre><code class="language-matlab">16 - 1 = 15</code></pre>
+					<div style="background-color: darkgreen; padding: 10px;">
+						The result is: 15
+					</div>
+				</div>
+			</section>
 		</section>
 
 		<!-- Slide:  -->
-		<section data-markdown>
+		<section>
+			<section>
+				<h2 id="basic-plotting-for-data-visualization-">Basic Plotting for Data Visualization 📈</h2>
+				<h3 id="introduction-to-plotting">Introduction to Plotting</h3>
+				<p><strong>Why Plot?</strong>:
+					Plotting helps you visualize your data, making it easier to understand trends, patterns, and
+					outliers.
+					It’s like turning numbers into pictures!</p>
+				<p><strong>Basic Commands</strong>:</p>
+				<ul>
+					<li><code>plot(x, y)</code>: Creates a 2D line plot.</li>
+					<li><code>xlabel(&#39;x&#39;)</code>: Labels the x-axis.</li>
+					<li><code>ylabel(&#39;y&#39;)</code>: Labels the y-axis.</li>
+					<li><code>title(&#39;Title&#39;)</code>: Adds a title to the plot.
+						Example Code:
+					</li>
+				</ul>
+				<pre>
+				<code class="lang-matlab">
+x = linspace(0, 2*pi, 100);
+y = sin(x);
+plot(x, y);
+xlabel('x');
+ylabel('sin(x)');
+title('Plot of the Sine Function');
+				</code>
+			</pre>
+			</section>
+
+			<section>
+				<h2>Tada</h2>
+				<!-- Container for Images -->
+				<div style="position: relative; width: 100%; height: 100%;">
+					<!-- Easy Button Image -->
+					<img src="/images/week2/easy-button.png"
+					     style="position: absolute; top: 0px; left: 80px; width: 100px;">
+
+					<!-- Basic Plot Image -->
+					<img src="/images/week2/basic-plot.png" style="width: 80%; margin: auto; display: block;">
+				</div>
+			</section>
+
+		</section>
+
+		<section>
+			<section>
+				<h2 id="vertical-motion-under-gravity-example-">Vertical Motion Under Gravity Example 🌍</h2>
+				<h3 id="the-problem-">The Problem:</h3>
+				<p>Calculate the vertical motion of an object under gravity – it’s all about how things fall!</p>
+			</section>
+			<section>
+			<h3 id="approach-">Approach:</h3>
+			<ol>
+				<li>Inputs - What data do you need to solve this problem
+					<pre>
+						<code class="lang-matlab">
+GRAVITY = 9.81;      % Acceleration due to gravity (m/s^2)
+time = 0:0.1:10;     % Time vector from 0 to 10 seconds
+v0 = 50;             % Initial velocity (m/s)
+						</code>
+					</pre>
+				</li>
+				<li>Manipulation - Perform operations to get to your destination
+					<pre>
+						<code class="lang-matlab">
+y = v0 * time - 0.5 * GRAVITY * time.^2;  % Vertical position over time
+						</code>
+					</pre>
+				</li>
+				<li>Output - Produce clear and concise output
+					Let's see what the raw output looks like
+					<pre>
+						<code class="lang-matlab">
+time
+y
+						</code>
+					</pre>
+				</li>
+			</ol>
+			</section>
+			<section>
+				Not very user-friendly, let's plot this for a visual representation.
+			<pre>
+				<code class="lang-matlab">
+plot(time, y);
+xlabel('Time (s)');
+ylabel('Height (m)');
+title('Vertical Motion Under Gravity');
+				</code>
+			</pre>
+			</section>
+		</section>
+
+		<!-- Slide: Gotchas -->
+		<section data-background-image="/images/gotcha/Gotcha-crab-trap.png" data-markdown>
         <textarea data-template>
-            ## Operators, Expressions, and Statements 🧮
 
-            ### Numbers and Data Types
-            **Data Types**:
-            * double: The default numerical data type in MATLAB, which stores floating-point numbers.
-            * char: Represents characters and strings. ⚠️
-            * logical: Stores boolean values (true or false). ⚠️
-
-            --
-
-            ## Arithmetic Operators ➕➖✖️➗
-            **Basic Arithmetic**:
-            ```matlab
-            a = 5;
-            b = 2;
-            c = a + b;    % Addition
-            d = a - b;    % Subtraction
-            e = a * b;    % Multiplication
-            f = a / b;    % Division
-            h = a ^ b;    % Exponentiation (a raised to the power b)
-            ```
-
-            --
-
-            Operator Precedence (PEMDAS)
-            **Order of Operations**:
-            * MATLAB follows the standard mathematical order of operations, known as PEMDAS (Parentheses, Exponents, Multiplication and Division (left to right), Addition and Subtraction (left to right)).
-            * **Tip💡**: Always use parentheses to clarify the order in complex expressions.
-            ```matlab
-            result = (a + b) * (c - d);  % Parentheses ensure correct order of operations
-            ```
-
-            --
-
-            ### Hierarchy of Operations
-
-            - MATLAB follows PEMDAS for operations.
-            - **Left-to-right execution** after applying PEMDAS.
-
-            ### Example Breakdown:
-            ```matlab
-            c = 2 * 3^2 + 1/(1 + 2);  % Step-by-step breakdown
-            c = 2 * 9 + 1/3;
-            c = 18 + 0.33333;
-            c = 18.33333;
-            ```
-
-            --
-
-            ###  Vectorization in MATLAB
-            **Element-wise Operations**:
-            Use the dot (.) operator before arithmetic operators to perform operations element-by-element on arrays, vectors, or matrices
-            ```matlab
-            A = [1, 2, 3];
-            B = [4, 5, 6];
-            C = A .* B;  % Element-wise multiplication
-            D = A .^ 2;  % Element-wise squaring
-            ```
-
-            --
-
-            #### Interactive Exercise:
-
-            1. Create vectors A and B.
-            2. Perform element-wise multiplication and exponentiation.
-            3. Observe how vectorized operations differ from regular operations.
+                <div>
+                    <h2 style="background-color: rgba(0, 0, 0, 0.75);">Gotchas</h2>
+                    <ul style="background-color: rgba(0, 0, 0, 0.85);">
+                        <li>Variables <strong>are</strong> case sensitive, do not try to use this to your advantage.</li>
+                        <li>There is a difference between <code>* / ^</code> and <code>.* ./ .^</code></li>
+                        <li>0 is false but anything not zero is true</li>
+                        <li>MATLAB indexing starts at 1</li>
+                    </ul>
+                </div>
 
         </textarea>
 		</section>
-
-		<!-- Slide:  -->
-		<section data-markdown>
-        <textarea data-template>
-            ## Basic Plotting for Data Visualization 📈
-
-            ### Introduction to Plotting
-            **Why Plot?**:
-            Plotting helps you visualize your data, making it easier to understand trends, patterns, and outliers. It’s like turning numbers into pictures!
-
-            **Basic Commands**:
-            * `plot(x, y)`: Creates a 2D line plot.
-            * `xlabel('x')`: Labels the x-axis.
-            * `ylabel('y')`: Labels the y-axis.
-            * `title('Title')`: Adds a title to the plot.
-            Example Code:
-
-            ```matlab
-            x = linspace(0, 2*pi, 100);
-            y = sin(x);
-            plot(x, y);
-            xlabel('x');
-            ylabel('sin(x)');
-            title('Plot of the Sine Function');
-            ```
-
-        </textarea>
-		</section>
-
-		<section data-markdown>
-        <textarea data-template>
-            ## Vertical Motion Under Gravity Example 🌍
-            ### The Problem:
-            Calculate the vertical motion of an object under gravity – it’s all about how things fall!
-            ### Approach:
-            1. Inputs - What data do you need to solve this problem
-            ```matlab
-            g = 9.81;      % Acceleration due to gravity (m/s^2)
-            t = 0:0.1:10;  % Time vector from 0 to 10 seconds
-            v0 = 50;       % Initial velocity (m/s)
-            ```
-            2. Manipulation - Perform operations to get to your destination
-            ```matlab
-            y = v0 * t - 0.5 * g * t.^2;  % Vertical position over time
-            ```
-            3. Output - Produce clear and concise output
-            Let's see what the raw output looks like
-            ```matlab
-            t
-            y
-            ```
-            Not very user-friendly, let's plot this for a visual representation.
-
-            ```matlab
-            plot(t, y);
-            xlabel('Time (s)');
-            ylabel('Height (m)');
-            title('Vertical Motion Under Gravity');
-            ```
-
-        </textarea>
-		</section>
-
-
 
 		<!-- Slide:  -->
 		<section data-markdown>
         <textarea data-template>
         ## Key Takeaways 🎓
-        * Variables are for data storage.
+        * Arrays are the basis for all variables in MATLAB
         * Arrays, vectors, and matrices are essential tools for handling lots of data at once 🧰.
-        * Operators are what make calculations happen 🛠️.
+        * Though not so important now, the transpose operator will be used often later.
         * Basic plotting is your way of turning data into visuals that are easier to understand and analyze 📊.
         </textarea>
+		</section>
+
+		<section>
+			<h1>Software Engineering</h1>
 		</section>
 
 	</div>
@@ -359,6 +806,7 @@
 <script src="/plugin/highlight/highlight.js"></script>
 <script src="/plugin/notes/notes.js"></script>
 <script src="/plugin/math/math.js"></script>
+<script src="/dist/site.js"></script>
 <script>
 
     Reveal.initialize({
@@ -366,6 +814,7 @@
         progress: true,
         history: true,
         center: true,
+        autoPlayMedia: true,
 
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
 
