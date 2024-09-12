@@ -226,10 +226,10 @@ fprintf('The total cost of the grocery items is: %.2f\n', sum(totalCost));
 
 ### Deliverables
 
-1. Submit the corrected script file (fixedScript2.m).
+1. Submit the corrected script file (`fixedScript2.m`).
    * Ensure that all calculations and logic work as intended.
    * Include comments explaining each error you found and how you fixed it.
-2. Write a short report (debuggingReport2.txt) containing the following:
+2. Write a short report (`debuggingReport2.txt`) containing the following:
    * Summarize the errors you encountered.
    * Explain how you found the solution to fix them.
    * Explain what you learned from the debugging process.

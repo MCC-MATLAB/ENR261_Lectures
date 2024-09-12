@@ -33,7 +33,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
     --r-heading1-size: 2.5em;
     --r-heading2-size: 1.6em;
     --r-heading3-size: 1.3em;
-    --r-heading4-size: 1em;
+    --r-heading4-size: 1.1em;
     --r-code-font: monospace;
     --r-link-color: #2a76dd;
     --r-link-color-dark: #1a53a1;
@@ -248,6 +248,34 @@ li {
     word-wrap: break-word;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
     padding: 5px 20px 5px 20px;
+}
+
+.code-output-container {
+    display: flex;
+    justify-content: center; /* Center the content */
+    align-items: center; /* Align items vertically in the center */
+    margin-bottom: 20px;
+}
+
+.code-output-container pre {
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.code {
+    text-align: right; /* Align code to the right */
+}
+
+.reveal .slides section .fragment.output,
+.output {
+    text-align: left; /* Align output to the left */
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: bold;
+}
+
+.code-output-container pre {
+    display: inline-block;
 }
 
 .reveal code {
