@@ -2,18 +2,102 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 2: MATLAB Variables & Data Types</title>
+	<title>Week 4: Program Design & File Import Export️ 💾</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
-	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/week4.css">
 	<link rel="stylesheet" href="/dist/site.css">
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
 <div class="reveal">
 	<div class="slides">
+
+		<section data-markdown>
+        <textarea data-template>
+			## Vector and Array Creation and Subscripting in MATLAB
+
+			### 1. Creating Vectors and Arrays
+
+			In MATLAB, vectors and arrays can be created using brackets `[]`.
+
+			**Row Vector**:
+			```matlab
+			rowVector = [1, 2, 3, 4, 5];
+			```
+
+			**Column Vector**:
+			```matlab
+			columnVector = [1; 2; 3; 4; 5];
+			```
+
+			**2D Array (Matrix)**:
+			```matlab
+			matrix = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+			```
+
+		        --
+
+			### 2. Accessing Elements (Subscripting)
+
+			You can access elements in arrays using indices `(row, column)` notation.
+
+			**Example**:
+			```matlab
+			element = matrix(2, 3);  % Access element in 2nd row, 3rd column
+			```
+
+			**Access Entire Row/Column**:
+			- `matrix(:, 2)` – Access all rows from the 2nd column.
+			- `matrix(1, :)` – Access all columns from the 1st row.
+
+		        --
+
+			### 3. Adding Values in Certain Positions
+
+			MATLAB allows you to assign values to specific positions in an array. If you assign a value to a position that does not yet exist, MATLAB will automatically create the necessary elements, filling in missing values with zeros.
+
+			**Example**:
+			```matlab
+			array = [1, 2, 3];  % Initial array
+			array(5) = 10;      % MATLAB fills in positions 4 and 5 with 0 and 10
+			```
+
+			The resulting array would be:
+			```matlab
+			[1, 2, 3, 0, 10]
+			```
+
+		        --
+
+			### 4. Using `end` Keyword
+
+			The `end` keyword is useful when you want to access the last element of a vector or array, or to access all elements up to the last one.
+
+			**Examples**:
+			```matlab
+			lastElement = array(end);  % Access the last element of the array
+			```
+			```matlab
+			lastRow = array(end, :);  % Accesses all columns of the last row
+			```
+			```matlab
+			lastFiveRows = array(end-4:end, :);  % Accesses the last 5 rows
+			```
+			```matlab
+			fromSecondToLastCol = array(:, 2:end);  % Accesses columns from 2 to the last column
+			```
+	        --
+
+			### 5. Other Useful Tips
+
+			- You can replace an entire row or column by assigning new values using the `:` notation.
+			- MATLAB automatically adjusts the size of vectors or matrices when new elements are added.
+
+		</textarea>
+		</section>
 
 
 		<section data-markdown>
@@ -25,7 +109,7 @@
 			* Learn to create and use functions effectively 🔧.
 			* Import and export data in various formats 📂.
 
-			--
+			---
 
 			## Topics Covered:
 			* Program Design and Algorithm Development 🧩
@@ -40,44 +124,116 @@
 
 			## Program Design and Algorithm Development 🛣️
 			### Program Design Process:
-			1. Identify the Problem: Clearly define the problem you need to solve.
-			2. Develop an Algorithm: Create a step-by-step procedure to solve the problem.
-			3. Implement the Algorithm: Translate the algorithm into MATLAB code.
-			4. Test and Debug: Verify the solution works as expected and fix any issues.
-			💡 Tip: Break down complex problems into smaller, manageable parts. This makes it easier to tackle each part one by one.
 
-			--
+			1. **Identify the Problem** 📌: Clearly define what you need to solve. Understand the requirements and constraints.
 
-			### Example: Projectile Problem 🎯
-			**Problem**:
-			Calculate the trajectory of a projectile.
+			2. **Develop an Algorithm** 📝: Create a step-by-step plan using pseudocode or flowcharts.
 
-			**Algorithm**:
-			Define initial velocity, angle, and acceleration due to gravity.
-			Compute the horizontal and vertical components of velocity.
-			Calculate the position of the projectile at different time intervals.
+			   - *Pseudocode*: Writing down the steps in plain English or structured language.
+			   - *Flowcharts*: Visual diagrams representing the flow of the algorithm.
 
-			--
+			3. **Implement the Algorithm** 💻: Translate your algorithm into MATLAB code. Focus on writing clean and commented code.
 
+			4. **Test and Debug** 🐞: Run your code with various inputs to ensure it works correctly. Use debugging tools to fix issues.
+
+			💡 **Tip**: Break down complex problems into smaller, manageable parts. Think of it like building a LEGO set 🧱—one piece at a time!
+
+		</textarea>
+		</section>
+
+		<section>
+
+			<h3>Example: Projectile Problem 🎯</h3>
+
+			<h4>Problem:</h4>
+
+			Calculate the trajectory of a projectile launched at an initial speed and angle.
+
+			<span class="r-stack">
+				<span class="fragment fade-in-then-out" data-fragment-index="0">
+
+					<ol>
+						<li><p><strong>Define variables</strong>:</p>
+						<ul>
+							<li>Initial velocity <code>v0</code></li>
+							<li>Launch angle <code>angle</code></li>
+							<li>Acceleration due to gravity <code>g</code></li>
+						</ul>
+						</li>
+					</ol>
+
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="2">
+					<ol start="2">
+						<li><p><strong>Compute components</strong>:</p></li>
+						<ul>
+							<li><p>Horizontal velocity <code>vx = v0 * cos(angle)</code></p></li>
+							<li>Vertical velocity <code>vy = v0 * sin(angle)</code></li>
+						</ul>
+					</ol>
+
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="3">
+
+					<ol start="3">
+						<li><p><strong>Calculate positions over time</strong>:</p></li>
+						<ul>
+							<li>Time array <code>time</code></li>
+							<li>Horizontal position <code>x = vx * time</code></li>
+							<li>Vertical position <code>y = vy * time - 1/2 * g * time^2</code></li>
+						</ul>
+					</ol>
+
+
+
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="4">
+
+					<ol start="4">
+						<li style="margin-top: 20px"><strong>Plot the trajectory</strong></li>
+						<p><strong>Formulas</strong>:</p>
+						<ul>
+							<li><code>x = v0 * cos(angle) * time</code></li>
+							<li><code>y = v0 * sin(angle) * time - 1/2 * g * time.^2</code></li>
+						</ul>
+					</ol>
+
+
+				</span>
+			</span>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
 			**Implementation**:
+
 			```matlab
+			% Define variables
 			v0 = 50; % Initial velocity (m/s)
 			angle = 45; % Angle of projection (degrees)
 			g = 9.81; % Acceleration due to gravity (m/s^2)
 
+			% Compute components
 			vx = v0 * cosd(angle); % Horizontal component of velocity
 			vy = v0 * sind(angle); % Vertical component of velocity
 
-			t = linspace(0, 2*vy/g, 100); % Time intervals
-			x = vx * t; % Horizontal position
-			y = vy * t - 0.5 * g * t.^2; % Vertical position
+			% Time intervals
+			time_flight = 2 * vy / g; % Total flight time
+			time = linspace(0, time_flight, 100); % Time array
 
+			% Positions
+			x = vx * time; % Horizontal position
+			y = vy * time - 0.5 * g * time.^2; % Vertical position
+
+			% Plotting
 			plot(x, y);
 			xlabel('Distance (m)');
 			ylabel('Height (m)');
 			title('Projectile Trajectory');
+			grid on;
 			```
-			🔄 Analogy: Think of program design as planning a road trip: decide the destination (goal), plan the route (algorithm), travel (implement), and adjust as needed (test and debug).
+
+			👩‍💻 **Try it yourself!** Modify the `v0` and `angle` variables to see how they affect the trajectory. 🚀
 
 		</textarea>
 		</section>
@@ -85,55 +241,230 @@
 		<section data-markdown>
         <textarea data-template>
 
-			## Custom MATLAB Functions 📜
-			### Creating Functions:
-			**Definition**:
-				A function is a block of code designed to perform a specific task.
-			**Components**:
-				* Name
-				* Input arguments
-				* Output arguments.
+			## Custom Functions 📜
 
-			#### Syntax:
-			```matlab
-			function output = functionName(input)
-			% Function body
-			output = ...;
+			### Understanding Functions in MATLAB
+
+			**Definition**:
+
+			A function is a block of code designed to perform a specific task. Functions help make your code modular, reusable, and easier to manage.
+
+			**Why Use Functions?**
+
+			- **Modularity**: Break down complex programs into smaller, manageable pieces.
+			- **Reusability**: Write code once and use it multiple times.
+			- **Maintainability**: Easier to debug and update code.
+
+	        --
+
+			### Function Syntax Components
+
+			1. **Function Definition Line**:
+
+			   ```matlab
+			   function [output1, output2] = functionName(input1, input2)
+			   ```
+
+			   - **`function`**: Keyword to define a function.
+			   - **Output Arguments**: Variables that the function returns (`[output1, output2]`).
+			   - **Function Name**: Should match the filename (`functionName`).
+			   - **Input Arguments**: Variables that the function accepts (`input1, input2`).
+
+			2. **Function Description and Help Text**:
+
+			   - Use comments immediately after the function definition to describe the function.
+			   - This text appears when using the `help` command.
+
+			   ```matlab
+			   % functionName - Brief description
+			   %
+			   % Detailed explanation of the function.
+			   ```
+
+	        --
+
+			3. **Function Body**:
+
+			   - The code that performs the computations.
+			   - Uses input arguments to compute output arguments.
+
+			4. **End Statement**:
+
+			   ```matlab
+			   end
+			   ```
+
+			   - Indicates the end of the function.
+
+	        --
+
+			### Variable Scope
+
+			- **Local Variables**: Variables defined inside a function are not accessible outside of that function.
+			- **Input/Output Arguments**: Use these to pass data into and out of functions.
+			- **Global Variables**: Not recommended; can lead to code that's hard to debug.
+
+	`global myVar`
+
+	        --
+
+### 💡**Tips**
+
+* Always manage data flow with input and output arguments to keep functions independent.
+	* Avoid using global unless absolutely necessary
+* Limit what your function does, to the name you give your function.
+    * This keeps your functions small and easily manageable
+* Suppress output nearly all of the time.
+* Make sure your function can handle vectors where necessary
+* If you are copying and pasting, you probably need a function instead
+
+	        --
+
+			Say we have a function...
+			``` matlab
+			function greet(petName)
+				disp(['Hello, ' petName '!']);
 			end
 			```
 
-			--
+			Now let's pass the following:
+			``` matlab
+			myDogsName = 'Buddy';
+			greet(myDogsName);
+			```
 
-			#### Example Function: Calculate Trajectory 🎯
-			1. Create a file named `calculate_trajectory.m`:
+			What do we get?
 
+			``` text
+			Hello, Buddy!
+			```
+
+			💡 **Tip**: It is important to know, the function is completely oblivious to all external code!
+	        --
+
+> "Write code that is easy to delete, not easy to extend"
+>
+> Jean-Paul Sartre
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+			### Example Function: Calculate Trajectory 🎯
+
+			**Objective**:
+
+			Create a function that calculates the trajectory of a projectile.
+
+			#### Steps:
+
+			1. **Create the Function File**
+
+			   - Name the file `calculate_trajectory.m`.
+			   - The function name must match the filename.
+
+	        --
+
+			2. **Write the Function Code**
+
+			   ```matlab
+			   function [x, y] = calculate_trajectory(v0, angle, g)
+			   % CALCULATE_TRAJECTORY computes the trajectory of a projectile.
+			   %
+			   %   [x, y] = CALCULATE_TRAJECTORY(v0, angle, g) returns the horizontal (x)
+			   %   and vertical (y) positions of a projectile given:
+			   %       v0    - initial velocity (m/s)
+			   %       angle - launch angle (degrees)
+			   %       g     - acceleration due to gravity (m/s^2)
+
+				   % Compute components
+				   vx = v0 * cosd(angle); % Horizontal component of velocity
+				   vy = v0 * sind(angle); % Vertical component of velocity
+
+				   % Time intervals
+				   total_time = 2 * vy / g; % Total flight time
+				   time = linspace(0, total_time, 100);  % Time array
+
+				   % Positions
+				   x = vx * time;  % Horizontal position
+				   y = vy * time - 0.5 * g * time.^2;  % Vertical position
+			   end
+			   ```
+
+	        --
+
+			3. **Save the Function**
+
+			   - Ensure the file is saved in your MATLAB working directory or in a directory that's on the MATLAB path.
+
+	        --
+
+			## Pro Tip!
+
+			* Sometimes it's easier to write the whole script, then write your function, watch this... 👀
 			```matlab
-			function [x, y] = calculate_trajectory(v0, angle, g)
+			% Define variables
+			v0 = 50; % Initial velocity (m/s)
+			angle = 45; % Angle of projection (degrees)
+			g = 9.81; % Acceleration due to gravity (m/s^2)
+
+			% Compute components
 			vx = v0 * cosd(angle); % Horizontal component of velocity
 			vy = v0 * sind(angle); % Vertical component of velocity
 
-			t = linspace(0, 2*vy/g, 100);  % Time intervals
-			x = vx * t;  % Horizontal position
-			y = vy * t - 0.5 * g * t.^2;  % Vertical position
-			end
-			```
+			% Time intervals
+			time_flight = 2 * vy / g; % Total flight time
+			time = linspace(0, time_flight, 100); % Time array
 
-			--
+			% Positions
+			x = vx * time; % Horizontal position
+			y = vy * time - 0.5 * g * time.^2; % Vertical position
 
-			#### Execution:
-
-			```matlab
-			[x, y] = calculate_trajectory(50, 45, 9.81);
+			% Plotting
 			plot(x, y);
 			xlabel('Distance (m)');
 			ylabel('Height (m)');
 			title('Projectile Trajectory');
+			grid on;
 			```
-			⚠️ Gotcha: Ensure the function name matches the filename. MATLAB requires that the function name and file name be the same to avoid errors.
+			### 👨🏽‍💻**Interactive Presentation** 📺
+		</textarea>
+		</section>
 
-			--
+		<section data-markdown>
+        <textarea data-template>
+			#### Using the Function:
+
+			```matlab
+			% In your main script or Command Window
+			v0 = 50; % Initial velocity (m/s)
+			angle = 45; % Launch angle (degrees)
+			g = 9.81; % Acceleration due to gravity (m/s^2)
+
+			[x, y] = calculate_trajectory(v0, angle, g);
+
+			plot(x, y);
+			xlabel('Distance (m)');
+			ylabel('Height (m)');
+			title('Projectile Trajectory');
+			grid on;
+			```
+
+			⚠️ **Gotcha**: If MATLAB can't find your function, check that:
+
+			- The function name matches the filename (`calculate_trajectory.m`).
+			- The file is in the current directory or on the MATLAB path.
+
+			👩‍💻 **Exercise**: Modify the function to return the time array as an additional output.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
 
 			### Rounding Functions
+
 			MATLAB provides several functions for rounding numbers:
 
 			* `round(x)`: Rounds to the nearest integer.
@@ -141,118 +472,683 @@
 			* `ceil(x)`: Rounds towards positive infinity.
 			* `fix(x)`: Rounds towards zero.
 
+	        --
 
-			#### Example:
+			#### Examples with Positive Numbers:
 
 			```matlab
 			x = 16.3;
-			y = 3.9;
 			disp(round(x)); % Outputs 16
 			disp(floor(x)); % Outputs 16
-			disp(ceil(x)); % Outputs 17
-			disp(fix(x)); % Outputs 16
+			disp(ceil(x));  % Outputs 17
+			disp(fix(x));   % Outputs 16
 			```
 
-			--
-
-			### Trigonometric Functions
-			MATLAB can compute trigonometric functions in degrees or radians.
-
-			* To convert degrees to radians, use the relationship
-			180 degrees -->	𝜋 radians or use `deg2rad`.
-
-			#### Example:
+			#### Examples with Negative Numbers:
 
 			```matlab
-			theta = 45; % Degrees
-			theta_rad = deg2rad(theta);
-			sin_theta = sin(theta_rad); % Sine of 45 degrees
+			x = -16.3;
+			disp(round(x)); % Outputs -16
+			disp(floor(x)); % Outputs -17
+			disp(ceil(x));  % Outputs -16
+			disp(fix(x));   % Outputs -16
 			```
 
-			💡 Tip: Always check whether a function expects angles in degrees or radians to avoid calculation errors.
+			💡 **Explanation**:
+
+			- **`floor`**: Rounds down to the nearest integer (towards negative infinity).
+			- **`ceil`**: Rounds up to the nearest integer (towards positive infinity).
+			- **`fix`**: Rounds towards zero (truncates the decimal part).
+
 		</textarea>
 		</section>
 
 		<section data-markdown>
         <textarea data-template>
+			### Trigonometric Functions
+
+			MATLAB can compute trigonometric functions in degrees or radians.
+
+			* To convert degrees to radians, you can use `deg2rad()`.
+			* Alternatively, use degree-specific functions: `sind`, `cosd`, `tand`.
+
+			#### Example using Degrees:
+
+			```matlab
+			theta = 45; % Degrees
+			sin_theta = sind(theta); % Directly computes sine of 45 degrees
+			cos_theta = cosd(theta); % Cosine of 45 degrees
+			tan_theta = tand(theta); % Tangent of 45 degrees
+			```
+
+			💡 **Tip**: Using `sind`, `cosd`, and `tand` can simplify your code and prevent errors from unit conversion.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+			## File Manipulation in MATLAB 🗂️
+
+			### Checking if a File Exists
+
+			- Use the `exist()` function to check if a file exists in the current directory:
+			```matlab
+			if exist('filename.txt', 'file') == 2
+				disp('File exists');
+			else
+				disp('File does not exist');
+			end
+			```
+			- `exist('filename.txt', 'file')`: Returns 2 if the file exists.
+			- The second argument `'file'` ensures that MATLAB is looking for a file, not a variable or folder.
+
+			--
+
+			### Deleting a file
+			- Use the `delete()` function to remove a file:
+				```matlab
+				if exist('filename.txt', 'file') == 2
+				    delete('filename.txt');
+				    disp('File deleted');
+				else
+				    disp('File not found');
+				end
+				```
+
+			--
+
+			### Other Useful File Functions
+			- `dir()` Lists all files and directories in the current folder.
+				```matlab
+				files = dir;
+				disp({files.name});
+			- `moveFile()` Moves or renames a file
+				```matlab
+				movefile('oldname.txt', 'newname.txt');
+				```
+			- `copyFile()` Copies a file to a new location
+				```matlab
+				copyfile('source.txt', 'destination.txt');
+				```
+
+			--
+
+			💡 Tips:
+
+			- Always check if a file exists before trying to delete or manipulate it to avoid errors.
+			- Use these functions for file management in scripts and when handling multiple files in projects.
+
+			</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
 			## Data Import and Export Utilities 📥📤
 
 			### Importing Data:
-			* **Import Wizard**: Use MATLAB’s Import Wizard to load data from various file types.
-			**Commands**:
-			* `uiimport('filename.ext')`
-			* `xlsread('filename')`
-			* `csvread('filename')`
-			* `readmatrix('filename')`
 
-			--
+			MATLAB offers several functions to import data from various file types.
 
-			#### Example:
+			**Common Functions**:
+
+			- `readmatrix('filename.ext')`: Reads numeric data into a matrix.
+			- `readtable('filename.ext')`: Reads data into a table, which can handle mixed data types and includes headers.
+			- `readcell('filename.ext')`: Reads data into a cell array, useful for mixed data types.
+			- `textscan(fileID, formatSpec)`: Reads data from text files using format specifiers.
+
+		</textarea>
+		</section>
+
+		<section>
+			<h3 id="default-behaviors-and-optional-parameters">Default Behaviors and Optional Parameters</h3>
+			<p>When importing data, MATLAB uses default settings that can be customized using optional parameters.</p>
+
+			<span class="r-stack">
+				<div class="fragment fade-in-then-out current-visible" data-fragment-index="0">
+					<h4 id="default-behaviors-">Default Behaviors:</h4>
+					<ul>
+						<li><strong>Range</strong>: By default, reads all data from the file.</li>
+						<li><strong>Variable Names (Headers)</strong>:<ul>
+							<li><code>readtable</code>: Assumes the first row contains headers (<code>&#39;ReadVariableNames&#39;, true</code>).</li>
+							<li><code>readmatrix</code> and <code>readcell</code>: Do not read headers by default (<code>&#39;ReadVariableNames&#39;, false</code>).</li>
+						</ul>
+						</li>
+						<li><strong>Data Types</strong>: MATLAB automatically detects data types based on the content.</li>
+					</ul>
+				</div>
+				<div class="fragment fade-in-then-out current-visible" data-fragment-index="1">
+					<h4 id="optional-parameters-">Optional Parameters:</h4>
+					<ul>
+						<li><strong>&#39;Range&#39;</strong>: Specifies the subset of data to read.</li>
+						<li><strong>&#39;ReadVariableNames&#39;</strong>: Indicates whether to treat the first row as headers.</li>
+						<li><strong>&#39;Sheet&#39;</strong>: Specifies the worksheet in Excel files.</li>
+						<li><strong>&#39;VariableTypes&#39;</strong>: Defines data types for each column (used with import options).</li>
+						<li><strong>&#39;Delimiter&#39;</strong>: Specifies the character(s) that separate fields in text files.</li>
+						<li><strong>&#39;TreatAsMissing&#39;</strong>: Defines representations of missing data.</li>
+					</ul>
+				</div>
+			</span>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Specifying a Range:
+
+			You can specify a range to read specific rows and columns from your data file.
+
+			#### Syntax:
+
+			- `'Range', 'A2:C4'`: Reads data from cells A2 to C4.
+			- `'Range', [row_start, col_start, row_end, col_end]`: Alternative numeric indexing.
+
+			#### Example: Importing a Specific Range from Excel
 
 			```matlab
-			data = readmatrix('data.csv'); % Reads data from a CSV file
+			% Import data from cells A2 to C4 in 'data.xlsx'
+			data = readmatrix('data.xlsx', 'Range', 'A2:C4');
+
+			% Display the imported data
+			disp(data);
 			```
 
-			💡 Tip: Use readmatrix for a more versatile and modern way to import data compared to older functions like csvread.
+			💡 **Tip**: Specifying a range can speed up data import by reading only the necessary data.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Handling Headers (Variable Names):
+
+			#### Default Behavior:
+
+			- `readtable`: Assumes the first row contains variable names (`'ReadVariableNames', true`).
+			- `readmatrix`: Does not read variable names by default (`'ReadVariableNames', false`).
+
+			#### Specifying Headers:
+
+			- Use `'ReadVariableNames', true` or `false` to control header reading.
 
 			--
+
+			#### Example: Importing Data with Headers
+
+			```matlab
+			% Import data including headers from 'data_with_headers.xlsx'
+			dataTable = readtable('data_with_headers.xlsx', 'Range', 'A1:C4', 'ReadVariableNames', true);
+
+			% Display the table
+			disp(dataTable);
+
+			% Access column headers (variable names)
+			variableNames = dataTable.Properties.VariableNames;
+			disp('Variable Names:');
+			disp(variableNames);
+			```
+
+			💡️ **Tips**:
+
+			- Use `'ReadVariableNames', false` if your data does not include headers in the first row.
+			- These options have no specific order but must be provided in pairs.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Specifying Data Types for Each Column
+
+			By default, MATLAB attempts to automatically detect the data type for each column. However, you can specify data types to ensure correct interpretation.
+
+			#### Using Import Options:
+
+			1. **Create Import Options**:
+
+			   ```matlab
+			   opts = detectImportOptions('data.xlsx');
+			   ```
+
+			2. **Modify Variable Types**:
+
+			   ```matlab
+			   % Set 'Age' as double and 'Name' as string
+			   opts = setvartype(opts, 'Age', 'double');
+			   opts = setvartype(opts, 'Name', 'string');
+			   ```
+
+			3. **Use the Options with `readtable`**:
+
+			   ```matlab
+			   dataTable = readtable('data.xlsx', opts);
+			   ```
+
+			--
+
+			#### Example: Specifying Data Types
+
+			```matlab
+			% Create import options
+			opts = detectImportOptions('data.xlsx');
+
+			% Modify variable types
+			opts = setvartype(opts, {'ID', 'Age'}, 'double');
+			opts = setvartype(opts, 'Name', 'string');
+			opts = setvartype(opts, 'EnrollmentDate', 'datetime');
+
+			% Specify date format if necessary
+			opts = setvaropts(opts, 'EnrollmentDate', 'InputFormat', 'MM/dd/yyyy');
+
+			% Read the data using the modified options
+			dataTable = readtable('data.xlsx', opts);
+
+			% Display the imported data
+			disp(dataTable);
+			```
+
+			💡 **Tip**: Specifying data types prevents errors due to incorrect automatic detection, especially with mixed data types.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Accessing Metadata and Additional Information
+
+			After importing data, you might want to know more about it.
+
+			#### Getting the Size of the Data:
+
+			- For matrices (`readmatrix`):
+
+			  ```matlab
+			  [numRows, numCols] = size(data);
+			  ```
+
+			- For tables (`readtable`):
+
+			  ```matlab
+			  numRows = height(dataTable);
+			  numCols = width(dataTable);
+			  ```
+
+			--
+
+			#### Accessing Variable Names (Headers):
+
+			- For tables:
+
+			  ```matlab
+			  variableNames = dataTable.Properties.VariableNames;
+			  ```
+
+			#### Checking Data Types of Variables:
+
+			```matlab
+			varTypes = varfun(@class, dataTable, 'OutputFormat', 'cell');
+			varNames = dataTable.Properties.VariableNames;
+
+			% Display variable names and their types
+			for i = 1:length(varNames)
+			    fprintf('Variable: %s, Type: %s\n', varNames{i}, varTypes{i});
+			end
+			```
+
+			--
+
+			#### Checking for Missing Data:
+
+			```matlab
+			% For matrices
+			numMissing = sum(isnan(data), 'all');
+			fprintf('Number of missing values: %d\n', numMissing);
+
+			% For tables
+			numMissing = sum(sum(ismissing(dataTable)));
+			fprintf('Number of missing values: %d\n', numMissing);
+			```
+
+			⚠️ **Gotcha**: Be cautious when your data contains missing values (`NaN` or empty cells). They can affect calculations.
+
+			💡 **Tip**: Notice `sum(sum())`? What is happening here? Use these scenarios as learning opportunities.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Reading Text Files with `textscan`
+
+			`textscan` allows you to read data from text files by specifying a format specifier, similar to `fprintf`.
+
+			#### Syntax:
+
+			```matlab
+			fileID = fopen('filename.txt', 'r');
+			dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'HeaderLines', N);
+			fclose(fileID);
+			```
+
+			- The second argument `'r'` in fopen() says we want to open this as **read only**
+			- **`formatSpec`**: A string that specifies the format of each column (e.g., `'%f %s %d'`).
+			- **`delimiter`**: Character(s) that separate fields (e.g., `','` for CSV files).
+			- **`HeaderLines`**: Number of lines to skip at the beginning of the file.
+
+			--
+
+			#### Example: Reading a Text File with Specified Formats
+
+			Suppose you have a text file `data.txt` with the following content:
+
+			```
+			ID,Name,Age,Score
+			1,Alice,20,85.5
+			2,Bob,22,90.0
+			3,Charlie,21,88.0
+			```
+
+			```matlab
+			% Open the file
+			fileID = fopen('data.txt', 'r');
+
+			% Define the format specifier
+			formatSpec = '%d %s %d %f';
+
+			% Read the data, skipping the header line
+			dataArray = textscan(fileID, formatSpec, 'Delimiter', ',', 'HeaderLines', 1);
+
+			% Close the file
+			fclose(fileID);
+
+			% Access the data
+			IDs = dataArray{1};
+			Names = dataArray{2};
+			Ages = dataArray{3};
+			Scores = dataArray{4};
+
+			% Display the data
+			disp('IDs:');
+			disp(IDs);
+			disp('Names:');
+			disp(Names);
+			disp('Ages:');
+			disp(Ages);
+			disp('Scores:');
+			disp(Scores);
+			```
+
+			💡 **Tip**: Use `%*s` can be used to skip a field.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Handling Delimiters and Headers in `textscan`
+
+			#### Specifying Delimiters:
+
+			- Use the `'Delimiter'` parameter to specify the character(s) that separate fields.
+			- Common delimiters:
+			  - Comma-separated values: `','`
+			  - Tab-separated values: `'\t'`
+			  - Space-separated values: `' '`
+
+			#### Skipping Header Lines:
+
+			- Use `'HeaderLines', N` to skip `N` lines at the beginning of the file.
+			- Useful when your file contains headers or metadata.
+
+			💡 **Tip**: Always close the file after reading using `fclose(fileID);` to free system resources.
+
+		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
 
 			### Exporting Data:
-			**Commands**:
-			* `xlswrite(' filename.xlsx', data)`
-			* `writematrix(data, 'filename.xlsx')`
+
+			**Common Functions**:
+
+			- `writematrix(data, 'filename.ext')`: Writes matrix data to a file.
+			- `writetable(dataTable, 'filename.ext')`: Writes table data to a file.
+			- `writecell(dataCell, 'filename.ext')`: Writes cell array data to a file.
+			- `fprintf(fileID, formatSpec, variables)`: Writes formatted data to a text file.
 
 			--
 
-			#### Example:
+			#### Specifying Options When Exporting
+
+			- **Default Behavior**:
+			  - Writes data starting at cell A1.
+			  - For tables, includes variable names (headers) by default.
+
+			- **Optional Parameters**:
+			  - **'Sheet'**: Specifies the worksheet in Excel files.
+			  - **'Range'**: Specifies the starting cell for writing data.
+
+			--
+
+			#### Example: Exporting Data to Excel
 
 			```matlab
-			data = [1, 2, 3; 4, 5, 6; 7, 8, 9];
-			writematrix(data, 'data.xlsx'); % Writes data to an Excel file
+			% Export matrix data to 'output.xlsx' starting at cell A2
+			writematrix(data, 'output.xlsx', 'Sheet', 'DataSheet', 'Range', 'A2');
+
+			% Export table data to 'output_with_headers.xlsx'
+			writetable(dataTable, 'output_with_headers.xlsx', 'Sheet', 1, 'Range', 'A1');
 			```
 
-			⚠️ Gotcha: Ensure that the data format matches the expected format when importing/exporting. Inconsistent formats can lead to errors or incorrect data handling.
+			💡 **Tip**: When exporting, ensure the file extension matches the desired format (e.g., `.csv`, `.xlsx`).
+
+			--
+
+			### Exporting Data Using Format Specifiers 📝
+
+			#### Using `fprintf` to Write Formatted Data
+
+			```matlab
+			fileID = fopen('filename.txt', 'w');
+			fprintf(fileID, formatSpec, variables);
+			fclose(fileID);
+			```
+
+			- **`formatSpec`**: Format of each variable (e.g., `'%d %s %f\n'`).
+			⚠️ **Gotcha**: Notice the `fileID` in `fprintf`?
+
+			--
+
+			#### Example: Exporting Data to a Text File
+
+			```matlab
+			% Sample data
+			IDs = [1; 2; 3];
+			Names = {'Alice'; 'Bob'; 'Charlie'};
+			Scores = [85.5; 90.0; 88.0];
+
+			% Open the file
+			fileID = fopen('output.txt', 'w');
+
+			% Define format specifier
+			formatSpec = '%d %s %.1f\n';
+
+			% Write data
+			for i = 1:length(IDs)
+			    fprintf(fileID, formatSpec, IDs(i), Names{i}, Scores(i));
+			end
+
+			% Close the file
+			fclose(fileID);
+			```
+
+			💡 **Tip**: Use loops to write each row of data.
+
+			---
+
+			#### Writing CSV Files
+
+			```matlab
+			% Open the file
+			fileID = fopen('output.csv', 'w');
+
+			% Write headers
+			fprintf(fileID, 'ID,Name,Score\n');
+
+			% Define format specifier with commas
+			formatSpec = '%d,%s,%.1f\n';
+
+			% Write data
+			for i = 1:length(IDs)
+			    fprintf(fileID, formatSpec, IDs(i), Names{i}, Scores(i));
+			end
+
+			% Close the file
+			fclose(fileID);
+			```
+
+			💡 **Tip**: Use `writetable` for easier CSV exports when working with tables.
+
+
 		</textarea>
+		</section>
+
+		<section data-markdown>
+		<textarea data-template>
+
+			### Practical Tips for Data Import/Export
+
+			- **Use Import Options for Flexibility**: `detectImportOptions('filename')` and related functions provide control over how data is imported.
+			- **Check Data After Importing**: Verify the data structure and types to prevent errors in subsequent analysis.
+			- **Handle Missing Data**: Be aware of how missing data is represented and handled.
+			- **Consistent Formatting**: Ensure your data files have consistent formatting to simplify import/export processes.
+			- **Use the Import Wizard**: MATLAB's **Import Wizard** provides a graphical interface to import data and can generate MATLAB code based on your selections.
+
+			---
+
+			💡 **Tip**: **Using the Import Wizard**
+
+			- **Access**: Go to **Home > Import Data** or double-click the file in the Current Folder browser.
+			- **Features**:
+			  - Interactively select data ranges, specify variable types, and handle headers.
+			  - Preview data before importing.
+			- **Generate Code**:
+			  - After setting options, click on **Import Selection** dropdown and select **Generate Function** or **Generate Script**.
+			  - This helps in learning the syntax and creating reusable code.
+
+		</textarea>
+		</section>
+
+		<section>
+
+			<h3 id="additional-parameters-and-tips">Additional Parameters and Tips</h3>
+
+			<span class="r-stack">
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="0">
+					<h4 id="specifying-sheet-names-">Specifying Sheet Names:</h4>
+					<ul>
+						<li>Use the <code>&#39;Sheet&#39;</code> parameter to specify the sheet name or index.</li>
+						<li><p>Example:</p>
+						<pre>
+							<code class="lang-matlab">data = readmatrix(&#39;data.xlsx&#39;, &#39;Sheet&#39;, &#39;Sheet2&#39;);</code>
+						</pre>
+						</li>
+					</ul>
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="1">
+					<h4 id="reading-from-text-files-">Reading from Text Files:</h4>
+					<ul>
+						<li>Use <code>readtable</code> or <code>readmatrix</code> for CSV and TXT files.</li>
+						<li><p>Example:</p>
+							<pre><code class="lang-matlab">data = readtable(&#39;data.txt&#39;, &#39;Delimiter&#39;, &#39;\t&#39;, &#39;ReadVariableNames&#39;, false);</code></pre>
+						</li>
+					</ul>
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="2">
+					<h4 id="ignoring-or-handling-missing-data-">Ignoring or Handling Missing Data:</h4>
+					<ul>
+						<li>Use the <code>&#39;TreatAsMissing&#39;</code> parameter.</li>
+						<li><p>Example:</p>
+							<pre><code class="lang-matlab">dataTable = readtable(&#39;data.csv&#39;, &#39;TreatAsMissing&#39;, &#39;NA&#39;);</code></pre>
+						</li>
+					</ul>
+				</span>
+				<span class="fragment fade-in-then-out current-visible" data-fragment-index="3">
+					<h4 id="handling-large-files-">Handling Large Files:</h4>
+					<ul>
+						<li><strong>Use <code>textscan</code> for Efficiency</strong>: <code>textscan</code> can be more efficient for reading large text files with known formats.</li>
+						<li><strong>Chunk Reading</strong>: For extremely large files, consider reading data in chunks.</li>
+					</ul>
+					<p>💡 <strong>Tip</strong>: Document any special parameters or options used during import/export to make your code easier to understand and maintain.</p>
+				</span>
+			</span>
+
 		</section>
 
 		<section data-markdown>
         <textarea data-template>
 			## Key Takeaways 🎓
-			* Program design involves identifying problems, developing algorithms, implementing solutions, and testing/debugging.
-			* Functions modularize code, making it reusable and easier to maintain.
-			* MATLAB provides powerful tools for importing and exporting data in various formats.
 
-			--
-
-			## Additional Tips 💡
-			* Break down complex problems into smaller, manageable parts.
-			* Use comments to document the purpose and functionality of functions.
-			* Regularly test functions with different inputs to ensure they work as expected.
-
-			--
-
-			## Gotchas to Watch Out For ⚠️
-			* Function Naming: Ensure the function name matches the filename.
-			* Input/Output Arguments: Verify the correct number and type of input/output arguments.
-			* Data Formats: Ensure the data format matches the expected format when importing/exporting.
-
-			--
-
-			## Analogies 🔄
-			* Program Design: Think of program design as planning a road trip: decide the destination (goal), plan the route (algorithm), travel (implement), and adjust as needed (test and debug).
-			* Functions: Functions are like kitchen gadgets designed for specific tasks, making the cooking process (coding) more efficient.
-			* Data Import/Export: Importing data is like shopping for ingredients, and exporting data is like packing leftovers; both are essential for managing information.
+			* **Program Design**: Involves identifying problems, developing algorithms using pseudocode or flow charts, implementing solutions, and testing/debugging.
+			* **Functions**: Modularize code, making it reusable and easier to maintain. Remember to document your functions!
+			* **Data Import/Export**: MATLAB provides powerful tools for importing and exporting data in various formats. Use the appropriate function for your data type.
 
 		</textarea>
 		</section>
 
+		<section data-background-image="/images/gotcha/man-jump-from-monitor.png">
+			<div class="fragment fade-in-then-semi-out" style="background-color: rgba(var(--background-color-rgb), 0.85);">
+				<h2 id="gotchas">Gotchas:</h2>
+				<ul>
+					<li><strong>Function Naming</strong>: Ensure the function name matches the filename (e.g., <code>calculate_trajectory.m</code>).</li>
+					<li><strong>Input/Output Arguments</strong>: Verify the correct number and type of input/output arguments when calling functions.</li>
+					<li><strong>Data Formats</strong>: Ensure the data format matches the expected format when importing/exporting. Inconsistent formats can lead to errors.</li>
+					<li><strong>Units</strong>: Always check if functions expect angles in degrees or radians to avoid calculation errors.</li>
+				</ul>
+				<h3 id="common-errors">Common Errors:</h3>
+				<ul>
+					<li><strong>Syntax Errors</strong>: Typos, missing semicolons, or unmatched parentheses can cause code to fail.</li>
+					<li><strong>Undefined Variables</strong>: Ensure all variables are defined before use.</li>
+					<li><strong>Mismatched Array Dimensions</strong>: Be careful with operations on arrays of different sizes.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<h1>Software Engineering</h1>
+			<ul>
+				<li><a href="https://www.codecademy.com">codecademy.com</a></li>
+				<li>"The Pragmatic Programmer"</li>
+			</ul>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+				# Heading 1
+				## Heading 2
+				### Heading 3
+				#### Heading 4
+				##### Heading 5
+				```matlab
+				fprintf('some stuff with a string (%s)', "heyo");
+				```
+				Using inline `code` blocks
+			</textarea>
+		</section>
 	</div>
 </div>
 <script src="/dist/reveal.js"></script>
 <script src="/plugin/markdown/markdown.js"></script>
 <script src="/plugin/highlight/highlight.js"></script>
 <script src="/plugin/notes/notes.js"></script>
-<script src="/plugin/math/math.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/math/math.js"></script>
 <script>
 
     Reveal.initialize({
@@ -267,6 +1163,31 @@
         markdown: {
             slideSeparator: '---',   // Horizontal slide separator
             verticalSeparator: '--', // Vertical slide (subslide) separator
+        },
+
+        math: {
+            // Choose the math rendering library (MathJax or KaTeX)
+            // Available values: 'mathjax2', 'mathjax3', 'katex'
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            // Optionally specify the CDN for KaTeX
+            katex: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js',
+            // The math renderer to use (we'll use KaTeX)
+            renderer: 'katex',
+
+            // Delimiters for LaTeX equations
+            // You can customize these as needed
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // KaTeX-specific options
+            katexOptions: {
+                macros: {
+                    "\\RR": "\\mathbb{R}"
+                }
+            }
         }
     });
 
