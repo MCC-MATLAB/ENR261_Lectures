@@ -37,6 +37,7 @@ changes are required.
     - `v0`: Initial velocity in m/s (scalar)
     - `angle`: Launch angle in degrees (scalar)
     - `g`: Gravitational acceleration in m/s² (scalar)
+    - `y0`: Initial height in meters (scalar)
     - `numValues`: Number of time intervals (scalar)
 
 - **Outputs**:
@@ -47,9 +48,13 @@ changes are required.
 **Instructions**:
 
 Write a MATLAB function named `calculateTrajectory` that takes the initial velocity (`v0`), launch angle (`angle`),
-gravitational acceleration (`g`), and the number of time intervals (`numValues`) as inputs. The function should return
+gravitational acceleration (`g`), initial height (`y0`), and the number of time intervals (`numValues`) as inputs. The function should return
 the horizontal positions (`x`), vertical positions (`y`), and the time array (`time`) corresponding to the projectile's
 motion.
+
+Helper Equations:
+$$ \text{total\_time} = \frac{v_y + \sqrt{v_y^2 + 2 \cdot g \cdot y_0}}{g} $$
+$$ y = y_0 + v_y \cdot t - \frac{1}{2} \cdot g \cdot t^2 $$
 
 ### Function 2: `getOptimalTrajectoryAngle`
 
@@ -73,6 +78,9 @@ The function should test angles between 0 and 90 degrees at 1-degree increments 
 the maximum range using the provided projectile motion equations. For each angle, calculate the range of the
 projectile, and track the angle that results in the maximum range.
 
+Helper Equation:
+$$ \text{range} = \frac{v_0 \cdot \cos(\theta)}{\text{gravity}} \cdot \left( v_0 \cdot \sin(\theta) + \sqrt{(v_0 \cdot \sin(\theta))^2 + 2 \cdot \text{gravity} \cdot y_0} \right) $$
+
 ### Script: `projectileComparison.m`
 
 Create a MATLAB script that integrates both functions and allows the user to input values for the initial velocity,
@@ -93,11 +101,12 @@ to the user's guess, displaying both the optimal angle and the difference from t
       angle.
 
 3. **Plotting**:
-    - Plot both the trajectories: , comparing them on the same plot.
-    - The plot shall display
+    - Plot both the trajectories, comparing them on the same plot.
+    - The plot shall display:
         - One trajectory for the guessed angle
         - One for the optimal angle
         - (Do not worry about the line style or colors, MATLAB may show random values here)
+        - **Note**: The plot should show the horizontal distance (x) on the X-axis and the vertical height (y) on the Y-axis, not time.
 
 4. **Command Window Output**:
     - Display the optimal launch angle and maximum range in the command window.
@@ -137,11 +146,11 @@ The plot shall include:
 
 ### Testing
 
-You can test your functionality running the following test files
+You can test your functionality running the following test files:
 
 * `testCalculateTrajectory.m` tests `calculateTrajectory()`
 * `testGetOptimalTrajectory.m` tests `getOptimalTrajectory()`
-* `testProjectileComparisonAssignment` is an integration test, it tests that the scripts function together properly.
+* `testProjectileComparisonAssignment.m` is an integration test, it tests that the scripts function together properly.
 
 ### Deliverables
 
