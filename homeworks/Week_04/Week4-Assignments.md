@@ -95,7 +95,7 @@ to the user's guess, displaying both the optimal angle and the difference from t
     - Prompt the user to input the initial height in meters.
     - Prompt the user to input their guess for the optimal angle in degrees.
 
-2. **Computation**:
+2. **Manipulation**:
     - Use `getOptimalTrajectoryAngle()` to compute the optimal launch angle and maximum range based on the user inputs.
     - Use `calculateTrajectory()` to compute the projectile's trajectory for both the guessed angle and the optimal
       angle.
@@ -210,7 +210,7 @@ as a new column to the CSV, and write the updated data to a new CSV file.
     20,60
     ```
 
-2. **Computation**:
+2. **Manipulation**:
     - For each pair of gear teeth, use `gearRatioCalc()` to compute the gear ratio.
 
 3. **File Output**:

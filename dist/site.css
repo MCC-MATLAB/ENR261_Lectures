@@ -284,6 +284,10 @@ li {
     tab-size: 2;
 }
 
+.katex {
+    padding: 10px;
+}
+
 .reveal pre code {
     display: block;
     padding: 5px;
