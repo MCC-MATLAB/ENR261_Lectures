@@ -88,7 +88,7 @@ initial height, and their guess for the optimal launch angle. The script will co
 to the user's guess, displaying both the optimal angle and the difference from the guessed angle. The script shall use
 `9.81` to supply as the gravity value for each function.
 
-**Script Requirements**:
+**Requirements**:
 
 1. **User Inputs**:
     - Prompt the user to input the initial velocity in m/s.
@@ -112,7 +112,7 @@ to the user's guess, displaying both the optimal angle and the difference from t
     - Display the optimal launch angle and maximum range in the command window.
     - Display how far off the user's guess was from the optimal angle in the command window.
 
-### Example Interaction
+### Example Interaction:
 
 ```
 Enter the initial velocity (in m/s): 3

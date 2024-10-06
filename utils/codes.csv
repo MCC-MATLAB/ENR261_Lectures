@@ -1,3 +1,4 @@
 ID,Code,Name,Description
 1,36E6WDKT88F8,Elizabeth,Identified that I had not supplied a helper equation
 2,8R2FP628XB47,Michael Stehman,Missing initial height input on calculateTrajectory
+3,Y10OXGZBJBD3,Conor McCole,Found broken testProjectileComparison function

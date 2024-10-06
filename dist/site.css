@@ -480,3 +480,9 @@ button {
     padding: 10px 20px;
     font-size: 16px;
 }
+
+div .side-by-side {
+    display: flex;
+    gap: 20px; /* Space between */
+    justify-content: space-between;
+}

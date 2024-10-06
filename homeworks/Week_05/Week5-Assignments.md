@@ -159,7 +159,7 @@ Functionality:
   * Display the list of low-stock items.
   * If no items are low on stock, display an appropriate message.
 
-Example Interaction:
+### Example Interaction:
 
 ```
     ----------------------------------
@@ -328,33 +328,3 @@ Your `Week5` folder shall contain at minimum the following files:
 * Code Quality:
   * Include comments explaining your logic and code sections.
   * Use meaningful variable names.
-
-Testing Your Code
-
-	•	Test with Different Scenarios:
-	•	Try different input values to ensure your logical operations work correctly.
-	•	For the inventory system, test with varying quantities and thresholds.
-	•	Edge Cases:
-	•	Consider cases where no data meets the criteria.
-	•	Ensure your program handles empty datasets gracefully.
-	•	Peer Review:
-	•	Swap code with a classmate to test each other’s programs.
-	•	Provide constructive feedback.
-
-Submission Guidelines
-
-	•	Push all your files to the Week5 folder in your repository.
-	•	Ensure all scripts and functions are properly named as specified.
-	•	Double-check that all required files are included.
-	•	Verify that your code runs without errors before submission.
-
-Assistance and Resources
-
-	•	MATLAB Documentation:
-	•	Logical Arrays
-	•	Logical Indexing
-	•	Table Data Type
-	•	Office Hours:
-	•	Feel free to reach out during office hours for additional help.
-	•	Discussion Board:
-	•	Post questions and collaborate with peers on the class discussion board.

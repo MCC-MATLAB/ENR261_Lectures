@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta charset="utf-8">
-	<title>Week 2: MATLAB Variables & Data Types</title>
+	<title>Week 6: Advanced Function Files & Plotting</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
-	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/week6.css">
 	<link rel="stylesheet" href="/dist/site.css">
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+
 </head>
 <body>
 <div class="reveal">
@@ -29,6 +30,8 @@
 
 			## Topics Covered:
 			* Advanced Function Files 📂
+			* Checking for Optional Parameters 📝
+			* Subfunctions 🧩
 			* Debugging and Error Handling 🐞
 			* 2D Plotting Techniques 📉
 			* 3D Plotting Techniques 📊
@@ -37,17 +40,18 @@
 		<section data-markdown>
         <textarea data-template>
 			## Advanced Function Files 📂
-			### User Defined Functions and Scripts:
-			* Functions vs. Commands: Functions are separate from the command workspace, making them modular and reusable.
-			* Function Syntax:
+			### User-Defined Functions and Scripts:
+			* **Functions vs. Commands**: Functions are separate from the command workspace, making them modular and reusable.
+			* **Function Syntax**:
 			```matlab
-			function output = functionName(input)
-			% Function body
-			output = ...;
+			function [output1, output2] = functionName(input1, input2)
+			    % Function body
+			    output1 = ...;
+			    output2 = ...;
 			end
 			```
 
-			💡 Tip: Functions are the building blocks of modular code. Keep them focused on specific tasks for better reusability.
+			💡 **Tip**: Functions are the building blocks of modular code. Keep them focused on specific tasks for better reusability.
 
 			--
 
@@ -55,204 +59,1034 @@
 			#### Simple Function:
 			```matlab
 			function volume = volumeSphere(radius)
-			volume = (4/3) * pi * (radius^3);
+			    volume = (4/3) * pi * (radius^3);
 			end
 			```
 			#### Function with Multiple Inputs:
 			```matlab
 			function x = displacement(xo, vo, a, t)
-			x = xo + vo.*t + (1/2).*a.*t.^2;
+			    x = xo + vo.*t + (1/2).*a.*t.^2;
 			end
 			```
 			#### Function with Multiple Outputs:
 			```matlab
 			function [a, f] = particleAcceleration(v2, v1, t2, t1, m)
-			a = (v2 - v1) / (t2 - t1);
-			f = m .* a;
+			    a = (v2 - v1) / (t2 - t1);
+			    f = m .* a;
 			end
 			```
-			🔄 Analogy: Think of functions as specialized tools in a toolbox, each designed to perform a specific task efficiently.
+
+	        --
 
 			#### Notes on Functions:
-			* Naming Convention: Use camelCase or underscores for readability.
-			* Element-wise Operations: Ensure correct use of element-wise operations (.*, ./, .^) when working with arrays.
-			* Comments and Documentation: Essential for understanding and maintaining code. Always document what your function does and how to use it.
+			* **Naming Convention**: Use camelCase or underscores for readability.
+			* **Element-wise Operations**: Ensure correct use of element-wise operations (`.*`, `./`, `.^`) when working with arrays.
+			* **Comments and Documentation**: Essential for understanding and maintaining code. Always document what your function does and how to use it.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Checking for Optional Parameters 📝
+			### Handling Optional Arguments:
+			* **Using `nargin`**: Check the number of input arguments.
+			* **Assign Default Values**: If an optional parameter is not provided, assign a default value.
+
+			#### Example:
+			```matlab
+			function result = computeArea(radius, shape)
+			    if nargin < 2
+			        shape = 'circle'; % Default shape
+			    end
+			    switch shape
+			        case 'circle'
+			            result = pi * radius^2;
+			        case 'sphere'
+			            result = 4 * pi * radius^2;
+			        otherwise
+			            error('Unknown shape');
+			    end
+			end
+			```
+			💡 **Tip**: Handling optional parameters makes your functions more flexible and user-friendly.
+
+	        --
+
+			#### Using `varargin` and `varargout`:
+			* **`varargin`**: Allows functions to accept any number of input arguments.
+			* **`varargout`**: Allows functions to return any number of output arguments.
+
+			#### Example:
+			```matlab
+			function varargout = flexibleFunction(varargin)
+			    for k = 1:nargin
+			        varargout{k} = varargin{k}^2;
+			    end
+			end
+			```
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Subfunctions 🧩
+			### Defining Subfunctions:
+			* **Subfunctions** are additional functions defined in the same file as the main function.
+			* They are only accessible within the file they are defined.
+
+			#### Example:
+			```matlab
+			function mainResult = mainFunction(input)
+			    % Main function code
+			    helperResult = helperFunction(input);
+			    mainResult = helperResult + 10;
+			end
+
+			function output = helperFunction(input)
+			    % Subfunction code
+			    output = input * 2;
+			end
+			```
+			💡 **Tip**: Use subfunctions to break down complex tasks and keep related functions together.
+
+	        --
+
+			### Benefits of Subfunctions:
+			* **Encapsulation**: Keeps helper functions hidden from the outside scope.
+			* **Organization**: Helps in organizing code logically within a single file.
+			* **Maintainability**: Easier to manage and debug related functions.
+
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Persistent and Global Variables
+			#### Persistent Variables:
+			* Retain their value between function calls.
+			* Useful for maintaining state information.
+
+			#### Example:
+			```matlab
+			function total = runningTotal(newValue)
+			    persistent sumTotal
+			    if isempty(sumTotal)
+			        sumTotal = 0;
+			    end
+			    sumTotal = sumTotal + newValue;
+			    total = sumTotal;
+			end
+			```
+
+	        --
+
+			#### Global Variables:
+			* Are accessible from the command window and other functions.
+			* Should be used sparingly due to potential side effects.
+
+			#### Example:
+			```matlab
+			function h = falling(t)
+			    global GRAVITY
+			    h = 0.5 * GRAVITY * t.^2;
+			end
+
+			% In the command window or another script:
+			global GRAVITY
+			GRAVITY = 9.81;
+			```
+			⚠️ **Gotcha**: Use global variables sparingly. They can make code harder to debug and maintain because they introduce dependencies across different functions.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## Debugging and Error Handling 🐞
+			### Types of Errors:
+			* **Syntax Errors**: Detected during script execution, often highlighted in the editor.
+			* **Runtime Errors**: Occur during program execution, often due to unexpected input or operations.
+			* **Logic Errors**: Incorrect program logic that results in incorrect outputs, even though the code runs without errors.
+
+			### Debugging Techniques:
+			* **Breakpoints**: Set breakpoints to pause execution and inspect variables.
+			    ```matlab
+			    dbstop if error
+			    ```
+			* **Try/Catch Blocks**: Handle errors gracefully.
+			    ```matlab
+			    try
+			        % Statements that may cause an error
+			    catch exception
+			        % Statements to execute in case of an error
+			        disp('An error occurred.');
+			        disp(exception.message);
+			    end
+			    ```
+
+	        --
+
+			#### Example:
+			```matlab
+			try
+			    result = 10 / 0;
+			catch exception
+			    disp('Error: Division by zero');
+			    disp(exception.message);
+			end
+			```
+			💡 **Tip**: Use the MATLAB debugger to step through your code line by line.
+		</textarea>
+		</section>
+		<section data-markdown>
+        <textarea data-template>
+			## 2D Plotting Techniques 📉
+			### Basic 2D Plot:
+			* **Plot Command**:
+			    ```matlab
+			    x = 0:0.1:10;
+			    y = sin(x);
+			    plot(x, y);
+			    title('Sine Wave');
+			    xlabel('x');
+			    ylabel('sin(x)');
+			    grid on;
+			    ```
+			💡 **Tip**: Always label your axes and add a title to your plots for clarity.
 
 			--
 
-			### Persistent and Global Variables:
-			#### Persistent Variables:
-			Retain their value between function calls.
-			```matlab
-			function findSum(inputvalue)
-			persistent SUM_X
-			if isempty(SUM_X)
-			SUM_X = 0;
-			end
-			SUM_X = SUM_X + inputvalue;
-			end
-			```
-			#### Global Variables:
-			Are accessible from the command window and other functions.
-			```matlab
-			function h = falling(t)
-			global GRAVITY
-			h = 1/2 * GRAVITY * t.^2;
-			end
-			```
-			⚠️ Gotcha: Use global variables sparingly. They can make code harder to debug and maintain because they introduce dependencies across different functions.
+			### Multiple Curves:
+			* **Using Hold**:
+			    ```matlab
+			    plot(x, y1);
+			    hold on;
+			    plot(x, y2);
+			    hold off;
+			    ```
+			* **Multiple Plot Command**:
+			    ```matlab
+			    plot(x, y1, x, y2);
+			    ```
+
 		</textarea>
 		</section>
 		<section data-markdown>
-        <textarea data-template>
-			Debugging and Error Handling 🐞
-			Types of Errors:
-			Syntax Errors: Detected during script execution, often highlighted in the editor.
-			Runtime Errors: Occur during program execution, often due to unexpected input or operations.
-			Logic Errors: Incorrect program logic that results in incorrect outputs, even though the code runs without errors.
-			Debugging Techniques:
-			Breakpoints: Set breakpoints to pause execution and inspect variables.
-			matlab
-			dbstop if error
+		<textarea data-template>
+			## Creating Plot Grids with Subplots 🗺️
 
-			Try/Catch Blocks: Handle errors gracefully.
-			matlab
-			try
-			% Statements that may cause an error
-			catch exception
-			% Statements to execute in case of an error
-			disp('An error occurred.');
-			disp(exception.message);
-			end
+			### Using Subplots to Display Multiple Plots in One Figure:
 
-			Example:
+			- **Basic Syntax:**
+			  ```matlab
+			  subplot(m, n, p);
+			  ```
+			  - `m`: Number of rows
+			  - `n`: Number of columns
+			  - `p`: Position of the current plot
 
-			matlab
-			try
-			result = 10 / 0;
-			catch exception
-			disp('Error: Division by zero');
-			end
+		</textarea>
+		</section>
+		<section>
+			<h4>Grid of Plots with <code>subplot</code>:</h4>
+			<div class="side-by-side">
+				<div>
+					<p><strong>Example Code:</strong></p>
+					<pre><code class="language-matlab">x = 0:0.1:10;
+y1 = sin(x);
+y2 = cos(x);
+y3 = tan(x);
+y4 = exp(-x);
 
-			🔄 Analogy: Debugging is like detective work, where you trace through the code to find the source of the problem.
+figure;
+subplot(2, 2, 1);
+plot(x, y1);
+title('Sine Function');
+
+subplot(2, 2, 2);
+plot(x, y2);
+title('Cosine Function');
+
+subplot(2, 2, 3);
+plot(x, y3);
+title('Tangent Function');
+
+subplot(2, 2, 4);
+plot(x, y4);
+title('Exponential Decay');</code></pre>
+					<p><strong>Explanation</strong>: This code creates a 2x2 grid of plots in a single figure window.</p>
+				</div>
+				<div>
+					<img src="../../images/plots/GridPlot.png" alt="2x2 Grid of Plots" style="width: 1000px;">
+				</div>
+			</div>
+		</section>
+		<section data-markdown>
+		<textarea data-template>
+
+			### Adjusting Layout:
+
+			- **Spacing and Margins:**
+			  ```matlab
+			  subplot('Position', [left, bottom, width, height]);
+			  ```
+			- **Using `tiledlayout` for More Control:**
+			  ```matlab
+			  tiledlayout(2,2);
+			  nexttile;
+			  plot(x, y1);
+			  % Repeat for other plots
+			  ```
+
+			💡 **Tip:** Use `tiledlayout` for more advanced layout options in newer MATLAB versions.
+
 		</textarea>
 		</section>
 		<section data-markdown>
+		<textarea data-template>
+
+			### Customizing Plots:
+			* **Line Style, Color, and Marker**:
+			    ```matlab
+			    plot(x, y, 'r-.*');
+			    ```
+			* **Axis Limits**:
+			    ```matlab
+			    axis([xmin, xmax, ymin, ymax]);
+			    ```
+			* **Annotations**:
+			    ```matlab
+			    text(2, 0.9, 'Annotated Text');
+				gtext('Place me anywhere');
+			    ```
+			* **Legends**:
+			    ```matlab
+			    legend('Curve 1', 'Curve 2');
+			    ```
+			💡 **Tip**: Use legends to distinguish between multiple data sets on the same plot. This makes your plot more informative.
+
+		</textarea>
+		</section>
+		<section data-markdown>
+		<textarea data-template>
+			## Managing Figure Windows 🖼️
+
+			### Creating Multiple Figures:
+
+			- **Opening New Figure Windows:**
+			  ```matlab
+			  figure(1); % Opens or switches to figure window 1
+			  plot(x1, y1);
+			  title('Figure 1');
+
+			  figure(2); % Opens or switches to figure window 2
+			  plot(x2, y2);
+			  title('Figure 2');
+			  ```
+			- **Explanation:** Using `figure(n)` allows you to create and manage multiple figure windows.
+
+			--
+
+			### Closing Figure Windows:
+
+			- **Close Specific Figure:**
+			  ```matlab
+			  close(1); % Closes figure window 1
+			  ```
+			- **Close All Figures:**
+			  ```matlab
+			  close all; % Closes all open figure windows
+			  ```
+			- **💡 Tip:** It's good practice to use `close all` at the beginning of scripts to ensure no old figures interfere with new plots.
+
+		</textarea>
+		</section>
+		<section>
+			<h3>Different Types of 2D Plots:</h3>
+			<section>
+				<h4>Stem Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: For discrete data points.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = 0:10;
+y = x.^2;
+stem(x, y);
+title('Stem Plot of y = x^2');
+xlabel('x');
+ylabel('y');
+grid on;</code></pre>
+						<p><strong>Description</strong>: Displays data as lines extending from a baseline with markers
+							at
+							the data values.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/StemPlot.png" alt="Stem Plot" style="width: 1000px;">
+					</div>
+				</div>
+
+			</section>
+			<section>
+				<h4>Bar Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Comparing quantities across categories.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">categories = {'A', 'B', 'C', 'D'};
+values = [23, 45, 12, 37];
+bar(values);
+set(gca, 'XTickLabel', categories);
+title('Bar Plot Example');
+ylabel('Values');</code></pre>
+						<p><strong>Description</strong>: Represents data with rectangular bars proportional to the
+							values
+							they represent.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/BarChart.png" alt="Bar Plot" style="width: 1000px;">
+					</div>
+				</div>
+
+			</section>
+			<section>
+				<h4>Scatter Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Displaying relationships between two variables.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = randn(100,1);
+y = randn(100,1);
+scatter(x, y, 'filled');
+title('Scatter Plot Example');
+xlabel('x');
+ylabel('y');
+grid on;</code></pre>
+						<p><strong>Description</strong>: Shows individual data points to highlight the distribution and
+							relationship between variables.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/ScatterPlot.png" alt="Scatter Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Histogram Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Showing the distribution of a dataset.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">data = randn(1000,1);
+histogram(data, 20);
+title('Histogram of Random Data');
+xlabel('Data Value');
+ylabel('Frequency');</code></pre>
+						<p><strong>Description</strong>: Groups data into bins and displays the frequency of data points
+							in each bin.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/HistogramPlot.png" alt="Histogram Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Area Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Displaying cumulative totals over time or categories.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = 0:0.1:10;
+y = sin(x);
+area(x, y);
+title('Area Plot of sin(x)');
+xlabel('x');
+ylabel('sin(x)');</code></pre>
+						<p><strong>Description</strong>: Similar to line plots but with the area under the line filled.
+						</p>
+					</div>
+					<div>
+						<img src="../../images/plots/AreaPlot.png" alt="Area Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Pie Charts:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Showing proportions of a whole.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">segments = [3, 7, 5, 2];
+labels = {'Segment A', 'Segment B',
+            'Segment C', 'Segment D'};
+pie(segments, labels);
+title('Pie Chart Example');</code></pre>
+						<p><strong>Description</strong>: Divides a circle into slices representing proportions of the
+							total.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/PieChart.png" alt="Pie Chart" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+		</section>
+		<section>
+			<h2>3D Plotting Techniques 📊</h2>
+			<section>
+				<h3>Basic 3D Plot:</h3>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Plot Command</strong>:</p>
+						<pre><code class="language-matlab">t = 0:0.1:10*pi;
+x = exp(-0.02*t).*sin(t);
+y = exp(-0.02*t).*cos(t);
+z = t;
+plot3(x, y, z);
+xlabel('x-axis');
+ylabel('y-axis');
+zlabel('z-axis');
+title('3D Spiral Plot');
+grid on;</code></pre>
+					</div>
+					<div>
+						<img src="../../images/plots/3DSpiralPlot.png" alt="3D Spiral" style="width: 500px;">
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Mesh and Surface Plots:</h3>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Meshgrid and Mesh Plot</strong>:</p>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(-5:0.5:5, -5:0.5:5);
+Z = X.^2 - Y.^2;
+mesh(X, Y, Z);
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');
+title('Hyperbolic Paraboloid');</code></pre>
+						<h4>Example:</h4>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+Z = sin(X).*cos(Y);
+surf(X, Y, Z);
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');
+title('3D Surface Plot');</code></pre>
+					</div>
+					<div>
+						<img src="../../images/plots/MeshGridPlot.png" alt="Mesh Grid Plot" style="width: 450px;">
+					</div>
+				</div>
+				<p>💡 <strong>Tip</strong>: Use mesh and surface plots to explore the relationships between three
+					variables visually.</p>
+			</section>
+		</section>
+		<section>
+			<h3>Different Types of 3D Plots:</h3>
+			<section>
+				<h4>Contour Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Representing 3D data in two dimensions using contour lines.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(-5:0.1:5, -5:0.1:5);
+Z = X.^2 + Y.^2;
+contour(X, Y, Z, 20);
+title('Contour Plot of Z = X^2 + Y^2');
+xlabel('X-axis');
+ylabel('Y-axis');
+colorbar;</code></pre>
+						<p><strong>Description</strong>: Shows level curves where the function has constant values.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/ContourPlot.png" alt="Contour Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Waterfall Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Visualizing slices of 3D data.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(1:0.5:10, 1:20);
+Z = sin(X) + cos(Y);
+waterfall(X, Y, Z);
+title('Waterfall Plot Example');
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');</code></pre>
+						<p><strong>Description</strong>: Displays a series of lines in a 3D plot, useful for time-series
+							data.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/WaterfallPlot.png" alt="Waterfall Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Ribbon Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Plotting 3D lines with varying width or color.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(1:0.5:10, 1:20);
+Z = sin(X) + cos(Y);
+ribbon(Z');
+title('Ribbon Plot Example');
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');</code></pre>
+						<p><strong>Description</strong>: Visualizes functions of one variable in 3D with a ribbon-like
+							appearance.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/RibbonPlot.png" alt="Ribbon Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Quiver Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Displaying vector fields.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">[X, Y] = meshgrid(-2:0.2:2, -2:0.2:2);
+U = -Y;
+V = X;
+quiver(X, Y, U, V);
+title('Quiver Plot of a Vector Field');
+xlabel('X-axis');
+ylabel('Y-axis');</code></pre>
+						<p><strong>Description</strong>: Represents vector fields using arrows to show direction and
+							magnitude.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/QuiverPlot.png" alt="Quiver Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Scatter3 Plots:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Usage</strong>: Plotting 3D scatter plots.</p>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = randn(100,1);
+y = randn(100,1);
+z = randn(100,1);
+scatter3(x, y, z, 36, z, 'filled');
+title('3D Scatter Plot Example');
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');
+colorbar;</code></pre>
+						<p><strong>Description</strong>: Displays individual data points in three dimensions.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/Scatter3Plot.png" alt="3D Scatter Plot" style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+		</section>
+		<section data-markdown>
         <textarea data-template>
-			2D Plotting Techniques 📉
-			Basic 2D Plot:
-			Plot Command:
-			matlab
-			x = 0:0.1:10;
+
+			## Curve Fitting with `polyfit` and `polyval` 📈
+			### Purpose:
+			* Fit polynomials to data for modeling and prediction.
+
+	        --
+
+			### Understanding `polyfit`:
+			* **Syntax**: `[p, S, mu] = polyfit(x, y, n);`
+			    * `p`: Coefficients of the fitted polynomial.
+			    * `S`: Structure containing error estimation information.
+			    * `mu`: Two-element vector with mean and standard deviation of `x` for centering and scaling.
+			* **Degree Selection**: Choose `n` based on the data's complexity.
+
+	        --
+
+			### Evaluating with `polyval`:
+			* **Syntax**: `[y_fit, delta] = polyval(p, x, S, mu);`
+			    * `y_fit`: Evaluated polynomial values at `x`.
+			    * `delta`: Prediction error estimates.
+			* **Using `S` and `mu`**: Improves the accuracy of predictions, especially for higher-degree polynomials.
+
+        </textarea>
+		</section>
+		<section>
+			<h3>Advanced Examples:</h3>
+			<section>
+				<h4>Data Scaling for Numerical Stability:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = linspace(1, 10, 10);
+% Noisy exponential data
+y = exp(x) + randn(size(x))*1e3;
+% Fit a 5th-degree polynomial with centering and scaling
+[p, S, mu] = polyfit(x, y, 5);
+x_fit = linspace(min(x), max(x), 100);
+[y_fit, delta] = polyval(p, x_fit, S, mu);
+plot(x, y, 'o', x_fit, y_fit, '-');
+title('Polynomial Fit with Data Scaling');
+xlabel('x');
+ylabel('y');
+legend('Data', 'Polynomial Fit');
+grid on;</code></pre>
+						<p><strong>Explanation</strong>: Scaling improves the numerical properties of the fitting
+							process.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/PolyfitNoisyExponential.png" alt="Polynomial Fit with Data Scaling"
+						     style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Calculating and Plotting Residuals:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = -10:1:10;
+y = x.^3 - 6*x.^2 + 4*x + randn(size(x))*100;
+p = polyfit(x, y, 3);
+y_fit = polyval(p, x);
+residuals = y - y_fit;
+subplot(2,1,1);
+plot(x, y, 'o', x, y_fit, '-');
+title('Cubic Polynomial Fit');
+xlabel('x');
+ylabel('y');
+legend('Data', 'Fit');
+grid on;
+subplot(2,1,2);
+stem(x, residuals);
+title('Residuals of the Fit');
+xlabel('x');
+ylabel('Residual');
+grid on;</code></pre>
+						<p><strong>Explanation</strong>: Analyzing residuals helps assess the fit's adequacy.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/ResidualsPlot.png" alt="Residuals of Polynomial Fit"
+						     style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Predicting Future Values:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = (1:10)';
+% Linear data
+y = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]';
+p = polyfit(x, y, 1);
+x_future = (11:15)';
+y_future = polyval(p, x_future);
+plot(x, y, 'o', x_future, y_future, 'x');
+title('Predicting Future Values');
+xlabel('x');
+ylabel('y');
+legend('Known Data', 'Predicted Data');
+grid on;</code></pre>
+						<p><strong>Explanation</strong>: Use the fitted model to predict values beyond the original
+							dataset.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/PredictedFailure.png" alt="Predicting Future Values"
+						     style="width: 1000px;">
+					</div>
+				</div>
+				<p>🥱 <strong>Wake up</strong> Who's been paying attention? What's wrong with this plot?</p>
+			</section>
+
+			<section>
+				<h4>Assessing Goodness of Fit with R-squared:</h4>
+				<div class="side-by-side">
+					<div>
+						<p><strong>Example</strong>:</p>
+						<pre><code class="language-matlab">x = linspace(0, 2*pi, 50);
+y = sin(x) + randn(size(x))*0.1;
+p = polyfit(x, y, 3);
+y_fit = polyval(p, x);
+SS_res = sum((y - y_fit).^2);
+SS_tot = sum((y - mean(y)).^2);
+R_squared = 1 - (SS_res / SS_tot);
+fprintf('R-squared: %.4f\n', R_squared);
+plot(x, y, 'o', x, y_fit, '-');
+title('Polynomial Fit with R-squared Calculation');
+xlabel('x');
+ylabel('y');
+legend('Data', 'Polynomial Fit');
+grid on;</code></pre>
+						<p><strong>Explanation</strong>: The R-squared value indicates how well the model explains the
+							variability of the data.</p>
+					</div>
+					<div>
+						<img src="../../images/plots/GoodnessRSquared.png" alt="R-squared Goodness of Fit"
+						     style="width: 1000px;">
+					</div>
+				</div>
+			</section>
+
+		</section>
+		<section data-markdown>
+		<textarea data-template>
+			## Animated Plots 🎞️
+
+			### Creating Basic Animations:
+
+			#### Using a Loop to Update Plot Data:
+
+			```matlab
+			x = linspace(0, 4*pi, 1000);
 			y = sin(x);
-			plot(x, y);
-			title('Sine Wave');
+
+			figure;
+			h = animatedline;
+			axis([0, 4*pi, -1, 1]);
+			title('Animated Sine Wave');
 			xlabel('x');
 			ylabel('sin(x)');
 			grid on;
 
-			💡 Tip: Always label your axes and add a title to your plots for clarity.
-
-			Multiple Curves:
-			Using Hold:
-			matlab
-			plot(x, y1);
-			hold on;
-			plot(x, y2);
-			hold off;
-
-			Multiple Plot Command:
-			matlab
-			plot(x, y1, x, y2);
-
-			Customizing Plots:
-			Line Style, Color, and Marker:
-			matlab
-			plot(x, y, 'r-.*');
-
-			Axis Limits:
-			matlab
-			axis([xmin, xmax, ymin, ymax]);
-
-			Annotations:
-			matlab
-			text(2, 90, 'Annotated Text');
-
-			Legends:
-			matlab
-			legend('Curve 1', 'Curve 2');
-
-			💡 Tip: Use legends to distinguish between multiple data sets on the same plot. This makes your plot more informative.
-		</textarea>
-		</section>
-		<section data-markdown>
-        <textarea data-template>
-			## 3D Plotting Techniques 📊
-			### Basic 3D Plot:
-			Plot Command:
-			```matlab
-			t = 0
-			/50:10pi;
-			plot3(exp(-0.02t).sin(t), exp(-0.02t).*cos(t), t);
-			xlabel('x-axis');
-			ylabel('y-axis');
-			zlabel('z-axis');
+			for k = 1:length(x)
+			    addpoints(h, x(k), y(k));
+			    drawnow;
+			end
 			```
+
+			- **Explanation:** This code creates an animated plot of a sine wave by adding points incrementally.
 
 			--
 
-			### Mesh and Surface Plots:
-			Meshgrid and Mesh Plot:
-			```matlab
-			[X, Y] = meshgrid(-5:0.5:5, -5:0.5:5);
-			Z = X.^2 - Y.^2;
-			mesh(X, Y, Z);
-			```
-			#### Example:
+			### Animating 3D Plots:
 
 			```matlab
-			[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
-			Z = sin(X).*cos(Y);
-			mesh(X, Y, Z);
-			xlabel('X-axis');
-			ylabel('Y-axis');
-			zlabel('Z-axis');
-			title('3D Mesh Plot');
-			```
-			💡 Tip: Use mesh and surface plots to explore the relationships between three variables visually.
+			t = linspace(0, 10*pi, 500);
+			x = sin(t);
+			y = cos(t);
+			z = t;
 
-			--
-
-			### Curve Fitting:
-			`Polyfit` and `Polyval` Functions:
-			```matlab
-			x = [0, 1, 2, 3, 4, 5];
-			y = [15, 10, 9, 6, 2, 0];
-			p = polyfit(x, y, 2); % Polynomial fitting
-			y_fit = polyval(p, x);
-			plot(x, y, 'o', x, y_fit, '-');
-			```
-			#### Example:
-
-			```matlab
-			x = [0, 1, 2, 3, 4, 5];
-			y = [15, 10, 9, 6, 2, 0];
-			p = polyfit(x, y, 1);
-			y_fit = polyval(p, x);
-			plot(x, y, 'o', x, y_fit, '-');
-			title('Linear Fit');
+			figure;
+			h = animatedline('Marker', 'o');
+			axis([-1, 1, -1, 1, 0, max(z)]);
+			title('Animated 3D Spiral');
 			xlabel('x');
 			ylabel('y');
-			legend('Data', 'Linear Fit');
+			zlabel('z');
+			grid on;
+			view(3);
+
+			for k = 1:length(t)
+			    addpoints(h, x(k), y(k), z(k));
+			    drawnow;
+			end
 			```
+
+			- **Explanation:** Animates a 3D spiral by updating the plot in a loop.
+
 		</textarea>
 		</section>
+		<section>
+
+			<h2>Customizing Line Styles, Colors, and Markers 🎨</h2>
+			<div class="side-by-side">
+				<table>
+					<thead>
+					<tr>
+						<th>Symbol</th>
+						<th>Line Style</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>'-'</td>
+						<td>Solid line</td>
+					</tr>
+					<tr>
+						<td>'--'</td>
+						<td>Dashed line</td>
+					</tr>
+					<tr>
+						<td>':'</td>
+						<td>Dotted line</td>
+					</tr>
+					<tr>
+						<td>'-.'</td>
+						<td>Dash-dot line</td>
+					</tr>
+					</tbody>
+				</table>
+				<table>
+					<thead>
+					<tr>
+						<th>Symbol</th>
+						<th>Marker</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>'o'</td>
+						<td>Circle</td>
+					</tr>
+					<tr>
+						<td>'+'</td>
+						<td>Plus sign</td>
+					</tr>
+					<tr>
+						<td>'*'</td>
+						<td>Asterisk</td>
+					</tr>
+					<tr>
+						<td>'.'</td>
+						<td>Point</td>
+					</tr>
+					<tr>
+						<td>'x'</td>
+						<td>Cross</td>
+					</tr>
+					<tr>
+						<td>'s'</td>
+						<td>Square</td>
+					</tr>
+					<tr>
+						<td>'d'</td>
+						<td>Diamond</td>
+					</tr>
+					<tr>
+						<td>'^'</td>
+						<td>Upward triangle</td>
+					</tr>
+					<tr>
+						<td>'v'</td>
+						<td>Downward triangle</td>
+					</tr>
+					<tr>
+						<td>'>'</td>
+						<td>Right-pointing triangle</td>
+					</tr>
+					<tr>
+						<td>'<'</td>
+						<td>Left-pointing triangle</td>
+					</tr>
+					<tr>
+						<td>'p'</td>
+						<td>Pentagram</td>
+					</tr>
+					<tr>
+						<td>'h'</td>
+						<td>Hexagram</td>
+					</tr>
+					</tbody>
+				</table>
+				<table>
+					<thead>
+					<tr>
+						<th>Symbol</th>
+						<th>Color</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>'r'</td>
+						<td>Red</td>
+					</tr>
+					<tr>
+						<td>'g'</td>
+						<td>Green</td>
+					</tr>
+					<tr>
+						<td>'b'</td>
+						<td>Blue</td>
+					</tr>
+					<tr>
+						<td>'c'</td>
+						<td>Cyan</td>
+					</tr>
+					<tr>
+						<td>'m'</td>
+						<td>Magenta</td>
+					</tr>
+					<tr>
+						<td>'y'</td>
+						<td>Yellow</td>
+					</tr>
+					<tr>
+						<td>'k'</td>
+						<td>Black</td>
+					</tr>
+					<tr>
+						<td>'w'</td>
+						<td>White</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
 		<section data-markdown>
-        <textarea data-template>
+			<textarea data-template>
+
+			### Combining Line Style, Marker, and Color:
+
+			- **Syntax:**
+			```matlab
+			plot(x, y, 'style_marker_color');
+			```
+			- **Example:**
+			```matlab
+			plot(x, y, 'r-o'); % Red solid line with circle markers
+			```
+
+			</textarea>
+		</section>
+		<section
+		<section>
+			<h4>Line Width and Marker Size:</h4>
+			<div class="side-by-side">
+				<div>
+					<p><strong>Adjusting Line Width:</strong></p>
+					<pre><code class="language-matlab">plot(x, y, 'LineWidth', 2);</code></pre>
+					<p><strong>Adjusting Marker Size:</strong></p>
+					<pre><code class="language-matlab">plot(x, y, 'MarkerSize', 10);</code></pre>
+
+
+					<h4>Example:</h4>
+					<pre><code class="language-matlab">x = 0:0.1:2*pi;
+y = sin(x);
+
+figure;
+plot(x, y, 'b-.*', 'LineWidth',
+		1.5, 'MarkerSize', 8);
+title('Customized Sine Wave');
+xlabel('x');
+ylabel('sin(x)');
+grid on;</code></pre>
+				</div>
+				<div>
+					<img src="../../images/plots/LineWidthMarkerSizePlot.png" alt="Customized Plott"
+					     style="width: 550px;">
+				</div>
+			</div>
+			<p><strong>Explanation</strong>: This plot uses a blue solid line with asterisk markers, sets the
+				line width to 1.5, and marker size to 8.</p>
+		</section>
+
+		</section>
+		<section data-markdown>
+		<textarea data-template>
 			## Key Takeaways 🎓
-			Functions enhance code modularity and reusability.
-			Debugging is essential for identifying and fixing errors in your code.
-			MATLAB provides powerful tools for 2D and 3D plotting, which are crucial for data visualization.
+			* Functions enhance code modularity and reusability.
+			* Handling optional parameters and using subfunctions increase function flexibility and organization.
+			* Debugging is essential for identifying and fixing errors in your code.
+			* MATLAB provides powerful tools for 2D and 3D plotting, which are crucial for data visualization.
+			* Curve fitting with `polyfit` and `polyval` is essential for data modeling and prediction.
 
 			--
 
@@ -260,21 +1094,23 @@
 			* Always comment your code to improve readability and maintainability.
 			* Regularly test your functions with different inputs to ensure correctness.
 			* Use the MATLAB documentation and help functions to explore more plotting options and techniques.
+			* Experiment with different polynomial degrees when using `polyfit` to find the best model.
 
 			--
 
 			## Gotchas to Watch Out For ⚠️
-			* Variable Scope: Be aware of variable scope, especially within functions. Avoid using global variables unless absolutely necessary.
-			* Overwriting Functions: Avoid naming variables the same as existing MATLAB functions to prevent unexpected behavior.
-			* Debugging: Use breakpoints and step through code to understand the flow and catch errors early.
+			* **Variable Scope**: Be aware of variable scope, especially within functions. Avoid using global variables unless absolutely necessary.
+			* **Overwriting Functions**: Avoid naming variables the same as existing MATLAB functions to prevent unexpected behavior.
+			* **Debugging**: Use breakpoints and step through code to understand the flow and catch errors early.
+			* **Overfitting**: Be cautious of overfitting when using high-degree polynomials with `polyfit`.
 
 			--
 
 			## Analogies 🔄
-			* Functions: Functions are like tools in a toolbox, each designed for a specific task.
-			* Plotting: Plotting data is like creating a map, where each plot type represents different ways to visualize data.
-			* Debugging: Debugging is like detective work, where you trace through the code to find the source of the problem.
-
+			* **Functions**: Functions are like tools in a toolbox, each designed for a specific task.
+			* **Plotting**: Plotting data is like creating a map, where each plot type represents different ways to visualize data.
+			* **Debugging**: Debugging is like detective work, where you trace through the code to find the source of the problem.
+			* **Curve Fitting**: Curve fitting is like tailoring a suit to fit data perfectly, but too tight a fit may not be comfortable (overfitting).
 		</textarea>
 		</section>
 
