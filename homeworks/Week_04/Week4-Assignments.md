@@ -7,7 +7,7 @@
 
       % Student: Firstname Lastname
       % Assisted by: Firstname Lastname, etc.
-* Ensure your scripts include the following to clear the workspace and command window
+* Ensure your **scripts** (**Not functions**) include the following to clear the workspace and command window
 
       clc;
       clear;

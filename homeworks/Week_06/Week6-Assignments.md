@@ -96,13 +96,6 @@ The plot would display two datasets:
 * One for the actual stress and strain curve.
 * One for the best fit line.
 
-The plot shall include:
-
-* X-axis: Distance (meters).
-* Y-axis: Height (meters).
-* A legend indicating the optimal angle and the user-defined angle as follows.
-* (No need to match colors, or line styles, simply meet the above requirements).
-
 ![img.png](BrassStressStrain.png)
 
 ### Data Files

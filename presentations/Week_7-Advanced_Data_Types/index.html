@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Week 7: Advanced Data Types - Structures, Cell Arrays, and Tables 🗃️</title>
+
+    <link rel="stylesheet" href="/dist/reveal.css">
+    <link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="/plugin/highlight/matlab.css">
+    <link rel="stylesheet" href="/dist/site.css">
+    <link rel="stylesheet" href="/dist/week7.css">
+    <link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section data-markdown>
+        <textarea data-template>
+            # Week 7: Advanced Data Types 🗃️
+
+            ## Objectives:
+            * Understand and utilize structures in MATLAB 📦.
+            * Learn about cell arrays and their applications 🧩.
+            * Explore MATLAB tables for data organization and manipulation 📊.
+
+            ---
+            ## Topics Covered:
+            * Structures (`struct`) 📦
+            * Cell Arrays (`cell`) 🧩
+            * Tables (`table`) 📊
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Structures in MATLAB 📦
+
+            ### What is a Structure?
+
+            - A **structure** is a data type that groups related data using data containers called **fields**.
+            - Each field can contain any type of data.
+
+            **Example**:
+            ```matlab
+            student.name = 'Alice';
+            student.age = 20;
+            student.grades = [90, 85, 92];
+            ```
+
+            ---
+            ### Creating Structures
+
+            **Method 1: Using Dot Notation**
+
+            ```matlab
+            person.name = 'Bob';
+            person.age = 25;
+            person.isStudent = true;
+            ```
+
+            **Method 2: Using the `struct` Function**
+
+            ```matlab
+            car = struct('make', 'Toyota', 'model', 'Camry', 'year', 2020);
+            ```
+
+            ---
+            ### Accessing and Modifying Fields
+
+            - Access fields using dot notation.
+
+            ```matlab
+            name = student.name;
+            student.age = 21;  % Modify the age field
+            ```
+
+            - Adding new fields:
+
+            ```matlab
+            student.major = 'Engineering';
+            ```
+
+            - Removing fields:
+
+            ```matlab
+            student = rmfield(student, 'grades');
+            ```
+
+            - Using Dynamic Field Names:
+
+                ```matlab
+                fieldName = 'age';
+                value = student.(fieldName);
+                ```
+
+            ---
+            ### Arrays of Structures
+
+            - You can create arrays where each element is a structure.
+
+            ```matlab
+            students(1).name = 'Alice';
+            students(1).age = 20;
+
+            students(2).name = 'Bob';
+            students(2).age = 22;
+            ```
+
+            - Access elements:
+
+            ```matlab
+            students(1).name  % Returns 'Alice'
+            ```
+
+            ---
+            ### Nested Structures
+
+            - Structures can contain other structures.
+
+            ```matlab
+            company.name = 'TechCorp';
+            company.employee.name = 'Charlie';
+            company.employee.position = 'Engineer';
+            ```
+
+            - Access nested fields:
+
+            ```matlab
+            position = company.employee.position;
+            ```
+
+            ---
+            ### Looping Through Structure Arrays
+
+            **Example**:
+
+            ```matlab
+            for i = 1:length(students)
+                fprintf('Student %d: %s, Age: %d\n', i, students(i).name, students(i).age);
+            end
+            ```
+
+            ---
+            ### Practical Example: Student Database
+
+            **Objective**: Create a structure array to store student information.
+
+            **Steps**:
+
+            ```matlab
+            % Initialize the structure array
+            students = struct('name', {}, 'age', {}, 'grades', {});
+
+            % Add students
+            students(1).name = 'Alice';
+            students(1).age = 20;
+            students(1).grades = [90, 85, 92];
+
+            students(2).name = 'Bob';
+            students(2).age = 22;
+            students(2).grades = [88, 79, 95];
+
+            % Accessing data
+            avgGrade = mean(students(1).grades);
+            fprintf('%s\'s average grade: %.2f\n', students(1).name, avgGrade);
+            ```
+
+            💡 **Tip**: Preallocate structure arrays for efficiency.
+
+            ---
+            ### Gotchas with Structures
+
+            - **Field Names Are Case-Sensitive**:
+
+                ```matlab
+                student.Name = 'Alice';  % Different from student.name
+                ```
+
+            - **Accessing Non-Existent Fields**:
+
+                ```matlab
+                % This will throw an error if 'major' doesn't exist
+                major = student.major;
+                ```
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Cell Arrays in MATLAB 🧩
+
+            ### What is a Cell Array?
+
+            - A **cell array** is a data type that allows storage of data of varying types and sizes.
+            - Elements can be accessed using curly braces `{}`.
+
+            **Example**:
+
+            ```matlab
+            C = {'Text', 123, [1, 2, 3]; true, @sin, {'Nested', 'Cell'}};
+            ```
+
+            ---
+            ### Creating Cell Arrays
+
+            **Method 1: Using Curly Braces**
+
+            ```matlab
+            cellArray = {1, 'Hello', [1, 2, 3]};
+            ```
+
+            **Method 2: Using the `cell` Function**
+
+            ```matlab
+            C = cell(2, 3);  % Creates a 2x3 cell array of empty matrices
+            ```
+
+            ---
+            ### Accessing Cell Array Elements
+
+            - **Access Cells** (the containers) using parentheses `()`:
+
+                ```matlab
+                cellRef = cellArray(1);  % Returns a 1x1 cell
+                ```
+
+            - **Access Contents** (the data inside) using curly braces `{}`:
+
+                ```matlab
+                content = cellArray{1};  % Returns the actual data
+                ```
+
+            - **Accessing Multiple Elements**:
+
+                ```matlab
+                contents = cellArray{1:2};  % Returns multiple outputs
+                ```
+
+            ---
+            ### Modifying Cell Arrays
+
+            - **Assigning to Cells**:
+
+                ```matlab
+                cellArray{2} = 'World';
+                ```
+
+            - **Appending Data**:
+
+                ```matlab
+                cellArray{end+1} = 3.14;
+                ```
+
+            - **Deleting Elements**:
+
+                ```matlab
+                cellArray(2) = [];  % Removes the second cell
+                ```
+
+            ---
+            ### Common Cell Array Functions
+
+            - **`cellfun`**: Apply a function to each cell.
+
+                ```matlab
+                lengths = cellfun(@length, cellArray);
+                ```
+
+            - **`iscell`**: Check if a variable is a cell array.
+
+                ```matlab
+                isCellArray = iscell(cellArray);
+                ```
+
+            - **Converting Between Cell and Regular Arrays**:
+
+                ```matlab
+                % From cell to matrix (if possible)
+                mat = cell2mat(cellArray);
+                % From matrix to cell
+                C = num2cell([1, 2, 3]);
+                ```
+
+            ---
+            ### Practical Example: Mixed Data Types
+
+            **Objective**: Store and manipulate data of different types.
+
+            **Example**:
+
+            ```matlab
+            data{1} = 'Temperature';
+            data{2} = [72, 75, 78, 80];
+            data{3} = datetime('now');
+
+            % Accessing data
+            fprintf('%s data recorded on %s\n', data{1}, datestr(data{3}));
+            temps = data{2};
+            avgTemp = mean(temps);
+            fprintf('Average temperature: %.2f°F\n', avgTemp);
+            ```
+
+            ---
+            ### Gotchas with Cell Arrays
+
+            - **Indexing Errors**:
+
+                - Using `()` vs. `{}` incorrectly.
+
+                ```matlab
+                % Incorrect: Returns a cell, not the content
+                value = cellArray(1);
+
+                % Correct:
+                value = cellArray{1};
+                ```
+
+            - **Combining Cells and Arrays**:
+
+                - Concatenation requires careful handling.
+
+                ```matlab
+                % Horizontal concatenation
+                newCellArray = [cellArray, {newElement}];
+
+                % Vertical concatenation
+                newCellArray = [cellArray; {newElement}];
+                ```
+
+            - **Performance Considerations**:
+
+                - Cell arrays are flexible but can be slower than regular arrays.
+
+            ---
+            ### 💡 Tips for Using Cell Arrays
+
+            - Use cell arrays when you need to store heterogeneous data.
+            - Preallocate cell arrays for better performance:
+
+                ```matlab
+                C = cell(1, N);  % Preallocate a 1xN cell array
+                ```
+
+            - Use `cellfun` for applying functions without explicit loops.
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Tables in MATLAB 📊
+
+            ### What is a Table?
+
+            - A **table** is a data type suitable for storing column-oriented or tabular data.
+            - Tables can store variables of different types but with the same number of rows.
+
+            **Example**:
+
+            ```matlab
+            T = table(['Alice'; 'Bob'], [25; 30], [68; 75], 'VariableNames', {'Name', 'Age', 'Weight'});
+            ```
+
+            ---
+            ### Creating Tables
+
+            **Method 1: From Variables**
+
+            ```matlab
+            Name = {'Alice'; 'Bob'; 'Charlie'};
+            Age = [25; 30; 35];
+            Height = [65; 70; 68];
+
+            T = table(Name, Age, Height);
+            ```
+
+            **Method 2: Reading from Files**
+
+            ```matlab
+            T = readtable('data.csv');
+            ```
+
+            ---
+            ### Accessing Data in Tables
+
+            - **By Variable Names**:
+
+                ```matlab
+                ages = T.Age;
+                ```
+
+            - **By Row and Variable Indices**:
+
+                ```matlab
+                value = T{2, 'Height'};  % Accesses the second row, 'Height' variable
+                ```
+
+            - **Using Dot Notation**:
+
+                ```matlab
+                T.Weight = [150; 180; 175];  % Adds a new variable
+                ```
+
+            ---
+            ### Modifying Tables
+
+            - **Adding Rows**:
+
+                ```matlab
+                newRow = {'David', 28, 72};
+                T = [T; newRow];
+                ```
+
+            - **Adding Variables (Columns)**:
+
+                ```matlab
+                T.BMI = T.Weight ./ (T.Height * 0.0254).^2;
+                ```
+
+            - **Renaming Variables**:
+
+                ```matlab
+                T.Properties.VariableNames{'Height'} = 'HeightInches';
+                ```
+
+            ---
+            ### Table Properties
+
+            - **Variable Names**:
+
+                ```matlab
+                varNames = T.Properties.VariableNames;
+                ```
+
+            - **Row Names**:
+
+                ```matlab
+                T.Properties.RowNames = {'Row1', 'Row2', 'Row3'};
+                ```
+
+            - **Description and Units**:
+
+                ```matlab
+                T.Properties.Description = 'Participant Data';
+                T.Properties.VariableUnits = {'', 'years', 'inches', 'kg/m^2'};
+                ```
+
+            ---
+            ### Table Operations
+
+            - **Sorting Rows**:
+
+                ```matlab
+                T = sortrows(T, 'Age');  % Sorts table by 'Age' in ascending order
+                ```
+
+            - **Filtering Data**:
+
+                ```matlab
+                T_over30 = T(T.Age > 30, :);
+                ```
+
+            - **Merging Tables**:
+
+                ```matlab
+                T_full = join(T1, T2, 'Keys', 'Name');
+                ```
+
+            - **Grouping and Aggregation**:
+
+                ```matlab
+                % Group by a variable and compute mean
+                avgHeight = varfun(@mean, T, 'GroupingVariables', 'Age');
+                ```
+
+            ---
+            ### Practical Example: Data Analysis
+
+            **Objective**: Analyze participant data stored in a table.
+
+            **Steps**:
+
+            ```matlab
+            % Create a table
+            Name = {'Alice'; 'Bob'; 'Charlie'};
+            Age = [25; 30; 35];
+            Height = [65; 70; 68];
+            Weight = [130; 180; 160];
+
+            T = table(Name, Age, Height, Weight);
+
+            % Calculate BMI
+            T.BMI = T.Weight ./ (T.Height * 0.0254).^2;
+
+            % Filter participants with BMI over 25
+            overweight = T(T.BMI > 25, :);
+
+            % Display results
+            disp('Participants with BMI over 25:');
+            disp(overweight);
+            ```
+
+            ---
+            ### Gotchas with Tables
+
+            - **Variable Names Must Be Valid MATLAB Identifiers**:
+
+                ```matlab
+                % Invalid variable name
+                T.'First Name' = {'Alice'; 'Bob'};
+                % Use valid names or set 'VariableNames' property
+                ```
+
+            - **Accessing Data with Incorrect Indexing**:
+
+                ```matlab
+                % Incorrect: Using parentheses returns a subtable
+                subTable = T(1, 'Age');
+
+                % Correct: Using curly braces returns the data
+                ageValue = T{1, 'Age'};
+                ```
+
+            - **Mixing Data Types**:
+
+                - Ensure that each variable (column) contains data of the same type.
+
+            ---
+            ### 💡 Tips for Using Tables
+
+            - Use tables for data analysis tasks involving heterogeneous data.
+            - Utilize table functions like `summary`, `head`, `tail` for quick insights.
+
+                ```matlab
+                summary(T);
+                ```
+
+            - Tables integrate well with MATLAB's plotting functions.
+
+                ```matlab
+                scatter(T.Age, T.BMI);
+                xlabel('Age');
+                ylabel('BMI');
+                ```
+
+        </textarea>
+        </section>
+
+        <section>
+            <h2>Comparing Structures, Cell Arrays, and Tables</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Structures</th>
+                    <th>Cell Arrays</th>
+                    <th>Tables</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Heterogeneous Data</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">✅</td>
+                </tr>
+                <tr>
+                    <td>Named Fields/Variables</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">❌</td>
+                    <td style="text-align: center">✅</td>
+                </tr>
+                <tr>
+                    <td>Indexed Access</td>
+                    <td style="text-align: center">Limited</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">✅</td>
+                </tr>
+                <tr>
+                    <td>Size Flexibility</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">✅</td>
+                    <td style="text-align: center">Rows only</td>
+                </tr>
+                <tr>
+                    <td>Ideal Use Case</td>
+                    <td style="text-align: center">Complex data</td>
+                    <td style="text-align: center">Mixed types</td>
+                    <td style="text-align: center">Tabular Data</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+            ### Choosing the Right Data Type
+
+            - **Structures**:
+
+                - Use when you need to group related data with named fields.
+                - Ideal for representing complex objects.
+
+            - **Cell Arrays**:
+
+                - Use when you need indexed access to heterogeneous data.
+                - Suitable for lists of mixed-type data.
+
+            - **Tables**:
+
+                - Use for column-oriented data analysis.
+                - Provides rich functionality for data manipulation.
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Key Takeaways 🎓
+
+            - **Structures** are versatile containers with named fields, ideal for complex data.
+            - **Cell Arrays** allow storage of heterogeneous data with indexed access.
+            - **Tables** are powerful for organizing and analyzing tabular data with different types.
+            - Choose the appropriate data type based on the nature of your data and task requirements.
+
+        </textarea>
+        </section>
+
+        <section data-background-image="/images/gotcha/star-wars-its-a-trap.png">
+            <div class="fragment fade-in-then-semi-out" style="background-color: rgba(var(--background-color-rgb), 0.80);">
+                <h2 id="gotchas">Gotchas:</h2>
+                <ul>
+                    <li><strong>Indexing Errors</strong>:
+
+                        - Using <code>()</code> vs. <code>{}</code> for cell arrays.
+                        - Accessing fields that don't exist in structures.
+
+                    </li>
+                    <li><strong>Variable Names in Tables</strong>:
+
+                        - Must be valid identifiers.
+                        - Be cautious when renaming or adding variables.
+
+                    </li>
+                    <li><strong>Data Consistency</strong>:
+
+                        - Ensure data types are consistent within variables (columns) in tables.
+
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h1>Further Resources 📚</h1>
+            <ul>
+                <li><a href="https://www.mathworks.com/help/matlab/structures.html">MATLAB Documentation: Structures</a></li>
+                <li><a href="https://www.mathworks.com/help/matlab/cell-arrays.html">MATLAB Documentation: Cell Arrays</a></li>
+                <li><a href="https://www.mathworks.com/help/matlab/tables.html">MATLAB Documentation: Tables</a></li>
+            </ul>
+        </section>
+
+    </div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        },
+
+        math: {
+            // Choose the math rendering library (MathJax or KaTeX)
+            // Available values: 'mathjax2', 'mathjax3', 'katex'
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            // Optionally specify the CDN for KaTeX
+            katex: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js',
+            // The math renderer to use (we'll use KaTeX)
+            renderer: 'katex',
+
+            // Delimiters for LaTeX equations
+            // You can customize these as needed
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // KaTeX-specific options
+            katexOptions: {
+                macros: {
+                    "\\RR": "\\mathbb{R}"
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
