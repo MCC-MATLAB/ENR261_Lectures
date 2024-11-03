@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Week 10: PID Control and Algorithm Analysis</title>
+
+    <link rel="stylesheet" href="/dist/reveal.css">
+    <link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="/plugin/highlight/matlab.css">
+    <link rel="stylesheet" href="/dist/week1.css">
+    <link rel="stylesheet" href="/dist/site.css">
+    <link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section data-markdown>
+        <textarea data-template>
+            # Week 10: PID Control and Algorithm Analysis
+
+            ## Objectives:
+            * Understand the basics of PID control 🛠️.
+            * Apply PID tuning to practical systems like line-following robots 🤖 and spring-damper systems 🏋️.
+            * Analyze and improve algorithm performance 📊.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## What is PID Control? 🛠️
+            **PID** stands for **Proportional-Integral-Derivative**.
+            It is a control loop mechanism that continuously calculates an error value as the difference between a desired setpoint and a measured process variable.
+
+            ### Components:
+            * **P (Proportional)**: Reacts to the present error.
+            * **I (Integral)**: Reacts to accumulated past errors.
+            * **D (Derivative)**: Predicts future errors to mitigate oscillations.
+
+            **Key Objective**: Adjust system inputs to achieve a stable, desired output.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## How Do PID Components Work? 📊
+
+            ### Proportional Control (P)
+            * Adjusts output proportional to the current error.
+            * **Larger Kp** = Faster response, but can cause overshoot.
+
+            ### Integral Control (I)
+            * Addresses accumulated error over time.
+            * **Larger Ki** = Eliminates steady-state error, but can lead to "windup."
+
+            ### Derivative Control (D)
+            * Reacts to the rate of change of error.
+            * **Larger Kd** = Reduces overshoot and smooths response, but sensitive to noise.
+        </textarea>
+        </section>
+
+        <section>
+            <h2>Simple Line Follow</h2>
+            <h3>Single Sensor</h3>
+
+            <div class="side-by-side">
+                <div>
+                    <ul>
+                        <li>Favor one side</li>
+                        <li>When you see the line, apply an opposing force for some time</li>
+                        <li>Very inefficient</li>
+                        <li>What happens if you overshoot?</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/week10/basic-line-follow.png">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Less Simple Line Follow</h2>
+            <h3>Two Sensors</h3>
+
+            <div class="side-by-side">
+                <div>
+                    <ul>
+                        <li>When you see the line, apply power to the alternate motor</li>
+                        <li>Still inefficient</li>
+                        <li>What happens if you overshoot?</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/week10/less-basic-line-follow.png">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Better Line Follow</h2>
+            <h3>Many Sensors</h3>
+
+            <div class="side-by-side">
+                <div>
+                    <ul>
+                        <li>Gives the ability to apply analog adjustments</li>
+                        <li>More Efficient</li>
+                        <li>Better adjustment based on distance</li>
+                        <li>What happens if you overshoot?</li>
+                        <li>Without PID though, still inefficient</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="/images/week10/line-follow.png">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>PID Line Follow</h2>
+            <img src="/images/week10/line-follow-flow.png" style="height: 650px">
+        </section>
+
+        <section>
+            <h2>Proportional</h2>
+            <p>$$ u(t) = K_p e(t) + K_i \int_{0}^{t} e(\tau) d\tau + K_d \frac{de(t)}{dt} $$</p>
+            <img src="/images/week10/proportional.png" style="height: 500px">
+
+        </section>
+
+        <section>
+            <h2>Integral</h2>
+            <p>$$ u(t) = K_p e(t) + K_i \int_{0}^{t} e(\tau) d\tau + K_d \frac{de(t)}{dt} $$</p>
+            <img src="/images/week10/integral.png" style="height: 400px">
+        </section>
+
+        <section>
+            <h2>Derivative</h2>
+            <p>$$ u(t) = K_p e(t) + K_i \int_{0}^{t} e(\tau) d\tau + K_d \frac{de(t)}{dt} $$</p>
+            <img src="/images/week10/derivative.png" style="height: 400px">
+        </section>
+
+        <section>
+            <h2>Simply Put</h2>
+            <img src="/images/week10/line-follow-flow.png" style="height: 600px">
+        </section>
+        
+        <section data-markdown>
+        <textarea data-template>
+            ## Practical Tips for PID Tuning 🛠️
+            ### General Guidelines:
+            * Start by setting **Ki** and **Kd** to 0.
+            * Gradually increase **Kp** until the system oscillates, then back it off.
+            * Increase **Ki** to eliminate any residual steady-state error.
+            * Adjust **Kd** to reduce overshooting and smooth out oscillations.
+
+            **💡 Tip**: Fine-tuning each parameter requires careful observation of the system’s behavior.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Identifying Good vs. Bad PID Tuning 📊
+            ### Characteristics of Good PID Tuning:
+            * Quick response to reach the setpoint.
+            * Minimal overshoot.
+            * Stable, steady behavior without oscillations.
+
+            --
+
+            ### Bad PID Example:
+            ![Bad PID Example](/images/week10/D-Too-High.png)
+
+            --
+
+            ### Causes for bad PID
+            * **Overshoot & Oscillation**: High **Kp**, low **Kd**.
+            * **Slow Response**: Low **Kp**, low **Ki**.
+            * **Integral Windup**: High **Ki** causing prolonged error correction.
+
+            --
+
+            ### Good PID Example:
+            ![Good PID Example](/images/week10/pretty-good.png)
+
+            --
+
+            ### Good PID Characteristics
+            * Smooth, quick, and stable response.
+            * Staying relatively close to the setpoint/goal
+            * Keeping the position at 0
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Line-Following Robot Example 🤖
+            ### Objective:
+            Use PID to adjust motor speeds to keep a robot centered on a line.
+            * **Input**: Sensor readings from Pololu line sensor array.
+            * **Setpoint**: 3500 when the line is centered.
+
+            ### Example Code:
+            ```matlab
+            [time, sensorReading, leftMotorSpeed, rightMotorSpeed, position] = ...
+            simulateLineFollowerPololu(Kp, Ki, Kd, 3500, setpoint, randomSeed);
+            ```
+
+            **Adjust Kp, Ki, Kd** to improve line-following performance.
+            * Compare plots of sensor readings and motor speeds to fine-tune.
+        </textarea>
+        </section>
+
+<!--        <section data-markdown>-->
+<!--        <textarea data-template>-->
+<!--            ## DC Motor Control Example 📈-->
+<!--            ### Applying PID to DC Motor Speed Control:-->
+<!--            * **Input**: Desired speed and actual speed.-->
+<!--            * **Output**: Adjust motor voltage to reach setpoint.-->
+
+<!--            ```matlab-->
+<!--            [t, x] = simulatePIDControl(m, c, k, Kp, Ki, Kd, setpoint);-->
+<!--            ```-->
+<!--            * Monitor how quickly the motor reaches the set speed and how stable it remains.-->
+
+<!--            &#45;&#45;-->
+
+<!--            ### What to Look For:-->
+<!--            * **Overshooting & Settling Time**: Indicates need for Kd adjustment.-->
+<!--            * **Steady-State Error**: Adjust Ki to correct any offset.-->
+<!--        </textarea>-->
+<!--        </section>-->
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Algorithm Analysis: Performance Evaluation 📊
+            ### How to Analyze PID Performance:
+            * **Sensor Readings**: How accurately does the system follow the setpoint?
+            * **Motor Speeds**: Check for smooth, consistent adjustments.
+            * **Position Tracking**: Verify if the system remains stable over time.
+
+            **Key Metrics**:
+            * Overshoot
+            * Settling Time
+            * Steady-State Error
+            * Response Time
+
+            **💡 Tip**: Visualize these metrics with MATLAB plots.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Practical Example: Adjusting PID for Best Results 🛠️
+            ### Approach:
+            1. Set initial **Kp** to respond quickly to errors.
+            2. Tune **Ki** to reduce steady-state error.
+            3. Adjust **Kd** to dampen oscillations.
+
+            ### Simulation Examples:
+            Compare your tuning results:
+            * Last run (lighter colors) vs. current run (regular colors).
+            * Visualize differences to understand the effect of each parameter.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Key Takeaways 🎓
+            * PID is fundamental for controlling dynamic systems.
+            * Tuning involves balancing **P**, **I**, and **D** parameters.
+            * Use MATLAB to simulate and refine control algorithms.
+            * Consistent testing and visualization are essential for effective tuning.
+
+            --
+
+            ## Additional Tips 💡
+            * Experiment with different random seeds to test robustness.
+            * Save simulation results for easy comparison.
+            * Regularly adjust and observe how each change affects performance.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+            ## Gotchas to Watch Out For ⚠️
+            * **High Kp**: Can lead to overshoot and instability.
+            * **High Ki**: May cause integral windup.
+            * **Inadequate Kd**: Will not dampen oscillations effectively.
+            * **Random Deviations**: Ensure the system performs well even with unpredictable inputs.
+        </textarea>
+        </section>
+
+    </div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        },
+        math: {
+            // Choose the math rendering library (MathJax or KaTeX)
+            // Available values: 'mathjax2', 'mathjax3', 'katex'
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            // Optionally specify the CDN for KaTeX
+            katex: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js',
+            // The math renderer to use (we'll use KaTeX)
+            renderer: 'katex',
+
+            // Delimiters for LaTeX equations
+            // You can customize these as needed
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // KaTeX-specific options
+            katexOptions: {
+                macros: {
+                    "\\RR": "\\mathbb{R}"
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
