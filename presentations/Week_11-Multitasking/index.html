@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Week 11: Multitasking in a Single-Threaded Environment</title>
+
+	<link rel="stylesheet" href="/dist/reveal.css">
+	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <!-- Title Slide -->
+        <section data-markdown>
+        <textarea data-template>
+            # Week 11: Multitasking in a Single-Threaded Environment 🧵
+
+            ## Objectives:
+            * Understand the limitations of single-threaded environments 🧐.
+            * Learn how to implement multitasking using event loops 🔄.
+            * Avoid blocking functions like `pause` to keep applications responsive 🚫⏸️.
+            * Discuss multitasking, multithreading, and hyperthreading concepts 💡.
+
+            --
+            ## Topics We'll Cover:
+            1. Introduction to Single-Threaded Programming 🖥️
+            2. Multitasking Concepts 🧠
+            3. The Event Loop Concept 🔄
+            4. Blocking vs. Non-Blocking Code 🚫⏸️
+            5. Practical Examples in MATLAB 💻
+            6. Best Practices 📝
+            7. Advanced Concepts 🌟
+
+        </textarea>
+        </section>
+
+        <!-- Introduction Slide with Visual -->
+        <section>
+            <h2>Introduction to Single-Threaded Programming 🖥️</h2>
+
+            <p><strong>Single-Threaded Constraints:</strong></p>
+            <ul>
+                <li>Only one task executes at a time.</li>
+                <li>Need to manage multiple tasks efficiently.</li>
+                <li>Real-time responsiveness is critical.</li>
+            </ul>
+            <p><strong>Why It Matters:</strong> Understanding these constraints helps us design better applications that remain responsive and efficient.</p>
+
+        </section>
+
+        <!-- Multitasking Concepts with Interactive Question -->
+        <section>
+            <h2>Understanding Multitasking in Single-Threaded Environments 🧠</h2>
+            <p><strong>What is Multitasking?</strong></p>
+            <ul>
+                <li><em>Simulated Concurrency:</em> Switching between tasks rapidly to appear simultaneous.</li>
+                <li><em>Task Interleaving:</em> Executing parts of multiple tasks in turns.</li>
+            </ul>
+            <p><strong>Limitations:</strong></p>
+            <ul>
+                <li>No true parallelism—only one instruction executes at any moment.</li>
+                <li>Risk of blocking—long-running tasks can prevent others from executing.</li>
+            </ul>
+            <div class="interactive">
+                <p><strong>Question:</strong> How can we handle multiple tasks efficiently in a single-threaded environment?</p>
+                <!-- Pause for audience to think or discuss -->
+            </div>
+        </section>
+
+        <!-- The Event Loop Concept with Analogy -->
+        <section>
+            <h2>The Event Loop Concept 🔄</h2>
+            <p><strong>What is an Event Loop?</strong></p>
+            <ul>
+                <li>A continuous loop that checks for and handles events or tasks.</li>
+                <li>Keeps the application responsive by not blocking execution.</li>
+            </ul>
+            <div class="analogy">
+                <p><strong>Analogy:</strong> An event loop is like a chef in a busy kitchen, juggling multiple dishes by attending to each one in quick succession, ensuring everything cooks perfectly without burning anything.</p>
+            </div>
+            <div>
+                <img src="/images/week11/event_loop.png" alt="Event Loop Illustration" style="width: 600px;">
+            </div>
+        </section>
+
+        <section>
+            <h2>The Event Loop Concept 🔄</h2>
+            <ul>
+                <li>Can also simply poll the same tasks/events</li>
+            </ul>
+            <div>
+                <img src="/images/week11/event_loop2.png" alt="Event Loop Illustration" style="width: 600px;">
+            </div>
+        </section>
+
+        <!-- Blocking vs. Non-Blocking Code with Examples -->
+        <section>
+            <h2>Blocking vs. Non-Blocking Code 🚫⏸️</h2>
+            <section>
+                <h3>Blocking Functions</h3>
+                <ul>
+                    <li><strong>Definition:</strong> Functions that halt program execution until an operation completes.</li>
+                    <li><strong>Examples:</strong> <code>pause</code>, <code>wait</code>, or any long-running computation.</li>
+                </ul>
+                <div class="code-example">
+                    <p><strong>Example of Blocking Code:</strong></p>
+                    <pre><code class="language-matlab">pause(5); % Program stops here for 5 seconds</code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Why Blocking is Problematic</h3>
+                <ul>
+                    <li>Other tasks can't run during the block.</li>
+                    <li>Unresponsive applications lead to poor user experience.</li>
+                    <li>Critical events may be missed.</li>
+                </ul>
+                <div class="alert">
+                    <p><strong>Remember:</strong> In single-threaded environments, blocking functions halt everything!</p>
+                </div>
+            </section>
+            <section>
+                <h3>Non-Blocking Alternatives</h3>
+                <ul>
+                    <li>Use elapsed time checks to decide when to execute tasks.</li>
+                    <li>Implement state machines to manage task progress.</li>
+                    <li>Regularly poll for conditions without stopping execution.</li>
+                </ul>
+                <div class="code-example">
+                    <p><strong>Example of Non-Blocking Code:</strong></p>
+                    <pre><code class="language-matlab">if (toc(startTime) >= interval)
+    % Perform task
+end</code></pre>
+                </div>
+            </section>
+        </section>
+
+        <!-- Practical Example: Blinking an LED with pause -->
+        <section>
+            <h2>Practical Examples in MATLAB 💻</h2>
+            <section>
+                <h3>Example 1: Blinking an LED with <code>pause</code> 🚨</h3>
+                <p><strong>Problem Statement:</strong> Blink an LED using <code>pause</code> for delays.</p>
+                <div class="code-example">
+                    <p><strong>Code Snippet:</strong></p>
+                    <pre><code class="language-matlab">function blinkLed(app)
+    app.led.Enable = true;
+    pause(1);
+    app.led.Enable = false;
+    pause(1);
+end</code></pre>
+                </div>
+                <p><strong>Issue:</strong> The <code>pause</code> function blocks execution, preventing other tasks from running.</p>
+                <div class="alert">
+                    <p><strong>Consequence:</strong> The program becomes unresponsive during the pause.</p>
+                </div>
+            </section>
+
+            <!-- Solution: Introducing Timing Without pause -->
+            <section>
+                <h3>Example 2: Blinking an LED Without <code>pause</code> ⏱️</h3>
+                <p><strong>Solution:</strong> Use elapsed time to schedule tasks without blocking.</p>
+                <div class="code-example">
+                    <p><strong>Improved Code Snippet (using static variables):</strong></p>
+                    <pre><code class="language-matlab">function toggleLED(app, currentTime)
+    persistent lastToggleTime;
+    if isempty(lastToggleTime)
+        lastToggleTime = currentTime;
+    end
+
+    % If duration is met, THEN execute task
+end</code></pre>
+                </div>
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li>The main loop continues to run.</li>
+                    <li>Other tasks can execute without delay.</li>
+                    <li>The program remains responsive performing other tasks very quickly.</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- Scaling Up with Visual Flowchart -->
+        <section>
+            <h2>Scaling Up: Managing Multiple Tasks 📈</h2>
+            <p><strong>Objective:</strong> Create a GUI where different components update at different intervals.</p>
+            <p><strong>Implementation Strategy:</strong></p>
+            <ul>
+                <li>Assign each task a <code>lastRunTime</code>.</li>
+                <li>Define intervals for each task.</li>
+                <li>Check all tasks within the main loop.</li>
+            </ul>
+            <div class="code-example">
+                <p><strong>Sample Loop:</strong></p>
+                <pre><code class="language-matlab">while true
+    currentTime = toc(startTime);
+    updateTimer(app, currentTime);
+    toggleLED1(app, currentTime);
+    readSensor(app, currentTime);
+    % Add more tasks as needed
+end</code></pre>
+            </div>
+        </section>
+
+        <!-- Best Practices with Icons -->
+        <section>
+            <h2>Best Practices in Single-Threaded Multitasking 📝</h2>
+            <section>
+                <h3><i class="fa fa-ban"></i> Avoid Blocking Operations</h3>
+                <ul>
+                    <li>Do not use <code>pause</code>, <code>wait</code>, or long computations in tasks.</li>
+                    <li>Ensure tasks complete quickly.</li>
+                </ul>
+            </section>
+            <section>
+                <h3><i class="fa fa-cogs"></i> Efficient Task Design</h3>
+                <ul>
+                    <li>Keep tasks short and efficient.</li>
+                    <li>Use modular code; separate tasks into functions.</li>
+                </ul>
+            </section>
+            <section>
+                <h3><i class="fa fa-database"></i> State Management</h3>
+                <ul>
+                    <li>Use <code>persistent</code> variables to maintain task states.</li>
+                    <li>Consider using data structures for managing multiple tasks.</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- Interactive Slide: Common Pitfalls -->
+        <section>
+            <h2>Common Pitfall to Avoid ⚠️</h2>
+            <div class="interactive">
+                <p><strong>Can you identify what's wrong with the following code snippet?</strong></p>
+                <pre><code class="language-matlab">function toggleLED(app, currentTime)
+    if (currentTime - lastToggleTime) >= 1
+        app.led.Enable = ~app.led.Enable;
+    end
+end</code></pre>
+            </div>
+        </section>
+
+        <!-- Tips with Icons -->
+        <section>
+            <h2>Tips and Tricks 💡</h2>
+            <ul>
+                <li><i class="fa fa-bug"></i> <strong>Use the Debugger:</strong> Step through your code to find issues.</li>
+                <li><i class="fa fa-print"></i> <strong>Output Statements:</strong> Use <code>disp</code> and <code>fprintf</code> to monitor variables.</li>
+                <li><i class="fa fa-clock-o"></i> <strong>Timing Functions:</strong> Use <code>tic</code> and <code>toc</code> to measure execution time.</li>
+                <li><i class="fa fa-users"></i> <strong>Collaborate:</strong> Discuss your code with peers for other solutions.</li>
+            </ul>
+        </section>
+
+        <!-- Key Takeaways with Summary Points -->
+        <section>
+            <h2>Key Takeaways 🎓</h2>
+            <ul>
+                <li>Event loops are essential for multitasking in single-threaded environments.</li>
+                <li>Avoid blocking functions to maintain responsiveness.</li>
+                <li>Time-based scheduling effectively manages task execution.</li>
+                <li>State management is critical for tracking task progress.</li>
+                <li>These concepts are directly applicable to microcontroller programming.</li>
+            </ul>
+            <div class="quote">
+                <p><em>"Efficient multitasking is about smart scheduling, not about doing everything at once."</em></p>
+            </div>
+        </section>
+
+
+    </div>
+</div>
+<script src="/dist/reveal.js"></script>
+<script src="/plugin/markdown/markdown.js"></script>
+<script src="/plugin/highlight/highlight.js"></script>
+<script src="/plugin/notes/notes.js"></script>
+<script src="/plugin/math/math.js"></script>
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+
+        // Custom delimiters for slides, subslides, and notes
+        markdown: {
+            slideSeparator: '---',   // Horizontal slide separator
+            verticalSeparator: '--', // Vertical slide (subslide) separator
+        }
+    });
+
+</script>
+</body>
+</html>
