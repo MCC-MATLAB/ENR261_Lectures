@@ -48,3 +48,9 @@ Hakim's open source work is supported by <a href="https://github.com/sponsors/ha
 <div align="center">
   MIT licensed | Copyright © 2011-2024 Hakim El Hattab, https://hakim.se
 </div>
+
+---
+For creating Homework PDFs use the following
+```shell
+pandoc ./homeworks/Week_06/Week6-Assignments.md -o ./homeworks/Week_06/Week6-Assignments.pdf --include-in-header=./homeworks/header.tex --resource-path=./homeworks/Week_06
+```

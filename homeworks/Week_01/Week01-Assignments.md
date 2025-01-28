@@ -2,7 +2,7 @@
 
 ## Global Requirements
 
-* All deliverables shall be added, committed, and pushed to your `Week1` folder in your repository.
+* All deliverables shall be `added`, `committed`, and `pushed` to your `Week1` folder in your repository.
 
 ## 1. Exploring the MATLAB Interface
 
@@ -31,7 +31,7 @@ Perform a guided tour of the MATLAB interface.
 
 Practice using basic MATLAB commands and performing simple calculations.
 
-### Instructions
+### Requirements
 
 - In the Command Window, try performing basic arithmetic using different variables.
 - Use commands like `clc` to clear the Command Window, `clear` to remove variables from the Workspace, and `whos` to
@@ -47,39 +47,20 @@ Practice using basic MATLAB commands and performing simple calculations.
 
 ---
 
-## 3. Simple Script Creation
-
-### Task
-
-Write a simple script to perform a basic task.
-
-### Instructions
-
-- Create a new script in the MATLAB Editor and save it as `calculate_area.m`.
-- The script should calculate the area of a rectangle using variables for length and width.
-- Print the result in a user-friendly format.
-
-### Deliverables
-
-1. Submit the script file (`calculate_area.m`). Include comments explaining each line of your code. Test the script with
-   different values for length and width, and note down the results.
-
----
-
-## 4. Using the Help System
+## 3. Using the Help System
 
 ### Task
 
 Learn to use MATLAB’s help system to find information on specific commands and functions.
 
-### Instructions
+### Requirements
 * Use the `help` command or MATLAB documentation to research the following three MATLAB functions: `fprintf`, `plot`,
   and `disp`.
 * For each function:
     * Write a brief summary of what it does.
     * Provide an example of how to use it, including comments explaining your understanding.
     * Experiment with the function in MATLAB by creating a simple example (e.g., use `fprintf` to format and display a
-      message, use `plot` to create a basic graph, use `disp` to display text or variables).
+      message, use `plot` to create a basic graph, use `disp` to display text, variables, or a combo).
 
 #### Tips for Exploration
 
@@ -93,6 +74,36 @@ Learn to use MATLAB’s help system to find information on specific commands and
 1. Submit a report (`functions_exploration.txt`) with a summary and example for each
    function (`fprintf`, `plot`, `disp`).
 1. Include a simple MATLAB script (`functions_exploration.m`) that demonstrates your examples.
+
+---
+
+## 4. Simple Script Creation
+
+### Task
+
+Write a simple script to perform a basic task; calculate the area of a rectangle.
+
+### Requirements
+
+- Create a new script in the MATLAB Editor and save it as `calculate_area.m`.
+- The script should calculate the area of a rectangle using variables for length and width.
+- Print the result in a user-friendly format using `disp` or, `fprintf` to achieve the output shown in the example. 
+  - The area of a \<length\> by \<width\> rectangle is \<result\>
+
+### Tips
+  - You will need to read the `help` on `disp` to learn how to display text and numbers together.
+  - In order to print numbers and text (strings), you need to convert numbers to a string
+
+### Example Output
+
+```matlab
+The area of a 5 by 10 rectangle is 50
+```
+
+### Deliverables
+
+1. Submit the script file (`calculate_area.m`). Include comments explaining each line of your code. Test the script with
+   different values for length and width, and note the results.
 
 ---
 

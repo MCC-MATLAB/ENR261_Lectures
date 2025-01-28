@@ -137,7 +137,7 @@
 			<h3>Computation Notation:</h3>
 
 			<ul>
-				<li>MATLAB uses standard mathematical operators: `+`, `-`, `*`, `/`, `^`.</li>
+				<li>MATLAB uses standard mathematical operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>.</li>
 				<li>Try to guess the output for the following:</li>
 			</ul>
 
@@ -214,7 +214,7 @@
 			<ul>
 				<li><code>camelCase</code></li>
 				<li><code>snake_case</code></li>
-				<li><code>ALL_CAPS`, `SCREAMING_SNAKE_CASE</code></li>
+				<li><code>ALL_CAPS</code>, <code>SCREAMING_SNAKE_CASE</code></li>
 			</ul>
 
 			<div class="fragment fade-up" style="padding-top: 20px">
@@ -222,10 +222,11 @@
 
 				<pre class="code-wrapper" style="width: 40%">
                     <code class="matlab language-matlab">
-	MAX_FRUIT_ALLOWED = 15
-	numApples = 5
-	numOranges = 10
-	fruitCount = a * b
+MAX_FRUIT_ALLOWED = 15
+numApples = 5
+numOranges = 10
+fruitCount = a + b
+withinLimit = fruitCount <= MAX_FRUIT_ALLOWED
                     </code>
                 </pre>
 			</div>
@@ -249,46 +250,43 @@
         </textarea>
 		</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ### Interactive Exercise:
-
-            - Try the following:
-
-            ```matlab
-            radius = 7
-            height = 10
-            volume = (pi * radius^2 * height) / 3
-            ```
-        </textarea>
-		</section>
-
 		<!-- Slide: Algorithm Development Process -->
 		<section>
-			<h2>Algorithm Development Process 🗺️</h2>
+			<section>
+				<h2>Algorithms</h2>
+				<h3>What is an Algorithm?</h3>
+				<div class="fragment fade-up">
+					Put simply, an algorithm is a set of instructions to complete a task or solve a problem.
+				</div>
+			</section>
+			<section>
+				<h2>Algorithm Development Process 🗺️</h2>
 
-			<ol>
-				<li><strong>Analyze the problem</strong> – Just like planning a trip, figure out where you want to go.
-				</li>
-				<li><strong>Define inputs</strong> – Pack your bags! What do you need to go on your trip?</li>
-				<li><strong>Perform Manipulations</strong> – Map out your route, how are you going to get there?</li>
-				<li><strong>Produce Output(s)</strong> – Arrive at your destination!</li>
-			</ol>
+				<ol>
+					<li><strong>Analyze the problem</strong> – Just like planning a trip, figure out where you want to go.
+					</li>
+					<li><strong>Define inputs</strong> – Pack your bags! What do you need to go on your trip?</li>
+					<li><strong>Perform Manipulations</strong> – Map out your route, how are you going to get there?</li>
+					<li><strong>Produce Output(s)</strong> – Arrive at your destination!</li>
+				</ol>
 
-			<div class="fragment fade-up">
-				<h3 style="padding-top: 20px">Best Practices:</h3>
-				<ul>
-					<li><strong>Commenting</strong>: Use comments (<code>%</code>) to explain your code. This helps
-						others (and future you) understand
-						what your code does.
-					</li>
-					<li><strong>Incremental Development</strong>: Write and test small pieces of code before integrating
-						them into a larger
-						program.
-					</li>
-				</ul>
-			</div>
+				<div class="fragment fade-up">
+					<h3 style="padding-top: 20px">Best Practices:</h3>
+					<ul>
+						<li><strong>Commenting</strong>: Use comments (<code>%</code>) to explain your code. This helps
+							others (and future you) understand
+							what your code does.
+						</li>
+						<li><strong>Incremental Development</strong>: Write and test small pieces of code before integrating
+							them into a larger
+							program.
+						</li>
+					</ul>
+				</div>
+			</section>
 		</section>
+
+
 
 		<!-- Slide: Problem Solving Example -->
 		<section>
@@ -319,6 +317,32 @@
 					</p>
 				</li>
 			</ol>
+		</section>
+
+		<section>
+			<h3>Interactive Exercise:</h3>
+			<h4>Let's compute the volume of a cone:</h4>
+
+			<div class="fragment fade code-output-container">
+				<pre><code class="matlab hljs language-matlab">radius = 7</code></pre>
+				<pre class="output">radius =
+
+	7</pre>
+			</div>
+			<div class="fragment fade code-output-container">
+				<pre><code class="matlab hljs language-matlab">height = 10</code></pre>
+				<pre class="output">height =
+
+	10</pre>
+			</div>
+			<div class="fragment fade code-output-container">
+				<pre><code class="matlab hljs language-matlab">volume = (pi * radius^2 * height) / 3</code></pre>
+				<pre class="output">
+volume =
+
+	513.1268</pre>
+			</div>
+
 		</section>
 
 
@@ -391,9 +415,34 @@
             % Compute and display the volume of a cone
             radius = 6;
             height = 12;
-            volume = (pi * radius^2 * height) / 3;
+            volume = (pi * radius^2 * height) / 3
             ```
         </textarea>
+		</section>
+
+		<section>
+			<h2>Suppressing Output & Displaying Results</h2>
+			<p>In MATLAB, a semicolon <code>;</code> at the end of a line suppresses output. But what if you want to display something?</p>
+			<ul>
+				<li><strong>disp(variable)</strong>: A quick way to show the value of <code>variable</code> in the Command Window.</li>
+				<li><strong>fprintf(format, variables...)</strong>: For formatted output, similar to <code>printf</code> in C.</li>
+			</ul>
+
+			<pre class="code-wrapper" style="width: 50%;">
+        <code class="matlab language-matlab">
+% Example of using disp vs. fprintf
+
+radius = 6;
+height = 12;
+volume = (pi * radius^2 * height) / 3;  % Volume of a cone
+
+% Quick display:
+disp(volume)
+
+% Formatted display:
+fprintf('The volume of the cone is %.2f cubic units.\n', volume);
+        </code>
+    </pre>
 		</section>
 
 		<!-- Slide: Creating Quality Work -->

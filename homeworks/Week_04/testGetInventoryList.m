@@ -16,7 +16,7 @@ function testGetInventoryList()
         assert(inventory.upc(1) == 123456789012);
         assert(strcmp(inventory.ingredient{2}, 'Onion'));
         assert(inventory.qty(2) == 10);
-    catch
+    catch ME
         cleanup(testFile);
         rethrow(ME)
     end
