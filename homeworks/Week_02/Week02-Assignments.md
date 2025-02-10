@@ -2,11 +2,13 @@
 
 ## Global Requirements
 
-* All deliverables shall be added, committed, and pushed to your `Week2` folder in your repository.
-* All files shall have your name and the name of anyone who you worked with using the following format.
-
-      % Student: Firstname Lastname
-      % Assisted by: first person, second person, etc.
+* All deliverables shall be added, committed, and pushed to your `Week02` folder in your repository.
+* At the **top** of each `.m` file, please include:
+   ```matlab
+  % Student: Firstname Lastname
+  % Assisted by: first person, second person, etc.
+  clc; clear;
+   ```
 
 ---
 
@@ -20,7 +22,8 @@ Write a MATLAB script that performs basic matrix and vector arithmetic.
 
 **Objectives**:
 
-- Take note of the results, see how the element-wise operations are applied.
+- Practice element-wise operations, matrix addition, subtraction, and scalar multiplication.
+- Use either `disp` or `fprintf` to show your results
 
 **Steps**:
 
@@ -36,20 +39,25 @@ Write a MATLAB script that performs basic matrix and vector arithmetic.
 
 2. **Matrix Addition**:
    - Add matrices `A` and `B` and store the result in a new matrix `C`.
+   - Display `C` with a clear label (e.g., `disp('Matrix C:')`, `disp(C)` or use `fprintf`).
 
 3. **Matrix Subtraction**:
-   - Subtract matrix `B` from matrix `A` and store the result in a new matrix `D`.
+   - Subtract `B` from `A` and store the result in a new matrix `D`.
+   - Display `D`
 
 4. **Element-wise Multiplication**:
-   - Multiply matrices `A` and `B` element by element (use the `.*` operator) and store the result in matrix `E`.
+   - Multiply `A` and `B` element by element (use the `.*`) and store the result in `E`.
+   - Display `E`
 
 5. **Matrix Scalar Multiplication**:
-   - Multiply matrix `A` by a scalar value (for example, 2) and store the result in matrix `F`.
+   - Multiply matrix `A` by a scalar value (for example, 2) and store the result in `F`.
+   - Display `F`
 
 ### Deliverables
 
-1. Submit the script file (`matrixOperations.m`) that contains all matrix operations and their results.
+1. `matrixOperations.m` containing all of the above steps.
 2. Include comments explaining what each part of the code does.
+3. Use `disp` or `fprintf` to **clearly** present each result (Do not use unsuppressed MATLAB output)
 
 ---
 
@@ -64,24 +72,25 @@ Write a MATLAB script that demonstrates basic vector operations.
 **Steps**:
 
 1. **Create a Row Vector**:
-   - Define a row vector `x` with elements [1, 3, 5, 7, 9].
+   - Define a row vector `x` with elements `[1, 3, 5, 7, 9]`.
 
 2. **Create a Column Vector**:
-   - Define a column vector `y` with elements [2; 4; 6; 8; 10].
+   - Define a column vector `y` with elements `[2; 4; 6; 8; 10]`.
 
 3. **Element-wise Multiplication**:
-   - Multiply the row vector `x` by the column vector `y` element by element (use the `.*` operator).
+   - Multiply the `x` by `y` element by element (use `.*`).
 
 4. **Vector Transposition**:
-   - Transpose the row vector `x` to a column vector.
+   - Transpose the row vector `x` to a column vector and store it as `xT`.
 
 5. **Vector Summation**:
    - Find the sum of all elements in vector `x` using the `sum` function.
+   - Display the sum of x in a clear format (e.g., "The sum of x is...")
 
 ### Deliverables
 
-1. Submit the script file (`vectorOperations.m`) that includes all vector operations.
-2. Include comments explaining what each part of the code does.
+1. `vectorOperations.m` containing all vector operations.
+2. Add **comments** explaining each step.
 
 ---
 
@@ -96,10 +105,10 @@ Write a MATLAB script that creates a basic line plot.
 **Steps**:
 
 1. **Create a Time Vector**:
-   - Define a vector `time = [0, 1, 2, 3, 4, 5];`.
+   - `time = [0, 1, 2, 3, 4, 5];`.
 
 2. **Create a Distance Vector**:
-   - Define a vector `distance = [0, 10, 20, 30, 40, 50];`.
+   - `distance = [0, 10, 20, 30, 40, 50];`.
 
 3. **Plot the Data**:
    - Use the `plot` function to plot `time` on the x-axis and `distance` on the y-axis.
@@ -110,16 +119,16 @@ Write a MATLAB script that creates a basic line plot.
 
 ### Deliverables
 
-1. Submit the script file (`simplePlot.m`) that creates the plot.
-2. Include comments explaining what each part of the code does.
+1. `simplePlot.m` which creates the plot.
+2. **Comments** explaining each part of the code.
 
 ---
 
-## 4. Comprehensive MATLAB Script
+## 4. Material Properties Calculation
 
 ### Task
 
-Create a MATLAB script that performs multiple calculations related to material properties and visualizes the results.
+Create a MATLAB script that performs calculations for **stress** and **strain** and then visualizes the results
 
 ### Instructions
 
@@ -127,42 +136,42 @@ Create a MATLAB script that performs multiple calculations related to material p
 
 **Objectives**:
 
-- Calculate stress and strain for a material using vectors.
+- Calculate stress and strain using **vector** operations.
 - Visualize the stress-strain relationship with a plot.
 
 **Steps**:
 
 1. **Variable Initialization**:
-   * Define a vector `forces = [100, 200, 300, 400, 500];` (in Newtons).
-   - Define a scalar `crossSectionArea = 50;` (in square millimeters).
-   - Define a vector `displacements = [0.1, 0.2, 0.3, 0.4, 0.5];` (in millimeters).
-   - Define a scalar `originalLength = 100;` (in millimeters).
+   - Define a vector `forces = [100, 200, 300, 400, 500];` (in Newtons).
+   - Define a scalar `crossSectionArea = 50;` (in mm^2).
+   - Define a vector `displacements = [0.1, 0.2, 0.3, 0.4, 0.5];` (in mm).
+   - Define a scalar `originalLength = 100;` (in mm).
 
 2. **Stress Calculation**:
    - Calculate the stress using the formula $$ \text{stress} = \frac{\text{force}}{\text{crossSectionArea}} $$ for each force value.
-   - Store the results in a vector `stress`.
+   - Store the results in `stress`. Use element-wise calculations where needed.
 
 3. **Strain Calculation**:
    - Calculate the strain using $$ \text{strain} = \frac{\text{displacement}}{\text{originalLength}} $$ for each displacement value.
-   - Store the results in a vector `strain`.
+   - Store the results in `strain`. Use element-wise calculations where needed.
 
-4. **Stress-Strain Plot**:
+4. **Plot the Stress-Strain Curve**:
    - Plot the stress-strain curve using the calculated values.
-   - Label the x-axis as "Strain" and the y-axis as "Stress (MPa)".
+   - Label the x-axis as "Strain" and the y-axis as "Stress (N/mm^2)".
    - Add a title "Stress-Strain Curve".
 
 ### Deliverables
 
-1. Submit the script file (`materialProperties.m`) containing all calculations and the plot.
-2. Include comments explaining each calculation and the purpose of the plot.
+1. `materialProperties.m` containing all calculations and the plot.
+2. Comments explaining each calculation and the final purpose of the plot.
 
 ---
 
-## 5. Comprehensive MATLAB Script: Physics Simulation and Analysis Toolbox
+## 5. Projectile Motion Simulation
 
 ### Task
 
-Simulate the motion of a projectile under gravity and visualize the results.
+Simulate the vertical motion of a projectile under gravity, and visualize the results.
 
 ### Instructions
 
@@ -170,13 +179,13 @@ Simulate the motion of a projectile under gravity and visualize the results.
 
 **Objectives**:
 
-- Simulate vertical motion under gravity using given initial conditions.
-- Visualize the motion using a time vs. height plot.
+- Compute the projectile’s height at different times using vectorized operations.
+- Visualize the motion using time vs. height.
 
 **Steps**:
 
 1. **Variable Initialization**:
-   - Define constants: `gravity = 9.81;` and `initialVelocity = 50;` (in m/s).
+   - Define constants: `gravity = 9.81;` (m/s^2) and `initialVelocity = 50;` (m/s).
    - Create a time vector `time = 0:0.1:10;` (representing 0 to 10 seconds).
 
 2. **Height Calculation**:
@@ -190,8 +199,8 @@ Simulate the motion of a projectile under gravity and visualize the results.
 
 ### Deliverables
 
-1. Submit the script file (`projectileMotion.m`) with all calculations and the plot.
-2. Include comments explaining each calculation and the purpose of the plot.
+1. `projectileMotion.m` with calculations and the plot.
+2. Comments explaining each calculation and the purpose of the final plot.
 
 ---
 
@@ -239,7 +248,7 @@ fprintf('The total cost of the grocery items is: %.2f\n', sum(totalCost));
 ## Definition of Done
 
 1. You shall have a GitHub Repository set up with gberl001 invited as a collaborator.
-2. Your Week2 Folder shall have the following files:
+2. Your `Week02` Folder shall have the following files:
 
    * matrixOperations.m
    * vectorOperations.m

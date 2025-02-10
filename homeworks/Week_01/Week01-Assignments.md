@@ -2,7 +2,7 @@
 
 ## Global Requirements
 
-* All deliverables shall be `added`, `committed`, and `pushed` to your `Week1` folder in your repository.
+* All deliverables shall be `added`, `committed`, and `pushed` to your `Week01` folder in your repository.
 
 ## 1. Exploring the MATLAB Interface
 
@@ -142,7 +142,7 @@ disp('The area of the circle is: ', area) % Incorrect use of disp function
 
 # Definition of Done
 1. You shall have a Github Repository set up with `gberl001` invited as a collaborator.
-2. Your Week1 Folder shall have the following files
+2. Your `Week01` Folder shall have the following files
    * buggy_script.m
    * calculate_area.m
    * debugging_report.txt

@@ -15,7 +15,7 @@
 <div class="reveal">
 	<div class="slides">
 
-		<!-- Slide:  -->
+		<!-- Slide: -->
 		<section>
 			<section>
 				<h1>Week 3: Scripts, Functions, Basic Input/Output</h1>
@@ -30,7 +30,6 @@
 				</ul>
 			</section>
 			<section>
-
 				<h2>Topics Covered:</h2>
 				<ul>
 					<li>Scripts and Functions 📜</li>
@@ -40,6 +39,7 @@
 			</section>
 		</section>
 
+		<!-- Slide: Scripts and Functions -->
 		<section>
 			<section>
 				<h2>Scripts and Functions</h2>
@@ -101,418 +101,7 @@ end
 			</section>
 		</section>
 
-		<section>
-			<section>
-				<h2>Control Flow and Conditional Statements ⚙️</h2>
-
-				<h3>Control flow:</h3>
-				<p>Control statements allow you to execute certain sections of code based on conditions or repeat them a
-					specified
-					number of times. This includes conditional statements and loops.</p>
-
-				<h3>Conditional Statements:</h3>
-				<p>Conditional statements execute different code blocks based on whether a condition is true or
-					false.</p>
-
-				<h4>Syntax:</h4>
-				<pre><code class="matlab hljs language-matlab">if condition
-    % Code to execute if condition is true
-elseif another_condition
-    % Code to execute if another_condition is true
-else
-    % Code to execute if none of the above are true
-end
-</code></pre>
-
-			</section>
-			<section>
-
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">num = input('Enter a number: ');
-if num > 0
-    disp('The number is positive.');
-elseif num < 0
-    disp('The number is negative.');
-else
-    disp('The number is zero.');
-end
-</code></pre>
-
-				<p>💡 Tip: Use <code>elseif</code> to handle multiple conditions without having to nest multiple
-					<code>if</code> statements.</p>
-
-			</section>
-			<section>
-
-				<h4>🔄 Analogy:</h4>
-				<p>Think of an <code>if-elseif-else</code> statement as deciding what to eat based on your mood.</p>
-				<p><code>if</code> I'm very hungry, eat a meal.</p>
-				<p><code>elseif</code> I'm a little hungry, grab a snack.</p>
-				<p><code>elseif</code> I'm thirsty, grab a drink</p>
-				<p><code>else</code> (I'm not hungry) don't eat.</p>
-				<p class="alert alert-info">💡 <strong>Note</strong>: <code>elseif</code> and <code>else</code> are not
-					always necessary</p>
-				<p class="alert alert-info">💡 <strong>Note</strong>: you can have many <code>elseif</code>s</p>
-			</section>
-		</section>
-
-		<section>
-			<section>
-				<h3>Switch Statement:</h3>
-				<p><strong>Definition</strong>: A <code>switch</code> statement allows you to select one of many code
-					blocks
-					to execute.</p>
-
-				<h4>Syntax:</h4>
-				<pre><code class="matlab hljs language-matlab">switch expression
-    case value1
-        % Code to execute if expression == value1
-    case value2
-        % Code to execute if expression == value2
-    otherwise
-        % Code to execute if expression does not match any case
-end
-</code></pre>
-
-			</section>
-			<section>
-
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">day = input('Enter a day number (1-7): ');
-switch day
-    case 1
-        disp('Sunday');
-    case 2
-        disp('Monday');
-    case 3
-        disp('Tuesday');
-    case 4
-        disp('Wednesday');
-    case 5
-        disp('Thursday');
-    case 6
-        disp('Friday');
-    case 7
-        disp('Saturday');
-    otherwise
-        disp('Invalid day number');
-end
-</code></pre>
-
-				<p>💡 Tip: Use <code>switch</code> statements for clean, easy-to-read code when dealing with multiple
-					specific cases.</p>
-
-			</section>
-			<section>
-
-				<h4>🔄 Real-World Analogy:</h4>
-				<p>A switch statement is like a vending machine. You press a button (expression) and it dispenses the
-					corresponding item (case). If you press a button that doesn’t exist, it shows an error message
-					(otherwise).</p>
-			</section>
-
-		</section>
-		<section>
-
-			<section>
-				<h3>Comparative/Relational Operators:</h3>
-				<p><strong>How to define a condition</strong></p>
-				<p><strong>Operators</strong>: Used to compare values.</p>
-				<ul>
-					<li><code>==</code> : Equal to</li>
-					<li><code>~=</code> : Not equal to</li>
-					<li><code>&lt;</code> : Less than</li>
-					<li><code>&gt;</code> : Greater than</li>
-					<li><code>&lt;=</code> : Less than or equal to</li>
-					<li><code>&gt;=</code> : Greater than or equal to</li>
-				</ul>
-
-			</section>
-			<section>
-
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">a = 5;
-b = 3;
-if a > b
-    disp('a is greater than b');
-end
-</code></pre>
-
-				<p>⚠️ Gotcha: Don’t confuse <code>=</code> (assignment) with <code>==</code> (equality). Using
-					<code>=</code> in a condition can lead to unexpected results!</p>
-			</section>
-		</section>
-		<section>
-			<section>
-				<h3>Logical Operators:</h3>
-				<p><strong>Operators</strong>: Used to combine multiple conditions.</p>
-				<ul>
-					<li><code>|</code> : OR</li>
-					<li><code>&</code> : AND</li>
-					<li><code>~</code> : NOT</li>
-					<li><code>||</code> : Short-circuit OR (stops evaluating if the first condition is true)</li>
-					<li><code>&&</code> : Short-circuit AND (stops evaluating if the first condition is false)</li>
-				</ul>
-
-			</section>
-			<section>
-
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">x = true;
-y = false;
-if x & ~y
-    disp('x is true and y is false');
-end
-</code></pre>
-
-			</section>
-			<section>
-
-				<h4>🔄 Real-World Analogy:</h4>
-				<p>Logical operators are like combining multiple conditions in a checklist. For example, to decide to go
-					outside, you might check if it’s sunny AND warm, or if it’s not raining.</p>
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">
-if (sunny & warm) {
-	goOutside();
-elseif (sunny & ~raining) {
-	goOutside();
-end
-				</code>
-				</pre>
-				<pre><code class="matlab hljs language-matlab">
-if (sunny & warm | sunny & ~raining) {
-	goOutside();
-elseif (sunny & ~raining) {
-	goOutside();
-end
-				</code>
-				</pre>
-			</section>
-		</section>
-		<section>
-			<section>
-				<h2>Loops:</h2>
-				<p><strong>Loops</strong> allow you to repeat a block of code multiple times.</p>
-			</section>
-			<section>
-				<h3><code>for</code> Loop:</h3>
-				<p><strong>Definition</strong>: Repeats a block of code a fixed number of times.</p>
-
-				<h4>Syntax:</h4>
-				<pre><code class="matlab hljs language-matlab">for index = range
-    % Code to execute in each iteration
-end</code></pre>
-				<pre><code class="matlab hljs language-matlab">for index = values
-    % Code to execute in each iteration
-end</code></pre>
-
-			</section>
-			<section>
-
-				<h3>Example 1: Traversing a Simple Range</h3>
-				<pre><code class="matlab hljs language-matlab">for i = 1:5
-    fprintf('Iteration: %i\n', i);
-end
-</code></pre>
-				<h4>Explanation:</h4>
-				<p>In this example, <code>i</code> takes the values from 1 to 5, one by one, on each iteration of the
-					loop. This is
-					useful when you have a specific range to traverse.</p>
-				<h4>Use case:</h4>
-				<p>Useful when you want to execute some command(s) <code>n</code> times. Maybe you want to ask the user
-					for their 5 favorite numbers. Or read 5 lines of a document to provide a summary.</p>
-			</section>
-			<section>
-
-				<h3>Example 2: Traversing Through items in a List</h3>
-				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
-for value = my_list
-    fprintf('Value: %i\n', value);
-end
-</code></pre>
-				<h4>Explanation:</h4>
-				<p>Here, the loop variable <code>value</code> takes the value of each element in the array
-					<code>my_list</code>. This is useful when you want to iterate over a set of values in a list,
-					without needing the index.</p>
-				<p class="alert-info alert">💡<strong>Note</strong>: Did you notice, example 1 and 2 are the same thing?
-				</p>
-			</section>
-			<section>
-
-				<h3>Example 3: Accessing Both Index and Value</h3>
-				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
-for i = 1:5
-    fprintf('Element %i is %i\n', i, my_list(i));
-end
-</code></pre>
-				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
-for i = 1:length(my_list)
-    fprintf('Element %i is %i\n', i, my_list(i));
-end
-</code></pre>
-				<h4>Explanation:</h4>
-				<p>In this example, <code>i</code> is the index, and <code>my_list(i)</code> gives the value at the
-					<code>i</code>th index. This allows you to work with both the index and the value at the same time.
-				</p>
-
-			</section>
-			<section>
-
-				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
-				<p><strong>Approach 1</strong>: Use a range for loop</p>
-				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
-for i = 1:length(my_list)
-    fprintf('Element %i is %i\n', i, my_list(i));
-end
-</code></pre>
-				<h4>Explanation:</h4>
-				<p>In this example, <code>i</code> takes the values from 1 to the length of <code>my_list</code>. Each
-					iteration accesses the <code>i</code>-th element in the list, and prints both the index and the element. This
-					approach automatically increments the index after each iteration.</p>
-			</section>
-			<section>
-				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
-				<p><strong>Approach 2</strong>: Manually Incrementing an Index</p>
-				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
-i = 1;
-for value = my_list
-    fprintf('Element %i is %i\n', i, value);
-    i = i + 1;  % Manually increment the index
-end
-</code></pre>
-				<h4>Explanation:</h4>
-				<p>Here, we have to manually increment the index <code>i</code>. On each iteration, the code accesses
-					the i-th element of <code>my_list</code>, then increments <code>i</code> by 1. This approach offers
-					more flexibility if you want to adjust how or when the index increments (for example, skipping
-					elements or using a dynamic step size).</p>
-
-			</section>
-			<section>
-
-				<h4>🔄 Real-World Analogy:</h4>
-				<p>A <code>for</code> loop is like counting the number of laps you run around a track. You know you need
-					to
-					run 5 laps, so you repeat the same action 5 times.</p>
-			</section>
-		</section>
-		<section>
-			<section>
-				<h3><code>while</code> Loop:</h3>
-				<p><strong>Definition</strong>: Repeats a block of code while a condition is true.</p>
-
-				<h4>Syntax:</h4>
-				<pre><code class="matlab hljs language-matlab">while condition
-    % Code to execute while condition is true
-end
-</code></pre>
-
-			</section>
-			<section>
-
-				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">i = 1;
-while i <= 5
-    fprintf('Iteration: %i', i);
-    i = i + 1;
-end
-</code></pre>
-
-				<p class="alert alert-warning">⚠️ <strong>Gotcha</strong>: Be careful with while loops! Ensure the
-					condition will eventually be false to avoid
-					infinite
-					loops.</p>
-
-			</section>
-			<section>
-
-				<h4>🔄 Real-World Analogy:</h4>
-				<p>A <code>while</code> loop is like filling a glass with water. You keep pouring <code>while (glass ~=
-					full)</code>. You don’t know exactly how much water it will take, but you stop when the condition
-					(full glass) is met.
-				</p>
-			</section>
-		</section>
-		<section>
-			<section>
-				<h3>Break and Continue:</h3>
-				<p><code>break</code>: Exits the loop immediately.</p>
-				<p><code>continue</code>: Skips the rest of the code in the current iteration and proceeds to the next
-					iteration.</p>
-
-				<p class="alert alert-warning">⚠️ <strong>Warning</strong>: using <code>break</code> is generally
-					considered a "code smell". If you find yourself needing to use <code>break</code> there is generally
-					something you're doing wrong.</p>
-				<p>Using <code>continue</code> is not "great" either but there are more acceptable use cases for <code>continue</code>
-				</p>
-			</section>
-			<section>
-				<h4>Example (Break):</h4>
-				<p>At first glance, this will loop 10 times. But break stops after 5.</p>
-				<div class="code-output-container">
-        <pre><code class="matlab hljs language-matlab">for i = 1:10
-    if i == 5
-        break;
-    end
-    disp(i);
-end
-</code></pre>
-					<pre class="output">1
-2
-3
-4
-</pre>
-				</div>
-
-				<h4>Example (Continue):</h4>
-				<p>At first glance, this will also loop 10 times. But a condition skips even numbers.</p>
-				<div class="code-output-container">
-        <pre><code class="matlab hljs language-matlab">for i = 1:10
-    if mod(i, 2) == 0
-        continue;
-    end
-    disp(i);
-end
-</code></pre>
-					<pre class="output">1
-3
-5
-7
-9
-</pre>
-				</div>
-
-				<p class="alert-warning alert">⚠️ <strong>Warning:</strong> Try to avoid <code>break</code> and <code>continue</code>
-					when possible to avoid creating code that's difficult to follow.</p>
-			</section>
-			<section>
-
-				<h4>🔄 Real-World Analogy:</h4>
-				<p><code>break</code>: Imagine you are searching for a specific book in a library. Once you find it, you
-					stop searching and leave (exit the loop).</p>
-				<p><code>continue</code>: Imagine you are checking a list of items for defects. If you find a defective
-					item, you skip further inspection of that item and move to the next (skip iteration).</p>
-			</section>
-			<section>
-				<h2>Drive it home ⚾</h2>
-				<h4 style="text-align: left; margin-left: 60px">Use <code>for</code> loops when</h4>
-				<ul>
-					<li>You know how many times you need to repeat a task.</li>
-					<li>You want to traverse (visit) each element in an array.</li>
-				</ul>
-				<h4 style="text-align: left; margin-left: 60px">Use <code>while</code> loops when</h4>
-				<ul>
-					<li>You're not sure how many loops to perform</li>
-					<li>You want something to repeat until a condition is met</li>
-				</ul>
-			</section>
-			<section>
-				<h3>Interactive Exercise:</h3>
-				<h4>Your turn...</h4>
-				<p>Give me some real-world examples of when you would use a for or while loop. Don't get stuck thinking
-					about code, just an analogy of real-life</p>
-			</section>
-		</section>
+		<!-- Input/Output next -->
 		<section>
 			<section>
 				<h2>Input and Output 📥📤</h2>
@@ -552,8 +141,7 @@ disp(['The final height is ', num2str(heightFinal), ' meters.']);
 
 			<section>
 				<h3>String Input:</h3>
-				<p><strong>Inputting Strings:</strong> To receive string input, use the <code>input()</code> function
-					with the <code>'s'</code> argument.</p>
+				<p><strong>Inputting Strings:</strong> To receive string input, use the <code>'s'</code> argument.</p>
 				<pre><code class="matlab hljs language-matlab">name = input('Please enter your name: ', 's');
 disp(['Hello, ', name, '!']);
 </code></pre>
@@ -694,6 +282,428 @@ disp(fileName); % Outputs: My file (1)
 					<pre class="output">My file (1)</pre>
 				</div>
 			</section>
+		</section>
+
+<!--		Relational operators -->
+
+		<section>
+			<section>
+				<h3>Comparative/Relational Operators:</h3>
+				<p><strong>How to define a condition</strong></p>
+				<p><strong>Operators</strong>: Used to compare values.</p>
+				<ul>
+					<li><code>==</code> : Equal to</li>
+					<li><code>~=</code> : Not equal to</li>
+					<li><code>&lt;</code> : Less than</li>
+					<li><code>&gt;</code> : Greater than</li>
+					<li><code>&lt;=</code> : Less than or equal to</li>
+					<li><code>&gt;=</code> : Greater than or equal to</li>
+				</ul>
+
+			</section>
+			<section>
+
+				<h4>Example:</h4>
+				<pre><code class="matlab hljs language-matlab">a = 5;
+b = 3;
+if a > b
+    disp('a is greater than b');
+end
+</code></pre>
+
+				<p>⚠️ Gotcha: Don’t confuse <code>=</code> (assignment) with <code>==</code> (equality). Using
+					<code>=</code> in a condition can lead to unexpected results!</p>
+			</section>
+		</section>
+
+		<!-- REORDERED: Moved Logical Operators right after Relational to unify "Conditions" first -->
+		<section>
+			<section>
+				<h3>Logical Operators:</h3>
+				<p><strong>Operators</strong>: Used to combine multiple conditions.</p>
+				<ul>
+					<li><code>|</code> : OR</li>
+					<li><code>&</code> : AND</li>
+					<li><code>~</code> : NOT</li>
+					<li><code>||</code> : Short-circuit OR (stops evaluating if the first condition is true)</li>
+					<li><code>&&</code> : Short-circuit AND (stops evaluating if the first condition is false)</li>
+				</ul>
+
+			</section>
+			<section>
+
+				<h4>Example:</h4>
+				<pre><code class="matlab hljs language-matlab">x = true;
+y = false;
+if x & ~y
+    disp('x is true and y is false');
+end
+</code></pre>
+
+			</section>
+			<section>
+				<h3>Simple Example: Conditions</h3>
+				<p>Think of real-life checks, e.g., "<code>(isHungry &amp;&amp; hasTime)</code> => <code>consumeFood()</code>." or "<code>(weather == RAIN || weather == SNOW)</code> => <code>bring umbrella</code>."</p>
+			</section>
+		</section>
+<!--			<section>-->
+
+<!--				<h4>🔄 Real-World Analogy:</h4>-->
+<!--				<p>Logical operators are like combining multiple conditions in a checklist. For example, to decide to go-->
+<!--					outside, you might check if it’s sunny AND warm, or if it’s not raining.</p>-->
+<!--				<h4>Example:</h4>-->
+<!--				<pre><code class="matlab hljs language-matlab">-->
+<!--if (sunny & warm) {-->
+<!--	goOutside();-->
+<!--elseif (sunny & ~raining) {-->
+<!--	goOutside();-->
+<!--end-->
+<!--				</code>-->
+<!--				</pre>-->
+<!--				<pre><code class="matlab hljs language-matlab">-->
+<!--if (sunny & warm | sunny & ~raining) {-->
+<!--	goOutside();-->
+<!--elseif (sunny & ~raining) {-->
+<!--	goOutside();-->
+<!--end-->
+<!--				</code>-->
+<!--				</pre>-->
+<!--			</section>-->
+<!--		</section>-->
+
+		<!-- Control Flow and Conditionals next -->
+		<!-- (Original "Control Flow and Conditional Statements" section with no text changes) -->
+		<section>
+			<section>
+				<h2>Control Flow and Conditional Statements ⚙️</h2>
+
+				<h3>Control flow:</h3>
+				<p>Control statements allow you to execute certain sections of code based on conditions or repeat them a
+					specified
+					number of times. This includes conditional statements and loops.</p>
+
+				<h3>Conditional Statements:</h3>
+				<p>Determine whether a condition is true or
+					false.</p>
+
+				<h4>Syntax:</h4>
+				<pre><code class="matlab hljs language-matlab">if condition
+    % Code to execute if condition is true
+elseif another_condition
+    % Code to execute if another_condition is true
+else
+    % Code to execute if none of the above are true
+end
+</code></pre>
+
+			</section>
+			<section>
+
+				<h4>Example:</h4>
+				<pre><code class="matlab hljs language-matlab">num = input('Enter a number: ');
+if num > 0
+    disp('The number is positive.');
+elseif num < 0
+    disp('The number is negative.');
+else
+    disp('The number is zero.');
+end
+</code></pre>
+
+				<p>💡 Tip: Use <code>elseif</code> to handle multiple conditions without having to nest multiple
+					<code>if</code> statements.</p>
+
+			</section>
+			<section>
+
+				<h4>🔄 Analogy:</h4>
+				<p>Think of an <code>if-elseif-else</code> statement as deciding what to eat based on your mood.</p>
+				<p><code>if</code> I'm very hungry, eat a meal.</p>
+				<p><code>elseif</code> I'm a little hungry, grab a snack.</p>
+				<p><code>elseif</code> I'm thirsty, grab a drink</p>
+				<p><code>else</code> (I'm not hungry) don't eat.</p>
+				<p class="alert alert-info">💡 <strong>Note</strong>: <code>elseif</code> and <code>else</code> are not
+					always necessary</p>
+				<p class="alert alert-info">💡 <strong>Note</strong>: you can have many <code>elseif</code>s</p>
+			</section>
+		</section>
+
+		<!-- Switch statement next -->
+		<section>
+			<section>
+				<h3>Switch Statement:</h3>
+				<p><strong>Definition</strong>: A <code>switch</code> statement allows you to select one of many code
+					blocks
+					to execute.</p>
+
+				<h4>Syntax:</h4>
+				<pre><code class="matlab hljs language-matlab">switch expression
+    case value1
+        % Code to execute if expression == value1
+    case value2
+        % Code to execute if expression == value2
+    otherwise
+        % Code to execute if expression does not match any case
+end
+</code></pre>
+
+			</section>
+			<section>
+
+				<h4>Example:</h4>
+				<pre><code class="matlab hljs language-matlab">day = input('Enter a day number (1-7): ');
+switch day
+    case 1
+        disp('Sunday');
+    case 2
+        disp('Monday');
+    case 3
+        disp('Tuesday');
+    case 4
+        disp('Wednesday');
+    case 5
+        disp('Thursday');
+    case 6
+        disp('Friday');
+    case 7
+        disp('Saturday');
+    otherwise
+        disp('Invalid day number');
+end
+</code></pre>
+
+				<p>💡 Tip: Use <code>switch</code> statements for clean, easy-to-read code when dealing with multiple
+					specific cases.</p>
+
+			</section>
+
+		</section>
+
+
+		<section>
+			<section>
+				<h2>Loops:</h2>
+				<p><strong>Loops</strong> allow you to repeat a block of code multiple times.</p>
+			</section>
+			<section>
+				<h3><code>for</code> Loop:</h3>
+				<p><strong>Definition</strong>: Repeats a block of code a fixed number of times.</p>
+
+				<h4>Syntax:</h4>
+				<pre><code class="matlab hljs language-matlab">for index = range
+    % Code to execute in each iteration
+end</code></pre>
+				<pre><code class="matlab hljs language-matlab">for index = values
+    % Code to execute in each iteration
+end</code></pre>
+
+			</section>
+			<section>
+
+				<h3>Example 1: Traversing a Simple Range</h3>
+				<pre><code class="matlab hljs language-matlab">for i = 1:5
+    fprintf('Iteration: %i\n', i);
+end
+</code></pre>
+				<h4>Explanation:</h4>
+				<p>In this example, <code>i</code> takes the values from 1 to 5, one by one, on each iteration of the
+					loop. This is
+					useful when you have a specific range to traverse.</p>
+				<h4>Use case:</h4>
+				<p>Useful when you want to execute some command(s) <code>n</code> times. Maybe you want to ask the user
+					for their 5 favorite numbers. Or read 5 lines of a document to provide a summary.</p>
+			</section>
+			<section>
+
+				<h3>Example 2: Traversing Through items in a List</h3>
+				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
+for value = my_list
+    fprintf('Value: %i\n', value);
+end
+</code></pre>
+				<h4>Explanation:</h4>
+				<p>Here, the loop variable <code>value</code> takes the value of each element in the array
+					<code>my_list</code>. This is useful when you want to iterate over a set of values in a list,
+					without needing the index.</p>
+				<p class="alert-info alert">💡<strong>Note</strong>: Did you notice, example 1 and 2 are the same thing?
+				</p>
+			</section>
+<!--			<section>-->
+
+<!--				<h3>Example 3: Accessing Both Index and Value</h3>-->
+<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
+<!--for i = 1:5-->
+<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
+<!--end-->
+<!--</code></pre>-->
+<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
+<!--for i = 1:length(my_list)-->
+<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
+<!--end-->
+<!--</code></pre>-->
+<!--				<h4>Explanation:</h4>-->
+<!--				<p>In this example, <code>i</code> is the index, and <code>my_list(i)</code> gives the value at the-->
+<!--					<code>i</code>th index. This allows you to work with both the index and the value at the same time.-->
+<!--				</p>-->
+
+<!--			</section>-->
+			<section>
+
+				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
+				<p><strong>Approach 1</strong>: Use a range for loop</p>
+				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
+for i = 1:length(my_list)
+    fprintf('Element %i is %i\n', i, my_list(i));
+end
+</code></pre>
+				<h4>Explanation:</h4>
+				<p>In this example, <code>i</code> takes the values from 1 to the length of <code>my_list</code>. Each
+					iteration accesses the <code>i</code>-th element in the list, and prints both the index and the
+					element. This approach automatically increments the index after each iteration.</p>
+			</section>
+			<section>
+				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
+				<p><strong>Approach 2</strong>: Manually Incrementing an Index</p>
+				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
+i = 1;
+for value = my_list
+    fprintf('Element %i is %i\n', i, value);
+    i = i + 1;  % Manually increment the index
+end
+</code></pre>
+				<h4>Explanation:</h4>
+				<p>Here, we have to manually increment the index <code>i</code>. On each iteration, the code accesses
+					the i-th element of <code>my_list</code>, then increments <code>i</code> by 1. This approach offers
+					more flexibility if you want to adjust how or when the index increments (for example, skipping
+					elements or using a dynamic step size).</p>
+
+			</section>
+			<section>
+
+				<h4>🔄 Real-World Analogy:</h4>
+				<p>A <code>for</code> loop is like counting the number of laps you run around a track. You know you need
+					to
+					run 5 laps, so you repeat the same action 5 times.</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3><code>while</code> Loop:</h3>
+				<p><strong>Definition</strong>: Repeats a block of code while a condition is true.</p>
+
+				<h4>Syntax:</h4>
+				<pre><code class="matlab hljs language-matlab">while condition
+    % Code to execute while condition is true
+end
+</code></pre>
+
+			</section>
+			<section>
+
+				<h4>Example:</h4>
+				<pre><code class="matlab hljs language-matlab">i = 1;
+while i <= 5
+    fprintf('Iteration: %i', i);
+    i = i + 1;
+end
+</code></pre>
+
+				<p class="alert alert-warning">⚠️ <strong>Gotcha</strong>: Be careful with while loops! Ensure the
+					condition will eventually be falsy to avoid
+					infinite
+					loops.</p>
+
+			</section>
+			<section>
+
+				<h4>🔄 Real-World Analogy:</h4>
+				<p>A <code>while</code> loop is like filling a glass with water. You keep pouring <code>while (glass ~=
+					isFull)</code>. You don’t know exactly how much water it will take, but you stop when the condition
+					(full glass) is met.
+				</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Break and Continue:</h3>
+				<p><code>break</code>: Exits the loop immediately.</p>
+				<p><code>continue</code>: Skips the rest of the code in the current iteration and proceeds to the next
+					iteration.</p>
+
+				<p class="alert alert-warning">⚠️ <strong>Warning</strong>: using <code>break</code> is generally
+					considered a "code smell". If you find yourself needing to use <code>break</code> there is generally
+					something you're doing wrong.</p>
+				<p>Using <code>continue</code> is not "great" either but there are more acceptable use cases for
+					<code>continue</code>
+				</p>
+			</section>
+			<section>
+				<h4>Example (Break):</h4>
+				<p>At first glance, this will loop 10 times. But break stops after 5.</p>
+				<div class="code-output-container">
+        <pre><code class="matlab hljs language-matlab">for i = 1:10
+    if i == 5
+        break;
+    end
+    disp(i);
+end
+</code></pre>
+					<pre class="output">1
+2
+3
+4
+</pre>
+				</div>
+
+				<h4>Example (Continue):</h4>
+				<p>At first glance, this will also loop 10 times. But a condition skips even numbers.</p>
+				<div class="code-output-container">
+        <pre><code class="matlab hljs language-matlab">for i = 1:10
+    if mod(i, 2) == 0
+        continue;
+    end
+    disp(i);
+end
+</code></pre>
+					<pre class="output">1
+3
+5
+7
+9
+</pre>
+				</div>
+
+				<p class="alert-warning alert">⚠️ <strong>Warning:</strong> Try to avoid <code>break</code> and
+					<code>continue</code>
+					when possible to avoid creating code that's difficult to follow.</p>
+			</section>
+			<section>
+
+				<h4>🔄 Real-World Analogy:</h4>
+				<p><code>break</code>: Imagine you are searching for a specific book in a library. Once you find it, you
+					stop searching and leave (exit the loop).</p>
+				<p><code>continue</code>: Imagine you are checking a list of items for defects. If you find a defective
+					item, you skip further inspection of that item and move to the next (skip iteration).</p>
+			</section>
+			<section>
+				<h2>Drive it home ⚾</h2>
+				<h4 style="text-align: left; margin-left: 60px">Use <code>for</code> loops when</h4>
+				<ul>
+					<li>You know how many times you need to repeat a task.</li>
+					<li>You want to traverse (visit) each element in an array.</li>
+				</ul>
+				<h4 style="text-align: left; margin-left: 60px">Use <code>while</code> loops when</h4>
+				<ul>
+					<li>You're not sure how many loops to perform</li>
+					<li>You want something to repeat until a condition is met</li>
+				</ul>
+			</section>
+<!--			<section>-->
+<!--				<h3>Interactive Exercise:</h3>-->
+<!--				<h4>Your turn...</h4>-->
+<!--				<p>Give me some real-world examples of when you would use a for or while loop. Don't get stuck thinking-->
+<!--					about code, just an analogy of real-life</p>-->
+<!--			</section>-->
 		</section>
 		<section>
 			<section>
