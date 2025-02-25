@@ -36,8 +36,8 @@ changes are required.
 - **Inputs**:
     - `v0`: Initial velocity in m/s (scalar)
     - `angle`: Launch angle in degrees (scalar)
-    - `g`: Gravitational acceleration in m/s² (scalar)
     - `y0`: Initial height in meters (scalar)
+    - `g`: Gravitational acceleration in m/s² (scalar)
     - `numValues`: Number of time intervals (scalar)
 
 - **Outputs**:
@@ -48,7 +48,7 @@ changes are required.
 **Instructions**:
 
 Write a MATLAB function named `calculateTrajectory` that takes the initial velocity (`v0`), launch angle (`angle`),
-gravitational acceleration (`g`), initial height (`y0`), and the number of time intervals (`numValues`) as inputs. The function should return
+initial height (`y0`), gravitational acceleration (`g`), and the number of time intervals (`numValues`) as inputs. The function should return
 the horizontal positions (`x`), vertical positions (`y`), and the time array (`time`) corresponding to the projectile's
 motion.
 
