@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 2: MATLAB Variables & Data Types</title>
+	<title>Week 5: Vectors, Matrices, and Logical Operations</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
-	<link rel="stylesheet" href="/dist/week1.css">
+	<link rel="stylesheet" href="/dist/week5.css">
 	<link rel="stylesheet" href="/dist/site.css">
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
@@ -15,7 +15,6 @@
 <div class="reveal">
 	<div class="slides">
 
-<!--		TODO: Show nested functions -->
 		<section data-markdown>
         <textarea data-template>
 			# Week 5: Vectors, Matrices, and Logical Operations 🧮
@@ -39,6 +38,7 @@
 			## Vector Operations 🧮
 			### Vector Basics:
 			**Definition**: A vector is a one-dimensional array of numbers.
+
 			#### Creating Vectors:
 			```matlab
 			rowVector = [1, 2, 3, 4];
@@ -99,7 +99,7 @@
 			#### Example:
 			```matlab
 			matrix = [1 2 3; 4 5 6; 7 8 9];
-			element = matrix(3, 2); % Returns element at third row, second column
+			element = matrix(3, 2); % third row, second column
 			```
 
 			--
@@ -131,15 +131,15 @@
 				* `eye()`: Creates an identity matrix.
 
 			#### Example:
-
 			```matlab
 			onesMatrix = ones(3);
 			zerosMatrix = zeros(3);
 			randMatrix = rand(3);
 			identityMatrix = eye(3);
 			```
+
 			### Special Matrices:
-			* Functions: Create special matrices.
+			* Functions:
 				* `pascal()`
 				* `magic()`
 				* `gallery()`
@@ -147,7 +147,6 @@
 
 
 			#### Example:
-
 			```matlab
 			magicMatrix = magic(3);
 			```
@@ -161,20 +160,60 @@
 			```
 			#### Element-wise Multiplication:
 			```matlab
-			D = A .* B; % Element-wise multiplication
+			D = A .* B;
 			```
 			#### Matrix Exponentiation:
 			```matlab
 			A_squared = A^2; % A^2 = A * A
 			```
-			⚠️ Gotcha: Ensure that the dimensions of matrices match when performing matrix multiplication. Mismatched dimensions will cause errors.
+			⚠️ Gotcha: Ensure matrix dimensions match when performing multiplication. If you get an error like “Inner matrix dimensions must agree,” check your sizes!
 		</textarea>
 		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+			## Real-World Script Example: Combining Vector & Matrix Ops
+
+			**Sometimes** you’ll want to use these operations in a single script to process data. For instance:
+
+			```matlab
+			%% dataProcessor.m
+			clc;
+			clear;
+
+			% 1. Create a random 5x4 matrix of data
+			myData = rand(5,4);
+
+			% 2. Compute basic stats on each row
+			rowMeans = mean(myData, 2);
+			rowSums = sum(myData, 2);
+
+			% 3. Filter out rows where the sum is < 1.5 (logical indexing)
+			filterIndex = (rowSums < 1.5);
+			myDataFiltered = myData(~filterIndex, :);
+
+			% 4. Print results
+			disp('Original Data:');
+			disp(myData);
+
+			fprintf('Row means:\n');
+			disp(rowMeans);
+			fprintf('Row sums:\n');
+			disp(rowSums);
+
+			disp('Filtered Data (sum >= 1.5):');
+			disp(myDataFiltered);
+			```
+
+			💡 **Idea**: This shows how you can combine matrix creation, per-row calculations, and logical operations in **one** script to handle real data tasks.
+		</textarea>
+		</section>
+
 		<section data-markdown>
         <textarea data-template>
 			## Logical Vectors and Operations ✔️✖️
 			### Logical Vectors:
-			**Definition**: Logical vectors are arrays of 1s (true) and 0s (false) resulting from element-wise comparisons between arrays.
+			**Definition**: Logical vectors are arrays of 1s (true) and 0s (false) resulting from element-wise comparisons.
 
 			--
 
@@ -185,13 +224,12 @@
 			logicalVector = (a == b); % Element-wise comparison
 			```
 			#### Example Output:
-
 			```matlab
 			a == b
 			ans =
-			0 1 1 0 0
+				0 1 1 0 0
 			```
-			💡 Tip: Use logical vectors to filter or selectively operate on elements of a vector or matrix based on conditions.
+			💡 Tip: Use logical vectors to filter or selectively operate on elements in a vector/matrix.
 
 			--
 
@@ -206,45 +244,43 @@
 			* ~= : Not equal to
 			* xor() : Exclusive OR
 
+			#### xor() Example:
+			```matlab
+			u = [1 0 1 0];
+			v = [1 1 0 0];
+			xorResult = xor(u, v);
+			% xorResult = [0 1 1 0]
+			```
+
 			--
 
 			#### Example:
-
 			```matlab
 			a = [1, 2, 3];
 			b = [3, 2, 1];
 			logicalArray = a < b;
 			```
 			#### Example Output:
-
 			```matlab
 			a < b
 			ans =
-			1 0 0
+				1 0 0
 			```
 
 			--
 
 			### Logical Functions:
-			**Functions**:
-			* `find()`: Returns indices of non-zero elements.
-			`ischar()`: Checks if input is character data.
-			`isinf()`: Checks for infinity.
-			`isnan()`: Checks for NaN.
-			`isnumeric()`: Checks if input is numeric.
-			`isempty()`: Checks if input is empty.
-			`any()`: Checks if any elements are non-zero.
-			`all()`: Checks if all elements are non-zero.
-			`exist()`: Checks if a variable exists.
+			* `find()`: Indices of non-zero elements
+			* `ischar()`, `isinf()`, `isnan()`, `isnumeric()`, `isempty()`
+			* `any()`, `all()`
+			* `exist()`
 
 			#### Example:
-
 			```matlab
 			v = [1, 3, 5, 6, 3, 4; 6, 36, 6, 7, 843, 5];
 			[row, col] = find(v == 3);
 			```
 			#### Example Output:
-
 			```matlab
 			row =
 			1
@@ -253,8 +289,15 @@
 			2
 			5
 			```
-			💡 Tip: Use `find()` to quickly locate elements in a matrix that meet a specific condition.
+			💡 Tip: `find()` is great for locating positions that meet a condition.
 
+			### Debugging Tip:
+			If you see unexpected 0s or 1s in your logic results, **set a breakpoint** and inspect the actual numeric differences in your variables. Sometimes round-off or negative indexing can produce surprising results.
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
 			### Round-off Error:
 			**Issue**: Comparisons can be affected by round-off errors.
 			#### Example:
@@ -264,36 +307,36 @@
 			result = (a == b); % Due to round-off error
 			```
 			#### Example Output:
-
 			```matlab
 			a == b
-			```
 			ans =
-			0
-
+				0
+			```
 			#### Solution: Use approximate equality.
 			```matlab
 			abs(a - b) < 1.0e-14
 			```
+			#### Example Output:
+			```
 			ans =
-			1 % Logical true
-
-			⚠️ Gotcha: Be cautious when comparing floating-point numbers directly. Due to round-off errors, use approximate comparisons instead.
+				1  % Logical true
+			```
+			⚠️ Gotcha: Be cautious when comparing floats directly. Use approximate comparisons.
 
 			--
 
-			### Avoiding Division by Zero and Infinity
+			### Avoiding Division by Zero & Infinity
 			#### Division by Zero:
-			Issue: Dividing by zero results in NaN (Not a Number) in MATLAB.
-			Solution: Use logical vectors to avoid division by zero.
+			Dividing by zero => NaN (Not a Number).
+			Solution: Use logic to skip zero.
 
 			#### Example:
-
 			```matlab
-			x = -4pi : pi/20 : 4pi;
-			y = sin(x) ./ x; % Division by zero at x = 0
+			x = -4*pi : pi/20 : 4*pi;
+			y = sin(x) ./ x; % division by zero if x=0
+			% fix:
 			logicalVector = (x == 0);
-			x = x + logicalVector*eps; % Replace zero with a small number
+			x = x + logicalVector*eps;
 			```
 			#### Infinity:
 			Issue: Near infinity values can distort plots drastically.
@@ -312,8 +355,8 @@
 		<section data-markdown>
         <textarea data-template>
 			## Key Takeaways 🎓
-			Vectors and matrices are fundamental data structures in MATLAB, and understanding their operations is crucial.
-			Logical vectors help perform element-wise comparisons and handle special cases like division by zero and infinity.
+			Vectors & matrices are fundamental to MATLAB.
+			Logical vectors help handle filtering & special cases.
 			MATLAB provides powerful functions for matrix manipulation and analysis.
 
 			--

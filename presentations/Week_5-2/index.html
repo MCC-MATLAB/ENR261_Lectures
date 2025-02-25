@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 
+<body>
 <div class="reveal">
 	<div class="slides">
 
@@ -46,7 +47,8 @@
 rowVector = [1, 2, 3, 4];
 
 % Column vector
-colVector = [1; 2; 3; 4];</code></pre>
+colVector = [1; 2; 3; 4];
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Use semicolons <code>;</code> to create column vectors.</p>
 		</section>
 
@@ -62,7 +64,8 @@ b = [5, 6, 7, 8];
 c = a + b; % c = [6, 8, 10, 12]
 
 % Element-wise multiplication
-d = a .* b; % d = [5, 12, 21, 32]</code></pre>
+d = a .* b; % d = [5, 12, 21, 32]
+</code></pre>
 			<p>💡 <strong>Tip:</strong> The <code>.*</code> operator performs element-wise multiplication.</p>
 		</section>
 
@@ -73,7 +76,8 @@ d = a .* b; % d = [5, 12, 21, 32]</code></pre>
 			<p>Mathematically, for vectors <em>a</em> and <em>b</em>:</p>
 			<p>$$ \mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i $$</p>
 			<pre><code class="language-matlab">% MATLAB code
-dotProduct = dot(a, b);</code></pre>
+dotProduct = dot(a, b);
+</code></pre>
 			<p>👩‍💻 <strong>Exercise:</strong> Compute the dot product of <code>a = [2, 4, 6]</code> and <code>b = [1, 3, 5]</code>.</p>
 		</section>
 
@@ -82,13 +86,15 @@ dotProduct = dot(a, b);</code></pre>
 			<h3>Common Vector Functions</h3>
 			<h4>Sum and Mean:</h4>
 			<pre><code class="language-matlab">total = sum(a); % Sum of elements in a
-avg = mean(a); % Mean value of elements in a</code></pre>
+avg = mean(a); % Mean value of elements in a
+</code></pre>
 			<h4>Length:</h4>
 			<pre><code class="language-matlab">len = length(a); % Number of elements in a
-    </code></pre>
+</code></pre>
 			<h4>Maximum and Minimum:</h4>
 			<pre><code class="language-matlab">maxValue = max(a); % Largest element in a
-minValue = min(a); % Smallest element in a</code></pre>
+minValue = min(a); % Smallest element in a
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Utilize these functions to quickly analyze data in vectors.</p>
 		</section>
 
@@ -99,7 +105,7 @@ minValue = min(a); % Smallest element in a</code></pre>
 			<p>A <strong>matrix</strong> is a two-dimensional array of numbers arranged in rows and columns. Matrices are fundamental in linear algebra and are used to represent linear transformations.</p>
 			<h4>Creating Matrices in MATLAB:</h4>
 			<pre><code class="language-matlab">A = [1 2 3; 4 5 6; 7 8 9];
-    </code></pre>
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Use semicolons <code>;</code> to separate rows in a matrix.</p>
 		</section>
 
@@ -108,10 +114,10 @@ minValue = min(a); % Smallest element in a</code></pre>
 			<h3>Matrix Indexing</h3>
 			<p>Elements in a matrix are accessed using indices:</p>
 			<pre><code class="language-matlab">element = A(row, column);
-    </code></pre>
+</code></pre>
 			<h4>Example:</h4>
-			<pre><code class="language-matlab">element = A(2, 3); % Accesses the element in the 2nd row, 3rd column
-    </code></pre>
+			<pre><code class="language-matlab">element = A(2, 3); % Accesses element in 2nd row, 3rd column
+</code></pre>
 			<p><strong>Result:</strong> For matrix <code>A</code> above, <code>element = 6</code>.</p>
 		</section>
 
@@ -120,21 +126,22 @@ minValue = min(a); % Smallest element in a</code></pre>
 			<h3>Matrix Addition and Subtraction</h3>
 			<p>Matrices of the <strong>same dimensions</strong> can be added or subtracted element-wise:</p>
 			<pre><code class="language-matlab">B = [9 8 7; 6 5 4; 3 2 1];
-C = A + B; % Adds corresponding elements
-D = A - B; % Subtracts corresponding elements</code></pre>
+C = A + B; % Element-wise addition
+D = A - B; % Element-wise subtraction
+</code></pre>
 			<p>⚠️ <strong>Gotcha:</strong> Matrices must have the same number of rows and columns for addition or subtraction.</p>
 		</section>
 
 		<section>
 			<h3>Understanding Errors in MATLAB</h3>
-
 			<ul>
 				<li>Errors can occur when performing operations with incompatible dimensions or invalid inputs.</li>
 				<li>Common error example:</li>
 				<pre><code class="language-matlab">A = [1, 2; 3, 4];    % 2x2 matrix
 B = [5, 6, 7];       % 1x3 vector
 C = A * B;           % Attempting matrix multiplication
-disp('awww, dang!');</code></pre>
+disp('awww, dang!');
+</code></pre>
 				<li class="fragment fade-up" style="background-color: white">
 					<p style="color: red">
 						Error using  *
@@ -143,16 +150,16 @@ disp('awww, dang!');</code></pre>
 						elementwise multiplication.
 					</p>
 					<p style="color: red; text-decoration: underline">
-					Related documentation
+						Related documentation
 					</p>
 				</li>
-				<li class="fragment fade-up  "><strong>Note:</strong> The program exits at this point</li>
+				<li class="fragment fade-up"><strong>Note:</strong> The program exits at this point unless you handle it with `try/catch`</li>
 			</ul>
+			<p><strong>Debugging Tip:</strong> If you see dimension mismatch errors, <em>set a breakpoint</em> and inspect the actual size of your arrays (e.g., <code>size(A)</code>, <code>size(B)</code>) before the failing operation.</p>
 		</section>
 
 		<section>
 			<h3>Introducing try/catch</h3>
-
 			<ul>
 				<li><strong>Purpose:</strong> Allows your program to handle errors without stopping execution abruptly.</li>
 				<li><strong>Structure:</strong></li>
@@ -160,7 +167,8 @@ disp('awww, dang!');</code></pre>
     % Code that may produce an error
 catch exception
     % Code to handle the error
-end</code></pre>
+end
+</code></pre>
 			</ul>
 		</section>
 
@@ -169,22 +177,19 @@ end</code></pre>
 			<pre><code class="language-matlab">A = [1, 2; 3, 4];    % 2x2 matrix
 B = [5, 6, 7];       % 1x3 vector
 try
-	C = A * B;           % Attempting matrix multiplication
+	C = A * B;   % Attempting matrix multiplication
 catch exception
 	disp('An error occurred:');
 	disp(exception.message);
-	% throw(MException('type', 'message'))
 end
-disp('Woohoo!');</code>
-			</pre>
+disp('Woohoo!');
+</code></pre>
 			<h4>Output:</h4>
 			<div style="background-color: white">
-			<p style="color: black">
-				An error occurred:</p>
-				<p style="color: black">Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.</p>
+				<p style="color: black">An error occurred:</p>
+				<p style="color: black">Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows in the second. Use <code>.*</code> for elementwise multiplication.</p>
 				<p style="color: black">Woohoo!</p>
 			</div>
-
 		</section>
 
 		<section>
@@ -252,7 +257,8 @@ disp('Woohoo!');</code>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">A = [1 2; 3 4]; % 2x2 matrix
 B = [5; 6];   % 2x1 matrix
-C = A * B;    % Resulting in a 2x1 matrix</code></pre>
+C = A * B;    % 2x1 result
+</code></pre>
 			<p><strong>Mathematically:</strong></p>
 			<p>$$ C = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \times \begin{bmatrix} 5 \\ 6 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*6 \\ 3*5 + 4*6 \end{bmatrix} = \begin{bmatrix} 17 \\ 39 \end{bmatrix} $$</p>
 			<p>⚠️ <strong>Gotcha:</strong> Always verify that matrix dimensions are compatible before multiplying.</p>
@@ -262,11 +268,13 @@ C = A * B;    % Resulting in a 2x1 matrix</code></pre>
 		<section>
 			<h3>Element-wise Multiplication</h3>
 			<p>Use the <code>.*</code> operator to perform element-wise multiplication of matrices of the same size.</p>
-			<pre><code class="language-matlab">E = A .* B; % Multiplies corresponding elements</code></pre>
+			<pre><code class="language-matlab">E = A .* B; % Multiplies corresponding elements
+</code></pre>
 			<p><strong>Example:</strong> If <code>A</code> and <code>B</code> are both 2x2 matrices:</p>
 			<pre><code class="language-matlab">A = [1 2; 3 4];
 B = [5 6; 7 8];
-E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]</code></pre>
+E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Element-wise operations require matrices to be the same size.</p>
 		</section>
 
@@ -276,7 +284,7 @@ E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]</code></pre>
 			<p>Matrix exponentiation involves multiplying a matrix by itself a certain number of times.</p>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">A_squared = A^2; % Equivalent to A * A
-    </code></pre>
+</code></pre>
 			<p>⚠️ <strong>Gotcha:</strong> This is not the same as squaring each element. For element-wise exponentiation, use <code>.^</code>.</p>
 		</section>
 
@@ -292,6 +300,7 @@ E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]</code></pre>
 				<li><code>magic(n)</code>: Creates an n-by-n magic square matrix.</li>
 			</ul>
 		</section>
+
 		<section>
 			<h4>What is a Magic Square?</h4>
 			<p>A <strong>magic square</strong> is a square matrix where the sums of every row, column, and both main diagonals are the same.</p>
@@ -301,7 +310,8 @@ disp(magicMatrix);
 % Output:
 %     8     1     6
 %     3     5     7
-%     4     9     2</code></pre>
+%     4     9     2
+</code></pre>
 			<p>💡 <strong>Fun Fact:</strong> Magic squares have been studied for centuries and appear in various cultures and artworks.</p>
 		</section>
 
@@ -318,7 +328,8 @@ isEven = mod(vec, 2) == 0; % Checks if elements are even
 
 % Using logical() function
 logicalVec = logical([1 0 1]);
-% logicalVec = [1, 0, 1] (as logical values)</code></pre>
+% logicalVec = [1, 0, 1] (as logical)
+</code></pre>
 			<p>💡 <strong>Tip:</strong> <code>logical()</code> can create logical arrays from numeric arrays.</p>
 			<p>⚠️ <strong>Gotcha:</strong> A logical vector is different from a numeric vector. Operations on logical vectors may yield different results.</p>
 		</section>
@@ -343,7 +354,8 @@ B = [5, 4, 3, 2, 1];
 isEqual = A == B; % [0, 0, 1, 0, 0]
 
 % Combined conditions
-condition = (A > 2) & (B < 4); % [0, 0, 1, 0, 0]</code></pre>
+condition = (A > 2) & (B < 4); % [0, 0, 1, 0, 0]
+</code></pre>
 			<p>👩‍💻 <strong>Exercise:</strong> Create a logical vector that identifies elements in <code>A</code> that are greater than 2 or less than 5.</p>
 		</section>
 
@@ -354,8 +366,22 @@ condition = (A > 2) & (B < 4); % [0, 0, 1, 0, 0]</code></pre>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">vec = [10, 15, 20, 25, 30];
 condition = vec > 20;
-selectedElements = vec(condition); % Returns [25, 30]</code></pre>
+selectedElements = vec(condition); % Returns [25, 30]
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Logical indexing is a powerful tool for data manipulation and can simplify your code.</p>
+		</section>
+
+		<!-- Slide: xor() mention or expand -->
+		<section>
+			<h3>xor() for Exclusive OR</h3>
+			<p><code>xor()</code> returns a logical array that is 1 (true) where exactly one of the operands is true, and 0 otherwise.</p>
+			<h4>Example:</h4>
+			<pre><code class="language-matlab">u = [1 0 1 0];
+v = [1 1 0 0];
+xorResult = xor(u, v);
+% xorResult = [0 1 1 0]
+</code></pre>
+			<p>💡 <strong>Tip:</strong> This is often used for mutual-exclusion checks, e.g., “Condition A <strong>or</strong> Condition B, but not both.”</p>
 		</section>
 
 		<!-- Slide 18: The find() Function -->
@@ -363,54 +389,55 @@ selectedElements = vec(condition); % Returns [25, 30]</code></pre>
 			<h3>The <code>find()</code> Function</h3>
 			<p>The <code>find()</code> function returns the indices of elements that meet a condition.</p>
 			<h4>Usage:</h4>
-			<pre><code class="language-matlab">indices = find(condition);</code></pre>
+			<pre><code class="language-matlab">indices = find(condition);
+</code></pre>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">vec = [0, 3, 0, 7, 0, 5, 0, 9];
 indices = find(vec); % Returns [2, 4, 6, 8]
 
 % Using a condition
-vec = [10, 15, 20, 25, 30, 35, 40];
-indices = find(vec > 20); % Returns [4, 5, 6, 7]</code></pre>
+vec2 = [10, 15, 20, 25, 30, 35, 40];
+indices2 = find(vec2 > 20); % Returns [4, 5, 6, 7]
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Use <code>find()</code> with conditions to locate positions of interest in your data.</p>
 			<p>👩‍💻 <strong>Exercise:</strong> Given an array, use <code>find()</code> to locate all positions where the elements are divisible by 3.</p>
 		</section>
 
 		<section>
-			<h3>The <code>find()</code> Function</h3>
-			<p>The <code>find()</code> function can also return indices for 2D arrays/matrices.</p>
-			<h4>Usage:</h4>
-			<pre><code class="language-matlab">[r, c] = find(condition);</code></pre>
-			<h4>Example:</h4>
-			<pre><code class="language-matlab">vec = [0, 3, 0, 15, 0, 5, 0;
-	  10, 9, 20, 40, 18, 35, 8];
+			<h3>The <code>find()</code> Function in 2D</h3>
+			<p>For matrices, <code>find()</code> can return row and column indices.</p>
+			<pre><code class="language-matlab">matrixData = [0, 3, 0,  15,  0,  5, 0;
+             10, 9, 20, 40, 18, 35, 8];
 
-[rows, cols] = find(vec > 10);
+[rows, cols] = find(matrixData > 10);
 % rows contains [ 2; 1; 2; 2; 2 ]
 % cols contains [ 3; 4; 4; 5; 6 ]
 
-indices = find(vec > 10);
-% indices contains [ 6; 7; 8; 10; 12 ]</code></pre>
+indices = find(matrixData > 10);
+% indices contains [ 6; 7; 8; 10; 12 ]</code></pre
+			<p>Use <code>(rows, cols)</code> to directly index back into the matrix if needed.</p>
 		</section>
 
 		<!-- Slide 19: Common Logical Functions -->
 		<section>
 			<h3>Common Logical Functions</h3>
 			<ul>
-				<li><code>all(A)</code>: Returns <code>true</code> if all elements of <code>A</code> are non-zero or <code>true</code>.</li>
-				<li><code>any(A)</code>: Returns <code>true</code> if any element of <code>A</code> is non-zero or <code>true</code>.</li>
-				<li><code>logical(A)</code>: Converts numeric array <code>A</code> to a logical array.</li>
+				<li><code>all(A)</code>: <code>true</code> if all elements of <code>A</code> are non-zero or <code>true</code>.</li>
+				<li><code>any(A)</code>: <code>true</code> if any element of <code>A</code> is non-zero or <code>true</code>.</li>
+				<li><code>logical(A)</code>: Convert numeric array <code>A</code> to a logical array.</li>
 			</ul>
 			<h4>Examples:</h4>
 			<pre><code class="language-matlab">A = [0, 1, 2, 0, 4];
 
 % Check if any elements are non-zero
-hasNonZero = any(A); % Returns true
+hasNonZero = any(A); % true
 
 % Check if all elements are non-zero
-allNonZero = all(A); % Returns false
+allNonZero = all(A); % false
 
 % Convert to logical array
-logicalA = logical(A); % [0, 1, 1, 0, 1]</code></pre>
+logicalA = logical(A); % [0, 1, 1, 0, 1]
+</code></pre>
 			<p>👩‍💻 <strong>Exercise:</strong> Use <code>any()</code> and <code>all()</code> to determine if a dataset meets certain criteria.</p>
 		</section>
 
@@ -422,158 +449,22 @@ logicalA = logical(A); % [0, 1, 1, 0, 1]</code></pre>
 			<pre><code class="language-matlab">data = [12, 5, 8, 15, 7, 20];
 % Extract elements greater than 10
 condition = data > 10;
-filteredData = data(condition); % [12, 15, 20]</code></pre>
+filteredData = data(condition); % [12, 15, 20]
+</code></pre>
 			<p>💡 <strong>Tip:</strong> Logical indexing allows for efficient data filtering without the need for loops.</p>
-		</section>
-
-		<!-- FIXME: Move tables to a prior week -->
-		<section data-markdown>
-			<textarea data-template>
-			## MATLAB Tables
-
-			### What is a Table?
-
-			- A **table** is a data type suitable for storing column-oriented or tabular data.
-			- Tables can hold different types of data in each column, including numbers, strings, or even other tables.
-
-			</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-			## Creating a Table
-
-			### From Arrays
-
-			You can create a table by combining arrays of the same length.
-
-			```matlab
-			% Example data
-			Name = ["Alice"; "Bob"; "Charlie"];
-			Age = [25; 30; 35];
-			Height = [5.5; 6.1; 5.8];
-
-			% Create the table
-			myTable = table(Name, Age, Height);
-			```
-
-			### From Existing Data
-
-			Tables can also be created from existing arrays or data already in the workspace.
-
-			```matlab
-			% Convert an array into a table
-			randArray = rand(5, 3); % Random 5x3 array
-			myTable = array2table(randArray, 'VariableNames', ["Var1", "Var2", "Var3"]);
-			```
-
-			⚠️**Gotcha**: Be sure to use double quotes `"` around strings
-
-			</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-			## Accessing Data in Tables
-
-			### By Variable Name
-
-			You can access the data in a table by referring to the variable names (columns).
-
-			```matlab
-			% Access the 'age' column
-			ages = myTable.Age;
-
-			% Access multiple columns
-			subset = myTable(:, {'Name', 'Height'});
-			```
-
-			### By Row and Column Index
-
-			Tables also support matrix-style indexing.
-
-			```matlab
-			% Access the data in the 2nd row, 3rd column
-			value = myTable{2, 3};
-
-			% Access the entire 1st row
-			row1 = myTable(1, :);
-			```
-
-			### Logical Indexing
-
-			Logical conditions can be used to filter rows.
-
-			```matlab
-			% Find rows where Age is greater than 30
-			olderThan30 = myTable(myTable.Age > 30, :);
-			```
-
-			</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-			## Updating Data in Tables
-
-			### Update Specific Elements
-
-			You can directly assign new values to elements in the table.
-
-			```matlab
-			% Update the Age of the 2nd row
-			myTable.Age(2) = 32;
-
-			% Update a specific element
-			myTable{3, 'Height'} = 6.0;
-			```
-
-			### Adding New Variables (Columns)
-
-			Adding new columns is straightforward:
-
-			```matlab
-			% Add a new column 'Weight'
-			myTable.Weight = [150; 180; 165];
-			```
-
-			### Adding New Rows
-
-			New rows can be appended using the `end+1` indexing.
-
-			```matlab
-			% Add a new row
-			newRow = {"Diana", 28, 5.7, 140};
-			myTable(end+1, :) = newRow;
-			```
-
-			</textarea>
-		</section>
-
-		<section data-markdown>
-			<textarea data-template>
-			## Summary
-
-			- **Tables** are versatile for handling mixed data types.
-			- Access data by **variable names** or **indices**.
-			- **Update** tables by directly assigning values to elements, variables, or rows.
-			- Use `[]` when you want the value, and `{}` when you want to work with the table
-				- Also, use `{}` when you have mixed data (numbers and strings)
-
-			</textarea>
 		</section>
 
 		<!-- Slide 21: Conclusion -->
 		<section>
 			<h2>Conclusion</h2>
-			<p>We've covered the basics of vectors, matrices, and logical operations in MATLAB, providing you with foundational tools for engineering computations.</p>
-			<p>Remember to:</p>
+			<p>We've covered the basics of vectors, matrices, logical operations, and an intro to tables in MATLAB. This foundation supports many engineering or data tasks, from filtering data to matrix transformations.</p>
+			<p>Key takeaways:</p>
 			<ul>
-				<li>Ensure matrix dimensions are compatible for operations.</li>
-				<li>Utilize logical indexing to simplify data manipulation.</li>
-				<li>Explore MATLAB's built-in functions to enhance your programs.</li>
+				<li>Ensure matrix dimensions align for linear algebra ops (<code>*</code>, <code>/</code>, <code>^</code>).</li>
+				<li>Use <strong>logical indexing</strong> to filter data and handle special cases efficiently.</li>
+				<li>Experiment with <code>try/catch</code> for robust error handling.</li>
 			</ul>
-			<p>Feel free to experiment with these concepts to deepen your understanding.</p>
+			<p>Feel free to experiment further with these concepts in your scripts, building on everything from earlier weeks!</p>
 		</section>
 
 	</div>

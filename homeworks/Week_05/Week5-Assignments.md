@@ -1,21 +1,20 @@
-# Week 5 Homework Assignments: Vectors, Matrices, and Logical Operations
+# Week 5 Assignments: Logical Indexing & Matrix Operations
 
 ## Global Requirements
 
 * All deliverables shall be added, committed, and pushed to your `Week5` folder in your repository.
-* Include your name and the names of anyone who assisted you in the following format:
+* Include your name and the names of anyone who assisted you in the following format at the top of each `.m` file:
+  ```matlab
+  % Student: Firstname Lastname
+  % Assisted by: Firstname Lastname, etc.
+  ```
+* Ensure your scripts (not functions) include the following to clear the workspace and command window:
 
-      % Student: Firstname Lastname
-      % Assisted by: Firstname Lastname, etc.
-
-* Ensure your **scripts** (**Not functions**) include the following to clear the workspace and command window:
-
-      clc;
-      clear;
-
-* Provide comments explaining each part of your code.
-* Use logical vectors and operations as much as possible to solve the problems. This will make your life easier.
-* Ensure your programs handle input and output properly, and test them with different scenarios.
+  ```matlab
+  clc;
+  clear;
+  ```
+* Any CSV files should be read from or written to in the same directory as your scripts by default. (No file path shenanigans)
 
 ## 1. Material Strength Filter Tool
 > [!CAUTION]
