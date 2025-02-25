@@ -17,7 +17,7 @@
 
 		<section data-markdown>
         <textarea data-template>
-			## Vector and Array Creation and Subscripting in MATLAB
+			## Review: Vector and Array Creation and Subscripting in MATLAB
 
 			### 1. Creating Vectors and Arrays
 
@@ -610,10 +610,11 @@
 					<h4 id="default-behaviors-">Default Behaviors:</h4>
 					<ul>
 						<li><strong>Range</strong>: By default, reads all data from the file.</li>
-						<li><strong>Variable Names (Headers)</strong>:<ul>
-							<li><code>readtable</code>: Assumes the first row contains headers (<code>&#39;ReadVariableNames&#39;, true</code>).</li>
-							<li><code>readmatrix</code> and <code>readcell</code>: Do not read headers by default (<code>&#39;ReadVariableNames&#39;, false</code>).</li>
-						</ul>
+						<li><strong>Variable Names (Headers)</strong>:
+							<ul>
+								<li><code>readtable</code>: Assumes the first row contains headers (<code>'ReadVariableNames', true</code>).</li>
+								<li><code>readmatrix</code> and <code>readcell</code>: Do not read headers by default (<code>'ReadVariableNames', false</code>).</li>
+							</ul>
 						</li>
 						<li><strong>Data Types</strong>: MATLAB automatically detects data types based on the content.</li>
 					</ul>
@@ -621,12 +622,12 @@
 				<div class="fragment fade-in-then-out current-visible" data-fragment-index="1">
 					<h4 id="optional-parameters-">Optional Parameters:</h4>
 					<ul>
-						<li><strong>&#39;Range&#39;</strong>: Specifies the subset of data to read.</li>
-						<li><strong>&#39;ReadVariableNames&#39;</strong>: Indicates whether to treat the first row as headers.</li>
-						<li><strong>&#39;Sheet&#39;</strong>: Specifies the worksheet in Excel files.</li>
-						<li><strong>&#39;VariableTypes&#39;</strong>: Defines data types for each column (used with import options).</li>
-						<li><strong>&#39;Delimiter&#39;</strong>: Specifies the character(s) that separate fields in text files.</li>
-						<li><strong>&#39;TreatAsMissing&#39;</strong>: Defines representations of missing data.</li>
+						<li><strong>'Range'</strong>: Specifies the subset of data to read.</li>
+						<li><strong>'ReadVariableNames'</strong>: Indicates whether to treat the first row as headers.</li>
+						<li><strong>'Sheet'</strong>: Specifies the worksheet in Excel files.</li>
+						<li><strong>'VariableTypes'</strong>: Defines data types for each column (used with import options).</li>
+						<li><strong>'Delimiter'</strong>: Specifies the character(s) that separate fields in text files.</li>
+						<li><strong>'TreatAsMissing'</strong>: Defines representations of missing data.</li>
 					</ul>
 				</div>
 			</span>
@@ -671,7 +672,7 @@
 
 			#### Specifying Headers:
 
-			- Use `'ReadVariableNames', true` or `false` to control header reading.
+			- Use `'ReadVariableNames', true` or `false` to control whether the first row is treated as headers.
 
 			--
 
@@ -691,7 +692,6 @@
 			```
 
 			💡️ **Tips**:
-
 			- Use `'ReadVariableNames', false` if your data does not include headers in the first row.
 			- These options have no specific order but must be provided in pairs.
 
@@ -727,7 +727,7 @@
 			   dataTable = readtable('data.xlsx', opts);
 			   ```
 
-			--
+	        --
 
 			#### Example: Specifying Data Types
 
@@ -815,7 +815,80 @@
 
 			⚠️ **Gotcha**: Be cautious when your data contains missing values (`NaN` or empty cells). They can affect calculations.
 
-			💡 **Tip**: Notice `sum(sum())`? What is happening here? Use these scenarios as learning opportunities.
+			💡 **Tip**: Notice `sum(sum())`? It's a quick way to sum across 2D data.
+		</textarea>
+		</section>
+
+		<section data-markdown>
+        <textarea data-template>
+			## Working with Tables in MATLAB
+
+			### 1. Creating Tables Manually
+
+			```matlab
+			Names = {'Alice'; 'Bob'; 'Charlie'};
+			Ages = [20; 22; 21];
+			dataTable = table(Names, Ages, 'VariableNames', {'Name','Age'});
+			disp(dataTable)
+			```
+			- Tables can contain mixed data types in different columns.
+			- You can specify column (variable) names using `'VariableNames'`.
+
+			---
+
+			### 2. Adding/Removing Columns
+
+			```matlab
+			% Add a new column
+			dataTable.Height = [1.65; 1.80; 1.72];
+
+			% Remove a column
+			dataTable = removevars(dataTable, 'Height');  % remove 'Height' column
+			```
+
+			---
+
+			### 3. Indexing Tables
+			- **Dot-notation**: `dataTable.Age` returns the Age column as an array.
+			- **Brace-index**: `dataTable{:, 'Age'}` also returns the numeric array for 'Age'.
+
+			```matlab
+			% Dot notation
+			ageArray = dataTable.Age;
+
+			% Brace indexing
+			ageArray2 = dataTable{:, 'Age'};
+			```
+
+			💡 **Tip**: Dot notation is convenient for referencing columns by their variable name.
+
+			---
+
+			### 4. Renaming Variables
+
+			```matlab
+			dataTable.Properties.VariableNames{'Age'} = 'YearsOld';
+			```
+			- Now `dataTable.YearsOld` is valid.
+
+			---
+
+			### 5. Summaries and Basic Operations
+
+			- **summary(dataTable)**: Provides a statistical summary (min, max, etc.) for each column.
+			- You can do **logical indexing** on table columns:
+			```matlab
+			adultsOnly = dataTable(dataTable.YearsOld >= 18, :);
+			```
+			- Great for quickly filtering or subsetting table rows.
+
+			---
+
+			### Why Tables?
+
+			- Keep column names attached to data, making code more readable.
+			- Handy for data analysis or after importing CSV files with headers.
+			- Mix numeric, text, or categorical data in the same container.
 
 		</textarea>
 		</section>
@@ -840,7 +913,7 @@
 			- **`delimiter`**: Character(s) that separate fields (e.g., `','` for CSV files).
 			- **`HeaderLines`**: Number of lines to skip at the beginning of the file.
 
-			--
+			---
 
 			#### Example: Reading a Text File with Specified Formats
 
@@ -1054,10 +1127,10 @@
 				<span class="fragment fade-in-then-out current-visible" data-fragment-index="0">
 					<h4 id="specifying-sheet-names-">Specifying Sheet Names:</h4>
 					<ul>
-						<li>Use the <code>&#39;Sheet&#39;</code> parameter to specify the sheet name or index.</li>
+						<li>Use the <code>'Sheet'</code> parameter to specify the sheet name or index.</li>
 						<li><p>Example:</p>
 						<pre>
-							<code class="lang-matlab">data = readmatrix(&#39;data.xlsx&#39;, &#39;Sheet&#39;, &#39;Sheet2&#39;);</code>
+							<code class="lang-matlab">data = readmatrix('data.xlsx', 'Sheet', 'Sheet2');</code>
 						</pre>
 						</li>
 					</ul>
@@ -1067,16 +1140,16 @@
 					<ul>
 						<li>Use <code>readtable</code> or <code>readmatrix</code> for CSV and TXT files.</li>
 						<li><p>Example:</p>
-							<pre><code class="lang-matlab">data = readtable(&#39;data.txt&#39;, &#39;Delimiter&#39;, &#39;\t&#39;, &#39;ReadVariableNames&#39;, false);</code></pre>
+							<pre><code class="lang-matlab">data = readtable('data.txt', 'Delimiter', '\t', 'ReadVariableNames', false);</code></pre>
 						</li>
 					</ul>
 				</span>
 				<span class="fragment fade-in-then-out current-visible" data-fragment-index="2">
 					<h4 id="ignoring-or-handling-missing-data-">Ignoring or Handling Missing Data:</h4>
 					<ul>
-						<li>Use the <code>&#39;TreatAsMissing&#39;</code> parameter.</li>
+						<li>Use the <code>'TreatAsMissing'</code> parameter.</li>
 						<li><p>Example:</p>
-							<pre><code class="lang-matlab">dataTable = readtable(&#39;data.csv&#39;, &#39;TreatAsMissing&#39;, &#39;NA&#39;);</code></pre>
+							<pre><code class="lang-matlab">dataTable = readtable('data.csv', 'TreatAsMissing', 'NA');</code></pre>
 						</li>
 					</ul>
 				</span>
@@ -1111,6 +1184,8 @@
 					<li><strong>Input/Output Arguments</strong>: Verify the correct number and type of input/output arguments when calling functions.</li>
 					<li><strong>Data Formats</strong>: Ensure the data format matches the expected format when importing/exporting. Inconsistent formats can lead to errors.</li>
 					<li><strong>Units</strong>: Always check if functions expect angles in degrees or radians to avoid calculation errors.</li>
+					<li><strong>Tables</strong>: If a CSV has partial numeric columns and partial text, you might get unexpected data types. Double-check with <code>summary()</code> or <code>varfun()</code>.</li>
+					<li><strong>Table Variable Names</strong>: If a file’s header row has strange characters or duplicates, MATLAB might rename them automatically. Check <code>Properties.VariableNames</code> after import.</li>
 				</ul>
 				<h3 id="common-errors">Common Errors:</h3>
 				<ul>
