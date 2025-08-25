@@ -141,8 +141,10 @@ disp('The area of the circle is: ', area) % Incorrect use of disp function
 ---
 
 # Definition of Done
-1. You shall have a Github Repository set up with `gberl001` invited as a collaborator.
+1. You shall have a GitHub Repository set up with `gberl001` invited as a collaborator.
 2. Your `Week01` Folder shall have the following files
+
+* Week01/
    * buggy_script.m
    * calculate_area.m
    * debugging_report.txt

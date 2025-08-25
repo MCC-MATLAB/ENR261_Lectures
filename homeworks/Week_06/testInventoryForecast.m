@@ -36,12 +36,12 @@ function testInventoryForecast()
         disp('Test 1 passed: Initial stock level is correct.');
 
         % Test 2: Ensure inventory reflects correct usage (inventory should decrease after usage)
-        assert(inventoryOverTime(2) < inventoryOverTime(1), ...
+        assert(any(inventoryOverTime < inventoryOverTime(1)), ...
             'Test 2 failed: Inventory did not decrease after usage.');
         disp('Test 2 passed: Inventory reflects correct usage.');
 
         % Test 3: Check inventory increases after purchase
-        assert(any(inventoryOverTime > inventoryOverTime(2:end)), ...
+        assert(any(inventoryOverTime(2:end) > inventoryOverTime(1:end-1)), ...
             'Test 3 failed: Inventory should increase after a purchase.');
         disp('Test 3 passed: Inventory reflects correct purchase behavior.');
 

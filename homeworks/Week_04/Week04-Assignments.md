@@ -151,6 +151,7 @@ You can test your functionality running the following test files:
 * `testCalculateTrajectory.m` tests `calculateTrajectory()`
 * `testGetOptimalTrajectory.m` tests `getOptimalTrajectory()`
 * `testProjectileComparisonAssignment.m` is an integration test, it tests that the scripts function together properly.
+  * Note that there is another test `testProjectileComparison.m` which is used by this test, you do not need to run this test, if you do, it will fail but this is normal.
 
 ### Deliverables
 
@@ -412,9 +413,9 @@ upc,ingredient,qty
 
 ## Definition of Done
 
-Your Week4 folder shall contain **at minimum**, the following files:
+Your Week04 folder shall contain **at minimum**, the following files:
 
-* Week4/
+* Week04/
   * addItemToStock.m
   * calculateTrajectory.m
   * gearRatioCalc.m

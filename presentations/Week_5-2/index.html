@@ -334,6 +334,17 @@ logicalVec = logical([1 0 1]);
 			<p>⚠️ <strong>Gotcha:</strong> A logical vector is different from a numeric vector. Operations on logical vectors may yield different results.</p>
 		</section>
 
+		<section>
+			<h3>Logical Indexing</h3>
+			<p>Logical indexing allows you to select elements of an array that meet a certain condition.</p>
+			<h4>Example:</h4>
+			<pre><code class="language-matlab">vec = [10, 15, 20, 25, 30];
+condition = vec > 20;
+selectedElements = vec(condition); % Returns [25, 30]
+</code></pre>
+			<p>💡 <strong>Tip:</strong> Logical indexing is a powerful tool for data manipulation and can simplify your code.</p>
+		</section>
+
 		<!-- Slide 16: Logical Operations -->
 		<section>
 			<h3>Logical Operations</h3>
@@ -359,29 +370,50 @@ condition = (A > 2) & (B < 4); % [0, 0, 1, 0, 0]
 			<p>👩‍💻 <strong>Exercise:</strong> Create a logical vector that identifies elements in <code>A</code> that are greater than 2 or less than 5.</p>
 		</section>
 
-		<!-- Slide 17: Logical Indexing -->
+		<!-- Slide 19: Common Logical Functions -->
 		<section>
-			<h3>Logical Indexing</h3>
-			<p>Logical indexing allows you to select elements of an array that meet a certain condition.</p>
+			<h3>Common Logical Functions:</h3>
+			<ul>
+				<li><code>find()</code>: Indices of non-zero elements</li>
+				<li><code>ischar()</code>, <code>isinf()</code>, <code>isnan()</code>, <code>isnumeric()</code>, <code>isempty()</code></li>
+				<li><code>any()</code>, <code>all()</code>, <code>xor()</code></li>
+				<li><code>exist()</code></li>
+			</ul>
+
 			<h4>Example:</h4>
-			<pre><code class="language-matlab">vec = [10, 15, 20, 25, 30];
-condition = vec > 20;
-selectedElements = vec(condition); % Returns [25, 30]
-</code></pre>
-			<p>💡 <strong>Tip:</strong> Logical indexing is a powerful tool for data manipulation and can simplify your code.</p>
+					<pre><code class="language-matlab">v = [1, 3,  5, 6,  3,  4;
+     6, 36, 6, 7, 843, 5];
+[row, col] = find(v == 3);</code></pre>
+			<h4>Result:</h4>
+					<pre><code class="language-matlab">row =
+1
+1
+col =
+2
+5</code></pre>
+
 		</section>
 
-		<!-- Slide: xor() mention or expand -->
 		<section>
-			<h3>xor() for Exclusive OR</h3>
-			<p><code>xor()</code> returns a logical array that is 1 (true) where exactly one of the operands is true, and 0 otherwise.</p>
-			<h4>Example:</h4>
-			<pre><code class="language-matlab">u = [1 0 1 0];
-v = [1 1 0 0];
-xorResult = xor(u, v);
-% xorResult = [0 1 1 0]
+			<h3><code>any()</code> and <code>all()</code></h3>
+			<ul>
+				<li><code>all(A)</code>: <code>true</code> if all elements of <code>A</code> are non-zero or <code>true</code>.</li>
+				<li><code>any(A)</code>: <code>true</code> if any element of <code>A</code> is non-zero or <code>true</code>.</li>
+				<li><code>logical(A)</code>: Convert numeric array <code>A</code> to a logical array.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<pre><code class="language-matlab">A = [0, 1, 2, 0, 4];
+
+% Check if any elements are non-zero
+hasNonZero = any(A); % true
+
+% Check if all elements are non-zero
+allNonZero = all(A); % false
+
+% Convert to logical array
+logicalA = logical(A); % [0, 1, 1, 0, 1]
 </code></pre>
-			<p>💡 <strong>Tip:</strong> This is often used for mutual-exclusion checks, e.g., “Condition A <strong>or</strong> Condition B, but not both.”</p>
+			<p>👩‍💻 <strong>Exercise:</strong> Use <code>any()</code> and <code>all()</code> to determine if a dataset meets certain criteria.</p>
 		</section>
 
 		<!-- Slide 18: The find() Function -->
@@ -414,37 +446,14 @@ indices2 = find(vec2 > 20); % Returns [4, 5, 6, 7]
 % cols contains [ 3; 4; 4; 5; 6 ]
 
 indices = find(matrixData > 10);
-% indices contains [ 6; 7; 8; 10; 12 ]</code></pre
+% indices contains [ 6; 7; 8; 10; 12 ]</code></pre>
 			<p>Use <code>(rows, cols)</code> to directly index back into the matrix if needed.</p>
-		</section>
-
-		<!-- Slide 19: Common Logical Functions -->
-		<section>
-			<h3>Common Logical Functions</h3>
-			<ul>
-				<li><code>all(A)</code>: <code>true</code> if all elements of <code>A</code> are non-zero or <code>true</code>.</li>
-				<li><code>any(A)</code>: <code>true</code> if any element of <code>A</code> is non-zero or <code>true</code>.</li>
-				<li><code>logical(A)</code>: Convert numeric array <code>A</code> to a logical array.</li>
-			</ul>
-			<h4>Examples:</h4>
-			<pre><code class="language-matlab">A = [0, 1, 2, 0, 4];
-
-% Check if any elements are non-zero
-hasNonZero = any(A); % true
-
-% Check if all elements are non-zero
-allNonZero = all(A); % false
-
-% Convert to logical array
-logicalA = logical(A); % [0, 1, 1, 0, 1]
-</code></pre>
-			<p>👩‍💻 <strong>Exercise:</strong> Use <code>any()</code> and <code>all()</code> to determine if a dataset meets certain criteria.</p>
 		</section>
 
 		<!-- Slide 20: Practical Application -->
 		<section>
 			<h3>Practical Application: Filtering Data</h3>
-			<p>Suppose you have a dataset and you want to extract elements that meet certain criteria.</p>
+			<p>Suppose you have a dataset, and you want to extract elements that meet certain criteria.</p>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">data = [12, 5, 8, 15, 7, 20];
 % Extract elements greater than 10
@@ -454,12 +463,72 @@ filteredData = data(condition); % [12, 15, 20]
 			<p>💡 <strong>Tip:</strong> Logical indexing allows for efficient data filtering without the need for loops.</p>
 		</section>
 
+		<section>
+			<h3>Round-off Error:</h3>
+			<p><strong>Issue:</strong> Comparisons can be affected by round-off errors.</p>
+			<pre><code class="language-matlab">a = 0;
+b = sin(pi);
+result = (a == b); % Due to round-off error
+</code></pre>
+
+			<h4>Example Output:</h4>
+			<pre><code class="language-matlab">a == b
+ans =
+	 0
+</code></pre>
+			<p><strong>Solution</strong>: Use approximate equality.</p>
+			<pre><code class="language-matlab">abs(a - b) < 1.0e-14
+</code></pre>
+
+			<h4>Example Output:</h4>
+			<pre><code class="language-matlab">ans =
+    1  % Logical true
+</code></pre>
+
+			<p>⚠️ Gotcha: Be cautious when comparing floats directly. Use approximate comparisons.</p>
+
+		</section>
+
+		<section>
+			<h3>Avoiding Division by Zero</h3>
+			<p><strong>Issue</strong>: Dividing by zero results in an array containing <code>NaN</code> (Not a Number).</p>
+			<pre><code class="language-matlab">x = -4*pi : pi/20 : 4*pi;
+y = sin(x) ./ x; % division by zero if x=0
+</code></pre>
+
+			<p><strong>Solution</strong>: Use logic to replace zero with near-zero values.</p>
+
+			<h4>Example:</h4>
+			<pre><code class="language-matlab">logicalVector = (x == 0);
+x = x + logicalVector*eps;
+</code></pre>
+		</section>
+
+		<section>
+			<!-- TODO: Add images or example visuals for these slides -->
+			<h3>Avoiding Infinite Values</h3>
+			<p><strong>Issue</strong>: Near infinite, or extremely large values, can drastically distort plots.</p>
+			<pre><code class="language-matlab">x = -3/2*pi : pi/100 : 3/2*pi;
+y = tan(x); % Tan function goes to infinity at odd multiples of pi/2
+plot(x, y);
+</code></pre>
+			<p><strong>Solution</strong>: Use logical vectors to handle large, or near-infinite values.</p>
+			<h4>Example:</h4>
+			<pre><code class="language-matlab">x = -3/2*pi : pi/100 : 3/2*pi;
+y = tan(x);
+y = y .* (abs(y) < 1e10); % Limit large values
+plot(x, y);
+</code></pre>
+			<p>💡 Tip: Always check for and handle special cases like division by zero or infinity to ensure your code runs smoothly.</p>
+		</section>
+
 		<!-- Slide 21: Conclusion -->
 		<section>
 			<h2>Conclusion</h2>
 			<p>We've covered the basics of vectors, matrices, logical operations, and an intro to tables in MATLAB. This foundation supports many engineering or data tasks, from filtering data to matrix transformations.</p>
 			<p>Key takeaways:</p>
 			<ul>
+				<li>Division by Zero: Always check for and handle division by zero to avoid NaN values.</li>
 				<li>Ensure matrix dimensions align for linear algebra ops (<code>*</code>, <code>/</code>, <code>^</code>).</li>
 				<li>Use <strong>logical indexing</strong> to filter data and handle special cases efficiently.</li>
 				<li>Experiment with <code>try/catch</code> for robust error handling.</li>

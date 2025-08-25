@@ -197,10 +197,10 @@ end</code></pre>
             <div class="code-example">
                 <p><strong>Sample Loop:</strong></p>
                 <pre><code class="language-matlab">while true
-    currentTime = toc(startTime);
-    updateTimer(app, currentTime);
-    toggleLED1(app, currentTime);
-    readSensor(app, currentTime);
+    elapsedTime = toc(startTime);
+    updateTimer(app, elapsedTime);
+    toggleLED1(app, elapsedTime);
+    readSensor(app, elapsedTime);
     % Add more tasks as needed
 end</code></pre>
             </div>
@@ -240,6 +240,7 @@ end</code></pre>
                 <pre><code class="language-matlab">function toggleLED(app, currentTime)
     if (currentTime - lastToggleTime) >= 1
         app.led.Enable = ~app.led.Enable;
+        lastToggleTime = currentTime;
     end
 end</code></pre>
             </div>

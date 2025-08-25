@@ -85,15 +85,15 @@ Graphical User Interfaces (GUIs) provide a user-friendly way to interact with pr
 			### Important Function Difference
 			Many functions in an app, require a handle so they know where to apply that function.
 			#### Examples:
-			* plot(app.pltLinear, x, y)
-			* xlabel(app.pltLinear, “text”)
+			* ```plot(app.pltLinear, x, y)```
+			* ```xlabel(app.pltLinear, “text”)```
       </textarea>
 		</section>
 
 		<section>
 			<h2>Let’s Build a Simple App! 🎉</h2>
 
-			<p>Goal: Create a “Get Current Time” App ⏰</p>
+			<p><strong>Goal</strong>: Create a “Get Current Time” App ⏰</p>
 
 			<section>
 				<div class="side-by-side" style="align-items: center">
@@ -215,8 +215,8 @@ end				</code></pre>
 			    % Your code here
 			end
 			```
-			* app: Reference to your app's components.
-			* event: Data related to the event (e.g., mouse click).
+			* `app`: Reference to your app's components.
+			* `event`: Data related to the event (e.g., mouse click).
 			--
 			### Best Practices for Callbacks
 			* Keep them concise.
@@ -246,6 +246,20 @@ end				</code></pre>
 * Include `app`
 * Can return data like a regular function
       </textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+				## UserData and Properties
+				### UserData
+				* Can be used to store information similar to a struct
+				* Is tied to the component
+				* Useful for storing information you want to retrieve specific to that component (plot x and y values)
+				* `app.<componentName>.UserData.<yourVariableName> = 12345`
+				### Properties
+				* Variables globally available anywhere in the GUI code.
+				* Should be treated like any other global variable
+			</textarea>
 		</section>
 
 		<section>
@@ -287,14 +301,17 @@ end				</code></pre>
     end
     app.lblTimeDisplay.Text = timeStr;
 end</code></pre>
-						<h4>💡Tip:</h4>
-						<ul>
-							<li><code>Properties</code> and <code>UserData</code></li>
-						</ul>
 					</div>
 					<div style="width: 100%">
 						<img src="/images/week9/AppTimeFormatCode.png">
 					</div>
+				</div>
+				<div>
+					<h4>💡Tips:</h4>
+					<ul>
+						<li>Notice <code>Value</code> and <code>Text</code></li>
+						<li>Results from <code>Value</code> and <code>Text</code> are sometimes strings even though the value is numeric</li>
+					</ul>
 				</div>
 
 			</section>
@@ -354,7 +371,7 @@ end</code></pre>
 * Follow the prompts to package your app.
 
 ### Sharing Options
-* MATLAB App Installer (.mlappinstall): Share with other MATLAB users.
+* MATLAB App Installer (`.mlappinstall`): Share with other MATLAB users.
 * Standalone Desktop App: Runs without MATLAB (requires MATLAB Compiler).
 
 ### Tips for Distribution
@@ -442,21 +459,26 @@ function btnDerivePushed(app, event)
     end
 end
 ```
---
-* Error Handling: Added try-catch block to handle invalid inputs.
+      </textarea>
+		</section>
 
-### Enhancing User Experience
-* Real-Time Updates: Use listeners to update the result as the user types.
-* Math Display: Use latex function and display expressions in formatted math.
-
-### Displaying Formatted Math
-* Utilize the HTML Component to render LaTeX.
-Example:
-```matlab
+		<section>
+			<h2>Improving the User Experience (UX)</h2>
+			<ul>
+				<li>Add try-catch blocks to handle invalid inputs.</li>
+				<li>Real-Time Updates: Use listeners to update the result as the user types.</li>
+				<li>Math Display: Use latex function and display expressions in formatted math.</li>
+			</ul>
+			<h3>Displaying Formatted Math</h3>
+			<ul>
+				<li>Utilize the HTML Component to render LaTeX.</li>
+			</ul>
+			<h4>Example:</h4>
+			<pre><code class="matlab hljs language-matlab">
 latexStr = ['$' latex(derivative) '$'];
 app.ResultHTML.Html = ['<html><body>' latexStr '</body></html>'];
-```
-      </textarea>
+		</code></pre>
+			<div>${\mathrm{e}}^y\,\cos\left(x\right)$</div>
 		</section>
 
 		<section data-markdown>
@@ -481,6 +503,90 @@ Feel free to ask any questions or share your thoughts!
 * Tutorial Videos: MATLAB App Designer Tutorials
 * Community Forums: MATLAB Central
       </textarea>
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+		<section>
+			<h2><strong>Hidden Track:</strong> Secret Sauce for Building GUIs Like a Pro!</h2>
+			<p style="text-align: center"><em>Leverage the tips and tricks from past weeks</em></p>
+
+			<section data-transition="zoom">
+				<p>✅ Write Logic First, GUI Later:</p>
+				<ul>
+					<li>Build and test your core logic in a separate script or function.</li>
+					<li>Make sure it works without the GUI before you bring it in.</li>
+				</ul>
+			</section>
+
+			<section data-transition="zoom">
+				<p>🔧 Use Stubs for GUI Values</p>
+				<ul>
+					<li>Stub GUI input/output: simulate dropdown values, textbox content, etc.</li>
+					<li>This keeps your logic testable without running the full GUI.</li>
+				</ul>
+			</section>
+
+			<section data-transition="zoom">
+				<p>🐞 Debug Like a Pro</p>
+				<ul>
+					<li>Enable Pause on Error/Warning in the MATLAB debugger.</li>
+					<li>Use breakpoints strategically to step through critical logic.</li>
+				</ul>
+			</section>
+
+			<section data-transition="zoom">
+				<p>🧪 Think Modular</p>
+				<ul>
+					<li>Keep business logic in separate functions — treat your GUI as a shell, not a brain.</li>
+				</ul>
+			</section>
+
+			<section data-transition="zoom">
+				<p>💬 Tip: <code>disp()</code> and <code>fprintf()</code> Still Work</p>
+				<ul>
+					<li>Debug print statements are still your friend — even in GUI callbacks!</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<h2>Example Stub</h2>
+			<p style="text-align: center"><i>Assignment 1</i></p>
+			<pre><code class="matlab hljs language-matlab">
+% FunctionPlotter_Stub.m
+% Simulate GUI inputs
+userInputExpr = 'x^2 + 3*x + 2';    % ← stubbed from input field
+rangeStart = -10;                   % ← stubbed from 'start range' input
+rangeEnd = 10;                      % ← stubbed from 'end range' input
+
+% Core logic
+try
+	syms x
+	expr = str2sym(userInputExpr); % Convert input to symbolic
+	fplot(expr, [rangeStart, rangeEnd]) % Plot expression
+	grid on
+	title(['y = ', char(expr)])
+catch err
+	disp('Invalid expression!');
+	disp(err.message);
+end
+				</code>
+				</pre>
 		</section>
 
 	</div>

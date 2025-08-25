@@ -115,7 +115,7 @@ components that update independently at different intervals.
     * When running the application, you should see the components changing colors, text, values, etc., independently and
       at different frequencies.
 5. Submission:
-    * Submit your MATLAB `crasyDashboard.mlapp` file.
+    * Submit your MATLAB `crazyDashboard.mlapp` file.
     * Include a short write-up (1-2 paragraphs) explaining:
     * How you implemented the independent updates.
     * The challenges faced in managing multiple tasks.
@@ -173,3 +173,15 @@ application should allow the user to adjust parameters and visualize how the rob
 ### Example
 
 ![pid simulator](../../images/week11/pidSimulator.png)
+
+---
+
+## Definition of Done
+
+Your `Week11` folder shall contain **at minimum** the following files:
+
+* Week11/
+   * `blinkWithDelay.mlapp`
+   * `blinkNoDelay.mlapp`
+   * `crazyDashboard.mlapp`
+   * `pidSimulator.mlapp`

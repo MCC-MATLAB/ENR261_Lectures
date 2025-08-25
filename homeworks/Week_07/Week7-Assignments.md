@@ -296,16 +296,17 @@ You can test your functionality running the following test files:
 
 ## Definition of Done
 
-Your `Week7` folder shall contain **at minimum** the following files:
+Your `Week07` folder shall contain **at minimum** the following files:
 
-- `addComponent.m`
-- `componentDatabase.m`
-- `struct2Table.m`
-- `updateInventory.m`
-- `recipeManager.m`
-- `simulateParticleMotion.m`
-- `calculateAverageVelocity.m`
-- `particleSimulation.m`
+* Week07/
+  - `addComponent.m`
+  - `componentDatabase.m`
+  - `struct2Table.m`
+  - `updateInventory.m`
+  - `recipeManager.m`
+  - `simulateParticleMotion.m`
+  - `calculateAverageVelocity.m`
+  - `particleSimulation.m`
 
 Ensure that each script and function is well-documented and follows good coding practices.
 

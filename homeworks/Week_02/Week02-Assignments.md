@@ -250,6 +250,7 @@ fprintf('The total cost of the grocery items is: %.2f\n', sum(totalCost));
 1. You shall have a GitHub Repository set up with gberl001 invited as a collaborator.
 2. Your `Week02` Folder shall have the following files:
 
+* Week02/
    * matrixOperations.m
    * vectorOperations.m
    * simplePlot.m

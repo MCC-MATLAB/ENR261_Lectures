@@ -146,3 +146,14 @@ The goal is to demonstrate an understanding of how algorithmic behavior changes 
 
 1. Each `.mlapp` file should be well-organized and user-friendly.
 2. Include your write-up in any format (word, text, md, pdf, etc), clearly explaining your approach and observations.
+
+---
+
+## Definition of Done
+
+Your `Week10` folder shall contain **at minimum** the following files:
+
+* Week10/
+   * `SpringDampingPID.mlapp`
+   * `LineFollowingPID.mlapp`
+   * `CustomAlgorithmComparison.mlapp`

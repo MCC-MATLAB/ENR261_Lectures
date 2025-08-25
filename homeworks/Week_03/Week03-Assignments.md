@@ -24,7 +24,9 @@ Create a script that calculates the load on a beam based on user input and outpu
     - Outputs the results using `fprintf` in a clear, formatted way.
 
 **Example formatted output**:
-> The load on the beam is 500 N, the length is 3 meters, and the stress is 166.67 N/m.
+```matlab
+The load on the beam is 500 N, the length is 3 meters, and the stress is 166.67 N/m.
+```
 
 ### Deliverables
 
@@ -53,16 +55,19 @@ Create a script that calculates the total cost of ingredients for a recipe, base
    - The loop continues asking for more ingredients until the user indicates they are done (e.g., by entering `'n'`).
 
 **Example interaction**:
-> Enter the cost of the ingredient: 2.50
-> 
-> Enter the quantity required: 3
-> 
-> Would you like to add another ingredient? (y/n): y
+```matlab
+Enter the cost of the ingredient: 2.50
+Enter the quantity required: 3
+Would you like to add another ingredient? (y/n): y
+...repeats...
+```
 
 2. When the user finishes adding ingredients, the script should output the total cost of all ingredients using `fprintf`.
 
 **Example formatted output**:
-> The total cost of ingredients is $15.75.
+```matlab
+The total cost of ingredients is $15.75.
+```
 
 ### Deliverables
 
@@ -91,13 +96,13 @@ Create a script that simulates the free fall of a ball from a given height, usin
    - Outputs the ball’s position at each time step using `fprintf`.
 
 **Example interaction**:
-> Enter the initial height of the ball (in meters): 10
-> 
-> Time: 0.0 s, Height: 10.00 m
-> 
-> Time: 0.1 s, Height: 9.95 m
-> 
-> Time: 0.2 s, Height: 9.80 m
+```matlab
+Enter the initial height of the ball (in meters): 10
+Time: 0.0 s, Height: 10.00 m
+Time: 0.1 s, Height: 9.95 m
+Time: 0.2 s, Height: 9.80 m
+...
+```
 
 2. The loop should stop when the ball reaches the ground (height <= 0).
 
@@ -145,7 +150,9 @@ fprintf('The sum of even numbers between 1 and 100 is: %d\n', sum_even);
 ---
 
 ## Definition of Done
-1. Your `Week3` folder shall contain the following files:
+1. Your `Week03` folder shall contain the following files:
+
+* Week03/
    * beam_load.m
    * ingredient_cost.m
    * ball_drop.m
