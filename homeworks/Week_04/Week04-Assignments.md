@@ -2,19 +2,19 @@
 
 ## Global Requirements
 
-* All deliverables shall be added, committed, and pushed to your `Week4` folder in your repository.
+* Add, commit, and push all deliverables to your `Week04` folder in your repository.
 * Include your name and the names of anyone who assisted you in the following format:
 
       % Student: Firstname Lastname
       % Assisted by: Firstname Lastname, etc.
-* Ensure your **scripts** (**Not functions**) include the following to clear the workspace and command window
+* Ensure your **scripts** (**Not functions**) include the following to clear the workspace and command window:
 
       clc;
       clear;
-* All CSV files will generally be created by your program, this week, the only one provided is `gear_data.csv`
-* There are tests for each assignment if, they are all functions, you may run them to confirm your functions perform as expected.
-  * Be sure the test is in the same folder as your functions
-* Outputs should resemble the examples shown however, they do not need to be exact, so long as sufficient data is there to resemble the example.
+* All CSV files will generally be created by your program. This week, the only starter file provided is `gear_data.csv`.
+* There are tests for each assignment. If they are all functions, you may run them to confirm your functions perform as expected.
+  * Ensure the test files are in the same folder as your functions.
+* Outputs should resemble the examples shown; they do not need to be exact as long as sufficient information is presented.
 
 ---
 
@@ -28,8 +28,7 @@ comparing a user’s guessed optimal launch angle with the computed optimal angl
 
 ### Function 1: `calculateTrajectory`
 
-Use the code from the lecture to create the function `calculateTrajectory`. Most of the code is provided, and minimal
-changes are required.
+Use the code from the lecture to create the function `calculateTrajectory`. Most of the code is provided; minimal changes are required.
 
 **Requirements**:
 
@@ -52,7 +51,7 @@ initial height (`y0`), gravitational acceleration (`g`), and the number of time 
 the horizontal positions (`x`), vertical positions (`y`), and the time array (`time`) corresponding to the projectile's
 motion.
 
-Helper Equations:
+Helper equations:
 $$ \text{total\_time} = \frac{v_y + \sqrt{v_y^2 + 2 \cdot g \cdot y_0}}{g} $$
 $$ y = y_0 + v_y \cdot t - \frac{1}{2} \cdot g \cdot t^2 $$
 
@@ -78,7 +77,7 @@ The function should test angles between 0 and 90 degrees at 1-degree increments 
 the maximum range using the provided projectile motion equations. For each angle, calculate the range of the
 projectile, and track the angle that results in the maximum range.
 
-Helper Equation:
+Helper equation:
 $$ \text{range} = \frac{v_0 \cdot \cos(\theta)}{\text{gravity}} \cdot \left( v_0 \cdot \sin(\theta) + \sqrt{(v_0 \cdot \sin(\theta))^2 + 2 \cdot \text{gravity} \cdot y_0} \right) $$
 
 ### Script: `projectileComparison.m`

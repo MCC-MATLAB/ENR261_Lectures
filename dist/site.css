@@ -67,8 +67,23 @@ ul {
 
 li {
     padding-left: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* tighter for landing page lists */
 }
+
+/* Landing page subtitling & link polish */
+.subtitle {
+    margin-top: -10px;
+    margin-bottom: 14px;
+    color: #b7b7b7;
+    font-size: 14px;
+}
+
+/* Spacing for adjacent utility links like the print/PDF icon */
+ul li a + a {
+    margin-left: 6px;
+    opacity: 0.9;
+}
+ul li a + a:hover { opacity: 1; }
 
 .reveal-viewport {
     background: #fff;

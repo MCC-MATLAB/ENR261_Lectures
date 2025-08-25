@@ -2,7 +2,7 @@
 
 ## Global Requirements
 
-- All deliverables shall be added, committed, and pushed to your `Week6` folder in your repository.
+- Add, commit, and push all deliverables to your `Week06` folder in your repository.
 - Include your name and the names of anyone who assisted you in the following format:
 
       % Student: Firstname Lastname
@@ -16,7 +16,7 @@
 
 - Provide comments explaining each part of your code.
 - Use advanced function features such as optional parameters, subfunctions, and proper error handling.
-- Make use of advanced plotting techniques to visualize data effectively.
+- Use advanced plotting techniques to visualize data effectively.
 - Ensure your programs handle input and output properly, and test them with different scenarios.
 
 ---
@@ -114,7 +114,7 @@ Provide sample stress-strain data files with columns `Strain` and `Stress`. Exam
 
 - Submit the function `fitStressStrainCurve.m`.
 - Submit the script `stressStrainAnalyzer.m`.
-- Include sample data files in your `Week6` folder.
+- Include sample data files in your `Week06` folder.
 - Ensure your code is well-commented and uses advanced function features.
 
 ---
@@ -152,7 +152,7 @@ Develop a MATLAB function and script that analyze inventory usage logs and predi
     - Ensure the function works for multiple UPCs by allowing the user to select which ingredient to analyze.
     - **Note:** You will need to either convert the upc values in the table to string, use `fprintf`, or some other formatting method to avoid the scientific notation
 
-### Script: `runInventoryForecast`
+### Script: `runInventoryForecast.m`
 
 **Requirements**:
 
@@ -293,7 +293,7 @@ Simulate the projectile motion of an object launched with a given initial veloci
 
 ### Script: `runProjectileMotion.m`
 
-Create a matlab script that prompts the user for input and runs the `projectileMotionWithKeyPoints()` function with their inputs.
+Create a MATLAB script that prompts the user for input and runs the `projectileMotionWithKeyPoints()` function with their inputs.
 
 **Requirements**:
 
@@ -339,4 +339,3 @@ Your `Week06` folder shall contain at minimum the following files:
   * `stressStrainAnalyzer.m`
   * `UsageLog.csv`
   * Any other functions or scripts you created or modified
-

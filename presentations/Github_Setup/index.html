@@ -58,6 +58,7 @@
 	</style>
 </head>
 <body>
+<a class="home-link" href="../../index.html" title="Back to landing page">⟵ Home</a>
 <div class="reveal">
 	<div class="slides">
 		<!-- Slide 1: Title Slide -->
@@ -166,7 +167,53 @@
 				<img src="/images/enter-credentials.png" alt="Enter Credentials" style="width: 700px;">
 				<p><strong>Note</strong>: You may need to create a personal-access-token. More info <a href="https://github.com/gberl001/FL25-ENR261-182/blob/main/Week01/Creating%20a%20GitHub%20Personal%20Access%20Token.pdf">here</a></p>
 			</section>
-		</section>
+
+			<section data-markdown>
+				<textarea data-template>
+				## Quick Checklist ✅
+
+				- Install Git and create a GitHub account
+				- Generate SSH key and add to GitHub
+				- `git config --global user.name` and `user.email`
+				- Create your repo from the template
+				- Clone your repo locally (SSH or via MATLAB Source Control)
+				- Make a small change, commit, and push
+				- Share repo access with your instructor
+				</textarea>
+			</section>
+
+			<section data-markdown>
+				<section data-markdown>
+					<textarea data-template>
+				## Quick Push/Pull Demo ⬆️⬇️
+
+				1. Create a new file, e.g., `hello.txt`
+				2. Stage + commit:
+				```bash
+				git add hello.txt
+				git commit -m "Add hello.txt"
+				```
+				3. Push to `main`:
+				```bash
+				git push origin main
+				```
+				4. Pull to verify on another machine (or after a change):
+				```bash
+				git pull
+				```
+					</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+					## Git in 30 Seconds 🎮🌿
+
+					- Commits = Save points in a game; you can rewind
+					- Branches = Alternate timelines to experiment safely
+					- Pull request = Propose merging your timeline back to main
+					- Remote = The shared server copy (GitHub)
+					</textarea>
+					</section>
+			</section>
 	</div>
 </div>
 

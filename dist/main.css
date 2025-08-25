@@ -105,3 +105,18 @@ div.text_cell_render {
   background-color: var(--code-bg-color);
   padding: 12px 10px !important;
 }
+
+/* Optional floating Home link for slide decks */
+.home-link {
+  position: fixed;
+  top: 10px;
+  left: 12px;
+  z-index: 1000;
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+  background: rgba(0,0,0,0.35);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.home-link:hover { color: #fff; background: rgba(0,0,0,0.5); }

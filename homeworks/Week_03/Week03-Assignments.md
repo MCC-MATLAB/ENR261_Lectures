@@ -2,7 +2,7 @@
 
 ## Global Requirements
 
-* All deliverables shall be added, committed, and pushed to your `Week3` folder in your repository.
+* Add, commit, and push all deliverables to your `Week03` folder in your repository.
 * Include your name and the names of anyone who assisted you in the following format:
 
       % Student: Firstname Lastname
@@ -144,18 +144,16 @@ fprintf('The sum of even numbers between 1 and 100 is: %d\n', sum_even);
 ```
 
 ### Deliverables
-1.	Submit the corrected script `fixed_script3.m`.
-2.	Write a short report (`debuggingReport3.txt`) explaining the errors you found and how you fixed them.
+- `fixed_script3.m`.
+- `debuggingReport3.txt` explaining the errors found and how you fixed them.
 
 ---
 
 ## Definition of Done
-1. Your `Week03` folder shall contain the following files:
-
-* Week03/
-   * beam_load.m
-   * ingredient_cost.m
-   * ball_drop.m
-   * buggy_script3.m
-   * fixed_script3.m
-   * debuggingReport3.txt
+- Your `Week03` folder contains at minimum:
+  * `beam_load.m`
+  * `ingredient_cost.m`
+  * `ball_drop.m`
+  * `buggy_script3.m`
+  * `fixed_script3.m`
+  * `debuggingReport3.txt`

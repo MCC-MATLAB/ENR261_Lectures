@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
+<a class="home-link" href="../../index.html" title="Back to landing page">⟵ Home</a>
 <div class="reveal">
 	<div class="slides">
 
@@ -49,7 +50,7 @@
             - **Current Folder**: The current working directory (`cwd`).
             <img src="/images/Matlab Interface.png" style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;">
         </textarea>
-		</section>
+</section>
 
 		<section data-markdown>
         <textarea data-template>
@@ -58,6 +59,65 @@
             - Open MATLAB and take a tour of the interface.
             - Feel free to open MATLAB and follow along.
         </textarea>
+		</section>
+
+		<!-- New: Keyboard Shortcuts -->
+		<section data-markdown>
+			<textarea data-template>
+			## Handy Shortcuts ⌨️
+
+			- Command Window history: <kbd class="kbc-button">&uarr;</kbd> / <kbd class="kbc-button">&darr;</kbd>
+			- Auto-complete: <kbd class="kbc-button">tab</kbd>
+			- Stop execution: <kbd class="kbc-button">ctrl</kbd>+<kbd class="kbc-button">c</kbd>
+			- Editor: Run section or file via toolbar (or <em>Run</em> button)
+			- Comment/Uncomment selection (Editor toolbar)
+			</textarea>
+		</section>
+
+		<!-- New: Creating a Script -->
+		<section data-markdown>
+			<textarea data-template>
+			## Creating a Script (.m) 📝
+
+			1. In MATLAB, click "New Script" (Home tab → New → Script)
+			2. Type your code in the Editor; add comments with `%`
+			3. Save as `my_script.m` (avoid names that shadow functions, e.g., `mean.m`)
+			4. Run via the green Run button (or right‑click → Run)
+			5. Keep the script in the Current Folder or on the MATLAB path
+
+			Tips:
+			- End lines with `;` to suppress output
+			- Use code sections with `%%` to run blocks independently
+			- Scripts share the base workspace; functions have their own workspace
+			</textarea>
+		</section>
+
+		<section data-markdown>
+			<textarea data-template>
+			### Example Script: hello_world.m
+
+			```matlab
+			% HELLO_WORLD  Demo script that creates data and plots it
+			clc; clear; close all;
+
+			%% Parameters
+			t = 0:0.1:10;          % time vector
+			A = 2; f = 0.5;       % amplitude and frequency
+
+			%% Compute signal
+			y = A * sin(2*pi*f*t);
+
+			%% Plot
+			plot(t, y, 'LineWidth', 1.5); grid on;
+			xlabel('Time (s)'); ylabel('Amplitude');
+			title('Sine Wave');
+			```
+
+			Common errors to avoid:
+			- Script name conflicts (e.g., `plot.m` will break the built‑in `plot`)
+			- Saving the script outside the Current Folder (not on path)
+			- Accidental workspace reuse; if behavior seems odd, try `clear` and re‑run
+			</textarea>
 		</section>
 
 		<section>
@@ -74,6 +134,7 @@
 			</ul>
 			</section>
 			<section>
+				<h3>Common Commands</h3>
 				<p class="fragment fade-left"><code>clc</code>: Clears the command window, but doesn't clear the
 					workspace.</p>
 				<p class="fragment fade-left"><code>clear</code>: Clears all variables from the workspace.</p>
@@ -89,7 +150,7 @@
 					</p>
 				</div>
 			</section>
-		</section>
+			</section>
 
 		<section>
 			<h3>Interactive Exercise:</h3>
@@ -112,6 +173,8 @@
 			</div>
 		</section>
 
+
+
 		<!-- Fragment Slide for Re-executing Commands -->
 		<section>
 			<div class="alert alert-warning">💡 Tip: More on Commands</div>
@@ -128,6 +191,31 @@
 					command or script if it runs too long or seems to be stuck.
 				</li>
 			</ul>
+		</section>
+
+		<!-- New: Debugging Basics, Practice and What's Next -->
+
+		<section data-markdown>
+			<textarea data-template>
+			## Debugging Basics 🐞
+
+			- Set a breakpoint: click the left gutter next to a line in the Editor
+			- Run your script: execution stops at the breakpoint
+			- Step Over / Step In / Continue using the Debug toolbar
+			- Inspect variables in the Workspace; hover in the Editor to see values
+			- Stop debugging or remove breakpoints when done
+			
+			Tip: Add a temporary `disp()` to print variables while you iterate.
+			</textarea>
+		</section>
+		<section data-markdown>
+			<textarea data-template>
+			## Analogy: Debugging 🎬
+
+			- Breakpoints are pause points in a video
+			- Step Over = advance one frame; Step In = open the scene (function)
+			- Workspace is your on‑screen overlay showing live values
+			</textarea>
 		</section>
 
 		<!-- Slide: Learning And Executing Simple Commands -->
@@ -183,26 +271,26 @@
 		<section>
 			<h2>Variables 🥣</h2>
 
-			<h3>What are Variables?</h3>
-			<ul>
-				<li>Think of variables as boxes that hold things and can be labeled. Just like how a box of cereal is
-					labeled and has a specific cereal within it.
-				</li>
-			</ul>
+				<h3>What are Variables?</h3>
+				<ul>
+					<li>Variables are like labeled jars: the <em>label</em> is the variable name and the <em>contents</em> are the value.</li>
+					<li>Replacing the contents does not change the label (name stays the same).</li>
+					<li>The Workspace is your pantry where all the jars (variables) live. Clearing the workspace empties the pantry.</li>
+				</ul>
 
 			<div class="fragment fade-up">
-				<h4 style="text-align: left"> Type:</h4>
-				<li>A box of cereal has a type, what's the type of stuff in this box? (cereal)</li>
-				<li>Dynamic typing means you don't need to specify the type</li>
+					<h4 style="text-align: left"> Type:</h4>
+					<li>Each jar has a content type (number, text, table, etc.).</li>
+					<li>MATLAB is dynamically typed: you don’t declare types ahead of time.</li>
 			</div>
 
 			<div class="fragment fade-up">
-				<h4 style="text-align: left"> Value:</h4>
-				<li>A box of cereal has a value, it's written on the box? (Cheerios)</li>
-				<li>You can change what’s inside the box anytime you want!</li>
+					<h4 style="text-align: left"> Value:</h4>
+					<li>The value is what’s inside the jar; you can change it anytime.</li>
+					<li>New values can even change the content type (e.g., from scalar to vector).</li>
 			</div>
 			&nbsp;
-			<div class="fragment fade-up">"This box is a box of <strong>cereal</strong>, and it contains <strong>Cheerios</strong>"
+				<div class="fragment fade-up">“This jar is a <strong>double</strong>, and it currently contains <strong>42</strong>.”
 			</div>
 
 
@@ -230,11 +318,24 @@ withinLimit = fruitCount <= MAX_FRUIT_ALLOWED
                     </code>
                 </pre>
 			</div>
-		</section>
+				</section>
 
-		<section data-markdown>
-        <textarea data-template>
-            ### Important Concepts:
+				<!-- Script vs Function Comparison -->
+				<section data-markdown>
+					<textarea data-template>
+					## Script vs Function 🧑‍🍳⚙️
+
+					- Script = Recipe in the main kitchen (base workspace)
+					  - Uses whatever is on the counter unless you clean first (`clear`)
+					  - No inputs/outputs by signature; affects current Workspace
+					- Function = Kitchen appliance with its own chamber (private workspace)
+					  - Put inputs in, get outputs out; does not see your counters
+					  - Safer, reusable, testable
+					</textarea>
+				</section>
+				<section data-markdown>
+			        <textarea data-template>
+			            ### Important Concepts:
 
             - **Case Sensitivity**: `Variable` and `variable` are different.
             - **Naming Conventions**: Stick to clear, descriptive names to make your code easier to understand.
@@ -247,8 +348,20 @@ withinLimit = fruitCount <= MAX_FRUIT_ALLOWED
             <div class="alert alert-warning">
                 <strong>Warning!</strong> Avoid using reserved names for your variables when possible.
             </div>
-        </textarea>
-		</section>
+			        </textarea>
+				</section>
+
+				<!-- Analogy: Matrices & Tables -->
+				<section data-markdown>
+					<textarea data-template>
+					## Analogy: Matrices & Tables 📊
+
+					- Matrix = Excel grid (rows × columns). Example: `A(2:4,1:3)` ↔ cells A2:C4
+					- Table = Spreadsheet with headers (named columns) and typed values
+					- Add a column = add a new header; add a row = add a new record
+					- Use tables when names/units matter; use matrices for pure numeric work
+					</textarea>
+				</section>
 
 		<!-- Slide: Algorithm Development Process -->
 		<section>
@@ -368,6 +481,7 @@ volume =
 
 			<ol>
 				<li>Open the MATLAB Editor.</li>
+				<li>Choose "New Script" from the menu</li>
 				<li>Type the following:</li>
 
 				<pre class="code-wrapper" style="width: 50%">
