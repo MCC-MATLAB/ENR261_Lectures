@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
+	<link rel="stylesheet" href="/dist/main.css">
 	<link rel="stylesheet" href="/dist/week4.css">
-	<link rel="stylesheet" href="/dist/site.css">
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
@@ -849,7 +849,37 @@
 
 			---
 
-			### 3. Indexing Tables
+			### 3. Adding Rows
+
+			```matlab
+			% Starting table
+			Names = {'Alice'; 'Bob'; 'Charlie'};
+			Ages = [20; 22; 21];
+			dataTable = table(Names, Ages, 'VariableNames', {'Name','Age'});
+
+			% Option A: Append one row using end+1 indexing
+			dataTable(end+1, :) = {'Diana', 23};
+
+			% Option B: Append multiple rows via concatenation
+			newRows = table({'Evan'; 'Farah'}, [24; 22], 'VariableNames', {'Name','Age'});
+			dataTable = [dataTable; newRows];
+			```
+
+			- Ensure the value types match each column (e.g., `Name` is text, `Age` is numeric).
+			- If you prefer strings instead of cellstr for names:
+			```matlab
+			dataTable.Name = string(dataTable.Name);
+			dataTable(end+1, :) = {"Gabe", 25};
+			```
+			- If additional columns exist (e.g., `Height`), provide values for all variables or use `NaN`/missing as appropriate:
+			```matlab
+			dataTable(end+1, :) = {'Hannah', 20, 1.68}; % [Name, Age, Height]
+			% or (if Height is unknown): dataTable(end+1, :) = {'Hannah', 20, NaN};
+			```
+
+			---
+
+			### 4. Indexing Tables
 			- **Dot-notation**: `dataTable.Age` returns the Age column as an array.
 			- **Brace-index**: `dataTable{:, 'Age'}` also returns the numeric array for 'Age'.
 
@@ -865,7 +895,7 @@
 
 			---
 
-			### 4. Renaming Variables
+			### 5. Renaming Variables
 
 			```matlab
 			dataTable.Properties.VariableNames{'Age'} = 'YearsOld';
@@ -874,7 +904,7 @@
 
 			---
 
-			### 5. Summaries and Basic Operations
+			### 6. Summaries and Basic Operations
 
 			- **summary(dataTable)**: Provides a statistical summary (min, max, etc.) for each column.
 			- You can do **logical indexing** on table columns:

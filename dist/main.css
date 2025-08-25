@@ -1,0 +1,107 @@
+/*
+ * Main slide styles shared across all weeks.
+ * Week-specific overrides live in dist/weekN.css files and should primarily
+ * define CSS variables (colors etc) and rare unique tweaks.
+ */
+
+/* Sensible defaults so slides don’t break if a week omits variables */
+:root {
+  --background-color: #111;
+  --text-color: #eee;
+  --H1: #fff; --H2: #ddd; --H3: #ccc; --H4: #bbb; --H5: #aaa;
+  --code-bg-color: #0a091f;
+  --code-block-text-color: #c2095a;
+  --matlab-bg-color: #12111f;
+  --matlab-code-color: #979797;
+  /* Reveal.js theme variables: keep text size reasonable to avoid overflow */
+  --r-main-font-size: 25px;
+  /* You can tweak heading sizes if needed
+     --r-heading1-size: 2.5em;
+     --r-heading2-size: 1.6em;
+     --r-heading3-size: 1.3em;
+     --r-heading4-size: 1.1em;
+  */
+  --alert-warning-fg: #5c3e11;
+  --alert-warning-bg: #d4983f;
+  --alert-warning-border: #70480c;
+  --alert-info-fg: #c2fcff;
+  --alert-info-bg: #4f6f70;
+  --alert-info-border: #539fa3;
+}
+
+/* Utility widths */
+.half-width { width: 50%; }
+.quarter-width { width: 25%; }
+.fit-width { width: fit-content; }
+
+/* Optional: slightly wider code blocks when using RISE/jupyter exports */
+.rise-enabled .reveal pre { width: 70% !important; }
+
+/* Code wrapper utility; colors are driven by per-week CSS variables */
+.code-wrapper {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background-color: var(--matlab-bg-color);
+  border-radius: 4px;
+}
+
+/* Code element styling driven by variables */
+code {
+  background-color: var(--code-bg-color);
+  color: var(--code-block-text-color);
+  padding: 4px;
+  margin: 0;
+  border-radius: 0.3em;
+}
+
+/* General text and backgrounds */
+.reveal .slide-background-content { background-color: var(--background-color); }
+
+.reveal .slides,
+.reveal .slides section,
+.reveal .slides section .fragment,
+div.text_cell_render {
+  color: var(--text-color);
+}
+
+/* Heading styles */
+.reveal .slides h1,
+.reveal .slides section .fragment h1 { color: var(--H1); }
+
+.reveal .slides h2,
+.reveal .slides section .fragment h2 { color: var(--H2); }
+
+.reveal .slides h3,
+.reveal .slides section .fragment h3 { color: var(--H3); }
+
+.reveal .slides h4,
+.reveal .slides section .fragment h4 { color: var(--H4); }
+
+.reveal .slides h5,
+.reveal .slides h6 { color: var(--H5); }
+
+/* Callouts used in slides */
+.reveal .slides section .fragment.alert-warning,
+.alert-warning {
+  color: var(--alert-warning-fg);
+  background-color: var(--alert-warning-bg);
+  border-color: var(--alert-warning-border);
+  border-radius: 10px;
+}
+
+.reveal .slides section .fragment.alert-info,
+.alert-info {
+  color: var(--alert-info-fg);
+  background-color: var(--alert-info-bg);
+  border-color: var(--alert-info-border);
+  border-radius: 10px;
+}
+
+/* Generic alert padding */
+.alert { padding-top: 5px; padding-bottom: 5px; }
+
+/* KaTeX tweaks; actual colors come from per-week variables */
+.katex {
+  color: var(--code-block-text-color);
+  background-color: var(--code-bg-color);
+  padding: 12px 10px !important;
+}

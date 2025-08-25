@@ -152,7 +152,7 @@ Develop a MATLAB function and script that analyze inventory usage logs and predi
     - Ensure the function works for multiple UPCs by allowing the user to select which ingredient to analyze.
     - **Note:** You will need to either convert the upc values in the table to string, use `fprintf`, or some other formatting method to avoid the scientific notation
 
-### Script: `testInventoryForecast`
+### Script: `runInventoryForecast`
 
 **Requirements**:
 
@@ -236,12 +236,12 @@ The plot would display two datasets.
 * Test the function with different UPCs to ensure that it correctly plots historical inventory levels and predicts future inventory changes.
 * Test with different values for `futureDays` to ensure the forecast adapts correctly.
 * Verify that the plot provides a clear, visual representation of the inventory and forecast.
-* `testInventoryForecast.m` tests the `inventoryForecast()` function
+* `runInventoryForecast.m` tests the `inventoryForecast()` function
 
 ### Deliverables
 
 * Submit the function `inventoryForecast.m`.
-* Submit the script `testInventoryForecast.m`.
+* Submit the script `runInventoryForecast.m`.
 * Include the sample data files `Inventory.csv` and `UsageLog.csv` in your submission folder.
 * Ensure that your code is well-commented and uses advanced function features, such as error handling, plotting, and user inputs.
 
@@ -334,7 +334,7 @@ Your `Week06` folder shall contain at minimum the following files:
   * `Inventory.csv`
   * `inventoryForecast.m`
   * `projectileMotionWithKeyPoints.m`
-  * `testInventoryForecast.m`
+  * `runInventoryForecast.m`
   * `runProjectileMotion.m`
   * `stressStrainAnalyzer.m`
   * `UsageLog.csv`

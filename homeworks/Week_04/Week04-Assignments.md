@@ -294,7 +294,7 @@ This function adds a new item to the inventory file.
     - `ingredient`: The name of the ingredient (string).
     - `qty`: The quantity of the item (integer).
 
-- **Output**: None. This function will append the new item to the inventory CSV file.
+- **Output**: None. This function will append the new item to the inventory CSV file. If the stock file doesn't exist, your function shall create the file.
 
 - **Instructions**: Write a function that opens the CSV file and appends the new row containing the `upc`, `ingredient`,
   and `qty`. If the file does not exist, it should create a new one with the appropriate headers.
