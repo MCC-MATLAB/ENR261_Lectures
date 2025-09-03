@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
+<a class="home-link" href="../../index.html" title="Back to landing page">⟵ Home</a>
 <div class="reveal">
 	<div class="slides">
 
@@ -206,7 +207,7 @@
 
 		<section data-markdown>
         <textarea data-template>
-			**Implementation**:
+			**Implementation** (Review: basic plotting syntax):
 
 			```matlab
 			% Define variables
@@ -560,15 +561,16 @@
 			--
 
 			### Other Useful File Functions
-			- `dir()` Lists all files and directories in the current folder.
-				```matlab
-				files = dir;
-				disp({files.name});
-			- `moveFile()` Moves or renames a file
+				- `dir()` Lists all files and directories in the current folder.
+					```matlab
+					files = dir;
+					disp({files.name});
+					```
+				- `movefile()` Moves or renames a file
 				```matlab
 				movefile('oldname.txt', 'newname.txt');
 				```
-			- `copyFile()` Copies a file to a new location
+				- `copyfile()` Copies a file to a new location
 				```matlab
 				copyfile('source.txt', 'destination.txt');
 				```
