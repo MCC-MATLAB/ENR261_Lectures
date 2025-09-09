@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 3: Scripts - Functions - Input/Output</title>
+	<title>Week 3: Scripts, Input/Output, Control Flow</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
 	<link rel="stylesheet" href="/plugin/highlight/matlab.css">
 	<link rel="stylesheet" href="/dist/main.css">
 	<link rel="stylesheet" href="/dist/week3.css">
-    <link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/keyboard-css@1.2.4/dist/css/main.min.css"/>
 </head>
 <body>
 <a class="home-link" href="../../index.html" title="Back to landing page">⟵ Home</a>
@@ -19,87 +19,41 @@
 		<!-- Slide: -->
 		<section>
 			<section>
-				<h1>Week 3: Scripts, Functions, Basic Input/Output</h1>
+				<h1>Week 3: Scripts, Input/Output, Control Flow</h1>
 
 				<h2>Objectives:</h2>
 				<ul>
-					<li>Write and run scripts 📝.</li>
-					<li>Understand the difference between scripts and functions 🤔.</li>
-					<li>Create and call functions with parameters 🛠️.</li>
-					<li>Understand control flow and conditional statements 🔄.</li>
-					<li>Use <code>fprintf</code> and <code>sprintf</code> for formatted output 🎯.</li>
-				</ul>
-			</section>
-			<section>
-				<h2>Topics Covered:</h2>
-				<ul>
-					<li>Scripts and Functions 📜</li>
-					<li>Control Flow and Conditional Statements ⚙️</li>
-					<li>Input and Output 📤📥</li>
+					<li>Use <code>input</code> and <code>fprintf</code> for I/O 🎯.</li>
+					<li>Make decisions with <code>if/elseif/else</code>; choose with <code>switch</code> 🔀.</li>
+					<li>Repeat with <code>for</code> and <code>while</code> loops 🔄.</li>
+					<li>Reinforce arrays, slicing, and vectorization 🧱.</li>
 				</ul>
 			</section>
 		</section>
 
-		<!-- Slide: Scripts and Functions -->
-		<section>
-			<section>
-				<h2>Scripts and Functions</h2>
+		<!-- Key Patterns Recap -->
+		<section data-markdown>
+                <textarea data-template>
+                ## Key Patterns
 
-				<h3>Scripts:</h3>
-				<p><strong>Definition</strong>: A script is a file containing a series of MATLAB commands. Scripts run
-					in
-					the current workspace and can use and modify existing variables.</p>
-				<p><strong>Creating and Running Scripts</strong>: To create a script, write the commands in a new file
-					with
-					a <code>.m</code> extension. Run the script by typing its name (without the <code>.m</code>
-					extension) in the Command
-					Window.
-				</p>
+                - I/O: `input` for prompts; `fprintf` for readable, formatted output.
+                - Conditions: `if/elseif/else` for branching; `switch` for discrete cases.
+                - Loops: `for` for counts/arrays; `while` until condition changes.
+                - Vectorization: use `.*`, `.^`, `./` for arrays; watch dimensions.
+                - Slices → reassign: match sizes; use `size()`, `numel()` to verify.
+                </textarea>
+		</section>
 
-			</section>
-			<section>
+		<!-- Bridge from Week 2 -->
+		<section data-markdown>
+			<textarea data-template>
+			## From Week 2 ➜ Week 3
 
-				<h3>Example Script:</h3>
-				<p>Create a file named <code>area_of_circle.m</code>:</p>
-				<pre><code class="matlab hljs language-matlab">radius = input("Please enter the radius: ");
-area = pi * radius^2;
-disp(['The area of the circle is ', num2str(area)]);
-</code></pre>
-				<p>💡 <strong>Tip</strong>: Use descriptive names for your scripts to easily remember what they do!</p>
-			</section>
+			- Week 2: Arrays, slices, vectorization, basic plotting.
+			- This week: formatted I/O + control flow.
+			- Goal: Write interactive scripts that branch and loop.
 
-			<section>
-				<h3>Functions:</h3>
-				<p><strong>Definition</strong>: Functions are reusable pieces of code that operate on inputs and produce
-					outputs. Functions have their own workspace, separate from the base workspace.</p>
-				<p><strong>Components</strong>: Name, input arguments, and output arguments.</p>
-				<p><strong>Creating Functions</strong>: Define a function in a new file with the same name as the
-					function
-					and a <code>.m</code> extension. Use the <code>function</code> keyword to define a function.</p>
-
-				<h4>Syntax:</h4>
-				<pre><code class="matlab hljs language-matlab">function output = functionName(input)
-    % Function body
-    output = ...;
-end
-</code></pre>
-
-			</section>
-			<section>
-
-				<h4>Example Function:</h4>
-				<p>Create a file named <code>calculate_area.m</code>:</p>
-				<pre><code class="matlab hljs language-matlab">function area = calculate_area(radius)
-    area = pi * radius^2;
-end
-</code></pre>
-				<p>Execution:</p>
-				<pre><code class="matlab hljs language-matlab">result = calculate_area(5);
-</code></pre>
-
-				<p>⚠️ Gotcha: Remember, functions have their own workspace! Variables created within a function do not
-					affect the base workspace unless explicitly returned.</p>
-			</section>
+			</textarea>
 		</section>
 
 		<!-- Input/Output next -->
@@ -116,7 +70,7 @@ end
 				<p>Use the <code>input()</code> function to get user input during code execution. This is useful when
 					you need to ask for values interactively.</p>
 
-				<pre><code class="matlab hljs language-matlab">radius = input('Please enter the radius: ');
+				<pre><code class="matlab hljs language-matlab">radius = input("Please enter the radius: ");
 </code></pre>
 
 			</section>
@@ -125,13 +79,14 @@ end
 				<h4>Example:</h4>
 				<p>In this example, we calculate the final height of a falling object based on user input.</p>
 				<div class="code-output-container">
-        <pre><code class="matlab hljs language-matlab">height0 = input('Please enter the initial height (in meters): ');
-time = input('Please enter the time the object was in the air (in seconds): ');
-velocity0 = input('Please enter the initial velocity (in m/s): ');
-ACC = 9.81;
+        <pre><code class="matlab hljs language-matlab">height0   = input("Please enter the initial height (m): ");
+time      = input("Please enter the time in the air (s): ");
+velocity0 = input("Please enter the initial velocity (m/s): ");
+GRAVITY   = 9.81;  % m/s^2 (positive magnitude)
 
-heightFinal = height0 + velocity0 * time + 0.5 * ACC * time^2;
-disp(['The final height is ', num2str(heightFinal), ' meters.']);
+% Up is positive; subtract the gravity term
+heightFinal = height0 + velocity0 * time - 0.5 * GRAVITY * time^2;
+fprintf("The final height is %.2f meters.\n", heightFinal);
 </code></pre>
 					<pre class="output">The final height is X meters</pre>
 				</div>
@@ -143,7 +98,7 @@ disp(['The final height is ', num2str(heightFinal), ' meters.']);
 			<section>
 				<h3>String Input:</h3>
 				<p><strong>Inputting Strings:</strong> To receive string input, use the <code>'s'</code> argument.</p>
-				<pre><code class="matlab hljs language-matlab">name = input('Please enter your name: ', 's');
+				<pre><code class="matlab hljs language-matlab">name = input("Please enter your name: ", 's');
 disp(['Hello, ', name, '!']);
 </code></pre>
 			</section>
@@ -152,8 +107,8 @@ disp(['Hello, ', name, '!']);
 				<h4>Example:</h4>
 				<p>Here’s an example that uses the string input to greet the user with <code>fprintf</code>:</p>
 				<div class="code-output-container">
-        <pre><code class="matlab hljs language-matlab">username = input('Please enter your name: ', 's');
-fprintf('You said your name was %s, hello %s!\n', username, username);
+<pre><code class="matlab hljs language-matlab">username = input("Please enter your name: ", 's');
+fprintf("You said your name was %s, hello %s!\n", username, username);
 </code></pre>
 					<pre class="output">You said your name was John, hello John!</pre>
 				</div>
@@ -162,11 +117,11 @@ fprintf('You said your name was %s, hello %s!\n', username, username);
 			<section>
 				<h3>Output:</h3>
 
-				<h4>Capturing Output with <code>diary</code>:</h4>
-				<p>The <code>diary</code> function can capture all Command Window output and save it to a text file.
-					This is useful for long sessions where you want to save output for later review.</p>
+				<h4>Optional: Capturing Output with <code>diary</code></h4>
+				<p>The <code>diary</code> function records Command Window output to a text file. Treat this as a bonus
+					tool for longer sessions or debugging logs.</p>
 				<pre><code class="matlab hljs language-matlab">diary 'output.txt'
-disp('Hello, World!');
+disp("Hello, World!");
 diary off
 </code></pre>
 
@@ -182,38 +137,48 @@ diary off
 					output needs.</p>
 				<div class="code-output-container">
             <pre><code class="matlab hljs language-matlab">someVariable = 25;
-disp('The value is: ');
+disp("The value is: ");
 disp(someVariable);
 </code></pre>
 					<pre class="output">The value is:
     25</pre>
 				</div>
 			</section>
+
+			<!-- After DISP: show concatenation patterns -->
+			<section data-markdown>
+					<textarea data-template>
+					### DISP with Strings:
+
+					Two common ways to combine text and values with `disp`:
+
+					- Using modern strings and `+`:
+					```matlab
+					area = 78.5398;
+					disp("Area: " + string(area))
+					```
+
+					- Using character vectors and `[]` (legacy style):
+					```matlab
+					area = 78.5398;
+					disp(['Area: ' num2str(area)])
+					```
+
+					Tip: `string(x)` converts numbers to string for use with `+`.
+					</textarea>
+			</section>
+
 			<section>
 				<h3>fprintf:</h3>
 				<p><code>fprintf</code> provides formatted output, allowing for more control over how numbers and
 					strings are displayed. Always remember to include <code>\n</code> for newlines when needed.</p>
 				<div class="code-output-container">
-            <pre><code class="matlab hljs language-matlab">fprintf('The value is %d\n', someVariable);
+<pre><code class="matlab hljs language-matlab">fprintf("The value is %d\n", someVariable);
 </code></pre>
 					<pre class="output">The value is 25
 </pre>
+					<img src="/images/week03/fprintf-visual.png" alt="fprintf-visual">
 				</div>
-			</section>
-			<section>
-				<h3>sprintf:</h3>
-				<p><code>sprintf</code> works like <code>fprintf</code>, but instead of displaying the output, it
-					returns a formatted string. This is useful when you need to store the formatted text for further
-					processing.</p>
-				<div class="code-output-container">
-            <pre><code class="matlab hljs language-matlab">str = sprintf('The value is %d', someVariable);
-disp(str);
-</code></pre>
-					<pre class="output">The value is 25</pre>
-				</div>
-				<p class="alert-info alert fragment fade-up">💡 <strong>Tip:</strong> Did you catch what happened here,
-					two output calls
-					result in one line?</p>
 			</section>
 
 			<section>
@@ -230,6 +195,8 @@ disp(str);
 						point
 					</li>
 					<li><code>\n</code>: Newline character</li>
+					<li><code>\t</code>: Tab character</li>
+					<li><code>%%</code>: Escaped percent</li>
 				</ul>
 
 			</section>
@@ -238,9 +205,9 @@ disp(str);
 				<h4>Using <code>fprintf</code>:</h4>
 				<p>Here’s how <code>fprintf</code> works to store formatted text:</p>
 				<div class="code-output-container">
-            <pre><code class="matlab hljs language-matlab">fprintf('Integer: %d\n', 42);
-fprintf('Floating-point: %8.2f\n', 3.14159);
-fprintf('String: %s\n', 'Hello, world!');
+<pre><code class="matlab hljs language-matlab">fprintf("Integer: %d\n", 42);
+fprintf("Floating-point: %8.2f\n", 3.14159);
+fprintf("String: %s\n", "Hello, world!");
 </code></pre>
 					<pre class="output">Integer: 42
 Floating-point:     3.14
@@ -257,15 +224,180 @@ fprintf(", chka chka Slim Shady\n");
 </code></pre>
 					<pre class="output fragment fade-left">Hi, my name is, my name is, my name is, chka chka Slim Shady</pre>
 				</div>
-				<p class="fragment fade-up alert-warning alert">⚠️ <strong>Warning:</strong> Don't forget <code>\n</code>
+				<p class="fragment fade-up alert-warning alert">⚠️ <strong>Warning:</strong> Don't forget
+					<code>\n</code>
 					or you'll end up with a single line</p>
+			</section>
+
+			<!-- fprintf specifier anatomy: width, precision, alignment -->
+			<section>
+				<h3>fprintf Specifier Anatomy:</h3>
+				<style>
+                    .fmt-row {
+                        margin: .35rem 0;
+                    }
+                    .fmt-box {
+                        display: inline-block;
+                        width: 1.4em;
+                        padding: .15em 0;
+                        margin: 0 .05em;
+                        border: 1px solid #888;
+                        text-align: center;
+                        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                        background: rgba(255, 255, 255, .04);
+                    }
+                    .fmt-box.ghost {
+                        color: rgba(255, 255, 255, .33);
+                    }
+                    .fmt-box.auto {
+                        border: 1px solid orange;  /* highlight overflow */
+                        background: rgba(255, 165, 0, .15);
+                    }
+                    .legend-mini {
+                        font-size: .9em;
+                        opacity: .95;
+                    }
+                    .tag {
+                        display: inline-block;
+                        padding: .05rem .35rem;
+                        border-radius: 4px;
+                        background: rgba(0, 0, 0, .35);
+                        border-left: 3px solid #4aa3ff;
+                        margin-right: .35rem;
+                    }
+				</style>
+
+				<div class="two-col">
+					<div>
+						<p class="legend-mini">
+							<span class="tag">%10.2f</span>
+							<b>%</b> start • <b>10</b> width • <b>.2</b> precision • <b>f</b> float
+						</p>
+						<pre><code class="matlab hljs">% right-aligned
+fprintf("%10.2f\n", 678.9)
+
+% left-aligned
+fprintf("%-10.2f\n", 678.9)
+
+% too small width (auto expand)
+fprintf("%5.2f\n", 12345.67)</code></pre>
+
+						<div class="note-card">
+							• Width = minimum slots (expands if too small)<br>
+							• Precision = decimals shown<br>
+							• Alignment = right by default; add <code>-</code> for left
+						</div>
+					</div>
+
+					<div>
+						<div class="fmt-row"><b>Right-aligned</b> (<code>%10.2f</code>)</div>
+						<div class="fmt-row">
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box">6</span>
+							<span class="fmt-box">7</span>
+							<span class="fmt-box">8</span>
+							<span class="fmt-box">.</span>
+							<span class="fmt-box">9</span>
+							<span class="fmt-box">0</span>
+						</div>
+
+						<div class="fmt-row" style="margin-top:.6rem"><b>Left-aligned</b> (<code>%-10.2f</code>)</div>
+						<div class="fmt-row">
+							<span class="fmt-box">6</span>
+							<span class="fmt-box">7</span>
+							<span class="fmt-box">8</span>
+							<span class="fmt-box">.</span>
+							<span class="fmt-box">9</span>
+							<span class="fmt-box">0</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+							<span class="fmt-box ghost">&nbsp;</span>
+						</div>
+
+						<div class="fmt-row" style="margin-top:.6rem"><b>Auto-expand</b> (<code>%5.2f</code>)</div>
+						<div class="fmt-row">
+							<span class="fmt-box auto">1</span>
+							<span class="fmt-box auto">2</span>
+							<span class="fmt-box auto">3</span>
+							<span class="fmt-box ">4</span>
+							<span class="fmt-box ">5</span>
+							<span class="fmt-box">.</span>
+							<span class="fmt-box">6</span>
+							<span class="fmt-box">7</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Table-like formatting with fprintf -->
+			<section>
+				<h3>Align Columns with fprintf</h3>
+				<div class="code-output-container">
+        <pre><code class="matlab hljs language-matlab">items = ["Apple","Orange","Banana"];
+vals  = [1.2, 23.45, 678.9];
+
+fprintf("%-10s %10s\n", "Item", "Value");
+for i = 1:numel(items)
+    fprintf("%-10s %10.2f\n", items(i), vals(i));
+end
+</code></pre>
+					<pre class="output">Item             Value
+Apple            01.20
+Orange           23.45
+Banana          678.90</pre>
+				</div>
+				<p class="ok-card">Use width and precision (e.g., <code>%10.2f</code>) to produce tidy, readable tables.
+				</p>
+				<p class="alert-info alert">💡 <strong>Note:</strong> Notice the <code>%s</code>?</p>
+			</section>
+
+			<!-- Tip: disp vs fprintf -->
+			<section data-markdown>
+				<textarea data-template>
+				## disp vs fprintf — When to Use Which
+
+				- Use `disp` for quick checks and dumping arrays; it prints values with an automatic newline and minimal formatting.
+				- Use `fprintf` for readable, labeled, or precise output (e.g., `%.2f`), mixing text and numbers, and when writing to files.
+				</textarea>
+			</section>
+
+			<!-- disp vs fprintf example -->
+			<section>
+				<h3>disp vs fprintf — Example</h3>
+				<div class="code-output-container">
+        <pre><code class="matlab hljs language-matlab">x = 3.14159;
+disp("Area: " + string(x))
+fprintf("Area: %.2f\n", x)
+</code></pre>
+					<pre class="output">Area: 3.14159
+Area: 3.14</pre>
+				</div>
+				<p class="note-card"><code>disp</code> prints the full value as a simple message; <code>fprintf</code>
+					formats to 2 decimals.</p>
+			</section>
+
+			<section>
+				<h3>sprintf:</h3>
+				<p><code>sprintf</code> works like <code>fprintf</code>, but instead of sending the output to a
+					"file", it returns a formatted string. This is useful when you need to store the formatted text
+					for further	processing.</p>
+				<div class="code-output-container">
+<pre><code class="matlab hljs language-matlab">str = sprintf("The value is %d", someVariable);
+disp(str);
+</code></pre>
+					<pre class="output">The value is 25</pre>
+				</div>
 			</section>
 
 			<section>
 				<h4>Using <code>sprintf</code>:</h4>
 				<p>Here’s how <code>sprintf</code> works to store formatted text:</p>
 				<div class="code-output-container">
-            <pre><code class="matlab hljs language-matlab">str = sprintf('The value is %8.2f', 3.14159);
+<pre><code class="matlab hljs language-matlab">str = sprintf("The value is %8.2f", 3.14159);
 disp(str);
 fprintf("%s", str);
 </code></pre>
@@ -285,7 +417,7 @@ disp(fileName); % Outputs: My file (1)
 			</section>
 		</section>
 
-<!--		Relational operators -->
+		<!--		Relational operators -->
 
 		<section>
 			<section>
@@ -308,7 +440,7 @@ disp(fileName); % Outputs: My file (1)
 				<pre><code class="matlab hljs language-matlab">a = 5;
 b = 3;
 if a > b
-    disp('a is greater than b');
+    disp("a is greater than b");
 end
 </code></pre>
 
@@ -337,40 +469,42 @@ end
 				<pre><code class="matlab hljs language-matlab">x = true;
 y = false;
 if x & ~y
-    disp('x is true and y is false');
+    disp("x is true and y is false");
 end
 </code></pre>
 
 			</section>
 			<section>
 				<h3>Simple Example: Conditions</h3>
-				<p>Think of real-life checks, e.g., "<code>(isHungry &amp;&amp; hasTime)</code> => <code>consumeFood()</code>." or "<code>(weather == RAIN || weather == SNOW)</code> => <code>bring umbrella</code>."</p>
+				<p>Think of real-life checks, e.g., "<code>(isHungry &amp;&amp; hasTime)</code> =>
+					<code>consumeFood()</code>." or "<code>(weather == RAIN || weather == SNOW)</code> => <code>grabUmbrella()</code>."
+				</p>
 			</section>
 		</section>
-<!--			<section>-->
+		<!--			<section>-->
 
-<!--				<h4>🔄 Real-World Analogy:</h4>-->
-<!--				<p>Logical operators are like combining multiple conditions in a checklist. For example, to decide to go-->
-<!--					outside, you might check if it’s sunny AND warm, or if it’s not raining.</p>-->
-<!--				<h4>Example:</h4>-->
-<!--				<pre><code class="matlab hljs language-matlab">-->
-<!--if (sunny & warm) {-->
-<!--	goOutside();-->
-<!--elseif (sunny & ~raining) {-->
-<!--	goOutside();-->
-<!--end-->
-<!--				</code>-->
-<!--				</pre>-->
-<!--				<pre><code class="matlab hljs language-matlab">-->
-<!--if (sunny & warm | sunny & ~raining) {-->
-<!--	goOutside();-->
-<!--elseif (sunny & ~raining) {-->
-<!--	goOutside();-->
-<!--end-->
-<!--				</code>-->
-<!--				</pre>-->
-<!--			</section>-->
-<!--		</section>-->
+		<!--				<h4>🔄 Real-World Analogy:</h4>-->
+		<!--				<p>Logical operators are like combining multiple conditions in a checklist. For example, to decide to go-->
+		<!--					outside, you might check if it’s sunny AND warm, or if it’s not raining.</p>-->
+		<!--				<h4>Example:</h4>-->
+		<!--				<pre><code class="matlab hljs language-matlab">-->
+		<!--if (sunny & warm) {-->
+		<!--	goOutside();-->
+		<!--elseif (sunny & ~raining) {-->
+		<!--	goOutside();-->
+		<!--end-->
+		<!--				</code>-->
+		<!--				</pre>-->
+		<!--				<pre><code class="matlab hljs language-matlab">-->
+		<!--if (sunny & warm | sunny & ~raining) {-->
+		<!--	goOutside();-->
+		<!--elseif (sunny & ~raining) {-->
+		<!--	goOutside();-->
+		<!--end-->
+		<!--				</code>-->
+		<!--				</pre>-->
+		<!--			</section>-->
+		<!--		</section>-->
 
 		<!-- Control Flow and Conditionals next -->
 		<!-- (Original "Control Flow and Conditional Statements" section with no text changes) -->
@@ -401,13 +535,13 @@ end
 			<section>
 
 				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">num = input('Enter a number: ');
+				<pre><code class="matlab hljs language-matlab">num = input("Enter a number: ");
 if num > 0
-    disp('The number is positive.');
+    disp("The number is positive.");
 elseif num < 0
-    disp('The number is negative.');
+    disp("The number is negative.");
 else
-    disp('The number is zero.');
+    disp("The number is zero.");
 end
 </code></pre>
 
@@ -452,24 +586,24 @@ end
 			<section>
 
 				<h4>Example:</h4>
-				<pre><code class="matlab hljs language-matlab">day = input('Enter a day number (1-7): ');
+				<pre><code class="matlab hljs language-matlab">day = input("Enter a day number (1-7): ");
 switch day
     case 1
-        disp('Sunday');
+        disp("Sunday");
     case 2
-        disp('Monday');
+        disp("Monday");
     case 3
-        disp('Tuesday');
+        disp("Tuesday");
     case 4
-        disp('Wednesday');
+        disp("Wednesday");
     case 5
-        disp('Thursday');
+        disp("Thursday");
     case 6
-        disp('Friday');
+        disp("Friday");
     case 7
-        disp('Saturday');
+        disp("Saturday");
     otherwise
-        disp('Invalid day number');
+        disp("Invalid day number");
 end
 </code></pre>
 
@@ -503,7 +637,7 @@ end</code></pre>
 
 				<h3>Example 1: Traversing a Simple Range</h3>
 				<pre><code class="matlab hljs language-matlab">for i = 1:5
-    fprintf('Iteration: %i\n', i);
+    fprintf("Iteration: %i\n", i);
 end
 </code></pre>
 				<h4>Explanation:</h4>
@@ -519,7 +653,7 @@ end
 				<h3>Example 2: Traversing Through items in a List</h3>
 				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
 for value = my_list
-    fprintf('Value: %i\n', value);
+    fprintf("Value: %i\n", value);
 end
 </code></pre>
 				<h4>Explanation:</h4>
@@ -529,32 +663,32 @@ end
 				<p class="alert-info alert">💡<strong>Note</strong>: Did you notice, example 1 and 2 are the same thing?
 				</p>
 			</section>
-<!--			<section>-->
+			<!--			<section>-->
 
-<!--				<h3>Example 3: Accessing Both Index and Value</h3>-->
-<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
-<!--for i = 1:5-->
-<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
-<!--end-->
-<!--</code></pre>-->
-<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
-<!--for i = 1:length(my_list)-->
-<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
-<!--end-->
-<!--</code></pre>-->
-<!--				<h4>Explanation:</h4>-->
-<!--				<p>In this example, <code>i</code> is the index, and <code>my_list(i)</code> gives the value at the-->
-<!--					<code>i</code>th index. This allows you to work with both the index and the value at the same time.-->
-<!--				</p>-->
+			<!--				<h3>Example 3: Accessing Both Index and Value</h3>-->
+			<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
+			<!--for i = 1:5-->
+			<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
+			<!--end-->
+			<!--</code></pre>-->
+			<!--				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];-->
+			<!--for i = 1:length(my_list)-->
+			<!--    fprintf('Element %i is %i\n', i, my_list(i));-->
+			<!--end-->
+			<!--</code></pre>-->
+			<!--				<h4>Explanation:</h4>-->
+			<!--				<p>In this example, <code>i</code> is the index, and <code>my_list(i)</code> gives the value at the-->
+			<!--					<code>i</code>th index. This allows you to work with both the index and the value at the same time.-->
+			<!--				</p>-->
 
-<!--			</section>-->
+			<!--			</section>-->
 			<section>
 
-				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
+				<h3>Example 3: Two Ways to Traverse a List with an Index</h3>
 				<p><strong>Approach 1</strong>: Use a range for loop</p>
 				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
 for i = 1:length(my_list)
-    fprintf('Element %i is %i\n', i, my_list(i));
+    fprintf("Element %i is %i\n", i, my_list(i));
 end
 </code></pre>
 				<h4>Explanation:</h4>
@@ -563,12 +697,12 @@ end
 					element. This approach automatically increments the index after each iteration.</p>
 			</section>
 			<section>
-				<h3>Example 4: Two Ways to Traverse a List with an Index</h3>
+				<h3>Example 3: Two Ways to Traverse a List with an Index</h3>
 				<p><strong>Approach 2</strong>: Manually Incrementing an Index</p>
 				<pre><code class="matlab hljs language-matlab">my_list = [10, 20, 30, 40, 50];
 i = 1;
 for value = my_list
-    fprintf('Element %i is %i\n', i, value);
+    fprintf("Element %i is %i\n", i, value);
     i = i + 1;  % Manually increment the index
 end
 </code></pre>
@@ -604,7 +738,7 @@ end
 				<h4>Example:</h4>
 				<pre><code class="matlab hljs language-matlab">i = 1;
 while i <= 5
-    fprintf('Iteration: %i', i);
+    fprintf("Iteration: %i", i);
     i = i + 1;
 end
 </code></pre>
@@ -631,12 +765,9 @@ end
 				<p><code>continue</code>: Skips the rest of the code in the current iteration and proceeds to the next
 					iteration.</p>
 
-				<p class="alert alert-warning">⚠️ <strong>Warning</strong>: using <code>break</code> is generally
-					considered a "code smell". If you find yourself needing to use <code>break</code> there is generally
-					something you're doing wrong.</p>
-				<p>Using <code>continue</code> is not "great" either but there are more acceptable use cases for
-					<code>continue</code>
-				</p>
+				<p class="alert alert-warning">⚠️ <strong>Use sparingly:</strong> Prefer structuring loop conditions so
+					you don't need <code>break</code>/<code>continue</code>. They are useful tools, but overuse can make
+					code harder to follow.</p>
 			</section>
 			<section>
 				<h4>Example (Break):</h4>
@@ -699,12 +830,12 @@ end
 					<li>You want something to repeat until a condition is met</li>
 				</ul>
 			</section>
-<!--			<section>-->
-<!--				<h3>Interactive Exercise:</h3>-->
-<!--				<h4>Your turn...</h4>-->
-<!--				<p>Give me some real-world examples of when you would use a for or while loop. Don't get stuck thinking-->
-<!--					about code, just an analogy of real-life</p>-->
-<!--			</section>-->
+			<!--			<section>-->
+			<!--				<h3>Interactive Exercise:</h3>-->
+			<!--				<h4>Your turn...</h4>-->
+			<!--				<p>Give me some real-world examples of when you would use a for or while loop. Don't get stuck thinking-->
+			<!--					about code, just an analogy of real-life</p>-->
+			<!--			</section>-->
 		</section>
 		<section>
 			<section>
@@ -747,6 +878,55 @@ end
     </div>
   </textarea>
 		</section>
+
+		<section>
+			<section>
+				<h2>Practice A: Free-fall table</h2>
+				<pre><code class="matlab hljs">h0 = input("Initial height (m): ");
+v0 = input("Initial velocity (m/s): ");
+g  = 9.81;
+fprintf("%-8s %10s\n","t(s)","h(m)");
+for t = 0:0.5:3
+  h = h0 + v0*t - 0.5*g*t^2;
+  fprintf("%-8.1f %10.2f\n", t, h);
+end</code></pre>
+			</section>
+			<section data-markdown>
+      <textarea data-template>
+      ## Practice B: Choose units
+      - Ask user for units (`m` or `ft`) with `switch`
+      - Convert output if needed
+      - Use `for` to print a small table of times
+      </textarea>
+			</section>
+			<section data-markdown>
+      <textarea data-template>
+      ## Exit Ticket
+      1. When choose `while` over `for`?
+      2. What does `%8.3f` do?
+      3. What's the command for getting a user's input?
+      </textarea>
+			</section>
+		</section>
+
+		<section>
+			<h3>Functions: (Next Week)</h3>
+			<p><strong>Definition</strong>: Functions are reusable pieces of code that operate on inputs and produce
+				outputs. Functions have their own workspace, separate from the base workspace.</p>
+			<p><strong>Components</strong>: Name, input arguments, and output arguments.</p>
+			<p><strong>Creating Functions</strong>: Define a function in a new file with the same name as the
+				function
+				and a <code>.m</code> extension. Use the <code>function</code> keyword to define a function.</p>
+
+			<h4>Syntax:</h4>
+			<pre><code class="matlab hljs language-matlab">function output = functionName(input)
+    % Function body
+    output = ...;
+end
+</code></pre>
+
+		</section>
+
 		<section>
 			<h1>Software Engineering</h1>
 		</section>
@@ -773,6 +953,9 @@ end
             verticalSeparator: '--', // Vertical slide (subslide) separator
         }
     });
+
+    // Hide slides that introduce content beyond Weeks 1–2 (functions, control flow, advanced I/O)
+    // Note: Week 3 includes control flow and formatted I/O. Functions are covered later.
 
 </script>
 </body>
