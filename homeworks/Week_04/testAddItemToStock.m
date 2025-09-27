@@ -12,7 +12,10 @@ function testAddItemToStock()
         % Read the file and check the content
         inventory = readtable(testFile);
         
-        assert(inventory.upc(1) == 123456789012);
+        expectedUPC = 123456789012;
+        actualUPC = inventory.upc(1);
+        assert(abs(actualUPC - expectedUPC) < 1e-6, ...
+            sprintf('UPC value mismatch after adding the item. Expected %.0f, got %.0f.', expectedUPC, actualUPC));
         assert(strcmp(inventory.ingredient{1}, 'Tomato'));
         assert(inventory.qty(1) == 5);
     catch ME

@@ -309,7 +309,8 @@ This function checks the quantity of a specific item in the inventory by its UPC
 - **Output**: The quantity of the item (integer), or `-1` if the UPC is not found.
 
 - **Instructions**: The function should read the CSV file and return the quantity of the first matching item with the
-  specified `upc`. If no match is found, return `-1`.
+  specified `upc`. If no match is found, return `-1`. If the file does not exist, handle it gracefully with a printed 
+  message.
 
 #### 3. `getInventoryList`
 
