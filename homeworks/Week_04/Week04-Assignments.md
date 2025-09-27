@@ -15,6 +15,7 @@
 * There are tests for each assignment. If they are all functions, you may run them to confirm your functions perform as expected.
   * Ensure the test files are in the same folder as your functions.
 * Outputs should resemble the examples shown; they do not need to be exact as long as sufficient information is presented.
+* Any script or function that accepts a filename input/parameter must verify that the file exists before attempting to read or write. Functions should return a status of `-1` when the file is missing. Scripts are responsible for informing the user.
 
 ---
 
@@ -200,6 +201,7 @@ as a new column to the CSV, and write the updated data to a new CSV file.
     - Read a CSV file containing the number of teeth for multiple gear pairs.
     - The CSV file should have two columns: `driverTeeth` and `drivenTeeth`.
     - **Note**: The starter CSV file `gear_data.csv` is provided on the class GitHub page. However, an example is also below
+    - If the input file is not found, the script shall print `File "gear_data.csv" not found. Please provide input data and rerun.` and stop without attempting to create an output file.
 
 
    Example `gear_data.csv`:
@@ -281,7 +283,10 @@ The script will handle user input and call the appropriate functions to manipula
     - Add an ingredient.
     - Print the inventory list.
     - Check the quantity of an ingredient by UPC.
-2. **Execute the Functionality**: Based on user input, call the appropriate function to handle each task.
+2. **Execute the Functionality**: Based on user input, call the appropriate function to handle each task. When a function
+   returns `-1` because the inventory file is missing, print `There is no inventory file <filename> currently, add inventory to create one`
+   (replace `<filename>` with the actual file name). If a UPC is not found, print `UPC <value> was not found in <filename>.`
+   with the relevant values.
 
 ### Function 1. `addItemToStock(filename, upc, ingredient, qty)`
 
@@ -306,11 +311,10 @@ This function checks the quantity of a specific item in the inventory by its UPC
     - `filename`: The name of the CSV file (e.g., `inventory.csv`).
     - `upc`: The UPC code of the item to check (string).
 
-- **Output**: The quantity of the item (integer), or `-1` if the UPC is not found.
+- **Output**: The quantity of the item (integer), `-1` if the file is missing (0 if the upc is not found).
 
 - **Instructions**: The function should read the CSV file and return the quantity of the first matching item with the
-  specified `upc`. If no match is found, return `-1`. If the file does not exist, handle it gracefully with a printed 
-  message.
+  specified `upc`. If no match is found, return `0`. If the file is missing, return `-1` immediately.
 
 #### 3. `getInventoryList`
 
@@ -319,10 +323,10 @@ This function retrieves and returns the full inventory.
 - **Inputs**:
     - `filename`: The name of the CSV file (e.g., `inventory.csv`).
 
-- **Output**: A table containing the entire inventory list.
+- **Output**: A table containing the entire inventory list, or `-1` if the file is missing.
 
 - **Instructions**: The function should read the CSV file and return the data as a table, which can be displayed
-  using `disp()` in the main script.
+  using `disp()` in the main script. If the file is missing, return `-1` immediately.
 
 ### Example Script Interaction
 
