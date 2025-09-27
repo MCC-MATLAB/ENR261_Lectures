@@ -70,17 +70,17 @@ d = a .* b; % d = [5, 12, 21, 32]
 			<p>💡 <strong>Tip:</strong> The <code>.*</code> operator performs element-wise multiplication.</p>
 		</section>
 
-		<!-- Slide 5: Dot Product -->
-		<section>
-			<h3>Dot Product</h3>
-			<p>The <strong>dot product</strong> is an algebraic operation that takes two equal-length sequences of numbers and returns a single number.</p>
-			<p>Mathematically, for vectors <em>a</em> and <em>b</em>:</p>
-			<p>$$ \mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i $$</p>
-			<pre><code class="language-matlab">% MATLAB code
-dotProduct = dot(a, b);
-</code></pre>
-			<p>👩‍💻 <strong>Exercise:</strong> Compute the dot product of <code>a = [2, 4, 6]</code> and <code>b = [1, 3, 5]</code>.</p>
-		</section>
+<!--		&lt;!&ndash; Slide 5: Dot Product &ndash;&gt;-->
+<!--		<section>-->
+<!--			<h3>Dot Product</h3>-->
+<!--			<p>The <strong>dot product</strong> is an algebraic operation that takes two equal-length sequences of numbers and returns a single number.</p>-->
+<!--			<p>Mathematically, for vectors <em>a</em> and <em>b</em>:</p>-->
+<!--			<p>$$ \mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i $$</p>-->
+<!--			<pre><code class="language-matlab">% MATLAB code-->
+<!--dotProduct = dot(a, b);-->
+<!--</code></pre>-->
+<!--			<p>👩‍💻 <strong>Exercise:</strong> Compute the dot product of <code>a = [2, 4, 6]</code> and <code>b = [1, 3, 5]</code>.</p>-->
+<!--		</section>-->
 
 		<!-- Slide 6: Vector Functions -->
 		<section>
@@ -195,99 +195,99 @@ disp('Woohoo!');
 
 		<section>
 			<h3>Explanation:</h3>
-			<pre>
+			<pre><code class="language-matlab">
 	try Block:
-		Attempts to execute the code that may cause an error.
+		% Attempts to execute the code that may cause an error.
 	catch Block:
-		Executes if an error occurs in the try block.
-		The exception object contains information about the error.
+		% Executes if an error occurs in the try block.
+		% The exception object contains information about the error.
+		</code></pre>
 	Benefit:
 		Prevents the program from crashing.
 		Allows for custom error messages or alternative actions.
-			</pre>
 		</section>
 
 		<!-- Slide 10: Matrix vs. Element-wise Operations -->
-		<section>
-			<h3>Matrix vs. Element-wise Operations</h3>
-			<table>
-				<thead>
-				<tr>
-					<th>Operation</th>
-					<th>Matrix</th>
-					<th>Element-wise</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>Addition (+)</td>
-					<td>Same as element-wise</td>
-					<td>Same as matrix</td>
-				</tr>
-				<tr>
-					<td>Subtraction (-)</td>
-					<td>Same as element-wise</td>
-					<td>Same as matrix</td>
-				</tr>
-				<tr>
-					<td>Multiplication</td>
-					<td><code>*</code> (Matrix multiplication)</td>
-					<td><code>.*</code> (Element-wise multiplication)</td>
-				</tr>
-				<tr>
-					<td>Division</td>
-					<td><code>/</code> or <code>\</code> (Matrix division)</td>
-					<td><code>./</code> or <code>.\</code> (Element-wise division)</td>
-				</tr>
-				<tr>
-					<td>Exponentiation</td>
-					<td><code>^</code> (Matrix power)</td>
-					<td><code>.^</code> (Element-wise power)</td>
-				</tr>
-				</tbody>
-			</table>
-			<p>💡 <strong>Tip:</strong> Remember to use the dot (<code>.</code>) for element-wise operations when needed.</p>
-		</section>
+<!--		<section>-->
+<!--			<h3>Matrix vs. Element-wise Operations</h3>-->
+<!--			<table>-->
+<!--				<thead>-->
+<!--				<tr>-->
+<!--					<th>Operation</th>-->
+<!--					<th>Matrix</th>-->
+<!--					<th>Element-wise</th>-->
+<!--				</tr>-->
+<!--				</thead>-->
+<!--				<tbody>-->
+<!--				<tr>-->
+<!--					<td>Addition (+)</td>-->
+<!--					<td>Same as element-wise</td>-->
+<!--					<td>Same as matrix</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Subtraction (-)</td>-->
+<!--					<td>Same as element-wise</td>-->
+<!--					<td>Same as matrix</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Multiplication</td>-->
+<!--					<td><code>*</code> (Matrix multiplication)</td>-->
+<!--					<td><code>.*</code> (Element-wise multiplication)</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Division</td>-->
+<!--					<td><code>/</code> or <code>\</code> (Matrix division)</td>-->
+<!--					<td><code>./</code> or <code>.\</code> (Element-wise division)</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Exponentiation</td>-->
+<!--					<td><code>^</code> (Matrix power)</td>-->
+<!--					<td><code>.^</code> (Element-wise power)</td>-->
+<!--				</tr>-->
+<!--				</tbody>-->
+<!--			</table>-->
+<!--			<p>💡 <strong>Tip:</strong> Remember to use the dot (<code>.</code>) for element-wise operations when needed.</p>-->
+<!--		</section>-->
 
 		<!-- Slide 11: Matrix Multiplication -->
-		<section>
-			<h3>Matrix Multiplication</h3>
-			<p>Matrix multiplication involves the dot product of rows and columns.</p>
-			<p><strong>Condition:</strong> The number of <strong>columns</strong> in the first matrix must equal the number of <strong>rows</strong> in the second matrix.</p>
-			<p>For matrices \( A \) of size \( m \times n \) and \( B \) of size \( n \times p \), the product \( C = AB \) will be of size \( m \times p \).</p>
-			<h4>Example:</h4>
-			<pre><code class="language-matlab">A = [1 2; 3 4]; % 2x2 matrix
-B = [5; 6];   % 2x1 matrix
-C = A * B;    % 2x1 result
-</code></pre>
-			<p><strong>Mathematically:</strong></p>
-			<p>$$ C = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \times \begin{bmatrix} 5 \\ 6 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*6 \\ 3*5 + 4*6 \end{bmatrix} = \begin{bmatrix} 17 \\ 39 \end{bmatrix} $$</p>
-			<p>⚠️ <strong>Gotcha:</strong> Always verify that matrix dimensions are compatible before multiplying.</p>
-		</section>
+<!--		<section>-->
+<!--			<h3>Matrix Multiplication</h3>-->
+<!--			<p>Matrix multiplication involves the dot product of rows and columns.</p>-->
+<!--			<p><strong>Condition:</strong> The number of <strong>columns</strong> in the first matrix must equal the number of <strong>rows</strong> in the second matrix.</p>-->
+<!--			<p>For matrices \( A \) of size \( m \times n \) and \( B \) of size \( n \times p \), the product \( C = AB \) will be of size \( m \times p \).</p>-->
+<!--			<h4>Example:</h4>-->
+<!--			<pre><code class="language-matlab">A = [1 2; 3 4]; % 2x2 matrix-->
+<!--B = [5; 6];   % 2x1 matrix-->
+<!--C = A * B;    % 2x1 result-->
+<!--</code></pre>-->
+<!--			<p><strong>Mathematically:</strong></p>-->
+<!--			<p>$$ C = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \times \begin{bmatrix} 5 \\ 6 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*6 \\ 3*5 + 4*6 \end{bmatrix} = \begin{bmatrix} 17 \\ 39 \end{bmatrix} $$</p>-->
+<!--			<p>⚠️ <strong>Gotcha:</strong> Always verify that matrix dimensions are compatible before multiplying.</p>-->
+<!--		</section>-->
 
-		<!-- Slide 12: Element-wise Multiplication -->
-		<section>
-			<h3>Element-wise Multiplication</h3>
-			<p>Use the <code>.*</code> operator to perform element-wise multiplication of matrices of the same size.</p>
-			<pre><code class="language-matlab">E = A .* B; % Multiplies corresponding elements
-</code></pre>
-			<p><strong>Example:</strong> If <code>A</code> and <code>B</code> are both 2x2 matrices:</p>
-			<pre><code class="language-matlab">A = [1 2; 3 4];
-B = [5 6; 7 8];
-E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]
-</code></pre>
-			<p>💡 <strong>Tip:</strong> Element-wise operations require matrices to be the same size.</p>
-		</section>
+<!--		&lt;!&ndash; Slide 12: Element-wise Multiplication &ndash;&gt;-->
+<!--		<section>-->
+<!--			<h3>Element-wise Multiplication</h3>-->
+<!--			<p>Use the <code>.*</code> operator to perform element-wise multiplication of matrices of the same size.</p>-->
+<!--			<pre><code class="language-matlab">E = A .* B; % Multiplies corresponding elements-->
+<!--</code></pre>-->
+<!--			<p><strong>Example:</strong> If <code>A</code> and <code>B</code> are both 2x2 matrices:</p>-->
+<!--			<pre><code class="language-matlab">A = [1 2; 3 4];-->
+<!--B = [5 6; 7 8];-->
+<!--E = A .* B; % E = [1*5, 2*6; 3*7, 4*8]-->
+<!--</code></pre>-->
+<!--			<p>💡 <strong>Tip:</strong> Element-wise operations require matrices to be the same size.</p>-->
+<!--		</section>-->
 
-		<!-- Slide 13: Matrix Exponentiation -->
-		<section>
-			<h3>Matrix Exponentiation</h3>
-			<p>Matrix exponentiation involves multiplying a matrix by itself a certain number of times.</p>
-			<h4>Example:</h4>
-			<pre><code class="language-matlab">A_squared = A^2; % Equivalent to A * A
-</code></pre>
-			<p>⚠️ <strong>Gotcha:</strong> This is not the same as squaring each element. For element-wise exponentiation, use <code>.^</code>.</p>
-		</section>
+<!--		&lt;!&ndash; Slide 13: Matrix Exponentiation &ndash;&gt;-->
+<!--		<section>-->
+<!--			<h3>Matrix Exponentiation</h3>-->
+<!--			<p>Matrix exponentiation involves multiplying a matrix by itself a certain number of times.</p>-->
+<!--			<h4>Example:</h4>-->
+<!--			<pre><code class="language-matlab">A_squared = A^2; % Equivalent to A * A-->
+<!--</code></pre>-->
+<!--			<p>⚠️ <strong>Gotcha:</strong> This is not the same as squaring each element. For element-wise exponentiation, use <code>.^</code>.</p>-->
+<!--		</section>-->
 
 		<!-- Slide 14: Special Matrices -->
 		<section>
@@ -340,7 +340,7 @@ logicalVec = logical([1 0 1]);
 			<p>Logical indexing allows you to select elements of an array that meet a certain condition.</p>
 			<h4>Example:</h4>
 			<pre><code class="language-matlab">vec = [10, 15, 20, 25, 30];
-condition = vec > 20;
+condition = vec > 20;              % condition will be [0, 0, 0, 1, 1]
 selectedElements = vec(condition); % Returns [25, 30]
 </code></pre>
 			<p>💡 <strong>Tip:</strong> Logical indexing is a powerful tool for data manipulation and can simplify your code.</p>
@@ -368,7 +368,7 @@ isEqual = A == B; % [0, 0, 1, 0, 0]
 % Combined conditions
 condition = (A > 2) & (B < 4); % [0, 0, 1, 0, 0]
 </code></pre>
-			<p>👩‍💻 <strong>Exercise:</strong> Create a logical vector that identifies elements in <code>A</code> that are greater than 2 or less than 5.</p>
+			<p>👩‍💻 <strong>Exercise:</strong> Create a logical vector that identifies elements in <code>A</code> that are greater than 2 and less than 5.</p>
 		</section>
 
 		<!-- Slide 19: Common Logical Functions -->
@@ -525,16 +525,18 @@ plot(x, y);
 
 		<!-- Slide 21: Conclusion -->
 		<section>
-			<h2>Conclusion</h2>
-			<p>We've covered the basics of vectors, matrices, logical operations, and an intro to tables in MATLAB. This foundation supports many engineering or data tasks, from filtering data to matrix transformations.</p>
-			<p>Key takeaways:</p>
+			<h2>Key takeaways:</h2>
 			<ul>
 				<li>Division by Zero: Always check for and handle division by zero to avoid NaN values.</li>
-				<li>Ensure matrix dimensions align for linear algebra ops (<code>*</code>, <code>/</code>, <code>^</code>).</li>
 				<li>Use <strong>logical indexing</strong> to filter data and handle special cases efficiently.</li>
 				<li>Experiment with <code>try/catch</code> for robust error handling.</li>
 			</ul>
 			<p>Feel free to experiment further with these concepts in your scripts, building on everything from earlier weeks!</p>
+		</section>
+
+		<section>
+			<h1>Software Engineering</h1>
+			<p>Or anything...</p>
 		</section>
 
 	</div>

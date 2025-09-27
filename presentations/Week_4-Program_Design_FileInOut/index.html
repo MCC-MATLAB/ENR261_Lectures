@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Week 4: Program Design & File Import Export️ 💾</title>
+    <title>Week 4: Program Design & File Import/Export 💾</title>
 
 	<link rel="stylesheet" href="/dist/reveal.css">
 	<link rel="stylesheet" href="/dist/theme/black.css" id="theme">
@@ -101,10 +101,21 @@
 		</textarea>
 		</section>
 
+		<!-- Bridge from Week 3 -->
+		<section data-markdown>
+            <textarea data-template>
+            ## From Week 3 ➜ Week 4
+
+            - Week 3: Input/output, decision making, and loops.
+            - This week: functions, program design, and file I/O.
+            - Goal: Structure code into reusable functions and read/write data.
+            </textarea>
+		</section>
+
 
 		<section data-markdown>
         <textarea data-template>
-			# Week 4: Program Design 🛠 and File Import/Export️ 💾
+            # Week 4: Program Design 🛠 and File Import/Export 💾
 
 			## Objectives:
 			* Understand the program design process 🛣️.
@@ -169,8 +180,8 @@
 					<ol start="2">
 						<li><p><strong>Compute components</strong>:</p></li>
 						<ul>
-							<li><p>Horizontal velocity <code>vx = v0 * cos(angle)</code></p></li>
-							<li>Vertical velocity <code>vy = v0 * sin(angle)</code></li>
+                    <li><p>Horizontal velocity <code>vx = v0 * cosd(angle)</code></p></li>
+                    <li>Vertical velocity <code>vy = v0 * sind(angle)</code></li>
 						</ul>
 					</ol>
 
@@ -182,7 +193,7 @@
 						<ul>
 							<li>Time array <code>time</code></li>
 							<li>Horizontal position <code>x = vx * time</code></li>
-							<li>Vertical position <code>y = vy * time - 1/2 * g * time^2</code></li>
+                            <li>Vertical position <code>y = vy * time - 1/2 * g * time.^2</code></li>
 						</ul>
 					</ol>
 
@@ -194,10 +205,10 @@
 					<ol start="4">
 						<li style="margin-top: 20px"><strong>Plot the trajectory</strong></li>
 						<p><strong>Formulas</strong>:</p>
-						<ul>
-							<li><code>x = v0 * cos(angle) * time</code></li>
-							<li><code>y = v0 * sin(angle) * time - 1/2 * g * time.^2</code></li>
-						</ul>
+                        <ul>
+                            <li><code>x = v0 * cosd(angle) * time</code></li>
+                            <li><code>y = v0 * sind(angle) * time - 1/2 * g * time.^2</code></li>
+                        </ul>
 					</ol>
 
 
@@ -342,11 +353,7 @@
 			```
 
 			💡 **Tip**: It is important to know, the function is completely oblivious to all external code!
-	        --
 
-> "Write code that is easy to delete, not easy to extend"
->
-> Jean-Paul Sartre
 		</textarea>
 		</section>
 
@@ -561,19 +568,19 @@
 			--
 
 			### Other Useful File Functions
-				- `dir()` Lists all files and directories in the current folder.
-					```matlab
-					files = dir;
-					disp({files.name});
-					```
-				- `movefile()` Moves or renames a file
+			- `dir()` Lists all files and directories in the current folder.
 				```matlab
-				movefile('oldname.txt', 'newname.txt');
+				files = dir;
+				disp({files.name});
 				```
-				- `copyfile()` Copies a file to a new location
-				```matlab
-				copyfile('source.txt', 'destination.txt');
-				```
+			- `movefile()` Moves or renames a file
+			```matlab
+			movefile('oldname.txt', 'newname.txt');
+			```
+			- `copyfile()` Copies a file to a new location
+			```matlab
+			copyfile('source.txt', 'destination.txt');
+			```
 
 			--
 
@@ -786,9 +793,9 @@
 
 			- For tables:
 
-			  ```matlab
-			  variableNames = dataTable.Properties.VariableNames;
-			  ```
+			```matlab
+			variableNames = dataTable.Properties.VariableNames;
+			```
 
 			#### Checking Data Types of Variables:
 
@@ -1035,11 +1042,12 @@
 
 			- **Default Behavior**:
 			  - Writes data starting at cell A1.
+			  - Writes data to the first sheet.
 			  - For tables, includes variable names (headers) by default.
 
 			- **Optional Parameters**:
-			  - **'Sheet'**: Specifies the worksheet in Excel files.
-			  - **'Range'**: Specifies the starting cell for writing data.
+			  - `'Sheet'`: Specifies the worksheet in Excel files.
+			  - `'Range'`: Specifies the starting cell for writing data.
 
 			--
 
@@ -1173,26 +1181,17 @@
 					<ul>
 						<li>Use <code>readtable</code> or <code>readmatrix</code> for CSV and TXT files.</li>
 						<li><p>Example:</p>
-							<pre><code class="lang-matlab">data = readtable('data.txt', 'Delimiter', '\t', 'ReadVariableNames', false);</code></pre>
 						</li>
 					</ul>
+					<pre><code class="lang-matlab">data = readtable('data.txt', 'Delimiter', '\t', 'ReadVariableNames', false);</code></pre>
 				</span>
 				<span class="fragment fade-in-then-out current-visible" data-fragment-index="2">
 					<h4 id="ignoring-or-handling-missing-data-">Ignoring or Handling Missing Data:</h4>
 					<ul>
 						<li>Use the <code>'TreatAsMissing'</code> parameter.</li>
-						<li><p>Example:</p>
-							<pre><code class="lang-matlab">dataTable = readtable('data.csv', 'TreatAsMissing', 'NA');</code></pre>
-						</li>
+						<li><p>Example:</p></li>
 					</ul>
-				</span>
-				<span class="fragment fade-in-then-out current-visible" data-fragment-index="3">
-					<h4 id="handling-large-files-">Handling Large Files:</h4>
-					<ul>
-						<li><strong>Use <code>textscan</code> for Efficiency</strong>: <code>textscan</code> can be more efficient for reading large text files with known formats.</li>
-						<li><strong>Chunk Reading</strong>: For extremely large files, consider reading data in chunks.</li>
-					</ul>
-					<p>💡 <strong>Tip</strong>: Document any special parameters or options used during import/export to make your code easier to understand and maintain.</p>
+					<pre><code class="lang-matlab">dataTable = readtable('data.csv', 'TreatAsMissing', 'NA');</code></pre>
 				</span>
 			</span>
 
@@ -1231,10 +1230,6 @@
 
 		<section>
 			<h1>Software Engineering</h1>
-			<ul>
-				<li><a href="https://www.codecademy.com">codecademy.com</a></li>
-				<li>"The Pragmatic Programmer"</li>
-			</ul>
 		</section>
 
 		<section data-markdown>
@@ -1256,7 +1251,7 @@
 <script src="/plugin/markdown/markdown.js"></script>
 <script src="/plugin/highlight/highlight.js"></script>
 <script src="/plugin/notes/notes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/math/math.js"></script>
+<script src="/plugin/math/math.js"></script>
 <script>
 
     Reveal.initialize({
@@ -1271,31 +1266,6 @@
         markdown: {
             slideSeparator: '---',   // Horizontal slide separator
             verticalSeparator: '--', // Vertical slide (subslide) separator
-        },
-
-        math: {
-            // Choose the math rendering library (MathJax or KaTeX)
-            // Available values: 'mathjax2', 'mathjax3', 'katex'
-            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
-            // Optionally specify the CDN for KaTeX
-            katex: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js',
-            // The math renderer to use (we'll use KaTeX)
-            renderer: 'katex',
-
-            // Delimiters for LaTeX equations
-            // You can customize these as needed
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '\\[', right: '\\]', display: true}
-            ],
-            // KaTeX-specific options
-            katexOptions: {
-                macros: {
-                    "\\RR": "\\mathbb{R}"
-                }
-            }
         }
     });
 
