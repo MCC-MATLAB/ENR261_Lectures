@@ -6,13 +6,29 @@ function testProcessGearRatios()
     inputFileName = 'gear_data.csv';
     outputFileName = 'gear_ratios_output.csv';
 
-    cleanup({inputFileName, outputFileName});
+    cleanup(outputFileName);
+    cleanup(inputFileName);
+
+    enforceScript('processGearRatios.m');
+
+    % Missing input file should be handled gracefully
+    try
+        missingOutput = evalc('processGearRatios;'); %#ok<NOPRT>
+    catch ME
+        cleanup(outputFileName);
+        rethrow(ME);
+    end
+
+    assert(~isfile(outputFileName), ...
+        'processGearRatios should not create an output file when the input file is missing.');
+    expectedMessage = sprintf('File "%s" not found. Please provide input data and rerun.', inputFileName);
+    assert(contains(missingOutput, expectedMessage), ...
+        'processGearRatios should print the required missing-file message.');
 
     % Write the test data to the expected script input
     writetable(testData, inputFileName);
 
     try
-        enforceScript('processGearRatios.m');
         processGearRatios; %#ok<NOPRT> % script should execute without arguments
     catch ME
         cleanup({inputFileName, outputFileName});
@@ -28,16 +44,14 @@ function testProcessGearRatios()
         'Gear ratios do not match expected values');
 
     % Clean up
-    cleanup({inputFileName, outputFileName});
+    cleanup(outputFileName);
 
     disp('All tests for processGearRatios passed.');
 end
 
-function cleanup(files)
-    for k = 1:numel(files)
-        if isfile(files{k})
-            delete(files{k});
-        end
+function cleanup(filename)
+    if isfile(filename)
+        delete(filename);
     end
 end
 

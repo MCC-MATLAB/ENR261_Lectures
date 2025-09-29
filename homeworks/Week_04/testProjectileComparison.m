@@ -4,7 +4,7 @@ function testProjectileComparison(v0, y0, guess)
     numValues = 100; % Number of time intervals
 
     % Step 1: Compute the optimal angle and maximum range
-    [optimal_angle, max_range] = getOptimalTrajectoryAngle(v0, y0, guess);
+    [optimal_angle, max_range] = getOptimalTrajectoryAngle(v0, y0, g);
 
     % Step 2: Compute the trajectory for both the guessed angle and the optimal angle
     [x_optimal, y_optimal] = calculateTrajectory(v0, optimal_angle, y0, g, numValues);

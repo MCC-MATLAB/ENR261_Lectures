@@ -16,6 +16,7 @@
   * Ensure the test files are in the same folder as your functions.
 * Outputs should resemble the examples shown; they do not need to be exact as long as sufficient information is presented.
 * Any script or function that accepts a filename input/parameter must verify that the file exists before attempting to read or write. Functions should return a status of `-1` when the file is missing. Scripts are responsible for informing the user.
+* Tip: Store UPC values in your CSV as strings. When you need to compare or do math with a UPC (for example, matching against user input), convert it on the fly with `str2double` or similar so you are always working with numbers during calculations.
 
 ---
 
