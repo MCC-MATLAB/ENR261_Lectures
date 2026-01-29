@@ -1,6 +1,6 @@
-# Week 11 Assignments: Multitasking in a Single-Threaded Environment
+# Week 11 Homework Assignments: Multitasking in a Single-Threaded Environment
 
-## General Submission Guidelines:
+## Global Requirements
 
 1. Code Quality:
    * Your `.mlapp` files should be well-organized, with clear and meaningful variable names.
@@ -24,14 +24,14 @@
 As always, the examples are merely used to illustrate what is expected. You have creative freedom to design your
 applications as you see fit, as long as they meet the requirements.
 
-## Assignment 1: Blinking an LED with pause
+## 1. Blinking an LED with pause
 
-### Objective:
+### Task
 
 Understand the limitations of using blocking functions like pause in a single-threaded environment by creating a simple
 application that blinks an LED and updates a timer label.
 
-### Requirements:
+### Instructions
 
 1. Create a MATLAB App Designer application that includes:
     * An LED (lamp) component that can be turned on and off.
@@ -43,10 +43,11 @@ application that blinks an LED and updates a timer label.
 3. Observe the behavior:
     * Note how the use of pause affects the updating of the timer label.
     * Observe any issues with the application’s responsiveness during blinking.
-4. Submission:
-    * Commit and push your MATLAB `blinkWithDelay.mlapp` file to your repository.
+### Deliverables
 
-### Tips:
+1. Commit and push your MATLAB `blinkWithDelay.mlapp` file to your repository.
+
+### Tips
 
 * Remember that `pause` halts the entire execution of the program, which may prevent other tasks (like updating the timer
   label) from running.
@@ -58,14 +59,14 @@ application that blinks an LED and updates a timer label.
 
 ---
 
-## Assignment 2: Blinking an LED without pause
+## 2. Blinking an LED without pause
 
-### Objective:
+### Task
 
 Learn how to implement non-blocking delays using elapsed time checks to create a responsive application that blinks an
 LED and updates a timer label simultaneously.
 
-### Requirements:
+### Instructions
 
 1. Modify your application from Assignment 1 to:
     * Replace the use of pause with non-blocking timing methods.
@@ -78,28 +79,29 @@ LED and updates a timer label simultaneously.
 3. Ensure application responsiveness:
     * The user interface should remain responsive during blinking.
     * The timer label should update smoothly without delays.
-4. Submission:
-    * Submit your updated MATLAB `blinkNoDelay.mlapp` file.
+### Deliverables
 
-### Tips:
+1. Submit your updated MATLAB `blinkNoDelay.mlapp` file.
+
+### Tips
 
 * Use conditional statements based on elapsed time to decide when to toggle the LED.
 * Keep your main loop running continuously, checking for tasks to perform without using pause.
 
-### Example:
+### Example
 
 ![blink no delay](../../images/week11/blinkNoDelay.png)
 
 ---
 
-## Assignment 3: Creating a Dynamic GUI with Multiple Components
+## 3. Creating a Dynamic GUI with Multiple Components
 
-### Objective:
+### Task
 
 Design a graphical application that demonstrates multitasking in a single-threaded environment by managing multiple GUI
 components that update independently at different intervals.
 
-### Requirements:
+### Instructions
 
 1. Create a MATLAB App Designer application that includes at least five different GUI components (e.g., Lamps, switches,
    sliders, gauges, text labels, etc.).
@@ -114,13 +116,14 @@ components that update independently at different intervals.
 4. Visual Effect:
     * When running the application, you should see the components changing colors, text, values, etc., independently and
       at different frequencies.
-5. Submission:
-    * Submit your MATLAB `crazyDashboard.mlapp` file.
-    * Include a short write-up (1-2 paragraphs) explaining:
-    * How you implemented the independent updates.
-    * The challenges faced in managing multiple tasks.
+### Deliverables
 
-### Tips:
+1. Submit your MATLAB `crazyDashboard.mlapp` file.
+2. Include a short write-up (1-2 paragraphs) explaining:
+    - How you implemented the independent updates.
+    - The challenges faced in managing multiple tasks.
+
+### Tips
 
 * Assign each component a `lastRunTime` and an `updateInterval` to manage their updates.
 * Use each component’s `UserData` property to store timing information.
@@ -131,15 +134,15 @@ components that update independently at different intervals.
 
 ---
 
-## Assignment 4: PID Line-Following Simulator
+## 4. PID Line-Following Simulator
 
-### Objective:
+### Task
 
 Develop a graphical application that simulates a line-following robot controlled by a PID (
 Proportional-Integral-Derivative) algorithm using only the P (Proportional) and D (Derivative) components. The
 application should allow the user to adjust parameters and visualize how the robot adjusts its path.
 
-### Requirements:
+### Instructions
 
 1. Create a MATLAB App Designer application that includes:
     * Input fields or controls for:
@@ -161,10 +164,11 @@ application should allow the user to adjust parameters and visualize how the rob
     * The application should visually reflect the changes in motor speeds, showing how the robot responds to the line
       position.
     * Adjust the numbers and see how a high kP is useless beyond a certain point, but too low is not significant enough, etc.
-4. Submission:
-    * Submit your MATLAB `pidSimulator.mlapp` file.
+### Deliverables
 
-### Tips:
+1. Submit your MATLAB `pidSimulator.mlapp` file.
+
+### Tips
 
 * Use an event loop to continuously read the line position and update motor speeds without blocking the UI.
 * Ensure the application remains responsive during the simulation.

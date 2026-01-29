@@ -178,7 +178,7 @@ Your `Week09` folder shall contain at minimum the following files:
 
 Ensure that each app is well-documented, functions correctly, and follows good coding practices.
 
-# Additional Instructions
+## Additional Instructions
 
 * **Testing**:
     * While explicit test scripts are not provided, test each app by inputting various symbolic expressions.

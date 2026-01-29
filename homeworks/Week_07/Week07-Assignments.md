@@ -310,7 +310,7 @@ Your `Week07` folder shall contain **at minimum** the following files:
 
 Ensure that each script and function is well-documented and follows good coding practices.
 
-# Additional Instructions
+## Additional Instructions
 
 - **Testing**:
     - While explicit test scripts are not provided, you are encouraged to test each function individually.

@@ -1,0 +1,146 @@
+
+/* Week 1 — Fun Theme (student-friendly, brighter accents)
+   Drop this in place of /dist/week1.css and link it after main.css
+*/
+
+:root {
+  /* Base palette (dark base, bright accents) */
+  --background-color: #111116;
+  --text-color: #ECECF3;
+
+  /* Accents */
+  --primary-color: #7CFFB2;      /* mint */
+  --secondary-color: #8AB4FF;    /* soft periwinkle */
+  --tertiary-color: #FF8AD1;     /* pink pop */
+  --quaternary-color: #FFD166;   /* warm yellow */
+
+  /* Map to header variables Reveal slides use */
+  --H1: #7CFFB2;
+  --H2: #8AB4FF;
+  --H3: #FF8AD1;
+  --H4: #FFD166;
+  --H5: #CFCFE8;
+
+  /* Code surfaces */
+  --code-bg-color: #0b0e1a;
+  --code-block-text-color: #9AFFD6;
+  --matlab-bg-color: #0f1324;
+  --matlab-code-color: #D4D8E8;
+
+  /* Alerts */
+  --alert-warning-fg: #2b1d00;
+  --alert-warning-bg: #ffd166;
+  --alert-warning-border: #d99a00;
+
+  --alert-info-fg: #082d31;
+  --alert-info-bg: #86e3f5;
+  --alert-info-border: #2aa8be;
+
+  /* Slightly bigger base font for projectors */
+  --r-main-font-size: 28px;
+
+  /* Punchier headings */
+  --r-heading1-size: 2.7em;
+  --r-heading2-size: 1.9em;
+  --r-heading3-size: 1.4em;
+}
+
+/* Fun heading styling */
+.reveal .slides h1,
+.reveal .slides h2 {
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 16px rgba(124,255,178,0.18);
+}
+
+/* Subtle “card” look for code and callouts */
+.code-wrapper,
+.reveal pre code,
+.alert {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  border-radius: 10px;
+}
+
+/* Code readability bump */
+.reveal pre code {
+  font-size: 0.98em;
+  line-height: 1.35;
+}
+
+/* KBD keys — make them pop a bit more if present */
+.kbc-button {
+  border-radius: 6px !important;
+  padding: 2px 7px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+/* Fun utilities to sprinkle across slides */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: linear-gradient(135deg, rgba(124,255,178,0.15), rgba(138,180,255,0.15));
+  color: var(--text-color);
+  backdrop-filter: blur(6px);
+}
+
+.checkpoint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 209, 102, 0.18);
+  border: 1px solid var(--quaternary-color);
+  font-weight: 700;
+}
+
+.emoji-burst { font-size: 1.6em; line-height: 1; }
+
+/* Home link → button-y */
+.home-link {
+  color: #f0f0f7 !important;
+  background: linear-gradient(135deg, rgba(124,255,178,0.22), rgba(138,180,255,0.18));
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
+}
+.home-link:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(124,255,178,0.35), rgba(138,180,255,0.28));
+}
+
+/* Optional: playful fragment entrance */
+.reveal .fragment.grow-in {
+  opacity: 0;
+  transform: scale(0.92) translateY(6px);
+  transition: all .45s ease;
+}
+.reveal .fragment.grow-in.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Optional: subtle gradient background behind slides */
+.reveal .slide-background-content {
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(124,255,178,0.08), transparent 60%),
+              radial-gradient(1000px 500px at 90% 80%, rgba(138,180,255,0.08), transparent 60%),
+              var(--background-color);
+}
+
+/* “Quiz” callout (use as a container) */
+.quiz {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.25);
+  background: rgba(143, 148, 255, 0.12);
+}
+.quiz h4 { margin-top: 0; color: var(--H2); }
+.quiz .answer { opacity: 0.0; transition: opacity .35s ease; }
+.quiz .answer.reveal { opacity: 1.0; }
+
+/* Tables (if any) */
+.reveal table th, .reveal table td {
+  border-color: rgba(255,255,255,0.18);
+}

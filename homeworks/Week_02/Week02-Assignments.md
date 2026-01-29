@@ -9,14 +9,17 @@
   % Assisted by: First Person, Second Person, etc.
   clc; clear;
   ```
+- Some tasks intentionally use commands not covered in lecture. Use MATLAB `help`/`doc` or online documentation to learn them.
 
 ---
 
 ## 1. Matrix Arithmetic
 
-### Instructions
+### Task
 
 Write a MATLAB script that performs basic matrix and vector arithmetic.
+
+### Instructions
 
 **Script Name**: `matrixOperations.m`
 
@@ -53,6 +56,10 @@ Write a MATLAB script that performs basic matrix and vector arithmetic.
    - Multiply matrix `A` by a scalar value (for example, 2) and store the result in `F`.
    - Display `F`
 
+6. **Indexing and Reassignment**:
+   - Extract the **second row** of `A` and the **third column** of `B` and display them.
+   - Replace the center element of `A` with `99` and display the updated `A`.
+
 ### Deliverables
 
 1. `matrixOperations.m` containing all of the above steps.
@@ -63,9 +70,11 @@ Write a MATLAB script that performs basic matrix and vector arithmetic.
 
 ## 2. Vector Arithmetic
 
-### Instructions
+### Task
 
 Write a MATLAB script that demonstrates basic vector operations.
+
+### Instructions
 
 **Script Name**: `vectorOperations.m`
 
@@ -96,9 +105,11 @@ Write a MATLAB script that demonstrates basic vector operations.
 
 ## 3. Simple Data Visualization
 
-### Instructions
+### Task
 
 Write a MATLAB script that creates a basic line plot.
+
+### Instructions
 
 **Script Name**: `simplePlot.m`
 
@@ -115,7 +126,7 @@ Write a MATLAB script that creates a basic line plot.
 
 4. **Add Labels and Title**:
    - Label the x-axis as “Time (s)” and the y-axis as “Distance (m)”.
-   - Add a title to the plot: “Time vs Distance”.
+   - Define a **string** variable for the title (e.g., `plotTitle = "Time vs Distance";`) and use it with `title(plotTitle)`.
 
 ### Deliverables
 
@@ -155,7 +166,11 @@ Create a MATLAB script that performs calculations for stress and strain and then
    - Calculate strain using: $$ \text{strain} = \frac{\text{displacement}}{\text{originalLength}} $$ for each displacement value.
    - Store the results in `strain`. Use element-wise calculations where needed.
 
-4. **Plot the Stress-Strain Curve**:
+4. **Logical Check**:
+   - Create a logical vector that identifies which stress values are above 5: `highStress = stress > 5;`
+   - Display the logical vector.
+
+5. **Plot the Stress-Strain Curve**:
    - Plot the stress-strain curve using the calculated values.
    - Label the x-axis as "Strain" and the y-axis as "Stress (N/mm^2)".
    - Add a title "Stress-Strain Curve".
@@ -190,7 +205,7 @@ Simulate the vertical motion of a projectile under gravity, and visualize the re
 
 2. **Height Calculation**:
    - Calculate the height at each time point using: $$ y = \text{initialVelocity} \cdot \text{time} - \frac{1}{2} \cdot \text{gravity} \cdot \text{time}^2 $$
-   - Store the results in a vector `height`.
+   - Store the results in a vector `height` using **dot operators** (e.g., `.*`, `.^`) because `time` is a vector.
 
 3. **Plotting the Trajectory**:
    - Use `plot(time, height);` to create the plot.
@@ -216,6 +231,7 @@ Identify and fix errors in a MATLAB script that calculates the total cost of ite
 2. Open the script in the MATLAB Editor and try running it. Observe the errors or unexpected behaviors.
 3. Identify and fix the bugs in the script. The bugs could include syntax errors, incorrect operations, or function misuse.
    - Pay attention to how arrays and variables are used and manipulated.
+   - At least one error involves **operator precedence** (missing parentheses).
 4. Use comments to explain each fix you make and describe the original error.
 
 #### Example Buggy Script (`buggyScript2.m`)
@@ -224,13 +240,15 @@ Identify and fix errors in a MATLAB script that calculates the total cost of ite
 % Task: Calculate the total cost of items in a grocery list
 
 itemPrices = [2.5, 3.0, 4.5, 5]; % Prices of 4 items
-itemQuantities = [2, 1, 3]; % Quantities of each item bought
+itemQuantities = [2, 1, 3, 4]; % Quantities of each item bought
+taxRate = 8.5; % percent
 
 % Calculate the total cost for each item
 totalCost = itemPrices * itemQuantities;
 
-% Display the total cost (using sum to get the overall cost)
-fprintf('The total cost of the grocery items is: %.2f\n', sum(totalCost));
+% Apply tax and display the total cost
+grandTotal = sum(totalCost) * 1 + taxRate/100;
+fprintf('The total cost of the grocery items is: %.2f\n', grandTotal);
 ```
 
 ### Deliverables

@@ -317,7 +317,7 @@ Enter gravitational acceleration (m/s^2): 9.81
 
 ![img.png](ProjectileKeyPoints.png)
 
-### Deliverables:
+### Deliverables
 
 - Submit the function `projectileMotionWithKeyPoints.m`.
 - Submit a script `runProjectileMotion.m` that prompts the user for input and calls `projectileMotionWithKeyPoints`.

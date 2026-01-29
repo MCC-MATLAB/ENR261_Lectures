@@ -1,14 +1,19 @@
-# Week 10 Assignments: PID Control and Algorithm Analysis
+# Week 10 Homework Assignments: PID Control and Algorithm Analysis
 
-## Assignment 1: PID Control for Spring-Damping System
+## Global Requirements
 
-### Objective:
+1. Each `.mlapp` file should be well-organized and user-friendly.
+2. Include your write-up in any format (word, text, md, pdf, etc), clearly explaining your approach and observations.
+
+## 1. PID Control for Spring-Damping System
+
+### Task
 
 Develop a graphical application using MATLAB App Designer to simulate a spring-damping system controlled by a PID
 algorithm. The application should allow the user to set parameters for mass, damping coefficient, spring constant, and
 PID gains.
 
-### Requirements:
+### Instructions
 
 1. **Graphical Interface**:
     * Input fields for:
@@ -29,13 +34,14 @@ PID gains.
     * Ensure the app clears previous plots and shows only the last two runs.
     * The app should handle different sets of inputs and visualize how changes affect the system response.
 
-3. **Submission**:
-    * Submit your MATLAB `.mlapp` file along with a short write-up (1-2 paragraphs) explaining
-        * How your app works
-        * What did you find to be the best numbers
-        * Were you able to determine a pattern in the three constants regarding how they control the results
+### Deliverables
 
-### Tips:
+1. Submit your MATLAB `.mlapp` file along with a short write-up (1-2 paragraphs) explaining:
+    - How your app works
+    - What did you find to be the best numbers
+    - Were you able to determine a pattern in the three constants regarding how they control the results
+
+### Tips
 
 * Experiment with various values for $kP$, $kI$, and $kD$ to understand their effects.
 * Consider edge cases, such as very high or very low damping coefficients, and explain what happens.
@@ -49,14 +55,14 @@ requirements.
 
 ---
 
-## Assignment 2: PID Line-Following Robot
+## 2. PID Line-Following Robot
 
-### Objective:
+### Task
 
 Develop a graphical application using MATLAB App Designer to simulate a line-following robot controlled by a PID
 algorithm. The application should allow the user to set PID gains and observe how the robot adjusts its path.
 
-### Requirements:
+### Instructions
 
 1. **Graphical Interface**:
     * Input fields for:
@@ -77,13 +83,14 @@ algorithm. The application should allow the user to set PID gains and observe ho
     * Ensure the app clears previous plots and shows only the last two runs.
     * Allow the user to adjust the PID parameters and run the simulation multiple times, observing the differences.
 
-3. **Submission**:
-    * Submit your MATLAB `.mlapp` file along with a short write-up (1-2 paragraphs) explaining
-        * How your app works
-        * What did you find to be the best numbers
-        * Were you able to determine a pattern in the three constants regarding how they control the results
+### Deliverables
 
-### Tips:
+1. Submit your MATLAB `.mlapp` file along with a short write-up (1-2 paragraphs) explaining:
+    - How your app works
+    - What did you find to be the best numbers
+    - Were you able to determine a pattern in the three constants regarding how they control the results
+
+### Tips
 
 * Adjust the input random seed to see consistent deviations, making it easier to observe how the PID settings respond.
 * Describe how changes in PID parameters affected the robot’s performance and any observations you found interesting.
@@ -99,9 +106,9 @@ requirements.
 
 ---
 
-## Assignment 3: Custom Algorithm Comparison
+## 3. Custom Algorithm Comparison
 
-### Objective
+### Task
 
 Build a small App Designer tool that compares algorithm behavior. Choose ONE of the comparison modes below and present results clearly.
 
@@ -110,7 +117,7 @@ Build a small App Designer tool that compares algorithm behavior. Choose ONE of 
 
 Implementation expectations: Implement at least one algorithm yourself in MATLAB. If one of your comparisons uses a built‑in (e.g., MATLAB `sort`), you may implement only the other algorithm (e.g., bubble sort) and compare them fairly on the same input.
 
-### Requirements
+### Instructions
 
 1. **Graphical Interface**
     - Input fields for parameters and/or dataset selection (as appropriate for your choice).
@@ -127,11 +134,12 @@ Implementation expectations: Implement at least one algorithm yourself in MATLAB
         - Stability/overshoot/settling time (for control problems like PID)
     - Make it easy to re‑run with the same settings (e.g., an optional random seed field).
 
-3. **Submission**
-    - Submit your `.mlapp` and a short write‑up (1–2 paragraphs) including:
-        - Which mode you chose (A or B) and why.
-        - What you implemented vs. what (if anything) you used from MATLAB built‑ins.
-        - A summary of your findings with at least one figure or table (screenshots are fine).
+### Deliverables
+
+1. Submit your `.mlapp` and a short write‑up (1–2 paragraphs) including:
+    - Which mode you chose (A or B) and why.
+    - What you implemented vs. what (if anything) you used from MATLAB built‑ins.
+    - A summary of your findings with at least one figure or table (screenshots are fine).
 
 ### Examples (choose or adapt)
 
@@ -140,15 +148,6 @@ Implementation expectations: Implement at least one algorithm yourself in MATLAB
 - Clustering: k‑means with different `k` or seeds; compare inertia or cluster consistency.
 - Simulation: Random walk with different step distributions; compare variance growth.
 - Vectorization: For‑loop implementation vs vectorized equivalent; measure runtime and discuss readability/maintainability trade‑offs.
-
----
-
-## General Submission Guidelines:
-
-1. Each `.mlapp` file should be well-organized and user-friendly.
-2. Include your write-up in any format (word, text, md, pdf, etc), clearly explaining your approach and observations.
-
----
 
 ## Definition of Done
 

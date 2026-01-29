@@ -1,4 +1,4 @@
-# Week 5 Assignments: Logical Indexing & Matrix Operations
+# Week 5 Homework Assignments: Logical Indexing & Matrix Operations
 
 ## Global Requirements
 
@@ -311,7 +311,7 @@ Your `Week05` folder shall contain at minimum the following files:
   * trajectoryAnalysis.m
   * Any other functions or scripts you created or modified
 
-## Additional Instructions and Tips
+## Additional Instructions
 
 * Logical Vectors and Operations:
   * Use relational operators (<, >, <=, >=, ==, ~=) to create logical vectors.

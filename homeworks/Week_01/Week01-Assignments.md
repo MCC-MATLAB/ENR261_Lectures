@@ -30,7 +30,7 @@ Perform a guided tour of the MATLAB interface.
 
 Practice using basic MATLAB commands and performing simple calculations.
 
-### Requirements
+### Instructions
 
 - In the Command Window, perform basic arithmetic with variables.
 - Use `clc` to clear the Command Window, `clear` to remove variables from the Workspace, and `whos` to inspect current variables.
@@ -50,7 +50,7 @@ Practice using basic MATLAB commands and performing simple calculations.
 
 Learn to use MATLAB’s help system to find information on specific commands and functions.
 
-### Requirements
+### Instructions
 
 - Use the `help` command or MATLAB documentation to research: `fprintf`, `plot`, and `disp`.
 - For each function:
@@ -77,7 +77,7 @@ Learn to use MATLAB’s help system to find information on specific commands and
 
 Write a simple script to perform a basic task; calculate the area of a rectangle.
 
-### Requirements
+### Instructions
 
 - Create a new script `calculate_area.m`.
 - Compute the area of a rectangle using variables for length and width.
@@ -132,7 +132,7 @@ disp('The area of the circle is: ', area) % Incorrect use of disp function
 
 ---
 
-# Definition of Done
+## Definition of Done
 - You have a GitHub repository with `gberl001` invited as a collaborator.
 - Your `Week01` folder contains at minimum:
 
