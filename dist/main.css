@@ -31,8 +31,26 @@
 
 /* Utility widths */
 .half-width { width: 50%; }
-.quarter-width { width: 25%; }
+doc.quarter-width { width: 25%; }
 .fit-width { width: fit-content; }
+
+/* Layout helper when slides pair code, tables, or media */
+.side-by-side {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.side-by-side > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.side-by-side img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* Optional: slightly wider code blocks when using RISE/jupyter exports */
 .rise-enabled .reveal pre { width: 70% !important; }
